@@ -1,0 +1,8 @@
+
+{
+    "variants": {
+        "axis=y":    { "model": "occult:block/deathcherrylog" },
+        "axis=z":     { "model": "occult:block/deathcherrylog", "x": 90 },
+        "axis=x":     { "model": "occult:block/deathcherrylog", "x": 90, "y": 90 }
+    }
+}

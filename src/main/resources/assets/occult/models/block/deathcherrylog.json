@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "occult:blocks/black_log",
+    "up": "occult:blocks/black_log",
+    "side": "occult:blocks/black_log2"
+  }
+}

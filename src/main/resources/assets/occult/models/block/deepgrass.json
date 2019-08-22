@@ -1,0 +1,10 @@
+{   "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "particle": "minecraft:block/dirt",
+    "bottom": "minecraft:block/dirt",
+    "top": "occult:blocks/deepgrass",
+    "side": "occult:blocks/deepgrass"
+
+  }
+
+}
