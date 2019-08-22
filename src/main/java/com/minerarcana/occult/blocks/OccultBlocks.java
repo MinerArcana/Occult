@@ -13,8 +13,13 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
+@Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
 public class OccultBlocks
 {
     public static Block deepgrass;
@@ -125,8 +130,8 @@ public class OccultBlocks
     public static Block echobush;
 
 
-
-    public static void init()
+    @SubscribeEvent
+    public static void registerBlocks(final RegistryEvent.Register<Block> event)
     {
         //Deep Forest Biome
         deathcherrylog = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "deathcherrylog");

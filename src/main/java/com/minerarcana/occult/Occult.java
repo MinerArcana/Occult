@@ -49,8 +49,7 @@ public class Occult
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
         MinecraftForge.EVENT_BUS.register(this);
-        OccultBlocks.init();
-        OccultItems.init();
+
 
 
     }

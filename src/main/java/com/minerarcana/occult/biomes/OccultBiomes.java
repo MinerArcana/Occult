@@ -13,11 +13,15 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class OccultBiomes
 {
     public static Biome spookyforest;
+    public static Biome infernalforest;
+    public static Biome bleachedforest;
 
     @SubscribeEvent
     public static void registerBiomes(final RegistryEvent.Register<Biome> event)
     {
         spookyforest = registerBiome(new TheDeepForest(), BiomeManager.BiomeType.WARM , "spookyforest", 100, BiomeDictionary.Type.SPOOKY);
+        infernalforest = registerBiome(new TheDeepForest(), BiomeManager.BiomeType.DESERT , "infernalforest", 100, BiomeDictionary.Type.SPOOKY);
+        bleachedforest = registerBiome(new TheDeepForest(), BiomeManager.BiomeType.WARM , "bleachedforest", 100, BiomeDictionary.Type.SPOOKY);
 
     }
 
