@@ -5,6 +5,7 @@ import com.minerarcana.occult.blocks.flowers.DeepFlower;
 import com.minerarcana.occult.blocks.flowers.InfernalFlower;
 import com.minerarcana.occult.blocks.normal.OccultStairs;
 import com.minerarcana.occult.blocks.vegetation.StrangleGrass;
+import com.minerarcana.occult.blocks.worldblocks.Brimstone;
 import com.minerarcana.occult.blocks.worldblocks.DeepGrass;
 import com.minerarcana.occult.util.OccultItemGroup;
 import net.minecraft.block.Block;
@@ -13,7 +14,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -249,7 +249,7 @@ public class OccultBlocks
         //WorldBlocks
         deepgrass = registerBlock(new DeepGrass((Block.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "deepgrass");
         halfgrass = registerBlock(new DeepGrass((Block.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "halfgrass");
-        brimstone = registerBlock(new DeepGrass((Block.Properties.create(Material.ROCK).hardnessAndResistance(0.6F).sound(SoundType.STONE))), "brimstone");
+        brimstone = registerBlock(new Brimstone((Block.Properties.create(Material.ROCK).hardnessAndResistance(0.6F).sound(SoundType.STONE))), "brimstone");
         bonesand = registerBlock(new DeepGrass((Block.Properties.create(Material.SAND).hardnessAndResistance(0.6F).sound(SoundType.SAND))), "bonesand");
 
     }

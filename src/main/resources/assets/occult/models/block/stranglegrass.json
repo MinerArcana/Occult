@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "grassworld:blocks/actualgrass_black"
+  }
+}
