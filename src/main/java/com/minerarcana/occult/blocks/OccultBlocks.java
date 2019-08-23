@@ -4,6 +4,7 @@ import com.minerarcana.occult.blocks.flowers.BleachedFlower;
 import com.minerarcana.occult.blocks.flowers.DeepFlower;
 import com.minerarcana.occult.blocks.flowers.InfernalFlower;
 import com.minerarcana.occult.blocks.normal.OccultStairs;
+import com.minerarcana.occult.blocks.vegetation.EchocryBushes;
 import com.minerarcana.occult.blocks.vegetation.StrangleGrass;
 import com.minerarcana.occult.blocks.worldblocks.Brimstone;
 import com.minerarcana.occult.blocks.worldblocks.DeepGrass;
@@ -127,7 +128,8 @@ public class OccultBlocks
     public static Block infestedmushroom;
     public static Block phantombush;
     public static Block faslesod;
-    public static Block echobush;
+    public static Block echobush1;
+    public static Block echobush2;
 
 
     @SubscribeEvent
@@ -240,7 +242,8 @@ public class OccultBlocks
         slickmoss = registerBlock(new DeepGrass((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "slickmoss");
         phantombush = registerBlock(new DeepGrass((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "phantombush");
         faslesod = registerBlock(new DeepGrass((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "faslesod");
-        echobush = registerBlock(new DeepGrass((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "echobush");
+        echobush1 = registerBlock(new EchocryBushes((Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "echobush1");
+        echobush2 = registerBlock(new EchocryBushes((Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "echobush2");
 
         //Deco
 
