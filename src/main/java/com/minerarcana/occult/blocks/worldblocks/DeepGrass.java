@@ -28,7 +28,7 @@ public class DeepGrass extends GrassBlock {
         return worldIn.getBlockState(pos.up()).isAir();
     }
 
-    private static boolean getLightLevel(BlockState state, IWorldReader iworld, BlockPos pos) {
+    public static boolean getLightLevel(BlockState state, IWorldReader iworld, BlockPos pos) {
         BlockPos blockpos = pos.up();
         BlockState blockstate = iworld.getBlockState(blockpos);
         if (blockstate.getBlock() == Blocks.SNOW && blockstate.get(SnowBlock.LAYERS) == 1) {
@@ -39,7 +39,7 @@ public class DeepGrass extends GrassBlock {
         }
     }
 
-    private static boolean getFluidState(BlockState state, IWorldReader iworld, BlockPos pos) {
+    public static boolean getFluidState(BlockState state, IWorldReader iworld, BlockPos pos) {
         BlockPos blockpos = pos.up();
         return getLightLevel(state, iworld, pos) && !iworld.getFluidState(blockpos).isTagged(FluidTags.WATER);
     }
@@ -57,9 +57,6 @@ public class DeepGrass extends GrassBlock {
         public boolean canSustainPlant(BlockState state, IBlockReader world, BlockPos pos, Direction facing, net.minecraftforge.common.IPlantable plantable) {
             BlockState plant = plantable.getPlant(world, pos.offset(facing));
             net.minecraftforge.common.PlantType type = plantable.getPlantType(world, pos.offset(facing));
-
-            if (plant.getBlock() == Blocks.CACTUS)
-                return this.getBlock() == Blocks.CACTUS || this.getBlock() == Blocks.SAND || this.getBlock() == Blocks.RED_SAND;
 
             if (plant.getBlock() == Blocks.SUGAR_CANE && this == Blocks.SUGAR_CANE)
                 return true;

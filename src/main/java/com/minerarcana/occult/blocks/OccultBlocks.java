@@ -30,6 +30,7 @@ public class OccultBlocks
     public static Block movinggrass;
     public static Block bonesand;
     public static Block brimstone;
+    public static Block rockytrails;
 
     //Deep Forest Tree's
     public static Block deathcherrylog;
@@ -211,12 +212,12 @@ public class OccultBlocks
         deepflower6 = registerBlock(new DeepFlower((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "deepflower6");
 
         //Infernal Flowers
-        infernalflower1 = registerBlock(new InfernalFlower((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "infernalflower1");
-        infernalflower2 = registerBlock(new InfernalFlower((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "infernalflower2");
-        infernalflower3 = registerBlock(new InfernalFlower((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "infernalflower3");
-        infernalflower4 = registerBlock(new InfernalFlower((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "infernalflower4");
-        infernalflower5 = registerBlock(new InfernalFlower((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "infernalflower5");
-        infernalflower6 = registerBlock(new InfernalFlower((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "infernalflower6");
+        infernalflower1 = registerBlock(new InfernalFlower((Block.Properties.create(Material.PLANTS).lightValue(10).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "infernalflower1");
+        infernalflower2 = registerBlock(new InfernalFlower((Block.Properties.create(Material.PLANTS).lightValue(10).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "infernalflower2");
+        infernalflower3 = registerBlock(new InfernalFlower((Block.Properties.create(Material.PLANTS).lightValue(10).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "infernalflower3");
+        infernalflower4 = registerBlock(new InfernalFlower((Block.Properties.create(Material.PLANTS).lightValue(10).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "infernalflower4");
+        infernalflower5 = registerBlock(new InfernalFlower((Block.Properties.create(Material.PLANTS).lightValue(10).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "infernalflower5");
+        infernalflower6 = registerBlock(new InfernalFlower((Block.Properties.create(Material.PLANTS).lightValue(10).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "infernalflower6");
 
         //BleachedFlowers
         bleachedflower1 = registerBlock(new BleachedFlower((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "bleachedflower1");
@@ -231,7 +232,7 @@ public class OccultBlocks
         eldritchstone = registerBlock(new DeepGrass((Block.Properties.create(Material.ROCK).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.STONE))), "eldritchstone");
         movinggrass = registerBlock(new DeepGrass((Block.Properties.create(Material.PLANTS).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "movinggrass");
         rootedsoil = registerBlock(new DeepGrass((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "rootedsoil");
-        infestedmushroom = registerBlock(new DeepGrass((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "infestedmushroom");
+        infestedmushroom = registerBlock(new DeepGrass((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).lightValue(8).sound(SoundType.PLANT))), "infestedmushroom");
 
 
 
@@ -254,6 +255,7 @@ public class OccultBlocks
         halfgrass = registerBlock(new DeepGrass((Block.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "halfgrass");
         brimstone = registerBlock(new Brimstone((Block.Properties.create(Material.ROCK).hardnessAndResistance(0.6F).sound(SoundType.STONE))), "brimstone");
         bonesand = registerBlock(new DeepGrass((Block.Properties.create(Material.SAND).hardnessAndResistance(0.6F).sound(SoundType.SAND))), "bonesand");
+        rockytrails = registerBlock(new Brimstone((Block.Properties.create(Material.ROCK).hardnessAndResistance(0.6F).sound(SoundType.STONE))), "rockytrails");
 
     }
 
