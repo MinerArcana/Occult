@@ -23,7 +23,7 @@ public class EchocryBushes extends BushBlock {
     public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
         if(!worldIn.isRemote);
         if (!worldIn.isAreaLoaded(pos, 3));
-        if(!worldIn.isDaytime())
+        if(worldIn.getDayTime()>= 13000)
         {
             worldIn.setBlockState(pos, OccultBlocks.echobush1.getDefaultState());
         }
