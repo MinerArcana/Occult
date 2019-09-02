@@ -10,6 +10,8 @@ import com.minerarcana.occult.blocks.worldblocks.Brimstone;
 import com.minerarcana.occult.blocks.worldblocks.DeepGrass;
 import com.minerarcana.occult.util.OccultItemGroup;
 import net.minecraft.block.Block;
+import net.minecraft.block.LeavesBlock;
+import net.minecraft.block.LogBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -20,7 +22,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
-@Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(bus= Mod.EventBusSubscriber.Bus.MOD)
 public class OccultBlocks
 {
     public static Block deepgrass;
@@ -137,30 +139,30 @@ public class OccultBlocks
     public static void registerBlocks(final RegistryEvent.Register<Block> event)
     {
         //Deep Forest Biome
-        deathcherrylog = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "deathcherrylog");
+        deathcherrylog = registerBlock(new LogBlock(MaterialColor.BROWN,(Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "deathcherrylog");
         deathcherrywood = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "deathcherrywood");
         deathcherryplanks = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "deathcherryplanks");
         deathcherrystairs = registerBlock(new OccultStairs(deathcherryplanks.getDefaultState(),(Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "deathcherrystairs");
-        deathcherryleaves = registerBlock(new Block((Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "deathcherryleaves");
+        deathcherryleaves = registerBlock(new LeavesBlock((Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "deathcherryleaves");
         pinkcherryplanks = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "pinkcherryplanks");
 
         deeplog1 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "deeplog1");
         deepwood1 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "deepwood1");
         deepplanks1 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "deepplanks1");
         deepstairs1 = registerBlock(new OccultStairs(deepplanks1.getDefaultState(),(Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "deepstairs1");
-        deepleaves1 = registerBlock(new Block((Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "deepleaves1");
+        deepleaves1 = registerBlock(new LeavesBlock((Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "deepleaves1");
 
         deeplog2 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "deeplog2");
         deepwood2 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "deepwood2");
         deepplanks2 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "deepplanks2");
         deepstairs2 = registerBlock(new OccultStairs(deepplanks2.getDefaultState(),(Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "deepstairs2");
-        deepleaves2 = registerBlock(new Block((Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "deepleaves2");
+        deepleaves2 = registerBlock(new LeavesBlock((Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "deepleaves2");
 
         deeplog3 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "deeplog3");
         deepwood3 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "deepwood3");
         deepplanks3 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "deepplanks3");
         deepstairs3 = registerBlock(new OccultStairs(deepplanks2.getDefaultState(),(Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "deepstairs3");
-        deepleaves3 = registerBlock(new Block((Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "deepleaves3");
+        deepleaves3 = registerBlock(new LeavesBlock((Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "deepleaves3");
 
         //Charred Woodlands Biome
 
@@ -168,43 +170,43 @@ public class OccultBlocks
         infernalwood1 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "infernalwood1");
         infernalplanks1 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "infernalplanks1");
         infernalstairs1 = registerBlock(new OccultStairs(infernalplanks1.getDefaultState(),(Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "infernalstairs1");
-        infernalleaves1 = registerBlock(new Block((Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "infernalleaves1");
+        infernalleaves1 = registerBlock(new LeavesBlock((Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "infernalleaves1");
 
         infernallog2 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "infernallog2");
         infernalwood2 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "infernalwood2");
         infernalplanks2 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "infernalplanks2");
         infernalstairs2 = registerBlock(new OccultStairs(infernalplanks2.getDefaultState(),(Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "infernalstairs2");
-        infernalleaves2 = registerBlock(new Block((Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "infernalleaves2");
+        infernalleaves2 = registerBlock(new LeavesBlock((Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "infernalleaves2");
 
         infernallog3 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "infernallog3");
         infernalwood3 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "infernalwood3");
         infernalplanks3 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "infernalplanks3");
         infernalstairs3 = registerBlock(new OccultStairs(infernalplanks2.getDefaultState(),(Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "infernalstairs3");
-        infernalleaves3 = registerBlock(new Block((Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "infernalleaves3");
+        infernalleaves3 = registerBlock(new LeavesBlock((Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "infernalleaves3");
 
         //Bleached Wood Biome
 
-        bleachedlog1 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "bleachedlog1");
+        bleachedlog1 = registerBlock(new LogBlock(MaterialColor.BROWN,(Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "bleachedlog1");
         bleachedwood1 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "bleachedwood1");
         bleachedplanks1 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "bleachedplanks1");
         bleachedstairs1 = registerBlock(new OccultStairs(bleachedplanks1.getDefaultState(),(Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "bleachedstairs1");
-        bleachedleaves1 = registerBlock(new Block((Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "bleachedleaves1");
+        bleachedleaves1 = registerBlock(new LeavesBlock((Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "bleachedleaves1");
 
-        bleachedlog2 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "bleachedlog2");
+        bleachedlog2 = registerBlock(new LogBlock(MaterialColor.BROWN,(Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "bleachedlog2");
         bleachedwood2 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "bleachedwood2");
         bleachedplanks2 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "bleachedplanks2");
         bleachedstairs2 = registerBlock(new OccultStairs(bleachedplanks2.getDefaultState(),(Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "bleachedstairs2");
-        bleachedleaves2 = registerBlock(new Block((Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "bleachedleaves2");
+        bleachedleaves2 = registerBlock(new LeavesBlock((Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "bleachedleaves2");
 
-        bleachedlog3 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "bleachedlog3");
+        bleachedlog3 = registerBlock(new LogBlock(MaterialColor.BROWN,(Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "bleachedlog3");
         bleachedwood3 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "bleachedwood3");
         bleachedplanks3 = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "bleachedplanks3");
         bleachedstairs3 = registerBlock(new OccultStairs(bleachedplanks2.getDefaultState(),(Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "bleachedstairs3");
-        bleachedleaves3 = registerBlock(new Block((Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "bleachedleaves3");
+        bleachedleaves3 = registerBlock(new LeavesBlock((Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "bleachedleaves3");
 
 
         //Deep Flowers
-        deepflower1 = registerBlock(new DeepFlower((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "deepflower1");
+        deepflower1 = registerBlock(new DeepFlower((Block.Properties.create(Material.PLANTS).lightValue(100).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "deepflower1");
         deepflower2 = registerBlock(new DeepFlower((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "deepflower2");
         deepflower3 = registerBlock(new DeepFlower((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "deepflower3");
         deepflower4 = registerBlock(new DeepFlower((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "deepflower4");
@@ -229,7 +231,7 @@ public class OccultBlocks
 
 
         //Moving Features
-        eldritchstone = registerBlock(new DeepGrass((Block.Properties.create(Material.ROCK).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.STONE))), "eldritchstone");
+        eldritchstone = registerBlock(new DeepGrass((Block.Properties.create(Material.ROCK).tickRandomly(). hardnessAndResistance(0.6F).sound(SoundType.STONE))), "eldritchstone");
         movinggrass = registerBlock(new DeepGrass((Block.Properties.create(Material.PLANTS).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "movinggrass");
         rootedsoil = registerBlock(new DeepGrass((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "rootedsoil");
         infestedmushroom = registerBlock(new DeepGrass((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).lightValue(8).sound(SoundType.PLANT))), "infestedmushroom");
