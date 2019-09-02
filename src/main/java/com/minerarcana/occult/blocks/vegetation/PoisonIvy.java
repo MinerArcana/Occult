@@ -14,6 +14,7 @@ import net.minecraft.potion.Effects;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -34,10 +35,13 @@ public class PoisonIvy extends BushBlock {
     }
 
     @SubscribeEvent
-    public static void onDamage(LivingDeathEvent event) {
-        if (event.getSource() instanceof StrangeDamage)
+    public static void strangeDeaths(LivingHurtEvent event) {
+        if (event.getSource() instanceof IvyDamage)
         {
-            Occult.LOGGER.info("OMGITWORKS");
+            if(event.getEntity() instanceof PlayerEntity){
+                PlayerEntity player = (PlayerEntity) event.getEntity();
+                player.addPotionEffect(new EffectInstance(Effects.POISON,800,10,true,true));
+            }
         }
     }
 }
