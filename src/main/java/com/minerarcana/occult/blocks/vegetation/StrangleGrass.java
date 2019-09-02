@@ -29,7 +29,6 @@ public class StrangleGrass extends BushBlock
     @Deprecated
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entity) {
         entity.attackEntityFrom(StrangeDamage.STRANGLEGRASS, 1.0F);
-
     }
 
 
@@ -37,7 +36,6 @@ public class StrangleGrass extends BushBlock
             BlockPos blockpos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
             if(worldIn.getBlockState(blockpos) == Blocks.AIR.getDefaultState() && worldIn.getBlockState(pos.down()) != OccultBlocks.rockytrails.getDefaultState()) {
                 worldIn.setBlockState(blockpos, OccultBlocks.deepgrass.getDefaultState());
-                Occult.LOGGER.info("GrassMurder");
             }
         }
 

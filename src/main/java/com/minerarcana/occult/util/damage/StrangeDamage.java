@@ -4,7 +4,7 @@ import net.minecraft.util.DamageSource;
 
 public class StrangeDamage extends DamageSource {
 
-    public static DamageSource STRANGLEGRASS = new StrangeDamage("stranglegrass");;
+    public static DamageSource STRANGLEGRASS = (new StrangeDamage("stranglegrass"));
 
 
     public StrangeDamage(String name)

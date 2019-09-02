@@ -1,7 +1,6 @@
 package com.minerarcana.occult.biomes.features;
 
 import com.minerarcana.occult.biomes.OccultBiomes;
-import com.minerarcana.occult.world.biome.OccultBiome;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
@@ -23,6 +22,18 @@ public class FogFeature {
             e.setGreen(0);
             e.setBlue(0);
         }
+
+        if (Minecraft.getInstance().world.getBiome(Minecraft.getInstance().player.getPosition()) == OccultBiomes.infernalforest) {
+            e.setRed(252);
+            e.setGreen(144);
+            e.setBlue(3);
+        }
+
+        if (Minecraft.getInstance().world.getBiome(Minecraft.getInstance().player.getPosition()) == OccultBiomes.bleachedforest) {
+            e.setRed(171);
+            e.setGreen(179);
+            e.setBlue(196);
+        }
     }
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
@@ -31,10 +42,28 @@ public class FogFeature {
             PlayerEntity player = (PlayerEntity) Minecraft.getInstance().getRenderViewEntity();
             GlStateManager.enableFog();
             event.setCanceled(true);
-            float opacity = .03f;
+            float opacity = .04f;
+            event.setDensity(opacity);
+        }
+
+        if (Minecraft.getInstance().world.getBiome(Minecraft.getInstance().player.getPosition()) == OccultBiomes.infernalforest) {
+            PlayerEntity player = (PlayerEntity) Minecraft.getInstance().getRenderViewEntity();
+            GlStateManager.enableFog();
+            event.setCanceled(true);
+            float opacity = .04f;
+            event.setDensity(opacity);
+        }
+
+        if (Minecraft.getInstance().world.getBiome(Minecraft.getInstance().player.getPosition()) == OccultBiomes.bleachedforest) {
+            PlayerEntity player = (PlayerEntity) Minecraft.getInstance().getRenderViewEntity();
+            GlStateManager.enableFog();
+            event.setCanceled(true);
+            float opacity = .04f;
             event.setDensity(opacity);
         }
     }
+
+
 
 
 }
