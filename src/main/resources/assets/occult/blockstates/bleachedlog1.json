@@ -1,0 +1,11 @@
+
+
+
+
+{
+    "variants": {
+        "axis=y":    { "model": "occult:block/bleachedlog1" },
+        "axis=z":     { "model": "occult:block/bleachedlog1", "x": 90 },
+        "axis=x":     { "model": "occult:block/bleachedlog1", "x": 90, "y": 90 }
+    }
+}

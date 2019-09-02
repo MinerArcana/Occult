@@ -1,8 +1,7 @@
 {
-  "parent": "minecraft:block/cube",
+  "parent": "block/cube_column",
   "textures": {
-    "down": "occult:blocks/black_log",
-    "up": "occult:blocks/black_log",
-    "side": "occult:blocks/black_log2"
+    "end": "occult:blocks/black_log",
+    "side": "occult:blocks/cherrylog2"
   }
 }
