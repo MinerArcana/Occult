@@ -1,5 +1,7 @@
 package com.minerarcana.occult.biomes;
 
+import com.minerarcana.occult.biomes.overworld.TheBleachedWood;
+import com.minerarcana.occult.biomes.overworld.TheCharredWoodlands;
 import com.minerarcana.occult.biomes.overworld.TheDeepForest;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
@@ -9,7 +11,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
-@Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(bus= Mod.EventBusSubscriber.Bus.MOD)
 public class OccultBiomes
 {
     public static Biome spookyforest;
@@ -19,14 +21,14 @@ public class OccultBiomes
     @SubscribeEvent
     public static void registerBiomes(final RegistryEvent.Register<Biome> event)
     {
-        spookyforest = registerBiome(new TheDeepForest(), BiomeManager.BiomeType.WARM , "spookyforest", 100, BiomeDictionary.Type.SPOOKY);
-        infernalforest = registerBiome(new TheDeepForest(), BiomeManager.BiomeType.DESERT , "infernalforest", 100, BiomeDictionary.Type.SPOOKY);
-        bleachedforest = registerBiome(new TheDeepForest(), BiomeManager.BiomeType.WARM , "bleachedforest", 100, BiomeDictionary.Type.SPOOKY);
+        spookyforest = registerBiome(new TheDeepForest(), BiomeManager.BiomeType.WARM , "spookyforest", 10, BiomeDictionary.Type.SPOOKY);
+        infernalforest = registerBiome(new TheCharredWoodlands(), BiomeManager.BiomeType.DESERT , "infernalforest", 10, BiomeDictionary.Type.SPOOKY);
+        bleachedforest = registerBiome(new TheBleachedWood(), BiomeManager.BiomeType.WARM , "bleachedforest", 10, BiomeDictionary.Type.SPOOKY);
 
     }
 
 
-    public static Biome registerBiome (Biome biome, BiomeManager.BiomeType biometype,  String name, int weight, BiomeDictionary.Type types)
+    public static Biome registerBiome (Biome biome, BiomeManager.BiomeType biometype, String name, int weight, BiomeDictionary.Type types)
     {
         biome.setRegistryName(name);
         ForgeRegistries.BIOMES.register(biome);
