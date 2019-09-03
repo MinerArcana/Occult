@@ -9,6 +9,7 @@ import com.minerarcana.occult.blocks.vegetation.PoisonIvy;
 import com.minerarcana.occult.blocks.vegetation.StrangleGrass;
 import com.minerarcana.occult.blocks.worldblocks.Brimstone;
 import com.minerarcana.occult.blocks.worldblocks.DeepGrass;
+import com.minerarcana.occult.tileentity.RitualFire;
 import com.minerarcana.occult.util.OccultItemGroup;
 import net.minecraft.block.Block;
 import net.minecraft.block.LeavesBlock;
@@ -135,6 +136,10 @@ public class OccultBlocks
     public static Block echobush1;
     public static Block echobush2;
 
+    //Magic Machines
+
+    public static Block ritualfire;
+
 
     @SubscribeEvent
     public static void registerBlocks(final RegistryEvent.Register<Block> event)
@@ -237,6 +242,8 @@ public class OccultBlocks
         rootedsoil = registerBlock(new DeepGrass((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "rootedsoil");
         infestedmushroom = registerBlock(new DeepGrass((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).lightValue(8).sound(SoundType.PLANT))), "infestedmushroom");
 
+        //Magic Machines
+        ritualfire = registerBlock(new RitualFire((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).lightValue(8).sound(SoundType.PLANT))), "ritualfire");
 
 
         //Vegetation/Ingredients
