@@ -11,6 +11,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -22,7 +23,7 @@ import net.minecraftforge.fml.common.Mod;
 public class PoisonIvy extends BushBlock {
 
 
-    protected PoisonIvy(Properties properties) {
+    public PoisonIvy(Properties properties) {
         super(properties);
     }
 
@@ -44,4 +45,5 @@ public class PoisonIvy extends BushBlock {
             }
         }
     }
+
 }

@@ -5,6 +5,7 @@ import com.minerarcana.occult.blocks.flowers.DeepFlower;
 import com.minerarcana.occult.blocks.flowers.InfernalFlower;
 import com.minerarcana.occult.blocks.normal.OccultStairs;
 import com.minerarcana.occult.blocks.vegetation.EchocryBushes;
+import com.minerarcana.occult.blocks.vegetation.PoisonIvy;
 import com.minerarcana.occult.blocks.vegetation.StrangleGrass;
 import com.minerarcana.occult.blocks.worldblocks.Brimstone;
 import com.minerarcana.occult.blocks.worldblocks.DeepGrass;
@@ -240,7 +241,7 @@ public class OccultBlocks
 
         //Vegetation/Ingredients
 
-        poisonivy = registerBlock(new DeepGrass((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "poisonivy");
+        poisonivy = registerBlock(new PoisonIvy((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "poisonivy");
         stranglegrass = registerBlock(new StrangleGrass((Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "stranglegrass");
         slickmoss = registerBlock(new DeepGrass((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "slickmoss");
         phantombush = registerBlock(new DeepGrass((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "phantombush");
