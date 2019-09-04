@@ -1,8 +1,7 @@
-package com.minerarcana.occult.tileentity;
+package com.minerarcana.occult.tileentity.ritualfire;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockReader;
 

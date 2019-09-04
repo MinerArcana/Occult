@@ -1,33 +1,35 @@
-package com.minerarcana.occult.tileentity;
+package com.minerarcana.occult.tileentity.ritualfire;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.registries.ObjectHolder;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import static com.minerarcana.occult.tileentity.OccultTileEntities.RITUAL_TILE;
+import static com.minerarcana.occult.tileentity.OccultTileEntities.RITUALTILE;
 
 public class FireRitualTileEntity extends TileEntity {
 
-    private ItemStackHandler handler;
+    private LazyOptional<IItemHandler> handler = LazyOptional.of(this::createHandler);
 
     public FireRitualTileEntity() {
-        super(RITUAL_TILE);
+        super(RITUALTILE);
     }
 
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
         if(cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
-            return LazyOptional.of(() -> (T) new ItemStackHandler(1));
+            return handler.cast();
         }
 
         return super.getCapability(cap, side);
@@ -36,23 +38,23 @@ public class FireRitualTileEntity extends TileEntity {
     @Override
     public void read(CompoundNBT nbt) {
         CompoundNBT invTag = nbt.getCompound("inf");
-        getHandler().deserializeNBT(invTag);
+        handler.ifPresent(h -> ((INBTSerializable<CompoundNBT>) h).deserializeNBT(invTag));
         super.read(nbt);
     }
 
     @Override
     public CompoundNBT write(CompoundNBT nbt) {
-        CompoundNBT compound = getHandler().serializeNBT();
-        nbt.put("inv", compound);
+        handler.ifPresent(h -> {
+            CompoundNBT compound = ((INBTSerializable<CompoundNBT>) h).serializeNBT();
+            nbt.put("inv", compound);
+        });
 
         return super.write(nbt);
     }
 
-    private ItemStackHandler getHandler(){
-        if(handler == null){
-            handler = new ItemStackHandler(1);
-        }
-        return handler;
+    private IItemHandler createHandler(){
+
+           return new ItemStackHandler(1);
     }
 
     public boolean isActive(boolean active)

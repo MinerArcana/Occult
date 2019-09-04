@@ -9,7 +9,7 @@ import com.minerarcana.occult.blocks.vegetation.PoisonIvy;
 import com.minerarcana.occult.blocks.vegetation.StrangleGrass;
 import com.minerarcana.occult.blocks.worldblocks.Brimstone;
 import com.minerarcana.occult.blocks.worldblocks.DeepGrass;
-import com.minerarcana.occult.tileentity.RitualFire;
+import com.minerarcana.occult.tileentity.ritualfire.RitualFire;
 import com.minerarcana.occult.util.OccultItemGroup;
 import net.minecraft.block.Block;
 import net.minecraft.block.LeavesBlock;
