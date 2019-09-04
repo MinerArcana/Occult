@@ -1,6 +1,6 @@
 package com.minerarcana.occult.tileentity;
 
-import com.minerarcana.occult.tileentity.ritualfire.FireRitualTileEntity;
+import com.minerarcana.occult.tileentity.ritualfire.RitualFireTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -14,7 +14,7 @@ public class TileEntityRegistry {
     public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> event)
     {
 
-        event.getRegistry().register(TileEntityType.Builder.create(FireRitualTileEntity:: new, OccultTileEntities.RITUALFIRE).build(null).setRegistryName("ritualfire"));
+        event.getRegistry().register(TileEntityType.Builder.create(RitualFireTileEntity:: new, OccultTileEntities.RITUALFIRE).build(null).setRegistryName("ritualfire"));
 
     }
 }

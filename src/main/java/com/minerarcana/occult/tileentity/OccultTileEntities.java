@@ -1,9 +1,8 @@
 package com.minerarcana.occult.tileentity;
 
-import com.minerarcana.occult.tileentity.ritualfire.FireRitualTileEntity;
+import com.minerarcana.occult.tileentity.ritualfire.RitualFireTileEntity;
 import com.minerarcana.occult.tileentity.ritualfire.RitualFire;
 import com.minerarcana.occult.tileentity.ritualfire.RitualFireContainer;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.registries.ObjectHolder;
@@ -14,7 +13,7 @@ public class OccultTileEntities
     public static RitualFire RITUALFIRE;
 
     @ObjectHolder("occult:ritualfire")
-    public static TileEntityType<FireRitualTileEntity> RITUALTILE;
+    public static TileEntityType<RitualFireTileEntity> RITUALTILE;
 
     @ObjectHolder("occult:ritualfire")
     public static ContainerType<RitualFireContainer> RITUALCONTAINER;

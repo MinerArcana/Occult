@@ -20,7 +20,7 @@ public class RitualFire extends Block {
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world)
     {
-        return new FireRitualTileEntity();
+        return new RitualFireTileEntity();
     }
 
 

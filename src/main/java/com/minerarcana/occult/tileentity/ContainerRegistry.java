@@ -17,9 +17,9 @@ public class ContainerRegistry
     {
 
         event.getRegistry().register(IForgeContainerType.create(((windowId, inv, data) -> {
-            return new RitualFireContainer()
+            return new RitualFireContainer();
 
-        }));
+        })));
 
 
     }
