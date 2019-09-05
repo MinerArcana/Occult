@@ -36,7 +36,7 @@ public class ChunkPressure {
                 if (!(instance instanceof IPressure))
                     throw new IllegalArgumentException("Can not deserialize to an instance that isn't the default implementation");
 
-                ((PressureStorage) instance).(((IntNBT) nbt).getInt());
+                //((PressureStorage) instance).(((IntNBT) nbt).getInt());
             }
         }, () -> null);
 

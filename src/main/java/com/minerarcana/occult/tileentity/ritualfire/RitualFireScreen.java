@@ -11,5 +11,10 @@ public class RitualFireScreen extends ContainerScreen<RitualFireContainer> {
         super(container, inventory, text);
     }
 
+    @Override
+    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
+
+    }
+
 
 }

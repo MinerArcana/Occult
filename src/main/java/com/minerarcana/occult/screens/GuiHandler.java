@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 public class GuiHandler implements IGuiHandler {
 
 	@Override
-	public Object getServerGuiElement(int ID, PlayerEntity player, World world, int x, int y, int z);
+	Object getServerGuiElement(int ID, PlayerEntity player, World world, int x, int y, int z);
 	{
 
 		switch(ID) {
@@ -26,7 +26,7 @@ public class GuiHandler implements IGuiHandler {
 		switch(ID) {
 
 		case GuiIDs.CRAFTING_HALO :
-			return new (player.inventory, world);
+			return new GUIH(player.inventory, world);
 
 		}
 
