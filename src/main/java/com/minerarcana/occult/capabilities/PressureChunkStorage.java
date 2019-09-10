@@ -1,9 +1,11 @@
 package com.minerarcana.occult.capabilities;
 
+import com.google.common.collect.HashBasedTable;
+import com.google.common.collect.Table;
 import com.minerarcana.occult.Occult;
 import com.minerarcana.occult.api.pressure.IChunkPressure;
 import com.minerarcana.occult.api.pressure.PressureStorage;
-import com.minerarcana.occult.api.pressure.PressureTypes;
+import com.minerarcana.occult.api.pressure.PressureType;
 import com.minerarcana.occult.util.network.UpdateChunkEnergyValueMessage;
 import net.minecraft.nbt.IntNBT;
 import net.minecraft.util.math.ChunkPos;
@@ -12,17 +14,22 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.fml.network.PacketDistributor;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class PressureChunkStorage extends PressureStorage implements IChunkPressure, INBTSerializable<IntNBT> {
 
-    private final World world;
+    public final Map<PressureType, Integer> pressures;
 
+    private final World world;
     private final ChunkPos chunkPos;
 
-    public PressureChunkStorage(final int capacity, final PressureTypes type, final World world, final ChunkPos chunkPos) {
+    public PressureChunkStorage(final int capacity, final PressureType type, final World world, final ChunkPos chunkPos) {
         super(capacity, type);
         this.world = world;
         this.chunkPos = chunkPos;
         pressure = capacity;
+        this.pressures = HashMap.;
     }
 
     @Override
@@ -46,8 +53,8 @@ public class PressureChunkStorage extends PressureStorage implements IChunkPress
     }
 
     @Override
-    public int addPressure(final int maxAdd, PressureTypes type, final boolean simulate) {
-        final int pressureAdded = super.addPressure(maxAdd,type, simulate);
+    public int addPressure(final int maxAdd, PressureType type, final boolean simulate) {
+        final int pressureAdded = super.addPressure(maxAdd, type, simulate);
         if (!simulate && pressureAdded != 0) {
             onPressureChanged();
         }
@@ -55,7 +62,7 @@ public class PressureChunkStorage extends PressureStorage implements IChunkPress
         return pressureAdded;
     }
 
-    public void setPressure(final int pressure) {
+    public void setPressure(final int pressure, PressureType type) {
         this.pressure = pressure;
         onPressureChanged();
     }

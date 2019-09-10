@@ -10,17 +10,21 @@ public interface IPressure
 
     ChunkPos getChunkPos();
 
-    int addPressure(int added, PressureTypes type, boolean commit);
+    int addPressure(int added, PressureType type, boolean commit);
 
-    int removePressure(int removed, PressureTypes type, boolean commit);
+    int removePressure(int removed, PressureType type, boolean commit);
 
     int getPressure();
 
+
     int getMaxPressure();
+
 
     boolean canRemovePressure();
 
+
     boolean canAddPressure();
+
 
 
 

@@ -1,8 +1,6 @@
 package com.minerarcana.occult;
 
 import com.minerarcana.occult.api.pressure.IPressure;
-import com.minerarcana.occult.api.pressure.PressureStorage;
-import com.minerarcana.occult.api.pressure.PressureTypes;
 import com.minerarcana.occult.capabilities.PressureChunkStorage;
 import com.minerarcana.occult.capabilities.handlers.SerializableCapabilityProvider;
 import com.minerarcana.occult.proxy.ClientProxy;
@@ -10,7 +8,6 @@ import com.minerarcana.occult.proxy.CommonProxy;
 import com.minerarcana.occult.util.network.OccultNetwork;
 import com.minerarcana.occult.world.SpookyWorldType;
 import com.minerarcana.occult.world.chunk.SpookyChunkGeneratorType;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.IntNBT;
 import net.minecraft.util.Direction;
@@ -79,8 +76,7 @@ public class Occult {
             public void readNBT(Capability<IPressure> capability, IPressure instance, Direction side, INBT nbt) {
                 if (!(instance instanceof PressureChunkStorage))
                     throw new IllegalArgumentException("Can not deserialize to an instance that isn't the default implementation");
-
-                ((PressureChunkStorage) instance).setPressure(((IntNBT) nbt).getInt());
+                ((PressureChunkStorage) instance).setPressure(((IntNBT) nbt).getInt(), type);
             }
         }, () -> null);
     }
@@ -116,8 +112,8 @@ public class Occult {
     @SubscribeEvent
     public static void attachChunkCapabilities(final AttachCapabilitiesEvent<Chunk> event) {
         final Chunk chunk = event.getObject();
-        final IPressure chunkPressure = new PressureChunkStorage(DEFAULT_CAPACITY, TYPE, chunk.getWorld(), chunk.getPos());
-        event.addCapability(TYPE, new SerializableCapabilityProvider<>(CHUNKPRESSURECAPABILITY, DEFAULT_FACING, chunkPressure));
+        final IPressure chunkPressure = new PressureChunkStorage(DEFAULT_CAPACITY, type, chunk.getWorld(), chunk.getPos());
+        event.addCapability(registryName, new SerializableCapabilityProvider<>(CHUNKPRESSURECAPABILITY, DEFAULT_FACING, chunkPressure));
 
     }
 }

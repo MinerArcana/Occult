@@ -9,24 +9,24 @@ public class PressureStorage implements IPressure {
     protected int capacity;
     protected int maxAdd;
     protected int maxRemove;
-    protected PressureTypes type;
+    protected PressureType type;
 
-    public PressureStorage(int capacity, PressureTypes type)
+    public PressureStorage(int capacity, PressureType type)
     {
         this(capacity, type, capacity, capacity, 0);
     }
 
-    public PressureStorage(int capacity, PressureTypes type, int maxTransfer)
+    public PressureStorage(int capacity, PressureType type, int maxTransfer)
     {
         this(capacity, type, maxTransfer, maxTransfer, 0);
     }
 
-    public PressureStorage(int capacity, PressureTypes type, int maxAdd, int maxRemove)
+    public PressureStorage(int capacity, PressureType type, int maxAdd, int maxRemove)
     {
         this(capacity, type, maxAdd, maxRemove, 0);
     }
 
-    public PressureStorage(int capacity, PressureTypes type, int maxAdd, int maxRemove, int pressure)
+    public PressureStorage(int capacity, PressureType type, int maxAdd, int maxRemove, int pressure)
     {
         this.capacity = capacity;
         this.maxAdd = maxAdd;
@@ -37,7 +37,7 @@ public class PressureStorage implements IPressure {
     }
 
     @Override
-    public int addPressure(int added, PressureTypes type, boolean commit) {
+    public int addPressure(int added, PressureType type, boolean commit) {
         if (!canAddPressure())
             return 0;
 
@@ -48,7 +48,7 @@ public class PressureStorage implements IPressure {
     }
 
     @Override
-    public int removePressure(int removed, PressureTypes type, boolean commit) {
+    public int removePressure(int removed, PressureType type, boolean commit) {
         if (!canRemovePressure())
             return 0;
 
@@ -68,15 +68,18 @@ public class PressureStorage implements IPressure {
         return capacity;
     }
 
+
     @Override
     public boolean canRemovePressure() {
         return this.maxRemove > 0;
     }
 
+
     @Override
     public boolean canAddPressure() {
         return this.maxAdd > 0;
     }
+
 
     @Override
     public World getWorld() {
