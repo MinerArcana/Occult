@@ -4,8 +4,10 @@ import com.minerarcana.occult.api.pressure.IPressure;
 import com.minerarcana.occult.api.pressure.PressureStorage;
 import com.minerarcana.occult.api.pressure.PressureTypes;
 import com.minerarcana.occult.capabilities.PressureChunkStorage;
+import com.minerarcana.occult.capabilities.handlers.SerializableCapabilityProvider;
 import com.minerarcana.occult.proxy.ClientProxy;
 import com.minerarcana.occult.proxy.CommonProxy;
+import com.minerarcana.occult.util.network.OccultNetwork;
 import com.minerarcana.occult.world.SpookyWorldType;
 import com.minerarcana.occult.world.chunk.SpookyChunkGeneratorType;
 import net.minecraft.nbt.CompoundNBT;
@@ -49,7 +51,7 @@ public class Occult {
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
     public static WorldType SpookyWorldType = new SpookyWorldType("occulttype");
     private static SpookyChunkGeneratorType chunkGeneratorType = new SpookyChunkGeneratorType();
-    public static final SimpleChannel network = ModNetwork.getNetworkChannel();
+    public static final SimpleChannel network = OccultNetwork.getNetworkChannel();
 
 
     public Occult() {
