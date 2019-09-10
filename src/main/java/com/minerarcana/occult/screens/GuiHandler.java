@@ -7,9 +7,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 
-public class GuiHandler implements IGuiHandler {
+public class GuiHandler  {
 
-	@Override
+	/*@Override
 	Object getServerGuiElement(int ID, PlayerEntity player, World world, int x, int y, int z);
 	{
 
@@ -31,6 +31,6 @@ public class GuiHandler implements IGuiHandler {
 		}
 
 		return null;
-	}
+	}*/
 
 }

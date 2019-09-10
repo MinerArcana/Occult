@@ -23,14 +23,14 @@ public abstract class BaseTileInventory extends BaseTileEntity {
 	}
 
 	@Override
-	public void readPacketNBT(CompoundNBT par1NBTTagCompound) {
+	public void readPacketNBT(CompoundNBT nbt) {
 		itemHandler = createItemHandler();
-		itemHandler.deserializeNBT(par1NBTTagCompound);
+		itemHandler.deserializeNBT(nbt);
 	}
 
 	@Override
-	public void writePacketNBT(CompoundNBT par1NBTTagCompound) {
-		par1NBTTagCompound.merge(itemHandler.serializeNBT());
+	public void writePacketNBT(CompoundNBT nbt) {
+		nbt.merge(itemHandler.serializeNBT());
 	}
 
 	public abstract int getSizeInventory();

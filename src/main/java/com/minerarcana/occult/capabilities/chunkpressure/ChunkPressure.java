@@ -28,7 +28,7 @@ public class ChunkPressure {
 
             @Override
             public INBT writeNBT(final Capability<IPressure> capability, final IPressure instance, final Direction side) {
-                return new IntNBT(instance.getPressure());
+                return new IntNBT(instance.hashCode());
             }
 
             @Override

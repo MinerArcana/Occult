@@ -32,10 +32,12 @@ public class StrangleGrass extends BushBlock
     }
 
 
-    public void strangleDeath(World worldIn, BlockState state, BlockPos pos, Random random) {
+    public static void strangleDeath(BlockPos pos) {
+            Random random = null;
+            World worldIn = null;
             BlockPos blockpos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
             if(worldIn.getBlockState(blockpos) == Blocks.AIR.getDefaultState() && worldIn.getBlockState(pos.down()) != OccultBlocks.rockytrails.getDefaultState()) {
-                worldIn.setBlockState(blockpos, OccultBlocks.deepgrass.getDefaultState());
+                worldIn.setBlockState(blockpos, OccultBlocks.stranglegrass.getDefaultState());
             }
         }
 
@@ -43,8 +45,13 @@ public class StrangleGrass extends BushBlock
         public static void strangeDeaths(LivingDeathEvent event) {
             if (event.getSource() instanceof StrangeDamage)
             {
-            Occult.LOGGER.info("OMGITWORKS");
+                World world = null;
+                BlockPos pos = null;
+                StrangleGrass.strangleDeath(pos);
+
             }
         }
-    }
+
+
+}
 

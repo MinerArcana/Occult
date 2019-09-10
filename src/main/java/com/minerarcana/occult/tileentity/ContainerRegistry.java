@@ -12,17 +12,6 @@ import net.minecraftforge.fml.common.Mod;
 public class ContainerRegistry
 {
 
-    @SubscribeEvent
-    public static void onContainerRegistry(final RegistryEvent.Register<ContainerType<?>> event)
-    {
-
-        event.getRegistry().register(IForgeContainerType.create(((windowId, inv, data) -> {
-            return new RitualFireContainer();
-
-        })));
-
-
-    }
 
 
 }

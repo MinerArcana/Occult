@@ -1,7 +1,7 @@
 {
   "parent": "block/cube_column",
   "textures": {
-    "end": "occult:blocks/bleachedlogtop2",
+    "end": "occult:blocks/bleachedlogtop1",
     "side": "occult:blocks/bleachedlog2"
   }
 }

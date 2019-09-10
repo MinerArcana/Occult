@@ -9,14 +9,16 @@ import net.minecraft.tileentity.TileEntityType;
 import javax.annotation.Nonnull;
 
 public class BaseTileEntity extends TileEntity {
+
+
 	public BaseTileEntity(TileEntityType<?> type) {
 		super(type);
 	}
 
 	@Nonnull
 	@Override
-	public CompoundNBT write(CompoundNBT par1nbtTagCompound) {
-		CompoundNBT ret = super.write(par1nbtTagCompound);
+	public CompoundNBT write(CompoundNBT nbt) {
+		CompoundNBT ret = super.write(nbt);
 		writePacketNBT(ret);
 		return ret;
 	}
@@ -28,9 +30,9 @@ public class BaseTileEntity extends TileEntity {
 	}
 
 	@Override
-	public void read(CompoundNBT par1nbtTagCompound) {
-		super.read(par1nbtTagCompound);
-		readPacketNBT(par1nbtTagCompound);
+	public void read(CompoundNBT nbt) {
+		super.read(nbt);
+		readPacketNBT(nbt);
 	}
 
 	public void writePacketNBT(CompoundNBT cmp) {}
