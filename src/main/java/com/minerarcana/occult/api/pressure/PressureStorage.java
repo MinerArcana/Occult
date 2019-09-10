@@ -37,6 +37,16 @@ public class PressureStorage implements IPressure {
     }
 
     @Override
+    public World getWorld() {
+        return null;
+    }
+
+    @Override
+    public ChunkPos getChunkPos() {
+        return null;
+    }
+
+    @Override
     public int addPressure(int added, PressureType type, boolean commit) {
         if (!canAddPressure())
             return 0;
@@ -80,14 +90,10 @@ public class PressureStorage implements IPressure {
         return this.maxAdd > 0;
     }
 
-
     @Override
-    public World getWorld() {
-        return null;
+    public PressureType getType(){
+        return type;
     }
 
-    @Override
-    public ChunkPos getChunkPos() {
-        return null;
-    }
+
 }

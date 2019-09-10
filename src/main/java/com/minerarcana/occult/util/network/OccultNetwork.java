@@ -17,10 +17,10 @@ public class OccultNetwork {
 				.networkProtocolVersion(() -> NETWORK_VERSION)
 				.simpleChannel();
 
-		channel.messageBuilder(UpdateChunkEnergyValueMessage.class, 4)
-				.decoder(UpdateChunkEnergyValueMessage::decode)
-				.encoder(UpdateChunkEnergyValueMessage::encode)
-				.consumer(UpdateChunkEnergyValueMessage::handle)
+		channel.messageBuilder(UpdateChunkPressureValueMessage.class, 4)
+				.decoder(UpdateChunkPressureValueMessage::decode)
+				.encoder(UpdateChunkPressureValueMessage::encode)
+				.consumer(UpdateChunkPressureValueMessage::handle)
 				.add();
 
 		return channel;

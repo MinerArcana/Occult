@@ -6,6 +6,7 @@ import net.minecraft.world.World;
 
 public interface IPressure
 {
+
     World getWorld();
 
     ChunkPos getChunkPos();
@@ -24,6 +25,8 @@ public interface IPressure
 
 
     boolean canAddPressure();
+
+    PressureType getType();
 
 
 

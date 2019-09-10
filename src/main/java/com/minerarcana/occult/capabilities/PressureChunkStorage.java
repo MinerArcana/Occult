@@ -1,12 +1,11 @@
 package com.minerarcana.occult.capabilities;
 
-import com.google.common.collect.HashBasedTable;
-import com.google.common.collect.Table;
+import com.google.common.collect.Maps;
 import com.minerarcana.occult.Occult;
 import com.minerarcana.occult.api.pressure.IChunkPressure;
 import com.minerarcana.occult.api.pressure.PressureStorage;
 import com.minerarcana.occult.api.pressure.PressureType;
-import com.minerarcana.occult.util.network.UpdateChunkEnergyValueMessage;
+import com.minerarcana.occult.util.network.UpdateChunkPressureValueMessage;
 import net.minecraft.nbt.IntNBT;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
@@ -14,7 +13,6 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.fml.network.PacketDistributor;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class PressureChunkStorage extends PressureStorage implements IChunkPressure, INBTSerializable<IntNBT> {
@@ -29,7 +27,7 @@ public class PressureChunkStorage extends PressureStorage implements IChunkPress
         this.world = world;
         this.chunkPos = chunkPos;
         pressure = capacity;
-        this.pressures = HashMap.;
+        this.pressures = Maps.newHashMap();
     }
 
     @Override
@@ -76,7 +74,7 @@ public class PressureChunkStorage extends PressureStorage implements IChunkPress
         if (world.getChunkProvider().isChunkLoaded(chunkPos)) {  // Don't load the chunk when reading from NBT
             final Chunk chunk = world.getChunk(chunkPos.x, chunkPos.z);
             chunk.markDirty();
-            Occult.network.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), new UpdateChunkEnergyValueMessage(this));
+            Occult.network.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), new UpdateChunkPressureValueMessage(this));
         }
     }
 }

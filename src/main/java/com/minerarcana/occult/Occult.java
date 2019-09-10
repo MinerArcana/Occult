@@ -1,6 +1,7 @@
 package com.minerarcana.occult;
 
 import com.minerarcana.occult.api.pressure.IPressure;
+import com.minerarcana.occult.api.pressure.PressureType;
 import com.minerarcana.occult.capabilities.PressureChunkStorage;
 import com.minerarcana.occult.capabilities.handlers.SerializableCapabilityProvider;
 import com.minerarcana.occult.proxy.ClientProxy;
@@ -11,6 +12,7 @@ import com.minerarcana.occult.world.chunk.SpookyChunkGeneratorType;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.IntNBT;
 import net.minecraft.util.Direction;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.MinecraftForge;
@@ -49,6 +51,7 @@ public class Occult {
     public static WorldType SpookyWorldType = new SpookyWorldType("occulttype");
     private static SpookyChunkGeneratorType chunkGeneratorType = new SpookyChunkGeneratorType();
     public static final SimpleChannel network = OccultNetwork.getNetworkChannel();
+    private static PressureType PressureType;
 
 
     public Occult() {
@@ -76,7 +79,7 @@ public class Occult {
             public void readNBT(Capability<IPressure> capability, IPressure instance, Direction side, INBT nbt) {
                 if (!(instance instanceof PressureChunkStorage))
                     throw new IllegalArgumentException("Can not deserialize to an instance that isn't the default implementation");
-                ((PressureChunkStorage) instance).setPressure(((IntNBT) nbt).getInt(), type);
+                ((PressureChunkStorage) instance).setPressure(((IntNBT) nbt).getInt(), PressureType);
             }
         }, () -> null);
     }
@@ -84,36 +87,28 @@ public class Occult {
 
     private void doClientStuff(final FMLClientSetupEvent event) {
 
-        LOGGER.info("Client Registering stuff");
+
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
-        // some example code to dispatch IMC to another mod
-        InterModComms.sendTo("examplemod", "helloworld", () -> {
-            LOGGER.info("Hello world from the MDK");
-            return "Hello world";
-        });
+
     }
 
     private void processIMC(final InterModProcessEvent event) {
-        // some example code to receive and process InterModComms from other mods
-        LOGGER.info("Got IMC {}", event.getIMCStream().
-                map(m -> m.getMessageSupplier().get()).
-                collect(Collectors.toList()));
+
     }
 
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
+
     @SubscribeEvent
     public void onServerStarting(FMLServerStartingEvent event) {
-        // do something when the server starts
-        LOGGER.info("HELLO from server starting");
+
     }
 
     @SubscribeEvent
     public static void attachChunkCapabilities(final AttachCapabilitiesEvent<Chunk> event) {
         final Chunk chunk = event.getObject();
-        final IPressure chunkPressure = new PressureChunkStorage(DEFAULT_CAPACITY, type, chunk.getWorld(), chunk.getPos());
-        event.addCapability(registryName, new SerializableCapabilityProvider<>(CHUNKPRESSURECAPABILITY, DEFAULT_FACING, chunkPressure));
+        final IPressure chunkPressure = new PressureChunkStorage(DEFAULT_CAPACITY, PressureType, chunk.getWorld(), chunk.getPos());
+        event.addCapability(new ResourceLocation(MOD_ID, "chunkpressure"), new SerializableCapabilityProvider<>(CHUNKPRESSURECAPABILITY, DEFAULT_FACING, chunkPressure));
 
     }
 }

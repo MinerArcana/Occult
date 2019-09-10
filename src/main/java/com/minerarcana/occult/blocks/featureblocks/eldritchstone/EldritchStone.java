@@ -16,12 +16,12 @@ public class EldritchStone extends Block {
 
 
     private void stoneGrowth(String name, BlockPos pos, BlockState state, IPressure pressure) {
-        BlockPos up = pos.up();
+        /*BlockPos up = pos.up();
         BlockPos down = pos.down(2);
-        int stored = pressure.getPressure("occult:naturepressure");
+        int stored = pressure.getPressure();
         if (up == Blocks.AIR.getDefaultState() && stored == 25 && down. != OccultBlocks.eldritchstone.getDefaultState()) {
 
-        }
+        }*/
 
     }
 }
