@@ -2,10 +2,13 @@ package com.minerarcana.occult.blocks.featureblocks.eldritchstone;
 
 import com.minerarcana.occult.api.pressure.IPressure;
 import com.minerarcana.occult.blocks.OccultBlocks;
+import com.minerarcana.occult.tileentity.ritualfire.RitualBaseTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
 
 public class EldritchStone extends Block {
 
@@ -24,6 +27,18 @@ public class EldritchStone extends Block {
         }*/
 
     }
+
+    @Override
+    public boolean hasTileEntity(BlockState state)
+    {
+        return true;
+    }
+    @Override
+    public TileEntity createTileEntity(BlockState state, IBlockReader world)
+    {
+        return new EldritchStoneTileEntity();
+    }
+
 }
 
 
