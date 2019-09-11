@@ -23,4 +23,6 @@ public class RitualBase extends Block {
         return new RitualBaseTileEntity();
     }
 
+    
+
 }
