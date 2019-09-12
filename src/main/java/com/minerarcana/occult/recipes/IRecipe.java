@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface IRecipe {
     List<Ingredient> getInputs();
-    ItemStack getOutput();
+    List<ItemStack> getOutput();
 }

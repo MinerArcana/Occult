@@ -13,16 +13,17 @@ import java.util.List;
 
 public class RitualFireRecipes implements IRecipe {
 	private final ResourceLocation id;
-	private final ItemStack output;
+	private final ImmutableList<ItemStack> output;
 	private final ImmutableList<Ingredient> inputs;
 	private final int pressure;
 
-	public RitualFireRecipes(ResourceLocation id, ItemStack output, int pressure, Ingredient... inputs) {
+	public RitualFireRecipes(ResourceLocation id, ItemStack[] output, int pressure, Ingredient... inputs) {
 		Preconditions.checkArgument(inputs.length <= 16);
+		Preconditions.checkArgument(output.length <= 16);
 		Preconditions.checkArgument(pressure <= 100000);
 		this.id = id;
-		this.output = output;
 		this.inputs = ImmutableList.copyOf(inputs);
+		this.output = ImmutableList.copyOf(output);
 		this.pressure = pressure;
 	}
 
@@ -60,7 +61,7 @@ public class RitualFireRecipes implements IRecipe {
 		return inputs;
 	}
 
-	public ItemStack getOutput() {
+	public List<ItemStack> getOutput() {
 		return output;
 	}
 
@@ -74,7 +75,10 @@ public class RitualFireRecipes implements IRecipe {
 		for (Ingredient input : inputs) {
 			input.write(buf);
 		}
-		buf.writeItemStack(output, false);
+		buf.writeVarInt(output.size());
+		for(ItemStack stack : output){
+			buf.writeItemStack(stack, false);
+		}
 		buf.writeVarInt(pressure);
 	}
 
@@ -84,8 +88,13 @@ public class RitualFireRecipes implements IRecipe {
 		for (int i = 0; i < inputs.length; i++) {
 			inputs[i] = Ingredient.read(buf);
 		}
-		ItemStack output = buf.readItemStack();
+		ItemStack[] output = new ItemStack[buf.readVarInt()];
+		for (int i = 0; i < output.length; i++)
+		{
+			output[i] = buf.readItemStack();
+		}
 		int pressure = buf.readVarInt();
+
 		return new RitualFireRecipes(id, output, pressure, inputs);
 	}
 

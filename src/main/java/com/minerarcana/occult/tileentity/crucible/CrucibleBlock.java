@@ -1,28 +1,29 @@
-package com.minerarcana.occult.tileentity.ritualfire;
+package com.minerarcana.occult.tileentity.crucible;
+
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockReader;
 
-public class RitualBase extends Block {
+public class CrucibleBlock extends Block {
 
-    public RitualBase(Properties properties) {
+    public CrucibleBlock(Properties properties) {
         super(properties);
     }
 
-
-    @Override
     public boolean hasTileEntity(BlockState state)
     {
-      return true;
+        return true;
     }
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world)
     {
-        return new RitualBaseTile();
+        return new CrucibleTile();
     }
 
-    
+
+
+
 
 }

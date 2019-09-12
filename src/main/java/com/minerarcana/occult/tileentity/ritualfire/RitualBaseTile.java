@@ -1,20 +1,23 @@
 package com.minerarcana.occult.tileentity.ritualfire;
 
 import com.google.common.collect.Maps;
-import jdk.nashorn.internal.ir.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
-import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
@@ -29,11 +32,11 @@ import java.util.Map;
 
 import static com.minerarcana.occult.tileentity.OccultTileEntities.RITUALBASETILE;
 
-public class RitualBaseTileEntity extends TileEntity {
+public class RitualBaseTile extends TileEntity implements INamedContainerProvider {
 
     private LazyOptional<IItemHandler> handler = LazyOptional.of(this::createHandler);
 
-    private RitualBaseTileEntity master;
+    private RitualBaseTile master;
 
     private int counter;
 
@@ -46,7 +49,7 @@ public class RitualBaseTileEntity extends TileEntity {
     private boolean isMaster;
     private boolean isSlave;
 
-    public RitualBaseTileEntity() {
+    public RitualBaseTile() {
         super(RITUALBASETILE);
     }
 
@@ -70,16 +73,29 @@ public class RitualBaseTileEntity extends TileEntity {
         return this.burnTime > 0;
     }
 
-    public boolean isCenter(BlockState state, BlockPos pos) {
+    public boolean isCenter(BlockState state, World world, BlockPos pos) {
         BlockPos east = pos.east();
         BlockPos west = pos.west();
         BlockPos north = pos.north();
         BlockPos south = pos.south();
+        BlockState state1 = world.getBlockState(east);
+        BlockState state2 = world.getBlockState(west);
+        BlockState state3 = world.getBlockState(north);
+        BlockState state4 = world.getBlockState(south);
 
-        
-        if(state.getBlock() instanceof RitualBase)
+
+        if(state1.getBlock() instanceof RitualBase)
         {
-            isCenter = true;
+            if(state2.getBlock() instanceof RitualBase)
+            {
+                if(state3.getBlock() instanceof RitualBase)
+                {
+                    if(state4.getBlock() instanceof RitualBase)
+                    {
+
+                    }
+                }
+            }
         }
         else{isCenter = false;}
             return this.isCenter;
@@ -107,7 +123,7 @@ public class RitualBaseTileEntity extends TileEntity {
         return isSlave;
     }
 
-    public RitualBaseTileEntity getMaster() {
+    public RitualBaseTile getMaster() {
         if (this.isMaster = true) {
             return this.master;
         }
@@ -207,5 +223,15 @@ public class RitualBaseTileEntity extends TileEntity {
     }
 
 
+    @Override
+    public ITextComponent getDisplayName() {
+        return new StringTextComponent(getType().getRegistryName().getPath());
+    }
+
+    @Nullable
+    @Override
+    public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
+        return new RitualBaseContainer(i, world, pos);
+    }
 }
 

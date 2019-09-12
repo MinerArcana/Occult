@@ -16,13 +16,13 @@ import javax.annotation.Nullable;
 import static com.minerarcana.occult.tileentity.OccultTileEntities.RITUALBASETILE;
 import static com.minerarcana.occult.tileentity.OccultTileEntities.RITUALFIRETILE;
 
-public class RitualFireTileEntity extends TileEntity {
+public class RitualFireTile extends TileEntity {
 
     private LazyOptional<IItemHandler> handler = LazyOptional.of(this::createHandler);
 
     private int counter;
 
-    public RitualFireTileEntity() {
+    public RitualFireTile() {
         super(RITUALFIRETILE);
     }
 
