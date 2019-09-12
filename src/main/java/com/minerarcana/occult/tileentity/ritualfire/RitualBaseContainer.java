@@ -11,7 +11,7 @@ import net.minecraft.world.IBlockReader;
 import javax.annotation.Nullable;
 
 
-public class RitualFireContainer {
+public class RitualBaseContainer {
 
     /*public RitualFireContainer(){
         super(RITUALCONTAINER);
