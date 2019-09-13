@@ -13,6 +13,7 @@ import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -31,6 +32,7 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 import static com.minerarcana.occult.tileentity.OccultTileEntities.RITUALBASETILE;
+import static net.minecraft.tags.ItemTags.LOGS;
 
 public class RitualBaseTile extends TileEntity implements INamedContainerProvider {
 
@@ -185,20 +187,20 @@ public class RitualBaseTile extends TileEntity implements INamedContainerProvide
 
             @Override
             public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                return stack.getItem() == ItemTags.LOGS;
+                return stack.getItem().getTags() == LOGS;
             }
 
             @Nonnull
             @Override
             public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-                if (stack.getTag() != ItemTags.LOGS) {
+                if (!stack.getItem().getTags().contains(LOGS)) {
                     return stack;
                 }
                 return super.insertItem(slot, stack, simulate);
             }
         };
 
-        };
+
     }
 
     @Override
@@ -206,13 +208,12 @@ public class RitualBaseTile extends TileEntity implements INamedContainerProvide
     public SUpdateTileEntityPacket getUpdatePacket() {
         CompoundNBT nbt = new CompoundNBT();
         write(nbt);
-        int metadata = get();
-        return new SUpdateTileEntityPacket(this.pos, metadata, nbt);
+        return new SUpdateTileEntityPacket(this.pos, 1, nbt);
     }
 
     public static Map<Item, Integer> getBurnTimes() {
         Map<Item, Integer> map = Maps.newLinkedHashMap();
-        addItemTagBurnTime(map, ItemTags.LOGS, 300);
+        addItemTagBurnTime(map, LOGS, 300);
         return map;
     }
 
@@ -231,7 +232,7 @@ public class RitualBaseTile extends TileEntity implements INamedContainerProvide
     @Nullable
     @Override
     public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return new RitualBaseContainer(i, world, pos);
+        return new RitualBaseContainer(i, world, pos, playerInventory);
     }
 }
 
