@@ -7,6 +7,7 @@ import net.minecraft.world.IBlockReader;
 
 public class RitualBase extends Block {
 
+
     public RitualBase(Properties properties) {
         super(properties);
     }
