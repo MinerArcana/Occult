@@ -2,16 +2,21 @@ package com.minerarcana.occult.recipes;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.items.IItemHandler;
+import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CrucibleRecipes implements IRecipe {
+public class CrucibleRecipes implements IRecipe<IInventory> {
+    protected final IRecipeType<?> type;
     private final ResourceLocation id;
     private final ResourceLocation animation;
     private final ImmutableList<ItemStack> output;
@@ -22,13 +27,13 @@ public class CrucibleRecipes implements IRecipe {
     private final int meltTime;
     private final int experience;
 
-
-    public CrucibleRecipes (ResourceLocation id, ResourceLocation animation, ItemStack[] output, int maxTemp, int minTemp, int meltTime,String group, Ingredient... inputs)
+    public CrucibleRecipes(ResourceLocation id, ResourceLocation animation, ItemStack[] output, int maxTemp, int minTemp, int meltTime, int experience, String group, Ingredient... inputs)
     {
         Preconditions.checkArgument(inputs.length <= 3);
         Preconditions.checkArgument(output.length <= 3);
         Preconditions.checkArgument(maxTemp <= 5000);
-        Preconditions.checkArgument(minTemp >= 500);
+        Preconditions.checkArgument(minTemp >= 100);
+        type = OccultRecipeTypes.CRUCIBLETYPE;
         this.id = id;
         this.animation = animation;
         this.inputs = ImmutableList.copyOf(inputs);
@@ -41,11 +46,14 @@ public class CrucibleRecipes implements IRecipe {
 
     }
 
-    public boolean matches(IItemHandler itemHandler) {
+
+
+    @Override
+    public boolean matches(IInventory inv, World worldIn) {
         List<Ingredient> ingredientsMissing = new ArrayList<>(inputs);
 
-        for (int i = 0; i < itemHandler.getSlots(); i++) {
-            ItemStack input = itemHandler.getStackInSlot(i);
+        for (int i = 0; i < inv.getSizeInventory(); i++) {
+            ItemStack input = inv.getStackInSlot(i);
             if (input.isEmpty())
                 break;
 
@@ -66,8 +74,40 @@ public class CrucibleRecipes implements IRecipe {
         return ingredientsMissing.isEmpty();
     }
 
+
+
+    @Override
+    public ItemStack getCraftingResult(IInventory inv) {
+        return this.output.get(1);
+    }
+
+    @Override
+    public boolean canFit(int width, int height) {
+        return true;
+    }
+
+    @Override
+    public ItemStack getRecipeOutput() {
+        return this.output.get(1);
+    }
+
+    @Override
     public ResourceLocation getId() {
-        return this.id;
+        return id;
+    }
+
+    @Override
+    public IRecipeSerializer<?> getSerializer() {
+        return null;
+    }
+
+    @Override
+    public IRecipeType<?> getType() {
+        return this.type;
+    }
+
+    public float getExperience() {
+        return this.experience;
     }
 
     public ResourceLocation getAnimation() {
@@ -78,14 +118,8 @@ public class CrucibleRecipes implements IRecipe {
         return this.group;
     }
 
-    @Override
     public List<Ingredient> getInputs() {
         return this.inputs;
-    }
-
-    @Override
-    public List<ItemStack> getOutput() {
-        return this.output;
     }
 
     public int getMaxtemp() {
@@ -101,6 +135,7 @@ public class CrucibleRecipes implements IRecipe {
     }
 
     public void write(PacketBuffer buf) {
+        buf.writeString("CrucibleRecipes");
         buf.writeResourceLocation(id);
         buf.writeResourceLocation(animation);
         buf.writeVarInt(inputs.size());
@@ -114,6 +149,8 @@ public class CrucibleRecipes implements IRecipe {
         buf.writeVarInt(maxtemp);
         buf.writeVarInt(mintemp);
         buf.writeVarInt(meltTime);
+        buf.writeVarInt(experience);
+        buf.writeString(group);
     }
 
     public static CrucibleRecipes read(PacketBuffer buf) {
@@ -131,11 +168,10 @@ public class CrucibleRecipes implements IRecipe {
         int maxtemp = buf.readVarInt();
         int mintemp = buf.readVarInt();
         int melttime = buf.readVarInt();
+        int experience = buf.readVarInt();
         String group = buf.readString();
 
-        return new CrucibleRecipes(id, animation, output, maxtemp, mintemp, melttime, group, inputs);
+        return new CrucibleRecipes(id, animation, output, maxtemp, mintemp, melttime, experience, group, inputs);
     }
-
-
 
 }
