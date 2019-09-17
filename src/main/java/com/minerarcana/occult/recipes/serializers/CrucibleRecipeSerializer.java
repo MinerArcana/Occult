@@ -59,7 +59,7 @@ public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRe
         int meltTime = JSONUtils.getInt(json, "MeltTime", this.meltTime);
         int minTemp = JSONUtils.getInt(json, "MinimumTemp", this.minTemp);
         int maxTemp = JSONUtils.getInt(json, "MaximumTemp", this.maxTemp);
-        int experience = JSONUtils.getInt(json, "Exeperience", this.experience);
+        int experience = JSONUtils.getInt(json, "Experience", this.experience);
 
         return this.factory.create(id, animation ,output, secondoutput, thirdoutput, meltTime, minTemp, maxTemp, experience, group, ingredient);
 

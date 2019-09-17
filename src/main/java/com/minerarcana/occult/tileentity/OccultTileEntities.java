@@ -3,7 +3,6 @@ package com.minerarcana.occult.tileentity;
 import com.minerarcana.occult.blocks.featureblocks.eldritchstone.EldritchStone;
 import com.minerarcana.occult.blocks.featureblocks.eldritchstone.EldritchStoneTileEntity;
 import com.minerarcana.occult.tileentity.crucible.CrucibleBlock;
-import com.minerarcana.occult.tileentity.crucible.CrucibleTile2;
 import com.minerarcana.occult.tileentity.ritualfire.*;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.tileentity.TileEntityType;

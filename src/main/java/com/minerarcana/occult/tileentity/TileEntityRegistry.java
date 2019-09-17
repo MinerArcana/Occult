@@ -1,14 +1,9 @@
 package com.minerarcana.occult.tileentity;
 
 import com.minerarcana.occult.blocks.featureblocks.eldritchstone.EldritchStoneTileEntity;
-import com.minerarcana.occult.tileentity.crucible.CrucibleTile2;
-import com.minerarcana.occult.tileentity.ritualfire.RitualBaseContainer;
 import com.minerarcana.occult.tileentity.ritualfire.RitualBaseTile;
 import com.minerarcana.occult.tileentity.ritualfire.RitualFireTile;
-import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

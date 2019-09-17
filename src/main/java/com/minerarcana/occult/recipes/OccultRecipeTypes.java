@@ -30,7 +30,7 @@ public class OccultRecipeTypes {
 
         Occult.LOGGER.info("Recipe types registered");
 
-        CRUCIBLESERIALIZER = register("crucible", new CrucibleRecipeSerializer<>(CrucibleRecipes::new));
+        CRUCIBLESERIALIZER = register("crucible", new CrucibleRecipeSerializer<CrucibleRecipes>(CrucibleRecipes::new, 1, 5000, 150, 1 ,""));
 
         Occult.LOGGER.info("Recipe serializers registered");
     }
