@@ -21,10 +21,19 @@ import static net.minecraft.item.crafting.ShapedRecipe.deserializeItem;
 public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<T> {
 
     private final IFactory<T> factory;
+    private final String group;
+    private final int meltTime;
+    private final int minTemp;
+    private final int maxTemp;
+    private final int experience;
 
-    public CrucibleRecipeSerializer(IFactory<T> factory) {
+    public CrucibleRecipeSerializer(IFactory<T> factory, int meltTime, int maxTemp, int minTemp, int experience, String group) {
         this.factory = factory;
-
+        this.meltTime = meltTime;
+        this.minTemp = minTemp;
+        this.maxTemp = maxTemp;
+        this.experience = experience;
+        this.group = group;
 
     }
 
@@ -45,8 +54,14 @@ public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRe
         ItemStack output = deserializeItem(JSONUtils.getJsonObject(json, "result"));
         ItemStack secondoutput = ItemStack.EMPTY;
         ItemStack thirdoutput = ItemStack.EMPTY;
+        String group = JSONUtils.getString(json, "Group", this.group);
 
-        return this.factory.create(id, animation ,output, secondoutput, thirdoutput, ingredient);
+        int meltTime = JSONUtils.getInt(json, "MeltTime", this.meltTime);
+        int minTemp = JSONUtils.getInt(json, "MinimumTemp", this.minTemp);
+        int maxTemp = JSONUtils.getInt(json, "MaximumTemp", this.maxTemp);
+        int experience = JSONUtils.getInt(json, "Exeperience", this.experience);
+
+        return this.factory.create(id, animation ,output, secondoutput, thirdoutput, meltTime, minTemp, maxTemp, experience, group, ingredient);
 
     }
 
@@ -68,7 +83,7 @@ public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRe
         int minTemp = buffer.readVarInt();
         int maxTemp = buffer.readVarInt();
         int experience = buffer.readVarInt();
-        return this.factory.create(id, animation ,output, secondOutput, thirdOutput, ingredient);
+        return this.factory.create(id, animation ,output, secondOutput, thirdOutput, meltTime, minTemp, maxTemp, experience, group, ingredient);
     }
 
     @Override
@@ -91,7 +106,7 @@ public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRe
     }
 
     public interface IFactory<T extends CrucibleRecipes> {
-        T create(ResourceLocation id, ResourceLocation animation, ItemStack output, ItemStack secondOutput, ItemStack thirdOutput, Ingredient... inputs);
+        T create(ResourceLocation id, ResourceLocation animation, ItemStack output, ItemStack secondOutput, ItemStack thirdOutput, int meltTime, int maxTemp, int minTemp, int experience, String group, Ingredient... inputs);
     }
 }
 
