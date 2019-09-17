@@ -20,7 +20,7 @@ public class CrucibleBlock extends Block {
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world)
     {
-        return new CrucibleTile2();
+        return new CrucibleTile();
     }
 
 
