@@ -3,7 +3,7 @@ package com.minerarcana.occult.tileentity;
 import com.minerarcana.occult.blocks.featureblocks.eldritchstone.EldritchStone;
 import com.minerarcana.occult.blocks.featureblocks.eldritchstone.EldritchStoneTileEntity;
 import com.minerarcana.occult.tileentity.crucible.CrucibleBlock;
-import com.minerarcana.occult.tileentity.crucible.CrucibleTile;
+import com.minerarcana.occult.tileentity.crucible.CrucibleTile2;
 import com.minerarcana.occult.tileentity.ritualfire.*;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.tileentity.TileEntityType;
@@ -36,7 +36,7 @@ public class OccultTileEntities
     public static CrucibleBlock CRUCIBLE;
 
     @ObjectHolder("occult:crucible")
-    public static TileEntityType<CrucibleTile> CRUCIBLETILE;
+    public static TileEntityType<CrucibleTile2> CRUCIBLETILE;
 
 
 

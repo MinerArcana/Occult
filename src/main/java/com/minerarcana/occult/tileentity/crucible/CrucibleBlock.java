@@ -16,10 +16,11 @@ public class CrucibleBlock extends Block {
     {
         return true;
     }
+
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world)
     {
-        return new CrucibleTile(recipeType);
+        return new CrucibleTile2();
     }
 
 

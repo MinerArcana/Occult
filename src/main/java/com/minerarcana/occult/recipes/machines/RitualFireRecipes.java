@@ -11,7 +11,7 @@ import net.minecraftforge.items.IItemHandler;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RitualFireRecipes implements IOccultRecipe {
+public class RitualFireRecipes {
 	private final ResourceLocation id;
 	private final ImmutableList<ItemStack> output;
 	private final ImmutableList<Ingredient> inputs;

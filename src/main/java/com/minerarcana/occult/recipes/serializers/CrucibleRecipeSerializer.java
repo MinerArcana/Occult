@@ -15,22 +15,19 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
 
+import static net.minecraft.item.crafting.ShapedRecipe.deserializeItem;
+
+
 public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<T> {
 
-    private final CrucibleRecipeSerializer.IFactory<T> factory;
-    private final int meltTime;
-    private final int minTemp;
-    private final int maxTemp;
-    private final int experience;
+    private final IFactory<T> factory;
 
-    public CrucibleRecipeSerializer(CrucibleRecipeSerializer.IFactory<T> factory, int meltTime, int maxTemp, int minTemp, int experience) {
+    public CrucibleRecipeSerializer(IFactory<T> factory) {
         this.factory = factory;
-        this.meltTime = meltTime;
-        this.minTemp = minTemp;
-        this.maxTemp = maxTemp;
-        this.experience = experience;
+
 
     }
+
 
     @Override
     public T read(ResourceLocation id, JsonObject json) {
@@ -40,19 +37,16 @@ public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRe
             throw new com.google.gson.JsonSyntaxException("Missing output, expected to find a object");
         JsonObject outputJson = JSONUtils.getJsonObject(json, "output");
         String ItemKey = JSONUtils.getString(outputJson, "Item");
-
+        String AnimationKey = JSONUtils.getString(outputJson, "animation");
         Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(ItemKey));
-
+        ResourceLocation animation = ResourceLocation.tryCreate(AnimationKey);
         if (item == null)
             throw new com.google.gson.JsonSyntaxException("Crucible recipe output is null! Recipe is: " + id.toString());
-        ItemStack output = new ItemStack(item, JSONUtils.getInt(outputJson, "amount"));
+        ItemStack output = deserializeItem(JSONUtils.getJsonObject(json, "result"));
+        ItemStack secondoutput = ItemStack.EMPTY;
+        ItemStack thirdoutput = ItemStack.EMPTY;
 
-        int meltTime = JSONUtils.getInt(json, "MeltTime", this.meltTime);
-        int minTemp = JSONUtils.getInt(json, "MinimumTemp", this.minTemp);
-        int maxTemp = JSONUtils.getInt(json, "MaximumTemp", this.maxTemp);
-        int experience = JSONUtils.getInt(json, "Exeperience", this.experience);
-
-        return this.factory.create(id, ingredient, output, meltTime, minTemp, maxTemp, experience);
+        return this.factory.create(id, animation ,output, secondoutput, thirdoutput, ingredient);
 
     }
 
@@ -62,22 +56,33 @@ public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRe
         Ingredient ingredient = Ingredient.read(buffer);
 
         Item item = ForgeRegistries.ITEMS.getValue(buffer.readResourceLocation());
+        ResourceLocation animation = buffer.readResourceLocation();
         if (item == null)
             throw new com.google.gson.JsonSyntaxException("Crucible recipe result is null! Recipe is: " + id.toString());
         int amount = buffer.readVarInt();
-        ItemStack output = new ItemStack(item);
-
+        ItemStack output = buffer.readItemStack();
+        ItemStack secondOutput = buffer.readItemStack();
+        ItemStack thirdOutput = buffer.readItemStack();
+        String group = buffer.readString();
         int meltTime = buffer.readVarInt();
         int minTemp = buffer.readVarInt();
         int maxTemp = buffer.readVarInt();
         int experience = buffer.readVarInt();
-        return this.factory.create(id, ingredient, output, meltTime, minTemp, maxTemp, experience);
+        return this.factory.create(id, animation ,output, secondOutput, thirdOutput, ingredient);
     }
 
     @Override
     public void write(PacketBuffer buffer, T recipe) {
+        buffer.writeResourceLocation(recipe.getId());
+        buffer.writeResourceLocation(recipe.getAnimation());
+        buffer.writeVarInt(recipe.getInputs().size());
+        for (Ingredient input : recipe.getInputs()) {
+            input.write(buffer);
+        }
         recipe.getIngredients().get(0).write(buffer);
+
         buffer.writeResourceLocation(recipe.getRecipeOutput().getItem().getRegistryName());
+
         buffer.writeVarInt(recipe.getMeltTime());
         buffer.writeVarInt(recipe.getMaxtemp());
         buffer.writeVarInt(recipe.getMintemp());
@@ -86,7 +91,7 @@ public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRe
     }
 
     public interface IFactory<T extends CrucibleRecipes> {
-        T create(ResourceLocation id, Ingredient ingredient, ItemStack output, int meltTime, int maxTemp, int minTemp, int experience);
+        T create(ResourceLocation id, ResourceLocation animation, ItemStack output, ItemStack secondOutput, ItemStack thirdOutput, Ingredient... inputs);
     }
 }
 

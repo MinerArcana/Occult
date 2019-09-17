@@ -1,34 +1,53 @@
 package com.minerarcana.occult.tileentity.crucible;
 
 import com.google.common.collect.Maps;
+import com.minerarcana.occult.recipes.OccultRecipeTypes;
 import com.minerarcana.occult.recipes.machines.CrucibleRecipes;
 import net.minecraft.block.AbstractFurnaceBlock;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.IRecipeHelperPopulator;
+import net.minecraft.inventory.IRecipeHolder;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.item.crafting.RecipeItemHelper;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
+import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.Direction;
+import net.minecraft.util.IIntArray;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import java.util.Map;
 
+import static com.minerarcana.occult.recipes.OccultRecipeTypes.CRUCIBLETYPE;
 import static com.minerarcana.occult.tileentity.OccultTileEntities.CRUCIBLETILE;
 
-public class CrucibleTile extends TileEntity
+public class CrucibleTile extends TileEntity implements ISidedInventory, IRecipeHolder, IRecipeHelperPopulator, ITickableTileEntity
 {
-    protected NonNullList<ItemStack> items = NonNullList.withSize(3, ItemStack.EMPTY);
-    private boolean isBurning;
+
+    private static final int[] SLOTS_UP = new int[]{0};
+    private static final int[] SLOTS_HORIZONTAL = new int[]{1};
+
+    protected NonNullList<ItemStack> inventory = NonNullList.withSize(3, ItemStack.EMPTY);
     private boolean hasFuel;
     private int minTemp;
     private int maxTemp;
@@ -75,78 +94,96 @@ public class CrucibleTile extends TileEntity
         }
     };
 
-    public int getFuelTemp() {
-        return FuelTemp;
-    }
 
-    public int setFuelTemp(int temp) {
-        return FuelTemp = temp;
-    }
+    private final Map<ResourceLocation, Integer> recipeAmounts = Maps.newHashMap();
+    private final IRecipeType<CrucibleRecipes> recipeType;
 
-    public boolean hasFuel() {
-        if(getFuelTemp() > 150) {
-            return true;
-        }
-        return hasFuel;
-    }
-
-    private final Map<ResourceLocation, Integer> id = Maps.newHashMap();
-
-    protected final IRecipeType<? extends CrucibleRecipes> recipeType;
-
-    protected CrucibleTile(IRecipeType<? extends CrucibleRecipes> recipeType, int fuelTemp, boolean isburning, boolean hasfuel) {
+    public CrucibleTile() {
         super(CRUCIBLETILE);
-        this.recipeType = recipeType;
-        this.isBurning = isburning;
-        this.hasFuel = hasfuel;
-        this.FuelTemp = fuelTemp;
+        recipeType = OccultRecipeTypes.CRUCIBLETYPE;
     }
 
-    public void read(CompoundNBT nbt) {
-        super.read(nbt);
-        this.items = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt, this.items);
-        this.meltTime = nbt.getInt("MeltTime");
-        this.meltTimeTotal = nbt.getInt("MeltTimeTotal");
-        this.maxTemp = nbt.getInt("MaxTemp");
-        this.minTemp = nbt.getInt("MinTemp");
-        int i = nbt.getShort("RecipesUsedSize");
+    @Override
+    public int[] getSlotsForFace(Direction direction) {
+        return direction == Direction.UP ? SLOTS_UP : SLOTS_HORIZONTAL;
+    }
 
-        for(int j = 0; j < i; ++j) {
-            ResourceLocation resourcelocation = new ResourceLocation(nbt.getString("RecipeLocation" + j));
-            int k = nbt.getInt("RecipeAmount" + j);
-            this.id.put(resourcelocation, k);
+    @Override
+    public boolean canInsertItem(int index, ItemStack stack, @Nullable Direction direction) {
+        return this.isItemValidForSlot(index, stack);
+    }
+
+    @Override
+    public boolean canExtractItem(int index, ItemStack stack, Direction direction) {
+        return true;
+    }
+
+    @Override
+    public int getSizeInventory() {
+        return this.inventory.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        for (ItemStack itemstack : this.inventory)
+            if (!itemstack.isEmpty())
+                return false;
+
+        return true;
+    }
+
+    @Override
+    public ItemStack getStackInSlot(int index) {
+        return this.inventory.get(index);
+    }
+
+    @Override
+    public ItemStack decrStackSize(int index, int count) {
+        return ItemStackHelper.getAndSplit(this.inventory, index, count);
+    }
+
+    @Override
+    public ItemStack removeStackFromSlot(int index) {
+        return ItemStackHelper.getAndRemove(this.inventory, index);
+    }
+
+    @Override
+    public void setInventorySlotContents(int index, ItemStack stack) {
+        ItemStack itemstack = this.inventory.get(index);
+        boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
+        this.inventory.set(index, stack);
+        if (stack.getCount() > this.getInventoryStackLimit())
+            stack.setCount(this.getInventoryStackLimit());
+
+        if (index == 0 && !flag) {
+            this.meltTimeTotal = this.getMeltTimeTotal();
+            this.meltTime = 0;
         }
-
     }
 
-    public CompoundNBT write(CompoundNBT nbt) {
-        super.write(nbt);
-        nbt.putInt("MeltTime", this.meltTime);
-        nbt.putInt("MeltTimeTotal", this.meltTimeTotal);
-        nbt.putInt("MaxTemp", this.maxTemp);
-        nbt.putInt("MinTemp", this.minTemp);
-        ItemStackHelper.saveAllItems(nbt, this.items);
-        nbt.putShort("RecipesUsedSize", (short)this.id.size());
-        int i = 0;
-
-        for(Map.Entry<ResourceLocation, Integer> entry : this.id.entrySet()) {
-            nbt.putString("RecipeLocation" + i, entry.getKey().toString());
-            nbt.putInt("RecipeAmount" + i, entry.getValue());
-            ++i;
-        }
-
-        return nbt;
+    @Override
+    public boolean isUsableByPlayer(PlayerEntity player) {
+        if (this.world.getTileEntity(this.pos) != this)
+            return false;
+        else
+            return player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
+    @Override
+    public void clear() {
+        this.inventory.clear();
+    }
 
+    @Override
+    public void fillStackedContents(RecipeItemHelper helper) {
+        for (ItemStack itemstack : this.inventory)
+            helper.accountStack(itemstack);
+    }
 
     private LazyOptional<IItemHandler> handler = LazyOptional.of(this::createHandler);
 
-
-    @Nonnull
     @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+    public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
         {
             return handler.cast();
@@ -177,24 +214,37 @@ public class CrucibleTile extends TileEntity
         };
     }
 
+    @Override
+    public void setRecipeUsed(@Nullable IRecipe<?> recipe) {
+        if (recipe != null)
+            this.recipeAmounts.compute(recipe.getId(), (location, integer) -> 1 + (integer == null ? 0 : integer));
+    }
+
+    @Nullable
+    @Override
+    public IRecipe<?> getRecipeUsed() {
+        return null;
+    }
+
+    @Override
     public void tick() {
         boolean flag = this.hasFuel();
         boolean flag1 = false;
         if (this.hasFuel()) {
-
-                ItemStack itemstack = this.items.get(1);
-                if (!itemstack.isEmpty() && !this.items.get(0).isEmpty()) {
-                    IRecipe<?> irecipe = this.world.getRecipeManager().getRecipe((IRecipeType<CrucibleRecipes>)this.recipeType, this, this.world).orElse(null);
+            if (!this.world.isRemote) {
+                ItemStack itemstack = this.inventory.get(1);
+                if (!itemstack.isEmpty() && !this.inventory.get(0).isEmpty()) {
+                    IRecipe<?> irecipe = this.world.getRecipeManager().getRecipe(CRUCIBLETYPE, this, this.world).orElse(null);
                     if (!this.hasFuel() && this.canSmelt(irecipe)) {
-                          if (this.hasFuel()) {
+                        if (this.hasFuel()) {
                             flag1 = true;
                             if (itemstack.hasContainerItem())
-                                this.items.set(1, itemstack.getContainerItem());
+                                this.inventory.set(1, itemstack.getContainerItem());
                             else if (!itemstack.isEmpty()) {
                                 Item item = itemstack.getItem();
                                 itemstack.shrink(1);
                                 if (itemstack.isEmpty()) {
-                                    this.items.set(1, itemstack.getContainerItem());
+                                    this.inventory.set(1, itemstack.getContainerItem());
                                 }
                             }
                         }
@@ -204,8 +254,8 @@ public class CrucibleTile extends TileEntity
                         ++this.meltTime;
                         if (this.meltTime == this.meltTimeTotal) {
                             this.meltTime = 0;
-                            this.meltTimeTotal = this.setMeltTime();
-                            this.setMeltTime(irecipe);
+                            this.meltTimeTotal = this.getMeltTimeTotal();
+                            this.smeltRecipe(irecipe);
                             flag1 = true;
                         }
                     } else {
@@ -226,45 +276,87 @@ public class CrucibleTile extends TileEntity
             }
 
         }
-
-        public int getSizeInventory() {
-            return this.items.size();
-        }
-
-
-    private static void addItemTemp(Map<Item, Integer> map, IItemProvider itemProvider, int temp) {
-        map.put(itemProvider.asItem(), temp);
     }
 
-    protected boolean canSmelt(@Nullable IRecipe<?> recipeIn) {
-        if (!this.items.get(0).isEmpty() && recipeIn != null) {
-            ItemStack itemstack = recipeIn.getRecipeOutput();
-            if (itemstack.isEmpty()) {
-                return false;
-            } else {
-                ItemStack itemstack1 = this.items.get(2);
-                if (itemstack1.isEmpty()) {
-                    return true;
-                } else if (!itemstack1.isItemEqual(itemstack)) {
-                    return false;
-                } else if (itemstack1.getCount() + itemstack.getCount() <= this.getInventoryStackLimit() && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize()) {
-                    return true;
-                } else {
-                    return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize();
-                }
-            }
-        } else {
+    private boolean canSmelt(@Nullable IRecipe<?> iRecipe) {
+        if (!(iRecipe instanceof CrucibleRecipes))
             return false;
+
+        if (!this.inventory.get(0).isEmpty()) {
+            CrucibleRecipes recipe = (CrucibleRecipes) iRecipe;
+            ItemStack outStack = recipe.getRecipeOutput();
+            if (outStack.isEmpty())
+                return false;
+            else {
+                if (this.inventory.isEmpty())
+                    return true;
+
+            }
+        }
+        return false;
+    }
+
+    private void smeltRecipe(@Nullable IRecipe<?> iRecipe) {
+        if (!(iRecipe instanceof CrucibleRecipes))
+            return;
+
+        if (this.canSmelt(iRecipe)) {
+            CrucibleRecipes recipe = (CrucibleRecipes) iRecipe;
+            ItemStack ingredientStack = this.inventory.get(0);
+            ItemStack recipeOutStack = recipe.getRecipeOutput();
+            ItemStack outStack = this.inventory.get(0);
+            if (outStack.isEmpty())
+                this.inventory.set(1 ,recipeOutStack.copy());
+            else if (outStack.getItem() == recipeOutStack.getItem())
+                this.inventory.set(1,recipeOutStack);
+
+            if (!this.world.isRemote)
+                this.setRecipeUsed(recipe);
+
+            ingredientStack.shrink(1);
         }
     }
 
-    private int getInventoryStackLimit() {
-        return 1;
+
+    @Override
+    public CompoundNBT getUpdateTag() {
+        return this.write(new CompoundNBT());
     }
 
-    protected int setMeltTime() {
-        return this.world.getRecipeManager().getRecipe((IRecipeType<CrucibleRecipes>)this.recipeType, this, this.world).map(CrucibleRecipes::getMeltTime).orElse(200);
+    @Nullable
+    @Override
+    public SUpdateTileEntityPacket getUpdatePacket() {
+        CompoundNBT nbt = new CompoundNBT();
+        super.write(nbt);
+        return new SUpdateTileEntityPacket(getPos(), 1, nbt);
     }
 
+    @Override
+    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
+        this.read(pkt.getNbtCompound());
+    }
+
+    private int getMeltTimeTotal() {
+        return this.world.getRecipeManager().getRecipe(this.recipeType, this, this.world).map(CrucibleRecipes::getMeltTime).orElse(200);
+    }
+
+    private ItemStack  getRecipeResult() {
+        return this.world.getRecipeManager().getRecipe(this.recipeType, this, this.world).map(CrucibleRecipes::getRecipeOutput).orElse(ItemStack.EMPTY);
+    }
+
+    public int getFuelTemp() {
+        return FuelTemp;
+    }
+
+    public int setFuelTemp(int temp) {
+        return FuelTemp = temp;
+    }
+
+    public boolean hasFuel() {
+        if(getFuelTemp() > 150) {
+            return true;
+        }
+        return hasFuel;
+    }
 
 }
