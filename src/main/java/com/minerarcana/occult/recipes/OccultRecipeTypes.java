@@ -26,11 +26,11 @@ public class OccultRecipeTypes {
     public static void registerAll(RegistryEvent.Register<IRecipeSerializer<?>> event) {
         if (!event.getName().equals(ForgeRegistries.RECIPE_SERIALIZERS.getRegistryName())) return;
 
-        CRUCIBLETYPE = register("crucible");
+        CRUCIBLETYPE = register("crucibletype");
 
         Occult.LOGGER.info("Recipe types registered");
 
-        CRUCIBLESERIALIZER = register("crucible", new CrucibleRecipeSerializer<CrucibleRecipes>(CrucibleRecipes::new, 1, 5000, 150, 1 ,""));
+        CRUCIBLESERIALIZER = register("crucibletype", new CrucibleRecipeSerializer<CrucibleRecipes>(CrucibleRecipes::new, 1, 5000, 150, 1 ,"crucibletype"));
 
         Occult.LOGGER.info("Recipe serializers registered");
     }

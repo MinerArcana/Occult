@@ -8,6 +8,10 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ObjectHolder;
+
+import static com.minerarcana.occult.Occult.MOD_ID;
+
 
 @Mod.EventBusSubscriber
 public class TileEntityRegistry {

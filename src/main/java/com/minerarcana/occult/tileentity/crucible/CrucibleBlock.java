@@ -12,6 +12,7 @@ public class CrucibleBlock extends Block {
         super(properties);
     }
 
+    @Override
     public boolean hasTileEntity(BlockState state)
     {
         return true;

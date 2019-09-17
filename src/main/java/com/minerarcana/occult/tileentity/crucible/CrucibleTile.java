@@ -374,8 +374,9 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, IRecipe
 
     public boolean hasFuel() {
         if(getFuelTemp() >= this.minTemp) {
-            return true;
+            return hasFuel = true;
         }
+        else{ hasFuel = false;}
         return hasFuel;
     }
 

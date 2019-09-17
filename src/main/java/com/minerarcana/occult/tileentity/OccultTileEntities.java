@@ -9,6 +9,9 @@ import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.registries.ObjectHolder;
 
+import static com.minerarcana.occult.Occult.MOD_ID;
+
+@ObjectHolder(MOD_ID)
 public class OccultTileEntities
 {
     @ObjectHolder("occult:ritualbase")
