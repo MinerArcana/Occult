@@ -2,10 +2,8 @@ package com.minerarcana.occult.recipes.machines;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import com.minerarcana.occult.items.OccultItems;
 import com.minerarcana.occult.recipes.OccultRecipeTypes;
-import com.minerarcana.occult.recipes.serializers.CrucibleRecipeSerializer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -14,12 +12,9 @@ import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.registries.ForgeRegistries;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,6 +98,11 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
     @Override
     public ItemStack getRecipeOutput() {
         return this.output;
+    }
+
+
+    public Item getAlternateOutput() {
+        return OccultItems.amalgam;
     }
 
     @Override

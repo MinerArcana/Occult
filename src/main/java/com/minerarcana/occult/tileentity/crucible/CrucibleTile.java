@@ -4,6 +4,8 @@ import com.google.common.collect.Maps;
 import com.minerarcana.occult.recipes.OccultRecipeTypes;
 import com.minerarcana.occult.recipes.machines.CrucibleRecipes;
 import net.minecraft.block.AbstractFurnaceBlock;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IRecipeHelperPopulator;
 import net.minecraft.inventory.IRecipeHolder;
@@ -25,7 +27,9 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -48,6 +52,7 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, IRecipe
     private static final int[] SLOTS_HORIZONTAL = new int[]{1};
 
     protected NonNullList<ItemStack> inventory = NonNullList.withSize(3, ItemStack.EMPTY);
+    private boolean tooHot;
     private boolean hasFuel;
     private int minTemp;
     private int maxTemp;
@@ -250,7 +255,7 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, IRecipe
                         }
                     }
 
-                    if (this.hasFuel() && this.canSmelt(irecipe)) {
+                    if (this.hasFuel() && this.canSmelt(irecipe) && !this.tooHot()) {
                         ++this.meltTime;
                         if (this.meltTime == this.meltTimeTotal) {
                             this.meltTime = 0;
@@ -265,10 +270,6 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, IRecipe
                     this.meltTime = MathHelper.clamp(this.meltTime - 2, 0, this.meltTimeTotal);
                 }
 
-                if (flag != this.hasFuel()) {
-                    flag1 = true;
-                    this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(AbstractFurnaceBlock.LIT, this.hasFuel()), 3);
-                }
             }
 
             if (flag1) {
@@ -304,9 +305,12 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, IRecipe
             CrucibleRecipes recipe = (CrucibleRecipes) iRecipe;
             ItemStack ingredientStack = this.inventory.get(0);
             ItemStack recipeOutStack = recipe.getRecipeOutput();
+            Item alternateOutput = recipe.getAlternateOutput();
             ItemStack outStack = this.inventory.get(0);
-            if (outStack.isEmpty())
+            if (outStack.isEmpty() && !this.tooHot())
                 this.inventory.set(1 ,recipeOutStack.copy());
+            if (outStack.isEmpty() && this.tooHot())
+                ((CrucibleRecipes) iRecipe).getAlternateOutput();
             else if (outStack.getItem() == recipeOutStack.getItem())
                 this.inventory.set(1,recipeOutStack);
 
@@ -348,12 +352,28 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, IRecipe
         return FuelTemp;
     }
 
-    public int setFuelTemp(int temp) {
-        return FuelTemp = temp;
+    private boolean tooHot()
+    {
+        if(getFuelTemp() > this.maxTemp){
+            tooHot = true;
+        }
+        else{ tooHot = false; }
+        return tooHot;
+    }
+
+    public int setFuelTemp(World world, BlockState state, BlockPos pos) {
+        BlockPos pos1 = pos.down();
+        BlockState state1 = state.getBlockState();
+
+        if(world.getBlockState(pos1) == Blocks.LAVA.getDefaultState())
+        {
+            FuelTemp = 1000;
+        }
+        return FuelTemp;
     }
 
     public boolean hasFuel() {
-        if(getFuelTemp() > 150) {
+        if(getFuelTemp() >= this.minTemp) {
             return true;
         }
         return hasFuel;
