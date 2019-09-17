@@ -9,6 +9,7 @@ import com.minerarcana.occult.blocks.vegetation.PoisonIvy;
 import com.minerarcana.occult.blocks.vegetation.StrangleGrass;
 import com.minerarcana.occult.blocks.worldblocks.Brimstone;
 import com.minerarcana.occult.blocks.worldblocks.DeepGrass;
+import com.minerarcana.occult.tileentity.crucible.CrucibleBlock;
 import com.minerarcana.occult.tileentity.ritualfire.RitualBase;
 import com.minerarcana.occult.util.OccultItemGroup;
 import net.minecraft.block.Block;
@@ -140,6 +141,7 @@ public class OccultBlocks
 
     public static Block ritualfire;
     public static Block ritualbase;
+    public static Block crucible;
 
     @SubscribeEvent
     public static void registerBlocks(final RegistryEvent.Register<Block> event)
@@ -245,6 +247,7 @@ public class OccultBlocks
         //Magic Machines
         ritualfire = registerBlock(new RitualBase((Block.Properties.create(Material.FIRE).doesNotBlockMovement().hardnessAndResistance(-0.1F,33333338).lightValue(8).sound(SoundType.SNOW))), "ritualfire");
         ritualbase = registerBlock(new RitualBase((Block.Properties.create(Material.ROCK).hardnessAndResistance(1.7f).sound(SoundType.STONE))), "ritualbase");
+        crucible = registerBlock(new CrucibleBlock((Block.Properties.create(Material.ROCK).hardnessAndResistance(1.7f).sound(SoundType.STONE))), "crucible");
 
 
         //Vegetation/Ingredients
