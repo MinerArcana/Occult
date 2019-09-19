@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "occult:blocks/deepplanks1",
+    "top": "occult:blocks/deepplanks1",
+    "side": "occult:blocks/deepplanks1"
+  }
+}

@@ -1,5 +1,6 @@
 package com.minerarcana.occult.blocks;
 
+import com.minerarcana.occult.blocks.featureblocks.eldritchstone.EldritchStone;
 import com.minerarcana.occult.blocks.flowers.BleachedFlower;
 import com.minerarcana.occult.blocks.flowers.DeepFlower;
 import com.minerarcana.occult.blocks.flowers.InfernalFlower;
@@ -11,6 +12,7 @@ import com.minerarcana.occult.blocks.worldblocks.Brimstone;
 import com.minerarcana.occult.blocks.worldblocks.DeepGrass;
 import com.minerarcana.occult.tileentity.crucible.CrucibleBlock;
 import com.minerarcana.occult.tileentity.ritualfire.RitualBase;
+import com.minerarcana.occult.tileentity.ritualfire.RitualFire;
 import com.minerarcana.occult.util.OccultItemGroup;
 import net.minecraft.block.Block;
 import net.minecraft.block.LeavesBlock;
@@ -143,9 +145,9 @@ public class OccultBlocks
     public static Block ritualbase;
     public static Block crucible;
 
-    @SubscribeEvent
-    public static void registerBlocks(final RegistryEvent.Register<Block> event)
-    {
+        @SubscribeEvent
+        public static void registerBlocks(final RegistryEvent.Register<Block> event)
+        {
         //Deep Forest Biome
         deathcherrylog = registerBlock(new LogBlock(MaterialColor.BROWN,(Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "deathcherrylog");
         deathcherrywood = registerBlock(new Block((Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "deathcherrywood");
@@ -239,13 +241,13 @@ public class OccultBlocks
 
 
         //Moving Features
-        eldritchstone = registerBlock(new DeepGrass((Block.Properties.create(Material.ROCK).tickRandomly(). hardnessAndResistance(0.6F).sound(SoundType.STONE))), "eldritchstone");
+        eldritchstone = registerBlock(new EldritchStone((Block.Properties.create(Material.ROCK).tickRandomly(). hardnessAndResistance(0.6F).sound(SoundType.STONE))), "eldritchstone");
         movinggrass = registerBlock(new DeepGrass((Block.Properties.create(Material.PLANTS).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "movinggrass");
         rootedsoil = registerBlock(new DeepGrass((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "rootedsoil");
         infestedmushroom = registerBlock(new DeepGrass((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).lightValue(8).sound(SoundType.PLANT))), "infestedmushroom");
 
         //Magic Machines
-        ritualfire = registerBlock(new RitualBase((Block.Properties.create(Material.FIRE).doesNotBlockMovement().hardnessAndResistance(-0.1F,33333338).lightValue(8).sound(SoundType.SNOW))), "ritualfire");
+        ritualfire = registerBlock(new RitualFire((Block.Properties.create(Material.FIRE).doesNotBlockMovement().hardnessAndResistance(-0.1F,33333338).lightValue(8).sound(SoundType.SNOW))), "ritualfire");
         ritualbase = registerBlock(new RitualBase((Block.Properties.create(Material.ROCK).hardnessAndResistance(1.7f).sound(SoundType.STONE))), "ritualbase");
         crucible = registerBlock(new CrucibleBlock((Block.Properties.create(Material.ROCK).hardnessAndResistance(1.7f).sound(SoundType.STONE))), "crucible");
 
@@ -282,15 +284,6 @@ public class OccultBlocks
         ForgeRegistries.ITEMS.register(itemBlock);
         return block;
     }
-
-
-
-
-
-
-
-
-
 
 
 

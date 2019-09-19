@@ -9,6 +9,7 @@ import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
@@ -17,20 +18,21 @@ import static com.minerarcana.occult.Occult.MOD_ID;
 
 
 @ObjectHolder(MOD_ID)
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class OccultRecipeTypes {
 
     public static IRecipeType<CrucibleRecipes> CRUCIBLETYPE;
     public static CrucibleRecipeSerializer<CrucibleRecipes> CRUCIBLESERIALIZER;
 
-    public static void registerAll(RegistryEvent.Register<IRecipeSerializer<?>> event) {
+    @SubscribeEvent
+    public static void registerRecipeSerializer(RegistryEvent.Register<IRecipeSerializer<?>> event) {
         if (!event.getName().equals(ForgeRegistries.RECIPE_SERIALIZERS.getRegistryName())) return;
 
-        CRUCIBLETYPE = register("crucibletype");
+        CRUCIBLETYPE = register("crucible");
 
         Occult.LOGGER.info("Recipe types registered");
 
-        CRUCIBLESERIALIZER = register("crucibletype", new CrucibleRecipeSerializer<CrucibleRecipes>(CrucibleRecipes::new, 1, 5000, 150, 1 ,"crucibletype"));
+        CRUCIBLESERIALIZER = register("crucible", new CrucibleRecipeSerializer<CrucibleRecipes>(CrucibleRecipes::new, 1, 5000, 150, 1 ,"crucibletype"));
 
         Occult.LOGGER.info("Recipe serializers registered");
     }

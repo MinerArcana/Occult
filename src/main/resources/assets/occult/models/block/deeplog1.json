@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "occult:blocks/deeplogtop1",
+    "side": "occult:blocks/deeplog1"
+  }
+}

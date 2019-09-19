@@ -1,0 +1,11 @@
+
+
+
+
+{
+    "variants": {
+        "axis=y":    { "model": "occult:block/deeplog3" },
+        "axis=z":     { "model": "occult:block/deeplog3", "x": 90 },
+        "axis=x":     { "model": "occult:block/deeplog3", "x": 90, "y": 90 }
+    }
+}

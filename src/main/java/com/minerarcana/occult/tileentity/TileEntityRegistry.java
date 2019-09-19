@@ -1,5 +1,6 @@
 package com.minerarcana.occult.tileentity;
 
+import com.minerarcana.occult.blocks.OccultBlocks;
 import com.minerarcana.occult.blocks.featureblocks.eldritchstone.EldritchStoneTileEntity;
 import com.minerarcana.occult.tileentity.crucible.CrucibleTile;
 import com.minerarcana.occult.tileentity.ritualfire.RitualBaseTile;
@@ -13,17 +14,17 @@ import net.minecraftforge.registries.ObjectHolder;
 import static com.minerarcana.occult.Occult.MOD_ID;
 
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TileEntityRegistry {
 
 
     @SubscribeEvent
     public static void onTileEntityRegistry(final RegistryEvent.Register<TileEntityType<?>> event)
     {
-        event.getRegistry().register(TileEntityType.Builder.create(CrucibleTile:: new, OccultTileEntities.CRUCIBLE).build(null).setRegistryName("crucible"));
-        event.getRegistry().register(TileEntityType.Builder.create(RitualBaseTile:: new, OccultTileEntities.RITUALBASE).build(null).setRegistryName("ritualbase"));
-        event.getRegistry().register(TileEntityType.Builder.create(RitualFireTile:: new, OccultTileEntities.RITUALFIRE).build(null).setRegistryName("ritualfire"));
-        event.getRegistry().register(TileEntityType.Builder.create(EldritchStoneTileEntity:: new, OccultTileEntities.ELDRITCHSTONE).build(null).setRegistryName("eldritchstone"));
+        event.getRegistry().register(TileEntityType.Builder.create(CrucibleTile:: new, OccultBlocks.crucible).build(null).setRegistryName("crucible"));
+        event.getRegistry().register(TileEntityType.Builder.create(RitualBaseTile:: new, OccultBlocks.ritualbase).build(null).setRegistryName("ritualbase"));
+        event.getRegistry().register(TileEntityType.Builder.create(RitualFireTile:: new, OccultBlocks.ritualfire).build(null).setRegistryName("ritualfire"));
+        event.getRegistry().register(TileEntityType.Builder.create(EldritchStoneTileEntity:: new, OccultBlocks.eldritchstone).build(null).setRegistryName("eldritchstone"));
 
     }
 
