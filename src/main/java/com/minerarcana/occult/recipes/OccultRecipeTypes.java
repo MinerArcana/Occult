@@ -15,6 +15,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
 
 import static com.minerarcana.occult.Occult.MOD_ID;
+import static net.minecraft.world.biome.Biome.LOGGER;
 
 
 @ObjectHolder(MOD_ID)
@@ -25,16 +26,16 @@ public class OccultRecipeTypes {
     public static CrucibleRecipeSerializer<CrucibleRecipes> CRUCIBLESERIALIZER;
 
     @SubscribeEvent
-    public static void registerRecipeSerializer(RegistryEvent.Register<IRecipeSerializer<?>> event) {
+    public static void registerAll(RegistryEvent.Register<IRecipeSerializer<?>> event) {
         if (!event.getName().equals(ForgeRegistries.RECIPE_SERIALIZERS.getRegistryName())) return;
 
-        CRUCIBLETYPE = register("crucible");
+        CRUCIBLETYPE = register("crucibletype");
 
-        Occult.LOGGER.info("Recipe types registered");
+        LOGGER.info("Recipe types registered");
 
-        CRUCIBLESERIALIZER = register("crucible", new CrucibleRecipeSerializer<CrucibleRecipes>(CrucibleRecipes::new, 1, 5000, 150, 1 ,"crucibletype"));
+        CRUCIBLESERIALIZER = register("crucibletype", new CrucibleRecipeSerializer<CrucibleRecipes>(CrucibleRecipes::new, 1, 5000, 150, 1 ,"crucibletype"));
 
-        Occult.LOGGER.info("Recipe serializers registered");
+        LOGGER.info("Recipe serializers registered");
     }
 
     private static <S extends IRecipeSerializer<R>, R extends IRecipe<?>> S register(String name, S serializer) {

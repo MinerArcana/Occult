@@ -32,11 +32,10 @@ public class StrangleGrass extends BushBlock
     }
 
 
-    public static void strangleDeath(BlockPos pos) {
-            Random random = null;
-            World worldIn = null;
-            BlockPos blockpos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
-            if(worldIn.getBlockState(blockpos) == Blocks.AIR.getDefaultState() && worldIn.getBlockState(pos.down()) != OccultBlocks.rockytrails.getDefaultState()) {
+    public static void strangleDeath(BlockPos pos, World worldIn, Random random) {
+
+            BlockPos blockpos = pos.add(random.nextInt(10) - 1, random.nextInt(10) - 3, random.nextInt(10) - 1);
+            if(worldIn.getBlockState(blockpos) == Blocks.AIR.getDefaultState() && worldIn.getBlockState(blockpos.down()) != OccultBlocks.rockytrails.getDefaultState() && worldIn.getBlockState(blockpos.down()) != Blocks.AIR.getDefaultState()) {
                 worldIn.setBlockState(blockpos, OccultBlocks.stranglegrass.getDefaultState());
             }
         }
@@ -45,12 +44,16 @@ public class StrangleGrass extends BushBlock
         public static void strangeDeaths(LivingDeathEvent event) {
             if (event.getSource() instanceof StrangeDamage)
             {
-                World world = null;
-                BlockPos pos = null;
-                StrangleGrass.strangleDeath(pos);
+               Entity entity = event.getEntity();
+               BlockPos entitypos = entity.getPosition();
+               World entityworld = entity.world;
+               Random random = entityworld.rand;
+               strangleDeath(entitypos, entityworld, random);
+
+               }
 
             }
-        }
+
 
 
 }

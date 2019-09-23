@@ -22,8 +22,6 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
     private final ResourceLocation id;
     private final ResourceLocation animation;
     private final ItemStack output;
-    private final ItemStack secondoutput;
-    private final ItemStack thirdoutput;
     private final ImmutableList<Ingredient> inputs;
     private final String group;
     private final int maxtemp;
@@ -31,7 +29,7 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
     private final int meltTime;
     private final int experience;
 
-    public CrucibleRecipes(ResourceLocation id, ResourceLocation animation, ItemStack output, ItemStack secondoutput, ItemStack thirdoutput, int maxTemp, int minTemp, int meltTime, int experience, String group, Ingredient... inputs)
+    public CrucibleRecipes(ResourceLocation id, ResourceLocation animation, ItemStack output, int maxTemp, int minTemp, int meltTime, int experience, String group, Ingredient... inputs)
     {
         Preconditions.checkArgument(inputs.length <= 3);
         Preconditions.checkArgument(maxTemp <= 5000);
@@ -40,8 +38,6 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
         this.animation = animation;
         this.inputs = ImmutableList.copyOf(inputs);
         this.output = output;
-        this.secondoutput = secondoutput;
-        this.thirdoutput = thirdoutput;
         this.mintemp = minTemp;
         this.maxtemp = maxTemp;
         this.meltTime = meltTime;
@@ -49,6 +45,7 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
         this.experience = experience;
 
     }
+
 
     @Override
     public boolean matches(IInventory inv, World worldIn) {
@@ -74,14 +71,6 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
         }
 
         return ingredientsMissing.isEmpty();
-    }
-
-    public ItemStack getSecondOutput() {
-        return secondoutput;
-    }
-
-    public ItemStack getThirdOutput() {
-        return thirdoutput;
     }
 
 
@@ -158,8 +147,6 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
             input.write(buf);
         }
         buf.writeItemStack(output);
-        buf.writeItemStack(secondoutput);
-        buf.writeItemStack(thirdoutput);
         buf.writeVarInt(maxtemp);
         buf.writeVarInt(mintemp);
         buf.writeVarInt(meltTime);
@@ -175,8 +162,6 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
             inputs[i] = Ingredient.read(buf);
         }
         ItemStack output = buf.readItemStack();
-        ItemStack secondoutput = buf.readItemStack();
-        ItemStack thirdoutput = buf.readItemStack();
 
         int maxtemp = buf.readVarInt();
         int mintemp = buf.readVarInt();
@@ -184,7 +169,7 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
         int experience = buf.readVarInt();
         String group = buf.readString();
 
-        return new CrucibleRecipes(id, animation, output, secondoutput, thirdoutput, maxtemp, mintemp, melttime, experience, group, inputs);
+        return new CrucibleRecipes(id, animation, output, maxtemp, mintemp, melttime, experience, group, inputs);
     }
 
 
