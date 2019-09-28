@@ -1,0 +1,7 @@
+{
+    "ambientocclusion": false,
+    "textures": {
+        "particle": "block/vine",
+        "vine": "occult:blocks/slickmoss"
+    }
+}

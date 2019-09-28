@@ -13,20 +13,6 @@ public class OccultSurfaces {
     public static SurfaceBuilderConfig DEEPSPOOKYSURFACE ;
 
 
-    public BlockState setGrassState(World world, BlockPos pos)
-    {
-        BlockPos blockpos = pos.up();
-        BlockState state;
-        if(world.getBlockState(pos.up()).getBlock() == OccultBlocks.halfgrass )
-        {
-            state = Blocks.DIRT.getDefaultState();
-        }
-        else{
-            state = OccultBlocks.halfgrass.getDefaultState();
-        }
-        return state;
-    }
-
     public OccultSurfaces(){}
     static
     {

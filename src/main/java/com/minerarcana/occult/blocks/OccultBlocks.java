@@ -7,6 +7,7 @@ import com.minerarcana.occult.blocks.flowers.InfernalFlower;
 import com.minerarcana.occult.blocks.normal.OccultStairs;
 import com.minerarcana.occult.blocks.vegetation.EchocryBushes;
 import com.minerarcana.occult.blocks.vegetation.PoisonIvy;
+import com.minerarcana.occult.blocks.vegetation.SlickMoss;
 import com.minerarcana.occult.blocks.vegetation.StrangleGrass;
 import com.minerarcana.occult.blocks.worldblocks.Brimstone;
 import com.minerarcana.occult.blocks.worldblocks.DeepGrass;
@@ -14,10 +15,7 @@ import com.minerarcana.occult.tileentity.crucible.CrucibleBlock;
 import com.minerarcana.occult.tileentity.ritualfire.RitualBase;
 import com.minerarcana.occult.tileentity.ritualfire.RitualFire;
 import com.minerarcana.occult.util.OccultItemGroup;
-import net.minecraft.block.Block;
-import net.minecraft.block.LeavesBlock;
-import net.minecraft.block.LogBlock;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
@@ -256,7 +254,7 @@ public class OccultBlocks
 
         poisonivy = registerBlock(new PoisonIvy((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "poisonivy");
         stranglegrass = registerBlock(new StrangleGrass((Block.Properties.create(Material.TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "stranglegrass");
-        slickmoss = registerBlock(new DeepGrass((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "slickmoss");
+        slickmoss = registerBlock(new SlickMoss((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "slickmoss");
         phantombush = registerBlock(new DeepGrass((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "phantombush");
         faslesod = registerBlock(new DeepGrass((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "faslesod");
         echobush1 = registerBlock(new EchocryBushes((Block.Properties.create(Material.PLANTS).tickRandomly().doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "echobush1");

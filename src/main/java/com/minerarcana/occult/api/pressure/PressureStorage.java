@@ -36,15 +36,6 @@ public class PressureStorage implements IPressure {
 
     }
 
-    @Override
-    public World getWorld() {
-        return null;
-    }
-
-    @Override
-    public ChunkPos getChunkPos() {
-        return null;
-    }
 
     @Override
     public int addPressure(int added, PressureType type, boolean commit) {

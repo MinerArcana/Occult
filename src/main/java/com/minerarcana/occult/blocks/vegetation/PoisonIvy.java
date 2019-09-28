@@ -36,7 +36,7 @@ public class PoisonIvy extends BushBlock {
     }
 
     @SubscribeEvent
-    public static void strangeDeaths(LivingHurtEvent event) {
+    public static void PoisonTime(LivingHurtEvent event) {
         if (event.getSource() instanceof IvyDamage)
         {
             if(event.getEntity() instanceof PlayerEntity){

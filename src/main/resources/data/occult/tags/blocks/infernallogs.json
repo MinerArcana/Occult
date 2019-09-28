@@ -1,11 +1,11 @@
 {
   "replace": false,
   "values": [
-    "#occult:infernallog1",
-    "#occult:infernallog2",
-    "#occult:infernallog3",
-    "#occult:infernalwood1",
-    "#occult:infernalwood2",
-    "#occult:infernalwood3"
+    "occult:infernallog1",
+    "occult:infernallog2",
+    "occult:infernallog3",
+    "occult:infernalwood1",
+    "occult:infernalwood2",
+    "occult:infernalwood3"
   ]
 }

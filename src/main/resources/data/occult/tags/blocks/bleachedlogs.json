@@ -1,11 +1,11 @@
 {
   "replace": false,
   "values": [
-    "#occult:bleachedlog1",
-    "#occult:bleachedlog2",
-    "#occult:bleachedlog3",
-    "#occult:bleachedwood1",
-    "#occult:bleachedwood2",
-    "#occult:bleachedwood3"
+    "occult:bleachedlog1",
+    "occult:bleachedlog2",
+    "occult:bleachedlog3",
+    "occult:bleachedwood1",
+    "occult:bleachedwood2",
+    "occult:bleachedwood3"
     ]
 }

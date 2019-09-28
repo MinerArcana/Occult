@@ -9,9 +9,6 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ObjectHolder;
-
-import static com.minerarcana.occult.Occult.MOD_ID;
 
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -24,7 +21,7 @@ public class TileEntityRegistry {
         event.getRegistry().register(TileEntityType.Builder.create(CrucibleTile:: new, OccultBlocks.crucible).build(null).setRegistryName("crucible"));
         event.getRegistry().register(TileEntityType.Builder.create(RitualBaseTile:: new, OccultBlocks.ritualbase).build(null).setRegistryName("ritualbase"));
         event.getRegistry().register(TileEntityType.Builder.create(RitualFireTile:: new, OccultBlocks.ritualfire).build(null).setRegistryName("ritualfire"));
-        event.getRegistry().register(TileEntityType.Builder.create(EldritchStoneTileEntity:: new, OccultBlocks.eldritchstone).build(null).setRegistryName("eldritchstone"));
+        event.getRegistry().register(TileEntityType.Builder.create(() -> new EldritchStoneTileEntity(pressures), OccultBlocks.eldritchstone).build(null).setRegistryName("eldritchstone"));
 
     }
 

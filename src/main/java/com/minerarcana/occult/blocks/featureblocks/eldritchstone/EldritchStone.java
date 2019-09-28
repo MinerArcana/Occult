@@ -1,10 +1,8 @@
 package com.minerarcana.occult.blocks.featureblocks.eldritchstone;
 
-import com.minerarcana.occult.api.pressure.IPressure;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 
 public class EldritchStone extends Block {
@@ -15,15 +13,9 @@ public class EldritchStone extends Block {
     }
 
 
-    private void stoneGrowth(String name, BlockPos pos, BlockState state, IPressure pressure) {
-        /*BlockPos up = pos.up();
-        BlockPos down = pos.down(2);
-        int stored = pressure.getPressure();
-        if (up == Blocks.AIR.getDefaultState() && stored == 25 && down. != OccultBlocks.eldritchstone.getDefaultState()) {
 
-        }*/
 
-    }
+
 
     @Override
     public boolean hasTileEntity(BlockState state)
