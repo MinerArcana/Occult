@@ -1,4 +1,4 @@
-package com.minerarcana.occult.recipes.machines;
+package com.minerarcana.occult.api.recipes.machines;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;

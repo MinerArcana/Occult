@@ -1,4 +1,4 @@
-package com.minerarcana.occult.capabilities.handlers;
+package com.minerarcana.occult.api.capabilities.handlers;
 
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;

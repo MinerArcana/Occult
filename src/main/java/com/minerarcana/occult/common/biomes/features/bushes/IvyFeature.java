@@ -1,6 +1,6 @@
-package com.minerarcana.occult.biomes.features.bushes;
+package com.minerarcana.occult.common.biomes.features.bushes;
 
-import com.minerarcana.occult.blocks.OccultBlocks;
+import com.minerarcana.occult.common.blocks.OccultBlocks;
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.BlockState;
 import net.minecraft.tags.BlockTags;

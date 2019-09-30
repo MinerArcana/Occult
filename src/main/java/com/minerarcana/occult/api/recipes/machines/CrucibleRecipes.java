@@ -1,11 +1,10 @@
-package com.minerarcana.occult.recipes.machines;
+package com.minerarcana.occult.api.recipes.machines;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
-import com.minerarcana.occult.items.OccultItems;
-import com.minerarcana.occult.recipes.OccultRecipeTypes;
+import com.minerarcana.occult.common.items.OccultItems;
+import com.minerarcana.occult.api.recipes.OccultRecipeTypes;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;

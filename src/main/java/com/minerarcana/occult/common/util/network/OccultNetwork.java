@@ -1,4 +1,4 @@
-package com.minerarcana.occult.util.network;
+package com.minerarcana.occult.common.util.network;
 
 import com.minerarcana.occult.Occult;
 import net.minecraft.util.ResourceLocation;

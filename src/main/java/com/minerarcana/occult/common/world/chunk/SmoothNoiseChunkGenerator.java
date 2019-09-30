@@ -1,6 +1,6 @@
-package com.minerarcana.occult.world.chunk;
+package com.minerarcana.occult.common.world.chunk;
 
-import com.minerarcana.occult.world.noise.SimplexOctavesGenerator;
+import com.minerarcana.occult.common.world.noise.SimplexOctavesGenerator;
 import it.unimi.dsi.fastutil.longs.LongIterator;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import it.unimi.dsi.fastutil.objects.ObjectList;
@@ -27,7 +27,6 @@ import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.structure.StructureStart;
-import net.minecraftforge.common.BiomeDictionary;
 
 import java.util.Iterator;
 import java.util.Random;

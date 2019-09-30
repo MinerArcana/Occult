@@ -1,4 +1,4 @@
-package com.minerarcana.occult.world.noise;
+package com.minerarcana.occult.common.world.noise;
 
 public abstract class OctaveGenerator {
     protected final NoiseGenerator[] octaves;

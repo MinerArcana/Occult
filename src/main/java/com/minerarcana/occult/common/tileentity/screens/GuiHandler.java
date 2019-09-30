@@ -1,11 +1,4 @@
-package com.minerarcana.occult.screens;
-
-import com.minerarcana.occult.util.lib.GuiIDs;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.common.network.IGuiHandler;
+package com.minerarcana.occult.common.tileentity.screens;
 
 public class GuiHandler  {
 

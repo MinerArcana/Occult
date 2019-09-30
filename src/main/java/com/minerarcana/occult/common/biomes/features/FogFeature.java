@@ -1,6 +1,6 @@
-package com.minerarcana.occult.biomes.features;
+package com.minerarcana.occult.common.biomes.features;
 
-import com.minerarcana.occult.biomes.OccultBiomes;
+import com.minerarcana.occult.common.biomes.OccultBiomes;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;

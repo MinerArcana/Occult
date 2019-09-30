@@ -1,9 +1,9 @@
-package com.minerarcana.occult.util.network;
+package com.minerarcana.occult.common.util.network;
 
 import com.minerarcana.occult.api.pressure.IPressure;
 import com.minerarcana.occult.api.pressure.PressureType;
-import com.minerarcana.occult.capabilities.ChunkPressureCapability;
-import com.minerarcana.occult.capabilities.PressureChunkStorage;
+import com.minerarcana.occult.api.capabilities.ChunkPressureCapability;
+import com.minerarcana.occult.api.capabilities.PressureChunkStorage;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;

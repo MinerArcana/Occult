@@ -1,4 +1,4 @@
-package com.minerarcana.occult.world.chunk;
+package com.minerarcana.occult.common.world.chunk;
 
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.*;

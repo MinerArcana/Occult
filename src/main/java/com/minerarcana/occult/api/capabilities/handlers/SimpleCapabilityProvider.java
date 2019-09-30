@@ -1,4 +1,4 @@
-package com.minerarcana.occult.capabilities.handlers;
+package com.minerarcana.occult.api.capabilities.handlers;
 
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;

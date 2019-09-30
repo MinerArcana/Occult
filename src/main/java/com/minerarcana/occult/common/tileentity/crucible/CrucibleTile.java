@@ -1,12 +1,10 @@
-package com.minerarcana.occult.tileentity.crucible;
+package com.minerarcana.occult.common.tileentity.crucible;
 
 import com.google.common.collect.Maps;
-import com.minerarcana.occult.recipes.OccultRecipeTypes;
-import com.minerarcana.occult.recipes.machines.CrucibleRecipes;
-import com.minerarcana.occult.util.OccultTags;
-import net.minecraft.block.AbstractFurnaceBlock;
+import com.minerarcana.occult.api.recipes.OccultRecipeTypes;
+import com.minerarcana.occult.api.recipes.machines.CrucibleRecipes;
+import com.minerarcana.occult.common.util.OccultTags;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IRecipeHelperPopulator;
 import net.minecraft.inventory.IRecipeHolder;
@@ -14,16 +12,11 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeItemHelper;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.NonNullList;
@@ -36,15 +29,14 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import java.util.Map;
 
-import static com.minerarcana.occult.recipes.OccultRecipeTypes.CRUCIBLETYPE;
-import static com.minerarcana.occult.tileentity.OccultTileEntities.CRUCIBLETILE;
+import static com.minerarcana.occult.api.recipes.OccultRecipeTypes.CRUCIBLETYPE;
+import static com.minerarcana.occult.common.tileentity.OccultTileEntities.CRUCIBLETILE;
 
 public class CrucibleTile extends TileEntity implements ISidedInventory, IRecipeHolder, IRecipeHelperPopulator, ITickableTileEntity
 {
@@ -318,7 +310,7 @@ public class CrucibleTile extends TileEntity implements ISidedInventory, IRecipe
             CrucibleRecipes recipe = (CrucibleRecipes) iRecipe;
             ItemStack ingredientStack = this.inventory.get(0);
             ItemStack recipeOutStack = recipe.getRecipeOutput();
-            Item alternateOutput = recipe.getAlternateOutput();
+            ItemStack alternateOutput = recipe.getAlternateOutput();
             ItemStack outStack = this.inventory.get(0);
             if (outStack.isEmpty() && !this.tooHot())
                 this.inventory.set(1 ,recipeOutStack.copy());

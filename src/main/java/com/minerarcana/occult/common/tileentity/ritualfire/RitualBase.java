@@ -1,4 +1,4 @@
-package com.minerarcana.occult.tileentity.ritualfire;
+package com.minerarcana.occult.common.tileentity.ritualfire;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

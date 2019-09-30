@@ -1,4 +1,4 @@
-package com.minerarcana.occult.tileentity.ritualfire;
+package com.minerarcana.occult.common.tileentity.ritualfire;
 
 import com.google.common.collect.Maps;
 import net.minecraft.block.BlockState;
@@ -10,10 +10,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -31,7 +29,7 @@ import javax.annotation.Nullable;
 
 import java.util.Map;
 
-import static com.minerarcana.occult.tileentity.OccultTileEntities.RITUALBASETILE;
+import static com.minerarcana.occult.common.tileentity.OccultTileEntities.RITUALBASETILE;
 import static net.minecraft.tags.ItemTags.LOGS;
 
 public class RitualBaseTile extends TileEntity implements INamedContainerProvider {

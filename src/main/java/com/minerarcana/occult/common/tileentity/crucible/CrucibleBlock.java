@@ -1,4 +1,4 @@
-package com.minerarcana.occult.tileentity.crucible;
+package com.minerarcana.occult.common.tileentity.crucible;
 
 
 import net.minecraft.block.Block;

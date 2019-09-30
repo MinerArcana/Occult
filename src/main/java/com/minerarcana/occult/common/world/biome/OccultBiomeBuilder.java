@@ -1,4 +1,4 @@
-package com.minerarcana.occult.world.biome;
+package com.minerarcana.occult.common.world.biome;
 
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilder;

@@ -1,8 +1,7 @@
-package com.minerarcana.occult.biomes.features;
+package com.minerarcana.occult.common.biomes.features;
 
 
-import com.minerarcana.occult.biomes.features.bushes.*;
-import net.minecraft.item.crafting.IRecipeSerializer;
+import com.minerarcana.occult.common.biomes.features.bushes.*;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;

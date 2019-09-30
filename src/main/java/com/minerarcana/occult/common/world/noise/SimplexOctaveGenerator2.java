@@ -1,4 +1,4 @@
-package com.minerarcana.occult.world.noise;
+package com.minerarcana.occult.common.world.noise;
 
 
 import net.minecraft.world.World;

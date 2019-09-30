@@ -1,6 +1,6 @@
-package com.minerarcana.occult.world.chunk;
+package com.minerarcana.occult.common.world.chunk;
 
-import com.minerarcana.occult.world.noise.SimplexOctaveGenerator;
+import com.minerarcana.occult.common.world.noise.SimplexOctaveGenerator;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.Util;

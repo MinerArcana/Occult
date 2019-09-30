@@ -1,4 +1,4 @@
-package com.minerarcana.occult.blocks.featureblocks.eldritchstone;
+package com.minerarcana.occult.common.blocks.featureblocks.eldritchstone;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

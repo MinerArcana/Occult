@@ -1,4 +1,4 @@
-package com.minerarcana.occult.screens;
+package com.minerarcana.occult.common.tileentity.screens;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

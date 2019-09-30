@@ -1,4 +1,4 @@
-package com.minerarcana.occult.blocks.flowers;
+package com.minerarcana.occult.common.blocks.flowers;
 
 import net.minecraft.block.BushBlock;
 

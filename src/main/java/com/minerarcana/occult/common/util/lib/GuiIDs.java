@@ -1,4 +1,4 @@
-package com.minerarcana.occult.util.lib;
+package com.minerarcana.occult.common.util.lib;
 
 public final class GuiIDs {
 

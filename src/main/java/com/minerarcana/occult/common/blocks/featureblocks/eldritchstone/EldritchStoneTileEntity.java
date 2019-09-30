@@ -1,19 +1,12 @@
-package com.minerarcana.occult.blocks.featureblocks.eldritchstone;
+package com.minerarcana.occult.common.blocks.featureblocks.eldritchstone;
 
 import com.google.common.collect.Maps;
-import com.minerarcana.occult.api.pressure.IPressure;
 import com.minerarcana.occult.api.pressure.PressureType;
-import com.minerarcana.occult.capabilities.ChunkPressureCapability;
-import net.minecraft.block.BlockState;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.LazyOptional;
 
-import javax.annotation.Nonnull;
 import java.util.Map;
 
-import static com.minerarcana.occult.tileentity.OccultTileEntities.ELDRITCHSTONETILEENTITY;
+import static com.minerarcana.occult.common.tileentity.OccultTileEntities.ELDRITCHSTONETILEENTITY;
 
 public class EldritchStoneTileEntity extends TileEntity {
 
