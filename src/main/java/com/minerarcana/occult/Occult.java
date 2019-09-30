@@ -2,13 +2,13 @@ package com.minerarcana.occult;
 
 import com.minerarcana.occult.api.pressure.IPressure;
 import com.minerarcana.occult.api.pressure.PressureType;
-import com.minerarcana.occult.capabilities.PressureChunkStorage;
-import com.minerarcana.occult.capabilities.handlers.SerializableCapabilityProvider;
+import com.minerarcana.occult.api.capabilities.PressureChunkStorage;
+import com.minerarcana.occult.api.capabilities.handlers.SerializableCapabilityProvider;
 import com.minerarcana.occult.proxy.ClientProxy;
 import com.minerarcana.occult.proxy.CommonProxy;
-import com.minerarcana.occult.util.network.OccultNetwork;
-import com.minerarcana.occult.world.SpookyWorldType;
-import com.minerarcana.occult.world.chunk.SpookyChunkGeneratorType;
+import com.minerarcana.occult.common.util.network.OccultNetwork;
+import com.minerarcana.occult.common.world.SpookyWorldType;
+import com.minerarcana.occult.common.world.chunk.SpookyChunkGeneratorType;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.IntNBT;
 import net.minecraft.util.Direction;
@@ -21,7 +21,6 @@ import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -34,9 +33,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
-import java.util.stream.Collectors;
 
-import static com.minerarcana.occult.capabilities.ChunkPressureCapability.*;
+import static com.minerarcana.occult.api.capabilities.ChunkPressureCapability.*;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("occult")

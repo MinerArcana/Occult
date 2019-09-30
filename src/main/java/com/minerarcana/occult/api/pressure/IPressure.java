@@ -7,6 +7,9 @@ import net.minecraft.world.World;
 public interface IPressure
 {
 
+    World getWorld();
+
+    ChunkPos getChunkPos();
 
     int addPressure(int added, PressureType type, boolean commit);
 
