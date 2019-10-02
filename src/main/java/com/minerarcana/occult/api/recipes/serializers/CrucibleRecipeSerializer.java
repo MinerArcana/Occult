@@ -38,16 +38,16 @@ public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRe
         if (!json.has("output"))
             throw new com.google.gson.JsonSyntaxException("Missing output, expected to find a object");
         JsonObject outputJson = JSONUtils.isJsonArray(json, "output") ? JSONUtils.getJsonObject(json, "output") : JSONUtils.getJsonObject(json, "output");
-        String ItemKey = JSONUtils.getString(outputJson, "Item");
-        Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(ItemKey));
+        String itemKey = JSONUtils.getString(outputJson, "item");
+        Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(itemKey));
         if (item == null)
             throw new com.google.gson.JsonSyntaxException("Crucible recipe output is null! Recipe is: " + id.toString());
-        ItemStack[] outputs = json. (JSONUtils.getJsonObject(json, "result"));
+        ItemStack[] outputs = JSONUtils.getItem(JSONUtils.getJsonObject(json, "output"));
 
-        int meltTime = JSONUtils.getInt(json, "MeltTime", this.meltTime);
-        int minTemp = JSONUtils.getInt(json, "MinimumTemp", this.minTemp);
-        int maxTemp = JSONUtils.getInt(json, "MaximumTemp", this.maxTemp);
-        int experience = JSONUtils.getInt(json, "Experience", this.experience);
+            int meltTime = JSONUtils.getInt(json, "meltTime", this.meltTime);
+            int minTemp = JSONUtils.getInt(json, "minimumTemp", this.minTemp);
+            int maxTemp = JSONUtils.getInt(json, "maximumTemp", this.maxTemp);
+            int experience = JSONUtils.getInt(json, "experience", this.experience);
 
         return this.factory.create(id, outputs, meltTime, minTemp, maxTemp, experience, ingredient);
 
@@ -61,7 +61,13 @@ public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRe
         Item item = ForgeRegistries.ITEMS.getValue(buffer.readResourceLocation());
         if (item == null)
             throw new com.google.gson.JsonSyntaxException("Crucible recipe result is null! Recipe is: " + id.toString());
-        ItemStack[] outputs =
+
+
+        int size = buffer.readVarInt();
+        ItemStack[] outputs = new ItemStack[size];
+        for(int i = 0; i < size; i++)
+        {outputs[i] = buffer.readItemStack();}
+
         int meltTime = buffer.readVarInt();
         int minTemp = buffer.readVarInt();
         int maxTemp = buffer.readVarInt();
@@ -78,7 +84,7 @@ public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRe
         }
         buffer.writeVarInt(recipe.getOutputs().size());
         for (ItemStack outputs : recipe.getOutputs()) {
-            outputs.deserializeNBT(buffer);
+            buffer.writeItemStack(outputs);
         }
         recipe.getIngredients().get(0).write(buffer);
 
