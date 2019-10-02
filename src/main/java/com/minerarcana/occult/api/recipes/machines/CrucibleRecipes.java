@@ -26,8 +26,7 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
     private final int meltTime;
     private final int experience;
 
-    public CrucibleRecipes(ResourceLocation id, ItemStack[] outputs, int maxTemp, int minTemp, int meltTime, int experience, Ingredient... inputs)
-    {
+    public CrucibleRecipes(ResourceLocation id, ItemStack[] outputs, int maxTemp, int minTemp, int meltTime, int experience, Ingredient... inputs) {
         Preconditions.checkArgument(inputs.length <= 3);
         Preconditions.checkArgument(outputs.length <= 3);
         Preconditions.checkArgument(maxTemp <= 3000);
@@ -61,7 +60,7 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
                     break;
                 }
             }
-            if(stackIndex != -1)
+            if (stackIndex != -1)
                 ingredientsMissing.remove(stackIndex);
             else return false;
         }

@@ -42,7 +42,7 @@ public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRe
         Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(ItemKey));
         if (item == null)
             throw new com.google.gson.JsonSyntaxException("Crucible recipe output is null! Recipe is: " + id.toString());
-        ItemStack[] outputs = json.(JSONUtils.getJsonObject(json, "result"));
+        ItemStack[] outputs = json. (JSONUtils.getJsonObject(json, "result"));
 
         int meltTime = JSONUtils.getInt(json, "MeltTime", this.meltTime);
         int minTemp = JSONUtils.getInt(json, "MinimumTemp", this.minTemp);
