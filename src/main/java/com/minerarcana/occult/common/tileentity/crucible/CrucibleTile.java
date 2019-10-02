@@ -17,7 +17,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeItemHelper;
+<<<<<<< Updated upstream
 import net.minecraft.nbt.CompoundNBT;
+=======
+import net.minecraft.particles.ParticleTypes;
+>>>>>>> Stashed changes
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
@@ -27,6 +31,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -39,7 +45,14 @@ import java.util.List;
 import java.util.Map;
 import static com.minerarcana.occult.common.tileentity.OccultTileEntities.CRUCIBLETILE;
 
+<<<<<<< Updated upstream
 public class CrucibleTile extends TileEntity implements ITickableTileEntity, IRecipeHolder, IRecipeHelperPopulator {
+=======
+public class CrucibleTile extends TileEntity implements ISidedInventory, IRecipeHolder, IRecipeHelperPopulator, ITickableTileEntity
+{
+
+    private static final int[] INVENTORYSLOTS = new int[]{0};
+>>>>>>> Stashed changes
 
     protected NonNullList<ItemStack> inventory = NonNullList.withSize(3, ItemStack.EMPTY);
     private boolean hasFuel;
@@ -99,8 +112,14 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity, IRe
         recipeType = OccultRecipeTypes.CRUCIBLETYPE;
     }
 
+<<<<<<< Updated upstream
     public int getFuelTemp() {
         return fuelTemp;
+=======
+    @Override
+    public int[] getSlotsForFace(Direction direction) {
+        return direction == Direction.UP ? INVENTORYSLOTS : INVENTORYSLOTS;
+>>>>>>> Stashed changes
     }
 
     private void setFuelTemp() {
@@ -310,6 +329,57 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity, IRe
         return null;
     }
 
+<<<<<<< Updated upstream
+=======
+    @Override
+    public void tick() {
+        World world = this.world.getWorld();
+        setFuelTemp(world, this.getBlockState(), this.pos);
+        boolean flag = this.hasFuel();
+        boolean flag1 = false;
+        if (this.hasFuel()) {
+            if (!this.world.isRemote) {
+                Direction direction = Direction.byHorizontalIndex(Math.floorMod(0, 4));
+                double lvt_8_1_ = (double)pos.getX() + 0.5D - (double)((float)direction.getXOffset() * 0.3125F) + (double)((float)direction.rotateY().getXOffset() * 0.3125F);
+                double lvt_10_1_ = (double)pos.getY() + 0.5D;
+                double lvt_12_1_ = (double)pos.getZ() + 0.5D - (double)((float)direction.getZOffset() * 0.3125F) + (double)((float)direction.rotateY().getZOffset() * 0.3125F);
+                world.addParticle(ParticleTypes.SMOKE, lvt_8_1_, lvt_10_1_, lvt_12_1_, 0.0D, 5.0E-4D, 0.0D);
+
+                ItemStack itemstack = this.inventory.get(1);
+                if (!itemstack.isEmpty() && !this.inventory.get(0).isEmpty()) {
+                    IRecipe<?> irecipe = this.world.getRecipeManager().getRecipe(CRUCIBLETYPE, this, this.world).orElse(null);
+                    if (!this.hasFuel() && this.canSmelt(irecipe)) {
+                        if (this.hasFuel()) {
+                            flag1 = true;
+                            if (itemstack.hasContainerItem())
+                                this.inventory.set(1, itemstack.getContainerItem());
+                            else if (!itemstack.isEmpty()) {
+                                Item item = itemstack.getItem();
+                                itemstack.shrink(1);
+                                if (itemstack.isEmpty()) {
+                                    this.inventory.set(1, itemstack.getContainerItem());
+                                }
+                            }
+                        }
+                    }
+
+                    if (this.hasFuel() && this.canSmelt(irecipe) && !this.tooHot()) {
+                        ++this.meltTime;
+                        if (this.meltTime == this.meltTimeTotal) {
+                            this.meltTime = 0;
+                            this.meltTimeTotal = this.getMeltTimeTotal();
+                            this.smeltRecipe(irecipe);
+                            flag1 = true;
+                        }
+                    } else {
+                        this.meltTime = 0;
+                    }
+                } else if (!this.hasFuel() && this.meltTime > 0) {
+                    this.meltTime = MathHelper.clamp(this.meltTime - 2, 0, this.meltTimeTotal);
+                }
+
+            }
+>>>>>>> Stashed changes
 
     //Inventory
 
@@ -335,6 +405,7 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity, IRe
         this.recipeAmounts.clear();
     }
 
+<<<<<<< Updated upstream
     private static void experienceHandler(PlayerEntity player, int amount, float exp) {
         if (exp == 0.0F) {
             amount = 0;
@@ -343,6 +414,19 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity, IRe
             if (i < MathHelper.ceil((float)amount * exp) && Math.random() < (double)((float)amount * exp - (float)i)) {
                 ++i;
             }
+=======
+    private boolean tooHot()
+    {
+        if(getFuelTemp() > this.maxTemp){
+            tooHot = true;
+        }
+        else{ tooHot = false; }
+        return tooHot;
+    }
+
+    public int setFuelTemp(World world, BlockState state, BlockPos pos) {
+        BlockPos pos1 = pos.down();
+>>>>>>> Stashed changes
 
             amount = i;
         }
@@ -354,4 +438,18 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity, IRe
         }
 
     }
+<<<<<<< Updated upstream
+=======
+
+    private int getMinTemp() {
+        return this.world.getRecipeManager().getRecipe(this.recipeType, this, this.world).map(CrucibleRecipes::getMintemp).orElse(200);
+    }
+
+    private ItemStack  getRecipeResult() {
+        return this.world.getRecipeManager().getRecipe(this.recipeType, this, this.world).map(CrucibleRecipes::getRecipeOutput).orElse(ItemStack.EMPTY);
+    }
+
+
+
+>>>>>>> Stashed changes
 }

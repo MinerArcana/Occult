@@ -2,6 +2,8 @@ package com.minerarcana.occult.api.recipes.machines;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Maps;
+import com.minerarcana.occult.api.pressure.PressureType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.PacketBuffer;
@@ -10,12 +12,13 @@ import net.minecraftforge.items.IItemHandler;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class RitualFireRecipes {
 	private final ResourceLocation id;
 	private final ImmutableList<ItemStack> output;
 	private final ImmutableList<Ingredient> inputs;
-	private final int pressure;
+	private final Map<PressureType, Integer> pressure;
 
 	public RitualFireRecipes(ResourceLocation id, ItemStack[] output, int pressure, Ingredient... inputs) {
 		Preconditions.checkArgument(inputs.length <= 16);
@@ -24,7 +27,7 @@ public class RitualFireRecipes {
 		this.id = id;
 		this.inputs = ImmutableList.copyOf(inputs);
 		this.output = ImmutableList.copyOf(output);
-		this.pressure = pressure;
+		this.pressure = Maps.newHashMap();
 	}
 
 	public boolean matches(IItemHandler itemHandler) {
@@ -65,7 +68,7 @@ public class RitualFireRecipes {
 		return output;
 	}
 
-	public int getPressureUsage() {
+	public Map<PressureType, Integer> getPressureUsage() {
 		return pressure;
 	}
 
@@ -79,7 +82,9 @@ public class RitualFireRecipes {
 		for(ItemStack stack : output){
 			buf.writeItemStack(stack, false);
 		}
-		buf.writeVarInt(pressure);
+
+		int intpressure = pressure.getOrDefault();
+		buf.writeVarInt(intpressure);
 	}
 
 	public static RitualFireRecipes read(PacketBuffer buf) {

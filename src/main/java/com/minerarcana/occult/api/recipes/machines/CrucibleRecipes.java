@@ -19,14 +19,24 @@ import java.util.List;
 
 public class CrucibleRecipes implements IRecipe<IInventory> {
     private final ResourceLocation id;
+<<<<<<< Updated upstream
     private final ImmutableList<ItemStack> outputs;
+=======
+    private final ResourceLocation animation;
+    private final ItemStack[] output;
+>>>>>>> Stashed changes
     private final ImmutableList<Ingredient> inputs;
     private final int maxtemp;
     private final int mintemp;
     private final int meltTime;
     private final int experience;
 
+<<<<<<< Updated upstream
     public CrucibleRecipes(ResourceLocation id, ItemStack[] outputs, int maxTemp, int minTemp, int meltTime, int experience, Ingredient... inputs) {
+=======
+    public CrucibleRecipes(ResourceLocation id, ResourceLocation animation, ItemStack[] output, int maxTemp, int minTemp, int meltTime, int experience, String group, Ingredient... inputs)
+    {
+>>>>>>> Stashed changes
         Preconditions.checkArgument(inputs.length <= 3);
         Preconditions.checkArgument(outputs.length <= 3);
         Preconditions.checkArgument(maxTemp <= 3000);
