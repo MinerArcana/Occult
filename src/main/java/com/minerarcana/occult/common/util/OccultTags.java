@@ -14,7 +14,7 @@ public class OccultTags
 
 
     public static class Items {
-        public static final Tag<Item> TESTTAG = tag("testtag");
+        public static final Tag<Item> CRUCIBLE = tag("crucible");
 
         private static Tag<Item> tag(String name) {
             return new ItemTags.Wrapper(new ResourceLocation(MOD_ID, name));
@@ -27,7 +27,7 @@ public class OccultTags
         public static final Tag<Block> LOWHEATSOURCE = tag("lowheatsource");
         public static final Tag<Block> MEDIUMLOWHEATSOURCE = tag("mediumlowheatsource");
         public static final Tag<Block> MEDIUMHEATSOURCE = tag("mediumheatsource");
-        public static final Tag<Block> LOWHIGHHEATSOURCE = tag("lowhighheatsource");
+        public static final Tag<Block> MEDIUMHIGHHEATSOURCE = tag("mediumhighheatsource");
         public static final Tag<Block> HIGHHEATSOURCE = tag("highheatsource");
         public static final Tag<Block> EXTREMELYHIGHHEATSOURCE = tag("extremelyhighheatsource");
 
