@@ -83,8 +83,6 @@ public class RitualFireRecipes {
 			buf.writeItemStack(stack, false);
 		}
 
-		int intpressure = pressure.getOrDefault();
-		buf.writeVarInt(intpressure);
 	}
 
 	public static RitualFireRecipes read(PacketBuffer buf) {

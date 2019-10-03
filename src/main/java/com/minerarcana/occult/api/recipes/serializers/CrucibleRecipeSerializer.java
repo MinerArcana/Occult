@@ -35,14 +35,20 @@ public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRe
     public T read(ResourceLocation id, JsonObject json) {
         JsonElement ingredientJson = JSONUtils.isJsonArray(json, "ingredient") ? JSONUtils.getJsonArray(json, "ingredient") : JSONUtils.getJsonObject(json, "ingredient");
         Ingredient ingredient = Ingredient.deserialize(ingredientJson);
+
+
         if (!json.has("output"))
             throw new com.google.gson.JsonSyntaxException("Missing output, expected to find a object");
-        JsonObject outputJson = JSONUtils.isJsonArray(json, "output") ? JSONUtils.getJsonObject(json, "output") : JSONUtils.getJsonObject(json, "output");
+
+        JsonElement outputJson = JSONUtils.isJsonArray(json, "output") ? JSONUtils.getJsonArray(json, "output") : JSONUtils.getJsonObject(json, "output");
+
+
         String itemKey = JSONUtils.getString(outputJson, "item");
         Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(itemKey));
+
         if (item == null)
             throw new com.google.gson.JsonSyntaxException("Crucible recipe output is null! Recipe is: " + id.toString());
-        ItemStack[] outputs = JSONUtils.getItem(JSONUtils.getJsonObject(json, "output"));
+
 
             int meltTime = JSONUtils.getInt(json, "meltTime", this.meltTime);
             int minTemp = JSONUtils.getInt(json, "minimumTemp", this.minTemp);
