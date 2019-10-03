@@ -106,5 +106,8 @@ public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRe
     public interface IFactory<T extends CrucibleRecipes> {
         T create(ResourceLocation id, ItemStack[] output, int meltTime, int maxTemp, int minTemp, int experience, Ingredient... inputs);
     }
+
+
+
 }
 
