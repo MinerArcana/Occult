@@ -1,6 +1,8 @@
 package com.minerarcana.occult.api.recipes.serializers;
 
 
+import com.google.common.collect.Streams;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.minerarcana.occult.api.recipes.machines.CrucibleRecipes;
@@ -8,23 +10,27 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.item.crafting.ShapedRecipe;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 
 public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<T> {
 
     private final IFactory<T> factory;
-    private final int meltTime = 0;
-    private final int minTemp = 0;
-    private final int maxTemp = 0;
-    private final int experience = 0;
+
 
     public CrucibleRecipeSerializer(IFactory<T> factory) {
         this.factory = factory;
@@ -33,30 +39,46 @@ public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRe
 
     @Override
     public T read(ResourceLocation id, JsonObject json) {
+
+        //input
         JsonElement ingredientJson = JSONUtils.isJsonArray(json, "ingredient") ? JSONUtils.getJsonArray(json, "ingredient") : JSONUtils.getJsonObject(json, "ingredient");
         Ingredient ingredient = Ingredient.deserialize(ingredientJson);
 
+        //output
+        List<ItemStack> outputs = JSONUtils.isJsonArray(json, "outputs") ? Streams.stream(JSONUtils.getJsonArray(json, "outputs")).flatMap(element -> stacksFromJson(element).stream()).collect(Collectors.toList()) : stacksFromJson(json.get("outputs"));
 
-        if (!json.has("output"))
-            throw new com.google.gson.JsonSyntaxException("Missing output, expected to find a object");
-
-        JsonElement outputJson = JSONUtils.isJsonArray(json, "output") ? JSONUtils.getJsonArray(json, "output") : JSONUtils.getJsonObject(json, "output");
-
-
-        String itemKey = JSONUtils.getString(outputJson, "item");
-        Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(itemKey));
-
-        if (item == null)
-            throw new com.google.gson.JsonSyntaxException("Crucible recipe output is null! Recipe is: " + id.toString());
-
-
-            int meltTime = JSONUtils.getInt(json, "meltTime", this.meltTime);
-            int minTemp = JSONUtils.getInt(json, "minimumTemp", this.minTemp);
-            int maxTemp = JSONUtils.getInt(json, "maximumTemp", this.maxTemp);
-            int experience = JSONUtils.getInt(json, "experience", this.experience);
+        //int
+        int meltTime = JSONUtils.getInt(json, "meltTime", 150);
+        int minTemp = JSONUtils.getInt(json, "minimumTemp", 151);
+        int maxTemp = JSONUtils.getInt(json, "maximumTemp", 500);
+        int experience = JSONUtils.getInt(json, "experience", 0);
 
         return this.factory.create(id, outputs, meltTime, minTemp, maxTemp, experience, ingredient);
 
+
+
+    }
+
+    public static List<ItemStack> stacksFromJson(JsonElement element) {
+        if (JSONUtils.isString(element)) {
+            String name = JSONUtils.getString(element, "");
+            ResourceLocation id = new ResourceLocation(name);
+            if (!ForgeRegistries.ITEMS.containsKey(id)) {
+                throw new IllegalStateException("Item: " + name + " does not exist");
+            }
+            ItemStack stack = new ItemStack(ForgeRegistries.ITEMS.getValue(id));
+            return Collections.singletonList(stack);
+        } else {
+            JsonObject json = element.getAsJsonObject();
+            String name = JSONUtils.getString(json, "item");
+            int count = JSONUtils.getInt(json, "count", 1);
+            ResourceLocation id = new ResourceLocation(name);
+            if (!ForgeRegistries.ITEMS.containsKey(id)) {
+                throw new IllegalStateException("Item: " + name + " does not exist");
+            }
+            ItemStack stack = new ItemStack(ForgeRegistries.ITEMS.getValue(id), count);
+            return Collections.singletonList(stack);
+        }
     }
 
     @Nullable
@@ -69,10 +91,16 @@ public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRe
             throw new com.google.gson.JsonSyntaxException("Crucible recipe result is null! Recipe is: " + id.toString());
 
 
-        int size = buffer.readVarInt();
-        ItemStack[] outputs = new ItemStack[size];
-        for(int i = 0; i < size; i++)
-        {outputs[i] = buffer.readItemStack();}
+        List<ItemStack> outputs = null;
+        int resultCount = buffer.readVarInt();
+        if (resultCount > 1) {
+            outputs = new ArrayList<>(resultCount);
+            for (int i = 0; i < resultCount; i++) {
+                outputs.add(buffer.readItemStack());
+            }
+        } else {
+            outputs = Collections.singletonList(buffer.readItemStack());
+        }
 
         int meltTime = buffer.readVarInt();
         int minTemp = buffer.readVarInt();
@@ -104,9 +132,8 @@ public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRe
     }
 
     public interface IFactory<T extends CrucibleRecipes> {
-        T create(ResourceLocation id, ItemStack[] output, int meltTime, int maxTemp, int minTemp, int experience, Ingredient... inputs);
+        T create(ResourceLocation id, List<ItemStack> output, int meltTime, int maxTemp, int minTemp, int experience, Ingredient... inputs);
     }
-
 
 
 }

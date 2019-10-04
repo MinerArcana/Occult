@@ -15,11 +15,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CrucibleRecipes implements IRecipe<IInventory> {
     private final ResourceLocation id;
-    private final ImmutableList<ItemStack> outputs;
+    private final List<ItemStack> outputs;
     private final ImmutableList<Ingredient> inputs;
     private final int maxtemp;
     private final int mintemp;
@@ -27,14 +28,13 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
     private final int experience;
 
 
-    public CrucibleRecipes(ResourceLocation id, ItemStack[] outputs, int maxTemp, int minTemp, int meltTime, int experience, Ingredient... inputs) {
+    public CrucibleRecipes(ResourceLocation id, List<ItemStack> outputs, int maxTemp, int minTemp, int meltTime, int experience, Ingredient... inputs) {
         Preconditions.checkArgument(inputs.length <= 3);
-        Preconditions.checkArgument(outputs.length <= 3);
         Preconditions.checkArgument(maxTemp <= 3000);
         Preconditions.checkArgument(minTemp >= 150);
         this.id = id;
         this.inputs = ImmutableList.copyOf(inputs);
-        this.outputs = ImmutableList.copyOf(outputs);
+        this.outputs = outputs;
         this.mintemp = minTemp;
         this.maxtemp = maxTemp;
         this.meltTime = meltTime;
@@ -72,7 +72,7 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
 
     @Override
     public ItemStack getCraftingResult(IInventory inv) {
-        return this.outputs.get(0);
+        return this.outputs.get(0).copy();
     }
 
     @Override
@@ -82,7 +82,7 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
 
     @Override
     public ItemStack getRecipeOutput() {
-        return this.outputs.get(0);
+        return this.outputs.get(0).copy();
     }
 
 
@@ -153,11 +153,16 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
         for (int i = 0; i < inputs.length; i++) {
             inputs[i] = Ingredient.read(buf);
         }
-        ItemStack[] outputs = new ItemStack[buf.readVarInt()];
-        for (int i = 0; i < outputs.length; i++) {
-            outputs[i] = buf.readItemStack();
+        List<ItemStack> outputs = null;
+        int resultCount = buf.readVarInt();
+        if (resultCount > 1) {
+            outputs = new ArrayList<>(resultCount);
+            for (int i = 0; i < resultCount; i++) {
+                outputs.add(buf.readItemStack());
+            }
+        } else {
+            outputs = Collections.singletonList(buf.readItemStack());
         }
-
         int maxtemp = buf.readVarInt();
         int mintemp = buf.readVarInt();
         int melttime = buf.readVarInt();

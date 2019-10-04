@@ -1,13 +1,13 @@
 {
   "type": "occult:crucibletype",
   "ingredient": {
-    "item": "minecraft:iron_ore"
+    "item": "minecraft:gold_ore"
   },
   "outputs": {
-    "item": "minecraft:iron_ingot"
+    "item": "minecraft:gold_ingot"
   },
   "experience": 0.7,
-  "meltTime": 200,
+  "meltTime": 100,
   "minTemp": 200,
-  "maxTemp": 1500
+  "maxTemp": 800
 }

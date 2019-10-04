@@ -1,14 +1,9 @@
 {
   "replace": false,
   "values": [
-    "occult:bleachedleaves1",
-    "occult:bleachedleaves1",
-    "occult:bleachedleaves3",
-    "occult:infernalleaves1",
-    "occult:infernalleaves2",
-    "occult:infernalleaves3",
-    "occult:deepleaves1",
-    "occult:deepleaves2",
-    "occult:deepleaves3"
+    "minecraft:iron_ore",
+    "minecraft:iron_ingot",
+    "minecraft:gold_ore",
+    "minecraft:gold_ingot"
   ]
 }
