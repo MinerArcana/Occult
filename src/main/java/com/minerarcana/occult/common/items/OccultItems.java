@@ -19,7 +19,7 @@ public class OccultItems
     public static Item lionmetal;
     public static Item chalk;
     public static Item mercury;
-    public static Item sulfur;
+    public static Item sulphur;
     public static Item salt;
 
     public static Item occult_icon;
@@ -37,7 +37,7 @@ public class OccultItems
         lionmetal = registerItem(new Item(new Item.Properties().group(OccultItemGroup.instance)), "lionmetal");
         chalk = registerItem(new Item(new Item.Properties().group(OccultItemGroup.instance)), "chalk");
         mercury = registerItem(new Item(new Item.Properties().group(OccultItemGroup.instance)), "mercury");
-        sulfur = registerItem(new Item(new Item.Properties().group(OccultItemGroup.instance)), "sulfur");
+        sulphur = registerItem(new Item(new Item.Properties().group(OccultItemGroup.instance)), "sulphur");
         salt = registerItem(new Item(new Item.Properties().group(OccultItemGroup.instance)), "salt");
 
     }
