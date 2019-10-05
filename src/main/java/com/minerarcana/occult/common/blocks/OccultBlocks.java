@@ -28,6 +28,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 @Mod.EventBusSubscriber(bus= Mod.EventBusSubscriber.Bus.MOD)
 public class OccultBlocks
 {
+
+    //WorldSpawn Blocks
     public static Block deepgrass;
     public static Block halfgrass;
     public static Block poisonivy;
@@ -36,6 +38,9 @@ public class OccultBlocks
     public static Block bonesand;
     public static Block brimstone;
     public static Block rockytrails;
+    public static Block cinnabarore;
+    public static Block saltore;
+
 
     //Deep Forest Tree's
     public static Block deathcherrylog;
@@ -262,14 +267,15 @@ public class OccultBlocks
 
         //Deco
 
-
-
         //WorldBlocks
         deepgrass = registerBlock(new DeepGrass((Block.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "deepgrass");
         halfgrass = registerBlock(new DeepGrass((Block.Properties.create(Material.ORGANIC).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "halfgrass");
         brimstone = registerBlock(new Brimstone((Block.Properties.create(Material.ROCK).hardnessAndResistance(0.6F).sound(SoundType.STONE))), "brimstone");
         bonesand = registerBlock(new DeepGrass((Block.Properties.create(Material.SAND).hardnessAndResistance(0.6F).sound(SoundType.SAND))), "bonesand");
         rockytrails = registerBlock(new Brimstone((Block.Properties.create(Material.ROCK).hardnessAndResistance(0.6F).sound(SoundType.STONE))), "rockytrails");
+        cinnabarore = registerBlock(new Brimstone((Block.Properties.create(Material.ROCK).hardnessAndResistance(0.6F).sound(SoundType.STONE))), "cinnabarore");
+        saltore = registerBlock(new Brimstone((Block.Properties.create(Material.ROCK).hardnessAndResistance(0.6F).sound(SoundType.STONE))), "saltore");
+
 
     }
 

@@ -1,6 +1,7 @@
 package com.minerarcana.occult.common.items;
 
 import com.minerarcana.occult.common.util.OccultItemGroup;
+import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -17,7 +18,9 @@ public class OccultItems
     public static Item pyrite;
     public static Item lionmetal;
     public static Item chalk;
-    public static Item quicksilver;
+    public static Item mercury;
+    public static Item sulfur;
+    public static Item salt;
 
     public static Item occult_icon;
 
@@ -28,12 +31,14 @@ public class OccultItems
 
         ivyleaf = registerItem(new Item(new Item.Properties().group(OccultItemGroup.instance)), "ivy");
         amalgam = registerItem(new Item(new Item.Properties().group(OccultItemGroup.instance)), "amalgam");
-        sacredsalt = registerItem(new Item(new Item.Properties().group(OccultItemGroup.instance)), "sacredsalt");
+        sacredsalt = registerItem(new SacredSalt(new Item.Properties().group(OccultItemGroup.instance)), "sacredsalt");
         greenvitriol = registerItem(new Item(new Item.Properties().group(OccultItemGroup.instance)), "greenvitriol");
         pyrite = registerItem(new Item(new Item.Properties().group(OccultItemGroup.instance)), "pyrite");
         lionmetal = registerItem(new Item(new Item.Properties().group(OccultItemGroup.instance)), "lionmetal");
         chalk = registerItem(new Item(new Item.Properties().group(OccultItemGroup.instance)), "chalk");
-        quicksilver = registerItem(new Item(new Item.Properties().group(OccultItemGroup.instance)), "quicksilver");
+        mercury = registerItem(new Item(new Item.Properties().group(OccultItemGroup.instance)), "mercury");
+        sulfur = registerItem(new Item(new Item.Properties().group(OccultItemGroup.instance)), "sulfur");
+        salt = registerItem(new Item(new Item.Properties().group(OccultItemGroup.instance)), "salt");
 
     }
 

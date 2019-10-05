@@ -80,11 +80,12 @@ public class RitualBaseTile extends TileEntity implements INamedContainerProvide
                 BlockState state = world.getBlockState(multiblock).getBlockState();
                 Block block = state.getBlock();
                 if (block == OccultBlocks.ritualbase) {
-                    if (state instanceof IBaseIsMultiBlock) {
-                        if (!((IBaseIsMultiBlock) state).isMultiBlock()) {
-                            ++small;
-                        }
+                    if(state instanceof IBaseIsMultiBlock){
+                      if(((IBaseIsMultiBlock) state).isMultiBlock()) {
+                          ++small;
+                      }
                     }
+
                 }
             }
         }
