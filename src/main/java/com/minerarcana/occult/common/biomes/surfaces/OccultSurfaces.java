@@ -4,6 +4,8 @@ import com.minerarcana.occult.common.blocks.OccultBlocks;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
+import static com.minerarcana.occult.update.util.lib.OccultLib.deepgrass;
+
 public class OccultSurfaces {
 
     public static SurfaceBuilderConfig DEEPSPOOKYSURFACE ;
@@ -12,7 +14,7 @@ public class OccultSurfaces {
     public OccultSurfaces(){}
     static
     {
-        DEEPSPOOKYSURFACE = new SurfaceBuilderConfig(OccultBlocks.deepgrass.getDefaultState(), Blocks.DIRT.getDefaultState(), Blocks.DIRT.getDefaultState());
+        DEEPSPOOKYSURFACE = new SurfaceBuilderConfig(deepgrass.getDefaultState(), Blocks.DIRT.getDefaultState(), Blocks.DIRT.getDefaultState());
 
     }
 

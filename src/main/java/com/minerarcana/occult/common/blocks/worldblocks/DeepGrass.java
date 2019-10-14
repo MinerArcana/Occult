@@ -16,6 +16,8 @@ import net.minecraft.world.lighting.LightEngine;
 
 import java.util.Random;
 
+import static com.minerarcana.occult.update.util.lib.OccultLib.deepgrass;
+
 public class DeepGrass extends GrassBlock {
 
     private String dirt;
@@ -91,7 +93,7 @@ public class DeepGrass extends GrassBlock {
             if (!worldIn.isAreaLoaded(pos, 3))
                 return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
             if (!getLightLevel(state, worldIn, pos)) {
-                worldIn.setBlockState(pos, OccultBlocks.deepgrass.getDefaultState());
+                worldIn.setBlockState(pos, deepgrass.getDefaultState());
 
 
             } else {

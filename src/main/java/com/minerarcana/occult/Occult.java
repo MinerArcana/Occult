@@ -4,8 +4,6 @@ import com.minerarcana.occult.api.pressure.IPressure;
 import com.minerarcana.occult.api.pressure.PressureType;
 import com.minerarcana.occult.api.capabilities.PressureChunkStorage;
 import com.minerarcana.occult.api.capabilities.handlers.SerializableCapabilityProvider;
-import com.minerarcana.occult.proxy.ClientProxy;
-import com.minerarcana.occult.proxy.CommonProxy;
 import com.minerarcana.occult.common.util.network.OccultNetwork;
 import com.minerarcana.occult.common.world.SpookyWorldType;
 import com.minerarcana.occult.common.world.chunk.SpookyChunkGeneratorType;
@@ -20,7 +18,6 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -36,14 +33,12 @@ import javax.annotation.Nullable;
 
 import static com.minerarcana.occult.api.capabilities.ChunkPressureCapability.*;
 
-// The value here should match an entry in the META-INF/mods.toml file
+
 @Mod("occult")
 public class Occult {
 
     public static final String MOD_ID = "occult";
     public static Occult instance;
-
-    public static CommonProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
     public static WorldType SpookyWorldType = new SpookyWorldType("occulttype");

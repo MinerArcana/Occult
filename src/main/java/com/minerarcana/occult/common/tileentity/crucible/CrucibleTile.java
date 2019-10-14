@@ -2,7 +2,7 @@ package com.minerarcana.occult.common.tileentity.crucible;
 
 
 import com.minerarcana.occult.api.recipes.OccultRecipeTypes;
-import com.minerarcana.occult.common.util.OccultTags;
+import com.minerarcana.occult.update.util.tags.OccultTags;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.minerarcana.occult.api.recipes.machines.CrucibleRecipes;
@@ -32,7 +32,6 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;

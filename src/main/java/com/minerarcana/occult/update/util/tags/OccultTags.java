@@ -1,4 +1,4 @@
-package com.minerarcana.occult.common.util;
+package com.minerarcana.occult.update.util.tags;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;

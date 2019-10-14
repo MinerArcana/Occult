@@ -8,6 +8,8 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
+import static com.minerarcana.occult.update.util.lib.OccultLib.*;
+
 public class EchocryBushes extends BushBlock {
 
 
@@ -22,10 +24,10 @@ public class EchocryBushes extends BushBlock {
         if (!worldIn.isAreaLoaded(pos, 3));
         if(worldIn.getDayTime()>= 13000)
         {
-            worldIn.setBlockState(pos, OccultBlocks.echobush1.getDefaultState());
+            worldIn.setBlockState(pos, echobush1.getDefaultState());
         }
         else{
-            worldIn.setBlockState(pos, OccultBlocks.echobush2.getDefaultState());
+            worldIn.setBlockState(pos, echobush2.getDefaultState());
         }
     }
 

@@ -3,7 +3,6 @@ package com.minerarcana.occult.common.tileentity.ritualfire;
 import com.google.common.collect.Maps;
 import com.minerarcana.occult.Occult;
 import com.minerarcana.occult.common.blocks.OccultBlocks;
-import com.minerarcana.occult.common.util.OccultTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -15,7 +14,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -38,6 +36,7 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 import static com.minerarcana.occult.common.tileentity.OccultTileEntities.RITUALBASETILE;
+import static com.minerarcana.occult.update.util.lib.OccultLib.ritualbase;
 import static net.minecraft.tags.ItemTags.LOGS;
 
 public class RitualBaseTile extends TileEntity implements INamedContainerProvider, IBaseIsMultiBlock, ITickableTileEntity {
@@ -79,7 +78,7 @@ public class RitualBaseTile extends TileEntity implements INamedContainerProvide
                 BlockPos multiblock = pos.add(i, 0, k);
                 BlockState state = world.getBlockState(multiblock).getBlockState();
                 Block block = state.getBlock();
-                if (block == OccultBlocks.ritualbase) {
+                if (block == ritualbase) {
                     if(state instanceof IBaseIsMultiBlock){
                       if(((IBaseIsMultiBlock) state).isMultiBlock()) {
                           ++small;
@@ -104,7 +103,7 @@ public class RitualBaseTile extends TileEntity implements INamedContainerProvide
                     BlockPos multiblock = pos.add(i, 0, k);
                     BlockState state = world.getBlockState(multiblock).getBlockState();
                     Block block = state.getBlock();
-                    if (block == OccultBlocks.ritualbase) {
+                    if (block == ritualbase) {
                         if (state instanceof IBaseIsMultiBlock) {
                             if (!((IBaseIsMultiBlock) state).isMultiBlock()) {
                                 ++big;
@@ -156,7 +155,7 @@ public class RitualBaseTile extends TileEntity implements INamedContainerProvide
                         BlockPos multiblock = pos.add(i, 0, k);
                         BlockState state = world.getBlockState(multiblock).getBlockState();
                         Block block = state.getBlock();
-                        if (block == OccultBlocks.ritualbase) {
+                        if (block == ritualbase) {
                             if (state instanceof IBaseIsMultiBlock) {
                                 if (!((IBaseIsMultiBlock) state).isSlave()) {
                                     ++small;
@@ -180,7 +179,7 @@ public class RitualBaseTile extends TileEntity implements INamedContainerProvide
                             BlockPos multiblock = pos.add(i, 0, k);
                             BlockState state = world.getBlockState(multiblock).getBlockState();
                             Block block = state.getBlock();
-                            if (block == OccultBlocks.ritualbase) {
+                            if (block == ritualbase) {
                                 if (state instanceof IBaseIsMultiBlock) {
                                     if (!((IBaseIsMultiBlock) state).isSlave()) {
                                         ++big;

@@ -31,7 +31,7 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
     public CrucibleRecipes(ResourceLocation id, List<ItemStack> outputs, int maxTemp, int minTemp, int meltTime, int experience, Ingredient... inputs) {
         Preconditions.checkArgument(inputs.length <= 3);
         Preconditions.checkArgument(maxTemp <= 3000);
-        Preconditions.checkArgument(minTemp >= 150);
+        Preconditions.  checkArgument(minTemp >= 150);
         this.id = id;
         this.inputs = ImmutableList.copyOf(inputs);
         this.outputs = outputs;

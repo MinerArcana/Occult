@@ -1,6 +1,6 @@
 package com.minerarcana.occult.common.blocks.vegetation;
 
-import com.minerarcana.occult.common.util.damage.IvyDamage;
+import com.minerarcana.occult.update.util.damage.IvyDamage;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BushBlock;
 import net.minecraft.entity.Entity;

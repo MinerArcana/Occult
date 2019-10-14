@@ -8,6 +8,8 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
+import static com.minerarcana.occult.update.util.lib.OccultLib.rootedsoil;
+
 public class RoottrackedSoil extends DeepGrass {
 
     public RoottrackedSoil(Properties properties) {
@@ -20,14 +22,14 @@ public class RoottrackedSoil extends DeepGrass {
         if (!worldIn.isRemote) {
             if (!worldIn.isAreaLoaded(pos, 3))
             if (!getLightLevel(state, worldIn, pos)) {
-                worldIn.setBlockState(pos, OccultBlocks.rootedsoil.getDefaultState());
+                worldIn.setBlockState(pos, rootedsoil.getDefaultState());
             } else {
                 if (worldIn.getBlockState(pos.up()) == Blocks.AIR.getDefaultState()) {
                     BlockState blockstate = this.getDefaultState();
                     for (int i = 0; i < 4; ++i) {
                         BlockPos blockpos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
                         if (worldIn.getBlockState(blockpos).getBlock() == Blocks.DIRT || worldIn.getBlockState(blockpos).getBlock() == Blocks.GRASS_BLOCK) {
-                            worldIn.setBlockState(blockpos, OccultBlocks.rootedsoil.getDefaultState());
+                            worldIn.setBlockState(blockpos, rootedsoil.getDefaultState());
 
                         }
                     }

@@ -14,6 +14,8 @@ import net.minecraft.world.gen.feature.NoFeatureConfig;
 import java.util.Random;
 import java.util.function.Function;
 
+import static com.minerarcana.occult.update.util.lib.OccultLib.eldritchstone;
+
 public class EldritchStoneFeature extends Feature<NoFeatureConfig>
 {
     public EldritchStoneFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> deserializer)
@@ -23,7 +25,7 @@ public class EldritchStoneFeature extends Feature<NoFeatureConfig>
 
     public BlockState chooseGrassState(Random rand)
     {
-        return rand.nextInt(3) == 0 ? OccultBlocks.eldritchstone.getDefaultState() : OccultBlocks.eldritchstone.getDefaultState();
+        return rand.nextInt(3) == 0 ? eldritchstone.getDefaultState() : eldritchstone.getDefaultState();
     }
 
     @Override
