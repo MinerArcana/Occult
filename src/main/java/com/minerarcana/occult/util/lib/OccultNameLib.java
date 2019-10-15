@@ -54,8 +54,8 @@ public class OccultNameLib
     @ObjectHolder("occult:smalldriedanimalbones")
     public static Block smalldriedanimalbones;
 
-    @ObjectHolder("occult:bigdiedanimalbones")
-    public static Block bigdiedanimalbones;
+    @ObjectHolder("occult:bigdriedanimalbones")
+    public static Block bigdriedanimalbones;
 
     @ObjectHolder("occult:skull")
     public static Block skull;
@@ -318,8 +318,8 @@ public class OccultNameLib
     @ObjectHolder("occult:phantombush")
     public static Block phantombush;
 
-    @ObjectHolder("occult:faslesod")
-    public static Block faslesod;
+    @ObjectHolder("occult:falsesod")
+    public static Block falsesod;
 
     @ObjectHolder("occult:echobush1")
     public static Block echobush1;

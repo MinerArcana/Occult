@@ -22,6 +22,7 @@ import static com.minerarcana.occult.blocks.vegetation.StrangleGrass.onStrangleD
 import static com.minerarcana.occult.util.lib.OccultNameLib.*;
 import static net.minecraftforge.common.BiomeDictionary.Type.*;
 import static net.minecraftforge.common.BiomeDictionary.addTypes;
+import static net.minecraftforge.common.BiomeManager.addBiome;
 import static net.minecraftforge.common.BiomeManager.addSpawnBiome;
 
 
@@ -39,32 +40,21 @@ public class OccultEventHandler {
 
     public static void registerOccultBiomes() {
         if (OccultConfigHandler.COMMON.SPAWNBIOMES.get()) {
-            spawnBiome(spookyforest);
-            spawnBiome(infernalforest);
-            spawnBiome(bleachedforest);
+            addSpawnBiome(spookyforest);
+            addSpawnBiome(infernalforest);
+            addSpawnBiome(bleachedforest);
         }
 
         addTypes(spookyforest, SPOOKY, FOREST, DRY, DEAD, MAGICAL);
         addTypes(infernalforest, SPOOKY, FOREST, DRY, MAGICAL);
         addTypes(bleachedforest, SPOOKY, FOREST, DRY, MAGICAL);
 
-        addBiome(new BiomeManager.BiomeEntry(spookyforest, OccultConfigHandler.COMMON.DEEPFORESTWEIGHT.get()), BiomeManager.BiomeType.WARM);
-        addBiome(new BiomeManager.BiomeEntry(infernalforest, OccultConfigHandler.COMMON.CHARREDWOODLANDWEIGHT.get()), BiomeManager.BiomeType.DESERT);
-        addBiome(new BiomeManager.BiomeEntry(bleachedforest, OccultConfigHandler.COMMON.BLEACHEDWOODWEIGHT.get()), BiomeManager.BiomeType.WARM);
+        addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(spookyforest, OccultConfigHandler.COMMON.DEEPFORESTWEIGHT.get()));
+        addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(infernalforest, OccultConfigHandler.COMMON.CHARREDWOODLANDWEIGHT.get()));
+        addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(bleachedforest, OccultConfigHandler.COMMON.BLEACHEDWOODWEIGHT.get()));
 
     }
 
-    private static void registerBiomeToDictionary(Biome biome, Type... types) {
-        addTypes(biome, types);
-    }
-
-    private static void spawnBiome(Biome biome) {
-        addSpawnBiome(biome);
-    }
-
-    private static void addBiome(BiomeManager.BiomeEntry entry, BiomeManager.BiomeType... type) {
-        addBiome(entry, type);
-    }
 
     @SubscribeEvent
     public static void strangeDeaths(LivingDeathEvent event) {

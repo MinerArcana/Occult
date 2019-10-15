@@ -1,7 +1,7 @@
-{   "parent": "minecraft:block/cube_bottom_top",
+{   "parent": "block/cube_bottom_top",
   "textures": {
-    "particle": "minecraft:block/dirt",
-    "bottom": "minecraft:block/dirt",
+    "particle": "block/dirt",
+    "bottom": "block/dirt",
     "top": "occult:blocks/deepgrass",
     "side": "occult:blocks/deepgrass"
 

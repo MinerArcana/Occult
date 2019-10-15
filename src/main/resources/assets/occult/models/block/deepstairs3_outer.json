@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/outer_stairs",
+  "parent": "block/outer_stairs",
   "textures": {
     "bottom": "occult:blocks/deepplanks3",
     "top": "occult:blocks/deepplanks3",

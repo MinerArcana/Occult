@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "cross": "occult:blocks/ritualbase"
+    "all": "occult:blocks/ritualbase"
   }
 }

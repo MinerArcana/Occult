@@ -1,6 +1,6 @@
 {
   "parent": "block/cross",
   "textures": {
-    "cross": "grassworld:blocks/smalldriedanimalbones"
+    "cross": "grassworld:blocks/bigdriedanimalbones"
   }
 }

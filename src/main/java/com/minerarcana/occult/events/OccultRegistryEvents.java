@@ -183,11 +183,11 @@ public class OccultRegistryEvents {
         event.getRegistry().register(new BlockItem(stranglegrass,new Item.Properties().group(OccultGroup.instance)).setRegistryName("stranglegrass"));
         event.getRegistry().register(new BlockItem(slickmoss,new Item.Properties().group(OccultGroup.instance)).setRegistryName("slickmoss"));
         event.getRegistry().register(new BlockItem(phantombush,new Item.Properties().group(OccultGroup.instance)).setRegistryName("phantombush"));
-        event.getRegistry().register(new BlockItem(faslesod,new Item.Properties().group(OccultGroup.instance)).setRegistryName("faslesod"));
+        event.getRegistry().register(new BlockItem(falsesod,new Item.Properties().group(OccultGroup.instance)).setRegistryName("falsesod"));
         event.getRegistry().register(new BlockItem(echobush1,new Item.Properties().group(OccultGroup.instance)).setRegistryName("echobush1"));
         event.getRegistry().register(new BlockItem(echobush2,new Item.Properties().group(OccultGroup.instance)).setRegistryName("echobush2"));
         event.getRegistry().register(new BlockItem(smalldriedanimalbones,new Item.Properties().group(OccultGroup.instance)).setRegistryName("smalldriedanimalbones"));
-        event.getRegistry().register(new BlockItem(bigdiedanimalbones,new Item.Properties().group(OccultGroup.instance)).setRegistryName("bigdiedanimalbones"));
+        event.getRegistry().register(new BlockItem(bigdriedanimalbones,new Item.Properties().group(OccultGroup.instance)).setRegistryName("bigdriedanimalbones"));
         event.getRegistry().register(new BlockItem(skull,new Item.Properties().group(OccultGroup.instance)).setRegistryName("skull"));
 
         event.getRegistry().register(new BlockItem(transformedstone,new Item.Properties().group(OccultGroup.instance)).setRegistryName("transformedstone"));
@@ -301,13 +301,13 @@ public class OccultRegistryEvents {
         event.getRegistry().register(new StrangleGrass(Block.Properties.create(TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("stranglegrass"));
         event.getRegistry().register(new SlickMoss(Block.Properties.create(PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("slickmoss"));
         event.getRegistry().register(new PhatomBushes(Block.Properties.create(PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("phantombush"));
-        event.getRegistry().register(new FalseSod(Block.Properties.create(PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("faslesod"));
+        event.getRegistry().register(new FalseSod(Block.Properties.create(PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("falsesod"));
         event.getRegistry().register(new EchocryBushes(Block.Properties.create(PLANTS).tickRandomly().doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("echobush1"));
         event.getRegistry().register(new EchocryBushes(Block.Properties.create(PLANTS).tickRandomly().doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("echobush2"));
 
         //Deco
         event.getRegistry().register(new Brimstone(Block.Properties.create(ROCK).hardnessAndResistance(0.6F).sound(SoundType.STONE)).setRegistryName("smalldriedanimalbones"));
-        event.getRegistry().register(new Brimstone(Block.Properties.create(ROCK).hardnessAndResistance(0.6F).sound(SoundType.STONE)).setRegistryName("bigdiedanimalbones"));
+        event.getRegistry().register(new Brimstone(Block.Properties.create(ROCK).hardnessAndResistance(0.6F).sound(SoundType.STONE)).setRegistryName("bigdriedanimalbones"));
         event.getRegistry().register(new Brimstone(Block.Properties.create(ROCK).hardnessAndResistance(0.6F).sound(SoundType.STONE)).setRegistryName("skull"));
 
         //WorldBlocks
