@@ -3,18 +3,20 @@ package com.minerarcana.occult.common.blocks.featureblocks.eldritchstone;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import static com.minerarcana.occult.common.tileentity.OccultTileEntities.TRANSFORMEDSTONE;
 import static com.minerarcana.occult.common.tileentity.OccultTileEntities.TRANSFORMEDSTONETILEENTITY;
 
+@Mod.EventBusSubscriber
 public class TransformedStoneTileEntity extends TileEntity {
 
     public TransformedStoneTileEntity() {
         super(TRANSFORMEDSTONETILEENTITY);
     }
 
+    @SubscribeEvent
     public void TransformEldritchStone() {
         BlockState teBlockAbove = world.getBlockState(pos.up());
         BlockState teBlockAbove2 = world.getBlockState(pos.up(2));
