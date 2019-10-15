@@ -2,11 +2,11 @@ package com.minerarcana.occult.util.lib;
 
 import net.minecraft.block.BlockState;
 import net.minecraftforge.registries.ObjectHolder;
-
+@ObjectHolder("grassworld")
 public class OccultHolderLib
 {
 
-    @ObjectHolder("grassworld")
+
     public static BlockState BUSH;
 
 
