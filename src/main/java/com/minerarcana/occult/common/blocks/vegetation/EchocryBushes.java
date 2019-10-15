@@ -1,6 +1,5 @@
 package com.minerarcana.occult.common.blocks.vegetation;
 
-import com.minerarcana.occult.common.blocks.OccultBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BushBlock;
 import net.minecraft.util.math.BlockPos;
@@ -8,7 +7,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-import static com.minerarcana.occult.update.util.lib.OccultLib.*;
+import static com.minerarcana.occult.update.util.lib.OccultNameLib.*;
 
 public class EchocryBushes extends BushBlock {
 

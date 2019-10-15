@@ -1,6 +1,5 @@
 package com.minerarcana.occult.common.tileentity;
 
-import com.minerarcana.occult.common.blocks.OccultBlocks;
 import com.minerarcana.occult.common.blocks.featureblocks.eldritchstone.EldritchStoneTileEntity;
 import com.minerarcana.occult.common.tileentity.crucible.CrucibleTile;
 import com.minerarcana.occult.common.tileentity.ritualfire.RitualBaseTile;
@@ -10,7 +9,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import static com.minerarcana.occult.update.util.lib.OccultLib.*;
+import static com.minerarcana.occult.update.util.lib.OccultNameLib.*;
 
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)

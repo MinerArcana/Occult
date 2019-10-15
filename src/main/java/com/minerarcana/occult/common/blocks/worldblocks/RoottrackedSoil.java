@@ -1,6 +1,5 @@
 package com.minerarcana.occult.common.blocks.worldblocks;
 
-import com.minerarcana.occult.common.blocks.OccultBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -8,7 +7,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-import static com.minerarcana.occult.update.util.lib.OccultLib.rootedsoil;
+import static com.minerarcana.occult.update.util.lib.OccultNameLib.rootedsoil;
 
 public class RoottrackedSoil extends DeepGrass {
 

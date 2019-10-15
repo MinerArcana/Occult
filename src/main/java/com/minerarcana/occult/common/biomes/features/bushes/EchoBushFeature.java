@@ -1,6 +1,5 @@
 package com.minerarcana.occult.common.biomes.features.bushes;
 
-import com.minerarcana.occult.common.blocks.OccultBlocks;
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.BlockState;
 import net.minecraft.tags.BlockTags;
@@ -14,8 +13,8 @@ import net.minecraft.world.gen.feature.NoFeatureConfig;
 import java.util.Random;
 import java.util.function.Function;
 
-import static com.minerarcana.occult.update.util.lib.OccultLib.echobush1;
-import static com.minerarcana.occult.update.util.lib.OccultLib.echobush2;
+import static com.minerarcana.occult.update.util.lib.OccultNameLib.echobush1;
+import static com.minerarcana.occult.update.util.lib.OccultNameLib.echobush2;
 
 public class EchoBushFeature extends Feature<NoFeatureConfig>
 {

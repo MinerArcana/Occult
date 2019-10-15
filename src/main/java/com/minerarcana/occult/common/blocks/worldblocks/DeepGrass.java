@@ -1,6 +1,5 @@
 package com.minerarcana.occult.common.blocks.worldblocks;
 
-import com.minerarcana.occult.common.blocks.OccultBlocks;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItemUseContext;
@@ -16,7 +15,7 @@ import net.minecraft.world.lighting.LightEngine;
 
 import java.util.Random;
 
-import static com.minerarcana.occult.update.util.lib.OccultLib.deepgrass;
+import static com.minerarcana.occult.update.util.lib.OccultNameLib.deepgrass;
 
 public class DeepGrass extends GrassBlock {
 

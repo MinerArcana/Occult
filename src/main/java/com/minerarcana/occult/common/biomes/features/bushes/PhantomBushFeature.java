@@ -1,6 +1,5 @@
 package com.minerarcana.occult.common.biomes.features.bushes;
 
-import com.minerarcana.occult.common.blocks.OccultBlocks;
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.BlockState;
 import net.minecraft.tags.BlockTags;
@@ -14,7 +13,7 @@ import net.minecraft.world.gen.feature.NoFeatureConfig;
 import java.util.Random;
 import java.util.function.Function;
 
-import static com.minerarcana.occult.update.util.lib.OccultLib.phantombush;
+import static com.minerarcana.occult.update.util.lib.OccultNameLib.phantombush;
 
 public class PhantomBushFeature extends Feature<NoFeatureConfig>
 {
