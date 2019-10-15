@@ -5,7 +5,7 @@ import com.minerarcana.occult.Occult;
 import com.minerarcana.occult.api.pressure.IChunkPressure;
 import com.minerarcana.occult.api.pressure.PressureStorage;
 import com.minerarcana.occult.api.pressure.PressureType;
-import com.minerarcana.occult.common.util.network.UpdateChunkPressureValueMessage;
+import com.minerarcana.occult.util.network.UpdateChunkPressureValueMessage;
 import net.minecraft.nbt.IntNBT;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;

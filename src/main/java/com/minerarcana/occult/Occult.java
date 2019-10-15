@@ -4,7 +4,7 @@ import com.minerarcana.occult.api.pressure.IPressure;
 import com.minerarcana.occult.api.pressure.PressureType;
 import com.minerarcana.occult.api.capabilities.PressureChunkStorage;
 import com.minerarcana.occult.api.capabilities.handlers.SerializableCapabilityProvider;
-import com.minerarcana.occult.common.util.network.OccultNetwork;
+import com.minerarcana.occult.util.network.OccultNetwork;
 import com.minerarcana.occult.common.world.SpookyWorldType;
 import com.minerarcana.occult.common.world.chunk.SpookyChunkGeneratorType;
 import net.minecraft.nbt.INBT;
