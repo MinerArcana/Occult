@@ -19,6 +19,7 @@ import java.util.Random;
 
 import static com.minerarcana.occult.Occult.MOD_ID;
 import static com.minerarcana.occult.blocks.vegetation.StrangleGrass.onStrangleDeath;
+import static com.minerarcana.occult.util.damage.StrangeDamage.STRANGEGRASS;
 import static com.minerarcana.occult.util.lib.OccultNameLib.*;
 import static net.minecraftforge.common.BiomeDictionary.Type.*;
 import static net.minecraftforge.common.BiomeDictionary.addTypes;
@@ -58,7 +59,7 @@ public class OccultEventHandler {
 
     @SubscribeEvent
     public static void strangeDeaths(LivingDeathEvent event) {
-        if (event.getSource() instanceof StrangeDamage) {
+        if (event.getSource().getDamageType().equals(STRANGEGRASS)) {
             Entity entity = event.getEntity();
             BlockPos entitypos = entity.getPosition();
             World entityworld = entity.world;

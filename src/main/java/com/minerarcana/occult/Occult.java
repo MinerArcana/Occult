@@ -4,6 +4,7 @@ import com.minerarcana.occult.api.pressure.IPressure;
 import com.minerarcana.occult.api.pressure.PressureType;
 import com.minerarcana.occult.api.capabilities.PressureChunkStorage;
 import com.minerarcana.occult.api.capabilities.handlers.SerializableCapabilityProvider;
+import com.minerarcana.occult.util.OccultConfigHandler;
 import com.minerarcana.occult.util.network.OccultNetwork;
 import com.minerarcana.occult.world.SpookyWorldType;
 import com.minerarcana.occult.world.chunk.SpookyChunkGeneratorType;
@@ -18,7 +19,9 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
@@ -49,6 +52,10 @@ public class Occult {
 
 
     public Occult() {
+
+        ModLoadingContext modLoadingContext = ModLoadingContext.get();
+        modLoadingContext.registerConfig(ModConfig.Type.CLIENT, OccultConfigHandler.CLIENT_SPEC);
+        modLoadingContext.registerConfig(ModConfig.Type.COMMON, OccultConfigHandler.COMMON_SPEC);
 
 
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
