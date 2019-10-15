@@ -1,6 +1,6 @@
 package com.minerarcana.occult.common.blocks.vegetation;
 
-import com.minerarcana.occult.update.util.damage.OccultDamageSources;
+import com.minerarcana.occult.update.util.damage.Poison;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BushBlock;
 import net.minecraft.entity.Entity;
@@ -25,13 +25,13 @@ public class PoisonIvy extends BushBlock {
     @Override
     @Deprecated
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entity) {
-        entity.attackEntityFrom(OccultDamageSources.PoisonIvy, 1.0F);
+        entity.attackEntityFrom(Poison.POISONIVY, 1.0F);
 
     }
 
     @SubscribeEvent
     public static void PoisonTime(LivingHurtEvent event) {
-        if (event.getSource() instanceof OccultDamageSources)
+        if (event.getSource() instanceof Poison)
         {
             if(event.getEntity() instanceof PlayerEntity){
                 PlayerEntity player = (PlayerEntity) event.getEntity();

@@ -1,6 +1,7 @@
 package com.minerarcana.occult.common.blocks.vegetation;
 
 
+import com.minerarcana.occult.update.util.damage.StrangeDamage;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.BushBlock;
@@ -13,7 +14,6 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.Random;
 
-import static com.minerarcana.occult.update.util.damage.StrangeDamage.STRANGLEGRASS;
 import static com.minerarcana.occult.update.util.lib.OccultNameLib.*;
 
 @Mod.EventBusSubscriber
@@ -28,7 +28,7 @@ public class StrangleGrass extends BushBlock
     @Override
     @Deprecated
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entity) {
-        entity.attackEntityFrom(STRANGLEGRASS, 1.0F);
+        entity.attackEntityFrom(StrangeDamage.STRANGEGRASS, 1.0F);
     }
 
 

@@ -30,9 +30,7 @@ import static com.minerarcana.occult.update.util.lib.OccultNameLib.*;
 import static com.minerarcana.occult.update.util.lib.OccultPropertyLib.*;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-public class Occulteldritchs {
-
-
+public class OccultBlocks {
 
 
     @SubscribeEvent
@@ -41,7 +39,7 @@ public class Occulteldritchs {
         event.getRegistry().register(OCCULTLOG.setRegistryName("deathcherrylog"));
         event.getRegistry().register(OCCULTWOOD.setRegistryName( "deathcherrywood"));
         event.getRegistry().register(OCCULTWOOD.setRegistryName( "deathcherryplanks"));
-        event.getRegistry().register(new OccultStairs(deathcherryplanks.getDefaultState(), (Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "deathcherrystairs");
+        event.getRegistry().register(new OccultStairs(deathcherryplanks.getDefaultState(), (Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))).setRegistryName("deathcherrystairs"));
         event.getRegistry().register(OCCULTLEAVES.setRegistryName( "deathcherryleaves"));
         event.getRegistry().register(OCCULTWOOD.setRegistryName( "pinkcherryplanks"));
 
@@ -79,14 +77,15 @@ public class Occulteldritchs {
         event.getRegistry().register(OCCULTLOG.setRegistryName( "infernallog3"));
         event.getRegistry().register(OCCULTWOOD.setRegistryName( "infernalwood3"));
         event.getRegistry().register(OCCULTWOOD.setRegistryName( "infernalplanks3"));
-        event.getRegistry().register(new OccultStairs(infernalplanks2.getDefaultState(), (Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "infernalstairs3");
+        event.getRegistry().register(new OccultStairs(infernalplanks2.getDefaultState(), (Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))).setRegistryName("infernalstairs3"));
         event.getRegistry().register(OCCULTLEAVES.setRegistryName("infernalleaves3"));
 
         //Bleached Wood Biome
         event.getRegistry().register(OCCULTLOG.setRegistryName("bleachedlog1"));
         event.getRegistry().register(OCCULTWOOD.setRegistryName("bleachedwood1"));
         event.getRegistry().register(OCCULTWOOD.setRegistryName("bleachedplanks1"));
-        event.getRegistry().register(new OccultStairs(bleachedplanks1.getDefaultState(), (Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))), "bleachedstairs1");
+        event.getRegistry().register(new OccultStairs(bleachedplanks1.getDefaultState(), (Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD))).setRegistryName("bleachedstairs1")
+        );
         event.getRegistry().register(OCCULTLEAVES.setRegistryName("bleachedleaves1"));
 
         event.getRegistry().register(OCCULTLOG.setRegistryName("bleachedlog2"));
