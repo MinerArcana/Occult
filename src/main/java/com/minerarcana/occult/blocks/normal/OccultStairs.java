@@ -1,4 +1,4 @@
-package com.minerarcana.occult.common.blocks.normal;
+package com.minerarcana.occult.blocks.normal;
 
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;

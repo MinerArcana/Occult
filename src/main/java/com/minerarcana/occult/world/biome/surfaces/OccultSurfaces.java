@@ -1,9 +1,9 @@
-package com.minerarcana.occult.common.biomes.surfaces;
+package com.minerarcana.occult.world.biome.surfaces;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilderConfig;
 
-import static com.minerarcana.occult.update.util.lib.OccultNameLib.deepgrass;
+import static com.minerarcana.occult.util.lib.OccultNameLib.deepgrass;
 
 public class OccultSurfaces {
 

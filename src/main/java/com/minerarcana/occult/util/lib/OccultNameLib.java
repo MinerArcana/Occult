@@ -1,13 +1,8 @@
-package com.minerarcana.occult.update.util.lib;
+package com.minerarcana.occult.util.lib;
 
-import com.minerarcana.occult.common.biomes.features.bushes.BushFeature;
-import com.minerarcana.occult.common.blocks.featureblocks.eldritchstone.EldritchStone;
-import com.minerarcana.occult.common.blocks.featureblocks.eldritchstone.EldritchStoneTileEntity;
-import com.minerarcana.occult.common.blocks.featureblocks.eldritchstone.TransformedStone;
-import com.minerarcana.occult.common.blocks.featureblocks.eldritchstone.TransformedStoneTileEntity;
-import com.minerarcana.occult.common.tileentity.crucible.CrucibleBlock;
-import com.minerarcana.occult.common.tileentity.crucible.CrucibleTile;
-import com.minerarcana.occult.common.tileentity.ritualfire.*;
+
+import com.minerarcana.occult.blocks.tileentity.*;
+import com.minerarcana.occult.blocks.tileentity.tilecontainer.RitualBaseContainer;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;

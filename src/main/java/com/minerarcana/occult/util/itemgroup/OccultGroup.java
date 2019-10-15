@@ -1,9 +1,9 @@
-package com.minerarcana.occult.update.util.itemgroup;
+package com.minerarcana.occult.util.itemgroup;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
-import static com.minerarcana.occult.update.util.lib.OccultNameLib.occult_icon;
+import static com.minerarcana.occult.util.lib.OccultNameLib.occult_icon;
 
 public class OccultGroup extends ItemGroup
 {

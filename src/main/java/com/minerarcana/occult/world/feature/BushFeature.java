@@ -1,6 +1,6 @@
-package com.minerarcana.occult.common.biomes.features.bushes;
+package com.minerarcana.occult.world.feature;
 
-import com.minerarcana.occult.update.util.lib.OccultHolderLib;
+import com.minerarcana.occult.util.lib.OccultHolderLib;
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.BlockState;
 import net.minecraft.tags.BlockTags;
@@ -14,7 +14,7 @@ import net.minecraft.world.gen.feature.NoFeatureConfig;
 import java.util.Random;
 import java.util.function.Function;
 
-import static com.minerarcana.occult.update.util.lib.OccultNameLib.*;
+import static com.minerarcana.occult.util.lib.OccultNameLib.*;
 
 public class BushFeature extends Feature<NoFeatureConfig>
 {

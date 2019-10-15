@@ -1,14 +1,15 @@
-package com.minerarcana.occult.common.biomes.overworld;
+package com.minerarcana.occult.world.biome.overworld;
 
-import com.minerarcana.occult.common.biomes.surfaces.OccultSurfaces;
-import com.minerarcana.occult.update.util.lib.OccultNameLib;
+import com.minerarcana.occult.world.biome.surfaces.OccultSurfaces;
+import com.minerarcana.occult.util.lib.OccultNameLib;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.structure.MineshaftConfig;
 import net.minecraft.world.gen.feature.structure.MineshaftStructure;
 import net.minecraft.world.gen.placement.FrequencyConfig;

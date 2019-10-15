@@ -1,6 +1,6 @@
-package com.minerarcana.occult.common.biomes.surfaces.overworld;
+package com.minerarcana.occult.world.biome.surfaces.overworld;
 
-import com.minerarcana.occult.common.biomes.surfaces.OccultSurfaces;
+import com.minerarcana.occult.world.biome.surfaces.OccultSurfaces;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunk;

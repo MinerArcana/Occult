@@ -1,4 +1,4 @@
-package com.minerarcana.occult.common.tileentity.ritualfire;
+package com.minerarcana.occult.blocks.tileentity;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
@@ -13,7 +13,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import static com.minerarcana.occult.update.util.lib.OccultNameLib.RITUALFIRETILE;
+import static com.minerarcana.occult.util.lib.OccultNameLib.RITUALFIRETILE;
 
 
 public class RitualFireTile extends TileEntity {

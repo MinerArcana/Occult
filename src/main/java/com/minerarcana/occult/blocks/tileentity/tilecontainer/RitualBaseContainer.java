@@ -1,4 +1,4 @@
-package com.minerarcana.occult.common.tileentity.ritualfire;
+package com.minerarcana.occult.blocks.tileentity.tilecontainer;
 
 
 import net.minecraft.entity.player.PlayerEntity;
@@ -9,7 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 
-import static com.minerarcana.occult.update.util.lib.OccultNameLib.RITUALBASECONTAINER;
+import static com.minerarcana.occult.util.lib.OccultNameLib.RITUALBASECONTAINER;
 
 
 public class RitualBaseContainer extends Container {

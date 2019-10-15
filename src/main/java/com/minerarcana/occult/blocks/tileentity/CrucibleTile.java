@@ -1,8 +1,8 @@
-package com.minerarcana.occult.common.tileentity.crucible;
+package com.minerarcana.occult.blocks.tileentity;
 
 
 import com.minerarcana.occult.api.recipes.OccultRecipeTypes;
-import com.minerarcana.occult.update.util.lib.OccultTagLib;
+import com.minerarcana.occult.util.lib.OccultTagLib;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.minerarcana.occult.api.recipes.machines.CrucibleRecipes;
@@ -40,7 +40,7 @@ import java.util.List;
 import java.util.Map;
 
 
-import static com.minerarcana.occult.update.util.lib.OccultNameLib.*;
+import static com.minerarcana.occult.util.lib.OccultNameLib.*;
 
 
 public class CrucibleTile extends TileEntity implements ITickableTileEntity, IRecipeHolder, IRecipeHelperPopulator, ISidedInventory {

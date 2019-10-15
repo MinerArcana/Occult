@@ -1,4 +1,4 @@
-package com.minerarcana.occult.common.biomes.features.bushes;
+package com.minerarcana.occult.world.feature;
 
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.BlockState;
@@ -13,7 +13,7 @@ import net.minecraft.world.gen.feature.NoFeatureConfig;
 import java.util.Random;
 import java.util.function.Function;
 
-import static com.minerarcana.occult.update.util.lib.OccultNameLib.eldritchstone;
+import static com.minerarcana.occult.util.lib.OccultNameLib.eldritchstone;
 
 public class EldritchStoneFeature extends Feature<NoFeatureConfig>
 {

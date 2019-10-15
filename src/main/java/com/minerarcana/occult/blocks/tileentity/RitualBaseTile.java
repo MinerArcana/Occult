@@ -1,7 +1,9 @@
-package com.minerarcana.occult.common.tileentity.ritualfire;
+package com.minerarcana.occult.blocks.tileentity;
 
 import com.google.common.collect.Maps;
 import com.minerarcana.occult.Occult;
+import com.minerarcana.occult.api.multiblock.IBaseIsMultiBlock;
+import com.minerarcana.occult.blocks.tileentity.tilecontainer.RitualBaseContainer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -35,7 +37,7 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 
-import static com.minerarcana.occult.update.util.lib.OccultNameLib.*;
+import static com.minerarcana.occult.util.lib.OccultNameLib.*;
 import static net.minecraft.tags.ItemTags.LOGS;
 
 public class RitualBaseTile extends TileEntity implements INamedContainerProvider, IBaseIsMultiBlock, ITickableTileEntity {

@@ -1,8 +1,8 @@
-package com.minerarcana.occult.update.util.lib;
+package com.minerarcana.occult.util.lib;
 
-import com.minerarcana.occult.common.blocks.flowers.BleachedFlower;
-import com.minerarcana.occult.common.blocks.flowers.DeepFlower;
-import com.minerarcana.occult.common.blocks.flowers.InfernalFlower;
+import com.minerarcana.occult.blocks.flowers.BleachedFlower;
+import com.minerarcana.occult.blocks.flowers.DeepFlower;
+import com.minerarcana.occult.blocks.flowers.InfernalFlower;
 import net.minecraft.block.Block;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.LogBlock;

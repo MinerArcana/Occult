@@ -1,6 +1,6 @@
-package com.minerarcana.occult.common.world.chunk;
+package com.minerarcana.occult.world.chunk;
 
-import com.minerarcana.occult.common.world.noise.SimplexOctavesGenerator;
+import com.minerarcana.occult.world.noise.SimplexOctavesGenerator;
 import it.unimi.dsi.fastutil.longs.LongIterator;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import it.unimi.dsi.fastutil.objects.ObjectList;

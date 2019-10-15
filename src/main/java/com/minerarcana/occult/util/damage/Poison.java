@@ -1,4 +1,4 @@
-package com.minerarcana.occult.update.util.damage;
+package com.minerarcana.occult.util.damage;
 
 import net.minecraft.util.DamageSource;
 

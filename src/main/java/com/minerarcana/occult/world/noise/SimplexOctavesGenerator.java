@@ -1,4 +1,4 @@
-package com.minerarcana.occult.common.world.noise;
+package com.minerarcana.occult.world.noise;
 
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.gen.INoiseGenerator;
