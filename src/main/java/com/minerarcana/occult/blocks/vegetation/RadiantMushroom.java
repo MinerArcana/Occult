@@ -4,7 +4,7 @@ import net.minecraft.block.BushBlock;
 
 public class RadiantMushroom extends BushBlock {
 
-    protected RadiantMushroom(Properties properties) {
+    public RadiantMushroom(Properties properties) {
         super(properties);
     }
 

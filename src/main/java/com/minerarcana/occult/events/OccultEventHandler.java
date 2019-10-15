@@ -36,17 +36,17 @@ public class OccultEventHandler {
 
     }
 
-    @SubscribeEvent
-    public static void biomeEventHandler(FMLServerStartingEvent event) {
+
+    public static void registerOccultBiomes() {
         if (OccultConfigHandler.COMMON.SPAWNBIOMES.get()) {
             spawnBiome(spookyforest);
             spawnBiome(infernalforest);
             spawnBiome(bleachedforest);
         }
 
-        registerBiomeToDictionary(spookyforest, SPOOKY, FOREST, DRY, DEAD, MAGICAL);
-        registerBiomeToDictionary(infernalforest, SPOOKY, FOREST, DRY, MAGICAL);
-        registerBiomeToDictionary(bleachedforest, SPOOKY, FOREST, DRY, MAGICAL);
+        addTypes(spookyforest, SPOOKY, FOREST, DRY, DEAD, MAGICAL);
+        addTypes(infernalforest, SPOOKY, FOREST, DRY, MAGICAL);
+        addTypes(bleachedforest, SPOOKY, FOREST, DRY, MAGICAL);
 
         addBiome(new BiomeManager.BiomeEntry(spookyforest, OccultConfigHandler.COMMON.DEEPFORESTWEIGHT.get()), BiomeManager.BiomeType.WARM);
         addBiome(new BiomeManager.BiomeEntry(infernalforest, OccultConfigHandler.COMMON.CHARREDWOODLANDWEIGHT.get()), BiomeManager.BiomeType.DESERT);

@@ -32,6 +32,7 @@ import org.apache.logging.log4j.Logger;
 import javax.annotation.Nullable;
 
 import static com.minerarcana.occult.api.capabilities.ChunkPressureCapability.*;
+import static com.minerarcana.occult.events.OccultEventHandler.registerOccultBiomes;
 
 
 @Mod("occult")
@@ -61,6 +62,8 @@ public class Occult {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
+        registerOccultBiomes();
+
         CapabilityManager.INSTANCE.register(IPressure.class, new Capability.IStorage<IPressure>() {
             @Nullable
             @Override

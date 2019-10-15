@@ -1,5 +1,6 @@
 package com.minerarcana.occult.world.biome.overworld;
 
+import com.minerarcana.occult.util.OccultConfigHandler;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.math.BlockPos;
@@ -15,6 +16,13 @@ import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.BiomeManager;
+
+import static com.minerarcana.occult.util.lib.OccultNameLib.*;
+import static net.minecraftforge.common.BiomeDictionary.Type.*;
+import static net.minecraftforge.common.BiomeDictionary.addTypes;
+import static net.minecraftforge.common.BiomeManager.addBiome;
+import static net.minecraftforge.common.BiomeManager.addSpawnBiome;
 
 public class TheBleachedWood extends Biome
 {

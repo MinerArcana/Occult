@@ -2,6 +2,7 @@ package com.minerarcana.occult.events;
 
 
 import com.minerarcana.occult.blocks.*;
+import com.minerarcana.occult.blocks.vegetation.*;
 import com.minerarcana.occult.items.SacredSalt;
 import com.minerarcana.occult.world.biome.overworld.TheBleachedWood;
 import com.minerarcana.occult.world.biome.overworld.TheCharredWoodlands;
@@ -12,10 +13,6 @@ import com.minerarcana.occult.blocks.tileentity.TransformedStoneTileEntity;
 import com.minerarcana.occult.blocks.flowers.BleachedFlower;
 import com.minerarcana.occult.blocks.flowers.DeepFlower;
 import com.minerarcana.occult.blocks.flowers.InfernalFlower;
-import com.minerarcana.occult.blocks.vegetation.EchocryBushes;
-import com.minerarcana.occult.blocks.vegetation.PoisonIvy;
-import com.minerarcana.occult.blocks.vegetation.SlickMoss;
-import com.minerarcana.occult.blocks.vegetation.StrangleGrass;
 import com.minerarcana.occult.blocks.tileentity.CrucibleTile;
 import com.minerarcana.occult.blocks.tileentity.RitualBaseTile;
 import com.minerarcana.occult.blocks.tileentity.RitualFireTile;
@@ -290,9 +287,9 @@ public class OccultRegistryEvents {
         event.getRegistry().register(new TransformedStone(Block.Properties.create(ROCK).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.STONE)).setRegistryName("transformedstone"));
 
         event.getRegistry().register(new EldritchStone(Block.Properties.create(ROCK).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.STONE)).setRegistryName("eldritchstone"));
-        event.getRegistry().register(new DeepGrass(Block.Properties.create(PLANTS).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT)).setRegistryName("movinggrass"));
-        event.getRegistry().register(new DeepGrass(Block.Properties.create(PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("rootedsoil"));
-        event.getRegistry().register(new DeepGrass(Block.Properties.create(PLANTS).doesNotBlockMovement().hardnessAndResistance(0).lightValue(8).sound(SoundType.PLANT)).setRegistryName("infestedmushroom"));
+        event.getRegistry().register(new MovingGrass(Block.Properties.create(PLANTS).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT)).setRegistryName("movinggrass"));
+        event.getRegistry().register(new RoottrackedSoil(Block.Properties.create(PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("rootedsoil"));
+        event.getRegistry().register(new RadiantMushroom(Block.Properties.create(PLANTS).doesNotBlockMovement().hardnessAndResistance(0).lightValue(8).sound(SoundType.PLANT)).setRegistryName("infestedmushroom"));
 
         //Magic Machines
         event.getRegistry().register(new RitualFire((Block.Properties.create(FIRE).doesNotBlockMovement().hardnessAndResistance(-0.1F, 33333338).lightValue(8).sound(SoundType.SNOW))).setRegistryName("ritualfire"));
@@ -303,8 +300,8 @@ public class OccultRegistryEvents {
         event.getRegistry().register(new PoisonIvy(Block.Properties.create(PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("poisonivy"));
         event.getRegistry().register(new StrangleGrass(Block.Properties.create(TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("stranglegrass"));
         event.getRegistry().register(new SlickMoss(Block.Properties.create(PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("slickmoss"));
-        event.getRegistry().register(new DeepGrass(Block.Properties.create(PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("phantombush"));
-        event.getRegistry().register(new DeepGrass(Block.Properties.create(PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("faslesod"));
+        event.getRegistry().register(new PhatomBushes(Block.Properties.create(PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("phantombush"));
+        event.getRegistry().register(new FalseSod(Block.Properties.create(PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("faslesod"));
         event.getRegistry().register(new EchocryBushes(Block.Properties.create(PLANTS).tickRandomly().doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("echobush1"));
         event.getRegistry().register(new EchocryBushes(Block.Properties.create(PLANTS).tickRandomly().doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("echobush2"));
 
