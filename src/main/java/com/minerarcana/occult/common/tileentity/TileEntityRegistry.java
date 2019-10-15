@@ -23,6 +23,7 @@ public class TileEntityRegistry {
         event.getRegistry().register(TileEntityType.Builder.create(RitualBaseTile:: new, ritualbase).build(null).setRegistryName("ritualbase"));
         event.getRegistry().register(TileEntityType.Builder.create(RitualFireTile:: new, ritualfire).build(null).setRegistryName("ritualfire"));
         event.getRegistry().register(TileEntityType.Builder.create(EldritchStoneTileEntity:: new, eldritchstone).build(null).setRegistryName("eldritchstone"));
+        event.getRegistry().register(TileEntityType.Builder.create(EldritchStoneTileEntity:: new, transformedstone).build(null).setRegistryName("transformedstone"));
 
     }
 

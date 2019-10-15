@@ -13,6 +13,7 @@ public class OccultNameLib
     public static Block halfgrass;
     public static Block poisonivy;
     public static Block eldritchstone;
+    public static Block transformedstone;
     public static Block movinggrass;
     public static Block bonesand;
     public static Block rockytrails;

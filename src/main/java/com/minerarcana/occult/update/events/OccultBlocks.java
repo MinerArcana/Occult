@@ -1,6 +1,7 @@
 package com.minerarcana.occult.update.events;
 
 import com.minerarcana.occult.common.blocks.featureblocks.eldritchstone.EldritchStone;
+import com.minerarcana.occult.common.blocks.featureblocks.eldritchstone.TransformedStone;
 import com.minerarcana.occult.common.blocks.flowers.BleachedFlower;
 import com.minerarcana.occult.common.blocks.flowers.DeepFlower;
 import com.minerarcana.occult.common.blocks.flowers.InfernalFlower;
@@ -29,7 +30,7 @@ import static com.minerarcana.occult.update.util.lib.OccultNameLib.*;
 import static com.minerarcana.occult.update.util.lib.OccultPropertyLib.*;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-public class OccultBlocks {
+public class Occulteldritchs {
 
 
 
@@ -125,6 +126,8 @@ public class OccultBlocks {
         event.getRegistry().register(BLEACHEDFLOWER.setRegistryName("bleachedflower6"));
 
         //Moving Features
+        event.getRegistry().register(new TransformedStone((Block.Properties.create(Material.ROCK).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.STONE))).setRegistryName("eldritchstone"));
+
         eldritchstone = registerBlock(new EldritchStone((Block.Properties.create(Material.ROCK).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.STONE))), "eldritchstone");
         movinggrass = registerBlock(new DeepGrass((Block.Properties.create(Material.PLANTS).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT))), "movinggrass");
         rootedsoil = registerBlock(new DeepGrass((Block.Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT))), "rootedsoil");
