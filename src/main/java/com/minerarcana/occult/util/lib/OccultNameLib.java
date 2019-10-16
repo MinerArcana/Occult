@@ -382,13 +382,13 @@ public class OccultNameLib
     //-------------------------------------------------------------------------------------
 
     @ObjectHolder("occult:transformedstone")
-    public static TileEntityType<TransformedStoneTileEntity> TRANSFORMEDSTONETILEENTITY;
+    public static TileEntityType<TransformedStoneTile> TRANSFORMEDSTONETILEENTITY;
 
     @ObjectHolder("occult:crucible")
     public static TileEntityType<CrucibleTile> CRUCIBLETILE;
 
     @ObjectHolder("occult:eldritchstone")
-    public static TileEntityType<EldritchStoneTileEntity> ELDRITCHSTONETILEENTITY;
+    public static TileEntityType<EldritchStoneTile> ELDRITCHSTONETILEENTITY;
 
     @ObjectHolder("occult:ritualfire")
     public static TileEntityType<RitualFireTile> RITUALFIRETILE;

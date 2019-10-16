@@ -1,9 +1,9 @@
 package com.minerarcana.occult;
 
-import com.minerarcana.occult.api.pressure.IPressure;
-import com.minerarcana.occult.api.pressure.PressureType;
 import com.minerarcana.occult.api.capabilities.PressureChunkStorage;
 import com.minerarcana.occult.api.capabilities.handlers.SerializableCapabilityProvider;
+import com.minerarcana.occult.api.pressure.IPressure;
+import com.minerarcana.occult.api.pressure.PressureType;
 import com.minerarcana.occult.util.OccultConfigHandler;
 import com.minerarcana.occult.util.network.OccultNetwork;
 import com.minerarcana.occult.world.SpookyWorldType;
@@ -35,7 +35,7 @@ import org.apache.logging.log4j.Logger;
 import javax.annotation.Nullable;
 
 import static com.minerarcana.occult.api.capabilities.ChunkPressureCapability.*;
-import static com.minerarcana.occult.events.OccultEventHandler.registerOccultBiomes;
+import static com.minerarcana.occult.events.OccultStaticHelperMethods.registerOccultBiomes;
 
 
 @Mod("occult")
