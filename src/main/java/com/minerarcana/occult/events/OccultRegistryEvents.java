@@ -284,7 +284,7 @@ public class OccultRegistryEvents {
         //Moving Features
         event.getRegistry().register(new TransformedStone(Block.Properties.create(ROCK).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.STONE)).setRegistryName("transformedstone"));
 
-        event.getRegistry().register(new EldritchStone(Block.Properties.create(ROCK).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.STONE)));
+        event.getRegistry().register(new EldritchStone(Block.Properties.create(ROCK).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.STONE)).setRegistryName("eldritchstone"));
         event.getRegistry().register(new MovingGrass(Block.Properties.create(PLANTS).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT)).setRegistryName("movinggrass"));
         event.getRegistry().register(new RoottrackedSoil(Block.Properties.create(PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("rootedsoil"));
         event.getRegistry().register(new RadiantMushroom(Block.Properties.create(PLANTS).doesNotBlockMovement().hardnessAndResistance(0).lightValue(8).sound(SoundType.PLANT)).setRegistryName("infestedmushroom"));

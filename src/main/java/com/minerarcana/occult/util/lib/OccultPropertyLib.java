@@ -13,8 +13,6 @@ import net.minecraft.block.material.MaterialColor;
 public class OccultPropertyLib
 {
 
-
-
     public static Block OCCULTLOG = new LogBlock(MaterialColor.BROWN, (Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static Block OCCULTWOOD = new Block(Block.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD));
 
