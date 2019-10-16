@@ -18,16 +18,26 @@ public class EchocryBushes extends BushBlock {
     }
 
     @Deprecated
-    public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
-        if(!worldIn.isRemote);
-        if (!worldIn.isAreaLoaded(pos, 3));
-        if(worldIn.getDayTime()>= 13000)
+    public void tick(BlockState state, World world, BlockPos pos, Random random) {
+        if(!world.isRemote);
+        if (!world.isAreaLoaded(pos, 3));
+        if(isNight(world))
         {
-            worldIn.setBlockState(pos, echobush1.getDefaultState());
+            world.setBlockState(pos, echobush1.getDefaultState());
         }
         else{
-            worldIn.setBlockState(pos, echobush2.getDefaultState());
+            world.setBlockState(pos, echobush2.getDefaultState());
         }
     }
+
+    public boolean isNight(World world){
+        long n = world.getDayTime();
+        long a = (n / 13000) * 13000;
+        long b = a + 13000;
+        long a1 = (n / 22500) * 22500;
+        long b1 = a1 + 22500;
+        return n > b1 && n < b;
+    }
+
 
 }
