@@ -34,6 +34,9 @@ public class OccultTagLib {
         public static final Tag<Block> DEEPLOGS = tag("deeplogs");
         public static final Tag<Block> INFERNALLOGS = tag("infernallogs");
 
+        //Eldritch Stone
+        public static final Tag<Block> ELDRITCH = tag("eldritch");
+
 
         private static Tag<Block> tag(String name) {
             return new BlockTags.Wrapper(new ResourceLocation(MOD_ID, name));
