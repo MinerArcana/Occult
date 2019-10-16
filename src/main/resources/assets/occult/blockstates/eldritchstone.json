@@ -1,8 +1,8 @@
 
 {
     "variants": {
-        "middle=false": { "model": "occult:block/eldritch_bottom_stone" },
-        "middle=true":  { "model": "occult:block/eldritch_middle_stone" },
-        "top=true":  { "model": "occult:block/eldritch_top_stone" }
+        "middle=false,top=false": { "model": "occult:block/eldritchbottomstone" },
+        "middle=true,top=false":  { "model": "occult:block/eldritchmiddlestone" },
+        "top=true,middle=false":  { "model": "occult:block/eldritchtopstone" }
     }
 }

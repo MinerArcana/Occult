@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "occult:blocks/eldritchstonetop",
+    "side": "occult:blocks/eldritchstonemiddleside"
+  }
+}
