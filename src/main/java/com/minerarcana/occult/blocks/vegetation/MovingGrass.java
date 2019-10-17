@@ -27,7 +27,7 @@ public class MovingGrass extends TallGrassBlock {
 
         super.tick(state, world, pos, random);
     }
-    
+
     @Deprecated
     public void eerieMovingGrass(World world, BlockPos pos, Random random) {
         boolean moved = false;
