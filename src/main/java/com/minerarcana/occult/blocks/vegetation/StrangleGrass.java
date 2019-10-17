@@ -24,16 +24,15 @@ public class StrangleGrass extends BushBlock
 
     @Override
     @Deprecated
-    public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entity) {
+    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         entity.attackEntityFrom(StrangeDamage.STRANGEGRASS, 1.0F);
     }
 
-
-    public static void onStrangleDeath(BlockPos pos, World worldIn, Random random) {
+    public static void onStrangleDeath(BlockPos pos, World world, Random random) {
 
             BlockPos blockpos = pos.add(random.nextInt(10) - 1, random.nextInt(10) - 3, random.nextInt(10) - 1);
-            if(worldIn.getBlockState(blockpos) == Blocks.AIR.getDefaultState() && worldIn.getBlockState(blockpos.down()) != rockytrails.getDefaultState() && worldIn.getBlockState(blockpos.down()) != Blocks.AIR.getDefaultState()) {
-                worldIn.setBlockState(blockpos, stranglegrass.getDefaultState());
+            if(world.getBlockState(blockpos) == Blocks.AIR.getDefaultState() && world.getBlockState(blockpos.down()) != rockytrails.getDefaultState() && world.getBlockState(blockpos.down()) != Blocks.AIR.getDefaultState()) {
+                world.setBlockState(blockpos, stranglegrass.getDefaultState());
             }
         }
 

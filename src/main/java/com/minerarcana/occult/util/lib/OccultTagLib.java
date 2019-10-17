@@ -36,6 +36,10 @@ public class OccultTagLib {
 
         //Eldritch Stone
         public static final Tag<Block> ELDRITCH = tag("eldritch");
+        //FalseSod
+        public static final Tag<Block> FALSESOD = tag("falsesod");
+        //UTILITY TAGS
+        public static final Tag<Block> VALIDGROUND = tag("validground");
 
 
         private static Tag<Block> tag(String name) {
