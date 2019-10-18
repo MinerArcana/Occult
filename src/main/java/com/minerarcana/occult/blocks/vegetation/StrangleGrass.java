@@ -2,6 +2,8 @@ package com.minerarcana.occult.blocks.vegetation;
 
 
 
+import com.minerarcana.occult.Occult;
+import com.minerarcana.occult.util.StrangeDamage;
 import com.minerarcana.occult.util.lib.OccultTagLib;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BushBlock;
@@ -36,7 +38,8 @@ public class StrangleGrass extends BushBlock
 
     @SubscribeEvent
     public void strangeDeaths(LivingDeathEvent event) {
-        if (event.getSource().getDamageType().equals(STRANGEDAMAGE)) {
+        if (event.getSource() instanceof StrangeDamage) {
+            Occult.LOGGER.info("chickendied");
             Entity entity = event.getEntity();
             BlockPos pos = entity.getPosition();
             World world = entity.world;
