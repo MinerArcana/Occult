@@ -17,6 +17,7 @@ import java.util.Random;
 import static com.minerarcana.occult.Occult.MOD_ID;
 import static com.minerarcana.occult.util.lib.OccultNameLib.*;
 import static com.minerarcana.occult.util.lib.OccultPropertyLib.STRANGEDAMAGE;
+import static com.minerarcana.occult.util.lib.OccultTagLib.Blocks.BLACKLISTGROUND;
 
 @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class StrangleGrass extends BushBlock
@@ -44,7 +45,7 @@ public class StrangleGrass extends BushBlock
             BlockPos downpos = blockpos.down();
             BlockState downblock = world.getBlockState(downpos);
             if(world.getBlockState(blockpos).isAir(world,blockpos)) {
-               if(downblock != rockytrails.getDefaultState() && !downblock.isAir(world, downpos)) {
+               if(!downblock.isIn(BLACKLISTGROUND)) {
                    if (downblock.isIn(OccultTagLib.Blocks.VALIDNETHERGROUND) && this.isIn(OccultTagLib.Blocks.NETHER)) {
                        world.setBlockState(blockpos, this.getDefaultState());
                    } else if (downblock.isIn(OccultTagLib.Blocks.VALIDGROUND) && this.isIn(OccultTagLib.Blocks.OVERWORLD)) {
