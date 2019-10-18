@@ -1,6 +1,7 @@
 package com.minerarcana.occult.world.feature;
 
 import com.minerarcana.occult.util.lib.OccultHolderLib;
+import com.minerarcana.occult.util.lib.OccultTagLib;
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.BlockState;
 import net.minecraft.tags.BlockTags;
@@ -16,9 +17,9 @@ import java.util.function.Function;
 
 import static com.minerarcana.occult.util.lib.OccultNameLib.*;
 
-public class BushFeature extends Feature<NoFeatureConfig>
+public class NetherBushFeature extends Feature<NoFeatureConfig>
 {
-    public BushFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> deserializer)
+    public NetherBushFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> deserializer)
     {
         super(deserializer);
 
@@ -27,10 +28,8 @@ public class BushFeature extends Feature<NoFeatureConfig>
     @Override
     public boolean place(IWorld world, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config)
     {
-        OccultHolderLib.BUSH = bushSelector();
-        BlockState BlockState = OccultHolderLib.BUSH;
 
-        for (BlockState BlockState1 = world.getBlockState(pos); (BlockState1.isAir(world, pos) || BlockState1.isIn(BlockTags.LEAVES)) && pos.getY() > 0; BlockState1 = world.getBlockState(pos))
+        for (BlockState state1 = world.getBlockState(pos); (state1.isAir(world, pos) || state1.isIn(BlockTags.LEAVES)) && pos.getY() > 0; state1 = world.getBlockState(pos))
         {
             pos = pos.down();
         }
@@ -39,10 +38,12 @@ public class BushFeature extends Feature<NoFeatureConfig>
 
         for (int j = 0; j < 128; ++j)
         {
+            OccultHolderLib.NETHERBUSH = bushSelector();
+            BlockState bush = OccultHolderLib.NETHERBUSH;
             BlockPos blockpos = pos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
-            if (world.isAirBlock(blockpos) && BlockState.isValidPosition(world, blockpos))
+            if (world.isAirBlock(blockpos) && world.getBlockState(blockpos.down()).isIn(OccultTagLib.Blocks.VALIDNETHERGROUND))
             {
-                world.setBlockState(blockpos, BlockState, 2);
+                world.setBlockState(blockpos, bush, 2);
                 ++i;
             }
         }
@@ -51,19 +52,10 @@ public class BushFeature extends Feature<NoFeatureConfig>
     }
 
     public BlockState bushSelector(){
-        if(this == stranglegrassfeature){
-            OccultHolderLib.BUSH = stranglegrass.getDefaultState();
+        if(this == netherstranglegrassfeature){
+            OccultHolderLib.NETHERBUSH = netherstranglegrass.getDefaultState();
         }
-        else if(this == echobushfeature){
-            OccultHolderLib.BUSH = echobush2.getDefaultState();
-        }
-        else if(this == phantombushfeature){
-            OccultHolderLib.BUSH = phantombush.getDefaultState();
-        }
-        else if(this == ivyfeature){
-            OccultHolderLib.BUSH = poisonivy.getDefaultState();
-        }
-        return OccultHolderLib.BUSH;
+        return OccultHolderLib.NETHERBUSH;
     }
 
 

@@ -68,7 +68,7 @@ public class Occult {
 
     }
 
-    private void setup(final FMLCommonSetupEvent event) {
+        private void setup(final FMLCommonSetupEvent event) {
         registerOccultBiomes();
 
         CapabilityManager.INSTANCE.register(IPressure.class, new Capability.IStorage<IPressure>() {

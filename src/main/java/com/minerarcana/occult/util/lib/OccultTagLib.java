@@ -38,9 +38,12 @@ public class OccultTagLib {
         public static final Tag<Block> ELDRITCH = tag("eldritch");
         //FalseSod
         public static final Tag<Block> FALSESOD = tag("falsesod");
+
         //UTILITY TAGS
         public static final Tag<Block> VALIDGROUND = tag("validground");
-
+        public static final Tag<Block> VALIDNETHERGROUND = tag("validnetherground");
+        public static final Tag<Block> OVERWORLD = tag("overworld");
+        public static final Tag<Block> NETHER = tag("nether");
 
         private static Tag<Block> tag(String name) {
             return new BlockTags.Wrapper(new ResourceLocation(MOD_ID, name));

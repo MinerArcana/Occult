@@ -10,6 +10,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.state.BooleanProperty;
+import net.minecraft.util.DamageSource;
 
 public class OccultPropertyLib
 {
@@ -27,9 +28,11 @@ public class OccultPropertyLib
     //Eldritch Stone
     public static BooleanProperty TOP;
     public static BooleanProperty MIDDLE;
-    public static BooleanProperty BOTTOM;
-    public static final BooleanProperty BOTTOMPROPERTY = BooleanProperty.create("bottom");
     public static final BooleanProperty MIDDLEPROPERTY = BooleanProperty.create("middle");
     public static final BooleanProperty TOPPROPERTY = BooleanProperty.create("top");
+
+    //DamageSources
+    public static DamageSource IVYDAMAGE = (new DamageSource("ivydamage"));
+    public static DamageSource STRANGEDAMAGE = (new DamageSource("strangledamage"));
 
 }

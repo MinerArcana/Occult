@@ -11,5 +11,9 @@ public class OccultHolderLib
     //Bush
     public static BlockState BUSH;
 
+    //Bush
+    public static BlockState NETHERBUSH;
+
+
 
 }

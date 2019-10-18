@@ -4,7 +4,8 @@ package com.minerarcana.occult.util.lib;
 import com.minerarcana.occult.blocks.*;
 import com.minerarcana.occult.blocks.tileentity.*;
 import com.minerarcana.occult.blocks.tileentity.tilecontainer.RitualBaseContainer;
-import com.minerarcana.occult.world.feature.BushFeature;
+import com.minerarcana.occult.world.feature.NetherBushFeature;
+import com.minerarcana.occult.world.feature.OverworldBushFeature;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
@@ -309,6 +310,9 @@ public class OccultNameLib
     @ObjectHolder("occult:stranglegrass")
     public static Block stranglegrass;
 
+    @ObjectHolder("occult:netherstranglegrass")
+    public static Block netherstranglegrass;
+
     @ObjectHolder("occult:slickmoss")
     public static Block slickmoss;
 
@@ -423,16 +427,19 @@ public class OccultNameLib
     //Features
     //-------------------------------------------------------------------------------------
     @ObjectHolder("occult:stranglegrassfeature")
-    public static BushFeature stranglegrassfeature;
+    public static OverworldBushFeature stranglegrassfeature;
+
+    @ObjectHolder("occult:netherstranglegrassfeature")
+    public static NetherBushFeature netherstranglegrassfeature;
 
     @ObjectHolder("occult:echobushfeature")
-    public static BushFeature echobushfeature;
+    public static OverworldBushFeature echobushfeature;
 
     @ObjectHolder("occult:phantombushfeature")
-    public static BushFeature phantombushfeature;
+    public static OverworldBushFeature phantombushfeature;
 
     @ObjectHolder("occult:ivyfeature")
-    public static BushFeature ivyfeature;
+    public static OverworldBushFeature ivyfeature;
 
     @ObjectHolder("occult:eldritchstonefeature")
     public static Feature<NoFeatureConfig> eldritchstonefeature;

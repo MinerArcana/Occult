@@ -13,7 +13,7 @@ import com.minerarcana.occult.world.biome.overworld.TheBleachedWood;
 import com.minerarcana.occult.world.biome.overworld.TheCharredWoodlands;
 import com.minerarcana.occult.world.biome.overworld.TheDeepForest;
 import com.minerarcana.occult.world.biome.surfaces.overworld.DeepSpookySurface;
-import com.minerarcana.occult.world.feature.BushFeature;
+import com.minerarcana.occult.world.feature.OverworldBushFeature;
 import com.minerarcana.occult.world.feature.EldritchStoneFeature;
 import net.minecraft.block.Block;
 import net.minecraft.block.LeavesBlock;
@@ -49,11 +49,11 @@ public class OccultRegistryEvents {
     @SubscribeEvent
     public static void onRegisterFeature(RegistryEvent.Register<Feature<?>> event) {
 
-        event.getRegistry().register(new BushFeature(NoFeatureConfig::deserialize).setRegistryName("ivyfeature"));
+        event.getRegistry().register(new OverworldBushFeature(NoFeatureConfig::deserialize).setRegistryName("ivyfeature"));
         event.getRegistry().register(new EldritchStoneFeature(NoFeatureConfig::deserialize).setRegistryName("eldritchstonefeature"));
-        event.getRegistry().register(new BushFeature(NoFeatureConfig::deserialize).setRegistryName("phantombushfeature"));
-        event.getRegistry().register(new BushFeature(NoFeatureConfig::deserialize).setRegistryName("echobushfeature"));
-        event.getRegistry().register(new BushFeature(NoFeatureConfig::deserialize).setRegistryName("stranglegrassfeature"));
+        event.getRegistry().register(new OverworldBushFeature(NoFeatureConfig::deserialize).setRegistryName("phantombushfeature"));
+        event.getRegistry().register(new OverworldBushFeature(NoFeatureConfig::deserialize).setRegistryName("echobushfeature"));
+        event.getRegistry().register(new OverworldBushFeature(NoFeatureConfig::deserialize).setRegistryName("stranglegrassfeature"));
 
     }
 
@@ -297,6 +297,7 @@ public class OccultRegistryEvents {
         //Vegetation/Ingredients
         event.getRegistry().register(new PoisonIvy(Block.Properties.create(PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("poisonivy"));
         event.getRegistry().register(new StrangleGrass(Block.Properties.create(TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("stranglegrass"));
+        event.getRegistry().register(new StrangleGrass(Block.Properties.create(TALL_PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("netherstranglegrass"));
         event.getRegistry().register(new SlickMoss(Block.Properties.create(PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("slickmoss"));
         event.getRegistry().register(new PhatomBushes(Block.Properties.create(PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("phantombush"));
         event.getRegistry().register(new FalseSod(Block.Properties.create(PLANTS).doesNotBlockMovement().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName("falsesod"));
