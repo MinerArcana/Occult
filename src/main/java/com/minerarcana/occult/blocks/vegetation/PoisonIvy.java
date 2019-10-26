@@ -13,7 +13,8 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import static com.minerarcana.occult.util.lib.OccultPropertyLib.IVYDAMAGE;
+import static com.minerarcana.occult.util.IvyDamage.IVYDAMAGE;
+
 
 @Mod.EventBusSubscriber
 public class PoisonIvy extends BushBlock {
@@ -33,7 +34,7 @@ public class PoisonIvy extends BushBlock {
 
     @SubscribeEvent
     public static void PoisonTime(LivingHurtEvent event) {
-        if (event.getSource().getDamageType().equals(IVYDAMAGE))
+        if (event.getSource().equals(IVYDAMAGE))
         {
             if(event.getEntity() instanceof PlayerEntity){
                 PlayerEntity player = (PlayerEntity) event.getEntity();

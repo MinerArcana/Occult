@@ -31,8 +31,5 @@ public class OccultPropertyLib
     public static final BooleanProperty MIDDLEPROPERTY = BooleanProperty.create("middle");
     public static final BooleanProperty TOPPROPERTY = BooleanProperty.create("top");
 
-    //DamageSources
-    public static DamageSource IVYDAMAGE = (new DamageSource("ivydamage"));
-    public static DamageSource STRANGEDAMAGE = (new DamageSource("strangledamage"));
 
 }

@@ -9,6 +9,7 @@ import com.minerarcana.occult.world.feature.OverworldBushFeature;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
+import net.minecraft.particles.ParticleType;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.Feature;
@@ -449,5 +450,9 @@ public class OccultNameLib
     @ObjectHolder("occult:deepspookysurface")
     public static SurfaceBuilder<SurfaceBuilderConfig> DEEPSPOOKYSURFACE;
 
+    //Particles Builders
+    //-------------------------------------------------------------------------------------
+    @ObjectHolder("occult:flame")
+    public static ParticleType<ShimmerParticleData> SHIMMER;
 
 }

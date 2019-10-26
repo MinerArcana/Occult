@@ -19,8 +19,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.LogBlock;
 import net.minecraft.block.SoundType;
+import net.minecraft.client.particle.BubbleParticle;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.particles.ParticleType;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.Feature;
@@ -38,7 +40,17 @@ import static net.minecraft.block.material.MaterialColor.BROWN;
 @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class OccultRegistryEvents {
 
+    //Particle Registry
+    //============================================================
+    @SubscribeEvent
+    public static void onRegisterParticles(RegistryEvent.Register<ParticleType<?>> event) {
 
+    event.getRegistry().register();
+
+    }
+
+    //Surfaces Registry
+    //============================================================
     @SubscribeEvent
     public static void onRegisterSurfaces(RegistryEvent.Register<SurfaceBuilder<?>> event) {
         event.getRegistry().register(new DeepSpookySurface().setRegistryName("deepspookysurface"));
