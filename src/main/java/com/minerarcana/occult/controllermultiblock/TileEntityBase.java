@@ -1,4 +1,4 @@
-package com.minerarcana.occult.multiblocksystem;
+package com.minerarcana.occult.controllermultiblock;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;

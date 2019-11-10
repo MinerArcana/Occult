@@ -1,4 +1,4 @@
-package com.minerarcana.occult.multiblocksystem.validation;
+package com.minerarcana.occult.controllermultiblock.validation;
 
 public interface IMultiblockValidator {
 

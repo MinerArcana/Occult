@@ -1,4 +1,4 @@
-package com.minerarcana.occult.multiblocksystem.validation;
+package com.minerarcana.occult.controllermultiblock.validation;
 
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;

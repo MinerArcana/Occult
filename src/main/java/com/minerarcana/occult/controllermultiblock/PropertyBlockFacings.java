@@ -1,8 +1,9 @@
-package com.minerarcana.occult.multiblocksystem;
+package com.minerarcana.occult.controllermultiblock;
 
 import java.util.EnumSet;
 
 
+import net.minecraft.block.BlockState;
 import net.minecraft.util.IStringSerializable;
 
 public enum PropertyBlockFacings implements IStringSerializable {
@@ -160,7 +161,7 @@ public enum PropertyBlockFacings implements IStringSerializable {
 									BlockFacings.computeHash(true, true, true, true, true, false)), PipeEnd_ENSUW(
 											BlockFacings.computeHash(false, true, true, true, false, true));
 
-	public static final PropertyEnum FACINGS = PropertyEnum.create("facings", PropertyBlockFacings.class);
+	public static final BlockState FACINGS = PropertyEnum.create("facings", PropertyBlockFacings.class);
 
 	public static final EnumSet<PropertyBlockFacings> ALL_AND_NONE;
 	public static final EnumSet<PropertyBlockFacings> FACES;

@@ -1,10 +1,10 @@
-package com.minerarcana.occult.multiblocksystem;
+package com.minerarcana.occult.controllermultiblock;
 
 import java.util.*;
 
 import com.minerarcana.occult.Occult;
-import com.minerarcana.occult.multiblocksystem.validation.IMultiblockValidator;
-import com.minerarcana.occult.multiblocksystem.validation.ValidationError;
+import com.minerarcana.occult.controllermultiblock.validation.IMultiblockValidator;
+import com.minerarcana.occult.controllermultiblock.validation.ValidationError;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;

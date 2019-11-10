@@ -1,4 +1,4 @@
-package com.minerarcana.occult.multiblocksystem;
+package com.minerarcana.occult.controllermultiblock;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.chunk.IChunk;

@@ -1,6 +1,9 @@
 package com.minerarcana.occult;
 
 
+import com.minerarcana.occult.controllermultiblock.IMultiblockRegistry;
+import com.minerarcana.occult.controllermultiblock.MultiblockEventHandler;
+import com.minerarcana.occult.controllermultiblock.MultiblockRegistry;
 import net.minecraftforge.common.MinecraftForge;
 
 import net.minecraftforge.fml.common.Mod;
