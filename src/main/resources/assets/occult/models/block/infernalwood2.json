@@ -1,7 +1,0 @@
-{
-  "parent": "block/cube_column",
-  "textures": {
-    "end": "occult:blocks/infernallogtop2",
-    "side": "occult:blocks/infernalwood2"
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "parent": "block/cube_column",
-  "textures": {
-    "end": "occult:blocks/bleachedlogtop1",
-    "side": "occult:blocks/bleachedwood1"
-  }
-}

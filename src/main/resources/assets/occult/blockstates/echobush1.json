@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "night=false": { "model": "occult:block/echobush1" },
-        "night=true": { "model": "occult:block/echobush2" }
-    }
-}
