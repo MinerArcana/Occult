@@ -1,9 +1,9 @@
-package com.minerarcana.occult.multiblocksystem.rectangular;
+package com.minerarcana.occult.controllermultiblock.rectangular;
 
 
-import com.minerarcana.occult.multiblocksystem.MultiblockControllerBase;
-import com.minerarcana.occult.multiblocksystem.validation.IMultiblockValidator;
-import com.minerarcana.occult.multiblocksystem.validation.ValidationError;
+import com.minerarcana.occult.controllermultiblock.MultiblockControllerBase;
+import com.minerarcana.occult.controllermultiblock.validation.IMultiblockValidator;
+import com.minerarcana.occult.controllermultiblock.validation.ValidationError;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

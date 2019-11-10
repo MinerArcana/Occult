@@ -1,4 +1,4 @@
-package com.minerarcana.occult.multiblocksystem.rectangular;
+package com.minerarcana.occult.controllermultiblock.rectangular;
 
 import javax.annotation.Nullable;
 
