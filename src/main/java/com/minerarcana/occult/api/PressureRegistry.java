@@ -11,12 +11,12 @@ public class PressureRegistry {
         init();
     }
 
-    public static IForgeRegistry<Pressure> pressureTypes = RegistryManager.ACTIVE.getRegistry(Pressure.class);
+    public static IForgeRegistry<PressureType> pressureTypes = RegistryManager.ACTIVE.getRegistry(PressureType.class);
 
     private static void init() {
-        new RegistryBuilder<Pressure>()
+        new RegistryBuilder<PressureType>()
                 .setName(new ResourceLocation("occult", "pressure"))
-                .setType(Pressure.class)
+                .setType(PressureType.class)
                 .setDefaultKey(new ResourceLocation("occult", "empty"))
                 .create();
     }
