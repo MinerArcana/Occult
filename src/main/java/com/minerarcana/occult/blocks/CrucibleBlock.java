@@ -26,7 +26,4 @@ public class CrucibleBlock extends Block {
     }
 
 
-
-
-
 }
