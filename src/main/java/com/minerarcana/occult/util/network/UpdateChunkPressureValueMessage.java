@@ -1,7 +1,8 @@
 package com.minerarcana.occult.util.network;
 
+import com.minerarcana.occult.api.Pressure;
+import com.minerarcana.occult.api.PressureType;
 import com.minerarcana.occult.api.pressure.IPressure;
-import com.minerarcana.occult.api.pressure.PressureType;
 import com.minerarcana.occult.api.capabilities.ChunkPressureCapability;
 import com.minerarcana.occult.api.capabilities.PressureChunkStorage;
 import net.minecraft.network.PacketBuffer;
@@ -38,7 +39,7 @@ public class UpdateChunkPressureValueMessage {
 		return new UpdateChunkPressureValueMessage(
 				new ChunkPos(buffer.readInt(), buffer.readInt()),
 				buffer.readInt(),
-				new PressureType(buffer.readResourceLocation(),buffer.capacity(),buffer.arrayOffset(),buffer.readTextComponent()));
+				new PressureType(new Pressure()));
 	}
 
 	public static void encode(final UpdateChunkPressureValueMessage message, final PacketBuffer buffer) {

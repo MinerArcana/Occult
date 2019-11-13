@@ -3,16 +3,12 @@ package com.minerarcana.occult;
 import com.minerarcana.occult.api.capabilities.PressureChunkStorage;
 import com.minerarcana.occult.api.capabilities.handlers.SerializableCapabilityProvider;
 import com.minerarcana.occult.api.pressure.IPressure;
-import com.minerarcana.occult.api.pressure.PressureType;
 import com.minerarcana.occult.util.OccultConfigHandler;
 import com.minerarcana.occult.util.network.OccultNetwork;
-import com.minerarcana.occult.world.SpookyWorldType;
-import com.minerarcana.occult.world.chunk.SpookyChunkGeneratorType;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.IntNBT;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
@@ -35,7 +31,6 @@ import org.apache.logging.log4j.Logger;
 import javax.annotation.Nullable;
 
 import static com.minerarcana.occult.api.capabilities.ChunkPressureCapability.*;
-import static com.minerarcana.occult.events.OccultStaticHelperMethods.registerOccultBiomes;
 
 
 @Mod("occult")
@@ -45,8 +40,6 @@ public class Occult {
     public static Occult instance;
 
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
-    public static WorldType SpookyWorldType = new SpookyWorldType("occulttype");
-    private static SpookyChunkGeneratorType chunkGeneratorType = new SpookyChunkGeneratorType();
     public static final SimpleChannel network = OccultNetwork.getNetworkChannel();
     private static PressureType PressureType;
 
@@ -69,7 +62,6 @@ public class Occult {
     }
 
         private void setup(final FMLCommonSetupEvent event) {
-        registerOccultBiomes();
 
         CapabilityManager.INSTANCE.register(IPressure.class, new Capability.IStorage<IPressure>() {
             @Nullable
@@ -112,6 +104,5 @@ public class Occult {
         final Chunk chunk = event.getObject();
         final IPressure chunkPressure = new PressureChunkStorage(DEFAULT_CAPACITY, PressureType, chunk.getWorld(), chunk.getPos());
         event.addCapability(new ResourceLocation(MOD_ID, "chunkpressure"), new SerializableCapabilityProvider<>(CHUNKPRESSURECAPABILITY, DEFAULT_FACING, chunkPressure));
-
     }
 }

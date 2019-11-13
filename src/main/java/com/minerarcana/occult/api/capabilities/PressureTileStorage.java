@@ -6,7 +6,8 @@ import com.minerarcana.occult.api.PressureType;
 import com.minerarcana.occult.api.pressure.PressureStorage;
 import com.minerarcana.occult.util.network.UpdateChunkPressureValueMessage;
 import net.minecraft.nbt.IntNBT;
-import net.minecraft.util.math.ChunkPos;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.util.INBTSerializable;
@@ -14,17 +15,17 @@ import net.minecraftforge.fml.network.PacketDistributor;
 
 import java.util.Map;
 
-public class PressureChunkStorage extends PressureStorage implements INBTSerializable<IntNBT>{
+public class PressureTileStorage extends PressureStorage implements INBTSerializable<IntNBT>{
 
     public final Map<PressureType, Integer> pressures;
 
     private final World world;
-    private final ChunkPos chunkPos;
+    private final TileEntity tile;
 
-    public PressureChunkStorage(final int capacity, final PressureType type, final World world, final ChunkPos chunkPos) {
+    public PressureTileStorage(final int capacity, final PressureType type, final World world, final TileEntity tile) {
         super(capacity, type);
         this.world = world;
-        this.chunkPos = chunkPos;
+        this.tile = tile;
         pressure = capacity;
         this.pressures = Maps.newHashMap();
     }
@@ -35,8 +36,13 @@ public class PressureChunkStorage extends PressureStorage implements INBTSeriali
     }
 
     @Override
-    public ChunkPos getChunkPos() {
-        return chunkPos;
+    public TileEntity getTileEntity() {
+        return tile;
+    }
+
+    @Override
+    public BlockPos getTilePos() {
+        return tile.getPos();
     }
 
     @Override
@@ -66,16 +72,13 @@ public class PressureChunkStorage extends PressureStorage implements INBTSeriali
 
     protected void onPressureChanged() {
         final World world = getWorld();
-        final ChunkPos chunkPos = getChunkPos();
+        final BlockPos pos = getTilePos();
+        final Chunk chunk = world.getChunk(pos.getX(),  pos.getZ());
 
         if (world.isRemote) return;
-
-        if (world.getChunkProvider().isChunkLoaded(chunkPos)) {  // Don't load the chunk when reading from NBT
-            final Chunk chunk = world.getChunk(chunkPos.x, chunkPos.z);
-            chunk.markDirty();
-            Occult.network.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), new UpdateChunkPressureValueMessage(this));
+        if (world.getChunkProvider().isChunkLoaded(chunk.getPos())) {
+            final TileEntity tile = world.getTileEntity(pos);
+            tile.markDirty();
         }
     }
-
-
 }

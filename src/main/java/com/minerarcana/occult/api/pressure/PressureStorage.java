@@ -1,5 +1,9 @@
 package com.minerarcana.occult.api.pressure;
 
+import com.minerarcana.occult.api.PressureType;
+import net.minecraft.block.Block;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 
@@ -36,7 +40,6 @@ public class PressureStorage implements IPressure {
 
     }
 
-
     @Override
     public World getWorld() {
         return null;
@@ -48,8 +51,23 @@ public class PressureStorage implements IPressure {
     }
 
     @Override
+    public TileEntity getTileEntity() {
+        return null;
+    }
+
+    @Override
+    public BlockPos getTilePos() {
+        return null;
+    }
+
+    @Override
+    public Block getBlock() {
+        return null;
+    }
+
+    @Override
     public int addPressure(int added, PressureType type, boolean commit) {
-        if (!canAddPressure())
+        if (!canAcceptPressure())
             return 0;
 
         int pressureAdded = Math.min(capacity - pressure, Math.min(this.maxAdd, maxAdd));
@@ -60,7 +78,7 @@ public class PressureStorage implements IPressure {
 
     @Override
     public int removePressure(int removed, PressureType type, boolean commit) {
-        if (!canRemovePressure())
+        if (!canSendPressure())
             return 0;
 
         int pressureRemoved = Math.min(pressure, Math.min(this.maxRemove, maxRemove));
@@ -81,13 +99,13 @@ public class PressureStorage implements IPressure {
 
 
     @Override
-    public boolean canRemovePressure() {
+    public boolean canSendPressure() {
         return this.maxRemove > 0;
     }
 
 
     @Override
-    public boolean canAddPressure() {
+    public boolean canAcceptPressure() {
         return this.maxAdd > 0;
     }
 
