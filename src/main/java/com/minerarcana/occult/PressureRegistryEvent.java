@@ -1,6 +1,5 @@
 package com.minerarcana.occult;
 
-import com.minerarcana.occult.api.Pressure;
 import com.minerarcana.occult.api.PressureRegistry;
 import com.minerarcana.occult.api.pressuretypes.InfernalPressure;
 import com.minerarcana.occult.api.pressuretypes.NaturalPressure;

@@ -1,6 +1,5 @@
 package com.minerarcana.occult.util.network;
 
-import com.minerarcana.occult.api.Pressure;
 import com.minerarcana.occult.api.PressureType;
 import com.minerarcana.occult.api.pressure.IPressure;
 import com.minerarcana.occult.api.capabilities.ChunkPressureCapability;
