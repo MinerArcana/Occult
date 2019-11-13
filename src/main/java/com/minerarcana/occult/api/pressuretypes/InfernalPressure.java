@@ -4,8 +4,7 @@ import com.minerarcana.occult.api.PressureType;
 
 public class InfernalPressure extends PressureType {
 
-    public InfernalPressure(PressureType pressure) {
-        super(pressure, 12408320);
+    public InfernalPressure(){
+        super(12408320);
     }
-
 }

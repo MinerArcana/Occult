@@ -11,26 +11,14 @@ import javax.annotation.Nonnull;
 
 public class PressureType extends ForgeRegistryEntry<PressureType> {
 
-    private final ResourceLocation id;
     private final int colour;
 
-    public PressureType() {
-        this.id = getID();
-        this.colour = 0;
-    }
-
-    public PressureType(ResourceLocation id, int colour) {
-        this.id = id;
+    public PressureType(int colour) {
         this.colour = colour;
     }
 
     public int getPressureColour() {
         return colour;
     }
-
-    public ResourceLocation getID() {
-        return id;
-    }
-
 
 }

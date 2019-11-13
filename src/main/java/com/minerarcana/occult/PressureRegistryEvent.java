@@ -14,14 +14,13 @@ public class PressureRegistryEvent {
     private static final DeferredRegister<PressureType> PRESSURE = new DeferredRegister<>(PressureRegistry.pressureTypes, Occult.MOD_ID);
 
     public static final RegistryObject<PressureType> INFERNAL = PRESSURE.register("infernal",
-            () -> new PressureType());
+            InfernalPressure::new);
 
     public static final RegistryObject<PressureType> SPIRITUAL = PRESSURE.register("spiritual",
-            () -> new PressureType());
+            SpiritualPressure::new);
 
     public static final RegistryObject<PressureType> NATURAL = PRESSURE.register("natural",
-            () -> new PressureType());
-
+            NaturalPressure::new);
 
     public static void register(IEventBus eventBus) {
         PRESSURE.register(eventBus);
