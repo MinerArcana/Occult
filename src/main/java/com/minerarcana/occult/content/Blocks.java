@@ -1,5 +1,6 @@
 package com.minerarcana.occult.content;
 
+import com.minerarcana.occult.blocks.LionMetalBlock;
 import com.minerarcana.occult.util.itemgroup.OccultGroup;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -78,7 +79,7 @@ public class Blocks {
             .sound(SoundType.METAL)
             .hardnessAndResistance(5.0F, 6.0F)
     ));
-    public static final RegistryObject<Block> LIONMETALBLOCK = BLOCKS.register("lionmetalblock", () -> new Block(Block.Properties.create(Material.IRON)
+    public static final RegistryObject<Block> LIONMETALBLOCK = BLOCKS.register("lionmetalblock", () -> new LionMetalBlock(Block.Properties.create(Material.IRON)
             .harvestLevel(2)
             .sound(SoundType.METAL)
             .hardnessAndResistance(5.0F, 6.0F)

@@ -8,4 +8,5 @@ public class SacredSalt extends Item {
     }
 
 
+
 }

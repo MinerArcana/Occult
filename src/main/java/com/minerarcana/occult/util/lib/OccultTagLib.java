@@ -29,6 +29,9 @@ public class OccultTagLib {
         public static final Tag<Block> HIGHHEATSOURCE = tag("highheatsource");
         public static final Tag<Block> EXTREMELYHIGHHEATSOURCE = tag("extremelyhighheatsource");
 
+        //LionMetalFood
+        public static final Tag<Block> LIONMETALFOOD = tag("lionmetalfood");
+
         private static Tag<Block> tag(String name) {
             return new BlockTags.Wrapper(new ResourceLocation(MOD_ID, name));
         }

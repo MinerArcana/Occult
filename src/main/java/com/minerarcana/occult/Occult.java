@@ -4,7 +4,6 @@ import com.minerarcana.occult.api.capabilities.PressureChunkStorage;
 import com.minerarcana.occult.api.capabilities.handlers.SerializableCapabilityProvider;
 import com.minerarcana.occult.api.pressure.IPressure;
 import com.minerarcana.occult.api.pressure.PressureType;
-import com.minerarcana.occult.util.OccultConfigHandler;
 import com.minerarcana.occult.util.network.OccultNetwork;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.IntNBT;
@@ -20,11 +19,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 import org.apache.logging.log4j.LogManager;
@@ -51,15 +46,7 @@ public class Occult {
 
     public Occult() {
 
-        ModLoadingContext modLoadingContext = ModLoadingContext.get();
-        modLoadingContext.registerConfig(ModConfig.Type.CLIENT, OccultConfigHandler.CLIENT_SPEC);
-        modLoadingContext.registerConfig(ModConfig.Type.COMMON, OccultConfigHandler.COMMON_SPEC);
-
-
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -88,26 +75,6 @@ public class Occult {
                 ((PressureChunkStorage) instance).setPressure(((IntNBT) nbt).getInt(), PressureType);
             }
         }, () -> null);
-    }
-
-
-    private void doClientStuff(final FMLClientSetupEvent event) {
-
-
-    }
-
-    private void enqueueIMC(final InterModEnqueueEvent event) {
-
-    }
-
-    private void processIMC(final InterModProcessEvent event) {
-
-    }
-
-
-    @SubscribeEvent
-    public void onServerStarting(FMLServerStartingEvent event) {
-
     }
 
     @SubscribeEvent
