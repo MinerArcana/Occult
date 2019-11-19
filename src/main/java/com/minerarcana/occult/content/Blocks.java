@@ -1,30 +1,23 @@
 package com.minerarcana.occult.content;
 
-import com.minerarcana.occult.blocks.tileentity.*;
-import com.minerarcana.occult.items.SacredSalt;
 import com.minerarcana.occult.util.itemgroup.OccultGroup;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Objects;
 
 import static com.minerarcana.occult.Occult.MOD_ID;
-import static com.minerarcana.occult.util.lib.OccultNameLib.*;
 import static net.minecraft.block.material.Material.*;
 
-@Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class OccultRegistryEvents {
+
+public class Blocks {
 
     private static final DeferredRegister<Block> BLOCKS = new DeferredRegister<>(ForgeRegistries.BLOCKS, MOD_ID);
     private static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, MOD_ID);
@@ -154,29 +147,4 @@ public class OccultRegistryEvents {
         BLOCKS.register(bus);
         ITEMS.register(bus);
     }
-
-
-    //TileEntity Registry
-    //============================================================
-    @SubscribeEvent
-    public static void onRegisterTileEntity(final RegistryEvent.Register<TileEntityType<?>> event) {
-        event.getRegistry().register(TileEntityType.Builder.create(CrucibleTile::new, crucible).build(null).setRegistryName("crucible"));
-    }
-
-    //Item Registry
-    //============================================================
-    @SubscribeEvent
-    public static void onRegisterItems(final RegistryEvent.Register<Item> event) {
-        //Items
-        //=============================================================
-        event.getRegistry().register(new Item(new Item.Properties().group(OccultGroup.instance)).setRegistryName("amalgam"));
-        event.getRegistry().register(new SacredSalt(new Item.Properties().group(OccultGroup.instance)).setRegistryName("sacredsalt"));
-        event.getRegistry().register(new Item(new Item.Properties().group(OccultGroup.instance)).setRegistryName("lionmetal"));
-        event.getRegistry().register(new Item(new Item.Properties().group(OccultGroup.instance)).setRegistryName("chalk"));
-        event.getRegistry().register(new Item(new Item.Properties().group(OccultGroup.instance)).setRegistryName("mercury"));
-        event.getRegistry().register(new Item(new Item.Properties().group(OccultGroup.instance)).setRegistryName("sulphur"));
-        event.getRegistry().register(new Item(new Item.Properties().group(OccultGroup.instance)).setRegistryName("salt"));
-
-    }
-
 }
