@@ -10,8 +10,7 @@ public class SatedLionMetalIngot extends Item {
 
     @Override
     public int getBurnTime(ItemStack itemStack) {
-        return 10000;
+        return 1000;
     }
-
 
 }

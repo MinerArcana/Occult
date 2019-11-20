@@ -6,9 +6,9 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 
-public class SulphurBlock extends Block {
+public class SulphurPile extends Block {
 
-    public SulphurBlock(Properties properties) {
+    public SulphurPile(Properties properties) {
         super(properties);
     }
 
@@ -19,6 +19,7 @@ public class SulphurBlock extends Block {
 
     @Override
     public int getFlammability(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
-        return 0;
+        return 300;
     }
+
 }

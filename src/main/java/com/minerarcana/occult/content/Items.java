@@ -1,6 +1,8 @@
 package com.minerarcana.occult.content;
 
+import com.minerarcana.occult.items.Sulphur;
 import com.minerarcana.occult.util.itemgroup.OccultGroup;
+import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
@@ -54,7 +56,7 @@ public class Items {
                     .group(OccultGroup.instance)))
     );
     public static final RegistryObject<Item> SULPHUR = ITEMS.register("sulphur",
-            () -> new Item(Objects.requireNonNull(new Item.Properties()
+            () -> new Sulphur(DyeColor.YELLOW, Objects.requireNonNull(new Item.Properties()
                     .group(OccultGroup.instance)))
     );
     public static final RegistryObject<Item> CHALK = ITEMS.register("chalk",

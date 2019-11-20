@@ -1,6 +1,9 @@
 package com.minerarcana.occult.content;
 
 import com.minerarcana.occult.blocks.SaltBlock;
+import com.minerarcana.occult.blocks.BurnableBlockItem;
+import com.minerarcana.occult.blocks.SulphurBlock;
+import com.minerarcana.occult.blocks.SulphurPile;
 import com.minerarcana.occult.blocks.lionmetal.HungyLionMetalBlock;
 import com.minerarcana.occult.blocks.lionmetal.SatedLionMetalBlock;
 import com.minerarcana.occult.util.itemgroup.OccultGroup;
@@ -86,7 +89,12 @@ public class Blocks {
             .sound(SoundType.STONE)
             .hardnessAndResistance(1.0F, 1.0F)
     ));
-    public static final RegistryObject<Block> SULPHUR_BLOCK = BLOCKS.register("sulphur_block", () -> new Block(Block.Properties.create(ROCK)
+    public static final RegistryObject<Block> SULPHUR_BLOCK = BLOCKS.register("sulphur_block", () -> new SulphurBlock(Block.Properties.create(ROCK)
+            .harvestLevel(1)
+            .sound(SoundType.STONE)
+            .hardnessAndResistance(1.0F, 1.0F)
+    ));
+    public static final RegistryObject<Block> SULPHUR_PILE = BLOCKS.register("sulphur_pile", () -> new SulphurPile(Block.Properties.create(ROCK)
             .harvestLevel(1)
             .sound(SoundType.STONE)
             .hardnessAndResistance(1.0F, 1.0F)
@@ -169,7 +177,7 @@ public class Blocks {
                     .group(OccultGroup.instance))
     );
     public static final RegistryObject<Item> SULPHUR_BLOCK_ITEM = ITEMS.register("sulphur_block",
-            () -> new BlockItem(Objects.requireNonNull(SULPHUR_BLOCK.get()), new Item.Properties()
+            () -> new BurnableBlockItem(Objects.requireNonNull(SULPHUR_BLOCK.get()), new Item.Properties()
                     .group(OccultGroup.instance))
     );
 
@@ -180,7 +188,7 @@ public class Blocks {
                     .group(OccultGroup.instance))
     );
     public static final RegistryObject<Item> SATED_LIONMETAL_BLOCK_ITEM = ITEMS.register("sated_lionmetal_block",
-            () -> new BlockItem(Objects.requireNonNull(SATED_LIONMETAL_BLOCK.get()), new Item.Properties()
+            () -> new BurnableBlockItem(Objects.requireNonNull(SATED_LIONMETAL_BLOCK.get()), new Item.Properties()
                     .group(OccultGroup.instance))
     );
     public static final RegistryObject<Item> HUNGRY_LIONMETAL_BLOCK_ITEM = ITEMS.register("hungry_lionmetal_block",

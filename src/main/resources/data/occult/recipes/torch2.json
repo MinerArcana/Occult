@@ -10,15 +10,12 @@
     },
     "X": [
       {
-        "item": "occult:sulphur"
-      },
-      {
-        "item": "occult:sated_lionmetal_nugget"
+        "item": "occult:sated_lionmetal_ingot"
       }
     ]
   },
   "result": {
     "item": "minecraft:torch",
-    "count": 4
+    "count": 36
   }
 }
