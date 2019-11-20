@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "occult:sated_lionmetal_block"
+    }
+  ],
+  "result": {
+    "item": "occult:sated_lionmetal_ingot",
+    "count": 9
+  }
+}

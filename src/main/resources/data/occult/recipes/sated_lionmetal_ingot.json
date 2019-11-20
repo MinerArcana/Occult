@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "occult:sated_lionmetal_nugget"
+    }
+  },
+  "result": {
+    "item": "occult:sated_lionmetal_ingot"
+  }
+}

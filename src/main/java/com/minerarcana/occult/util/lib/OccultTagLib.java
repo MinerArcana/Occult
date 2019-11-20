@@ -33,6 +33,9 @@ public class OccultTagLib {
         //LionMetalFood
         public static final Tag<Block> LIONMETALFOOD = tag("lionmetalfood");
 
+        //SaltBlock ValidGround
+        public static final Tag<Block> SALTABLEGROUND = tag("saltableground");
+
         private static Tag<Block> tag(String name) {
             return new BlockTags.Wrapper(new ResourceLocation(MOD_ID, name));
         }

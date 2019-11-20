@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "occult:hungry_lionmetal_ingot"
+    }
+  ],
+  "result": {
+    "item": "occult:hungry_lionmetal_nugget",
+    "count": 9
+  }
+}

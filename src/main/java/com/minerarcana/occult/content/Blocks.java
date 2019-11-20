@@ -1,5 +1,6 @@
 package com.minerarcana.occult.content;
 
+import com.minerarcana.occult.blocks.SaltBlock;
 import com.minerarcana.occult.blocks.lionmetal.HungyLionMetalBlock;
 import com.minerarcana.occult.blocks.lionmetal.SatedLionMetalBlock;
 import com.minerarcana.occult.util.itemgroup.OccultGroup;
@@ -70,7 +71,7 @@ public class Blocks {
 
     //Crafted Blocks
     //-----------------------------------------------------------------------------------------------------
-    public static final RegistryObject<Block> SALT_BLOCK = BLOCKS.register("salt_block", () -> new Block(Block.Properties.create(ROCK)
+    public static final RegistryObject<Block> SALT_BLOCK = BLOCKS.register("salt_block", () -> new SaltBlock(Block.Properties.create(ROCK)
             .harvestLevel(1)
             .sound(SoundType.STONE)
             .hardnessAndResistance(1.0F, 1.0F)
