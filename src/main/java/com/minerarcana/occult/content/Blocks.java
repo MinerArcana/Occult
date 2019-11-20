@@ -1,6 +1,7 @@
 package com.minerarcana.occult.content;
 
-import com.minerarcana.occult.blocks.LionMetalBlock;
+import com.minerarcana.occult.blocks.lionmetal.HungyLionMetalBlock;
+import com.minerarcana.occult.blocks.lionmetal.SatedLionMetalBlock;
 import com.minerarcana.occult.util.itemgroup.OccultGroup;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -30,12 +31,12 @@ public class Blocks {
             .sound(SoundType.STONE)
             .hardnessAndResistance(2.0F, 2.0F)
     ));
-    public static final RegistryObject<Block> CINNABARORE = BLOCKS.register("cinnabarore", () -> new Block(Block.Properties.create(ROCK)
+    public static final RegistryObject<Block> CINNABAR_ORE = BLOCKS.register("cinnabar_ore", () -> new Block(Block.Properties.create(ROCK)
             .harvestLevel(3)
             .sound(SoundType.STONE)
             .hardnessAndResistance(5.0F, 6.0F)
     ));
-    public static final RegistryObject<Block> SALTORE = BLOCKS.register("saltore", () -> new Block(Block.Properties.create(ROCK)
+    public static final RegistryObject<Block> SALT_ORE = BLOCKS.register("salt_ore", () -> new Block(Block.Properties.create(ROCK)
             .harvestLevel(1)
             .sound(SoundType.STONE)
             .hardnessAndResistance(2.0F, 2.0F)
@@ -51,22 +52,22 @@ public class Blocks {
 
     //Crafted Blocks
     //-----------------------------------------------------------------------------------------------------
-    public static final RegistryObject<Block> SALTBLOCK = BLOCKS.register("saltblock", () -> new Block(Block.Properties.create(ROCK)
+    public static final RegistryObject<Block> SALT_BLOCK = BLOCKS.register("salt_block", () -> new Block(Block.Properties.create(ROCK)
             .harvestLevel(1)
             .sound(SoundType.STONE)
             .hardnessAndResistance(1.0F, 1.0F)
     ));
-    public static final RegistryObject<Block> CHALKBLOCK = BLOCKS.register("chalkblock", () -> new Block(Block.Properties.create(ROCK)
+    public static final RegistryObject<Block> CHALK_BLOCK = BLOCKS.register("chalk_block", () -> new Block(Block.Properties.create(ROCK)
             .harvestLevel(1)
             .sound(SoundType.STONE)
             .hardnessAndResistance(1.0F, 1.0F)
     ));
-    public static final RegistryObject<Block> SACREDSALTBLOCK = BLOCKS.register("sacredsaltblock", () -> new Block(Block.Properties.create(ROCK)
+    public static final RegistryObject<Block> SACRED_SALT_BLOCK = BLOCKS.register("sacred_salt_block", () -> new Block(Block.Properties.create(ROCK)
             .harvestLevel(1)
             .sound(SoundType.STONE)
             .hardnessAndResistance(1.0F, 1.0F)
     ));
-    public static final RegistryObject<Block> SULPHURBLOCK = BLOCKS.register("sulphurblock", () -> new Block(Block.Properties.create(ROCK)
+    public static final RegistryObject<Block> SULPHUR_BLOCK = BLOCKS.register("sulphur_block", () -> new Block(Block.Properties.create(ROCK)
             .harvestLevel(1)
             .sound(SoundType.STONE)
             .hardnessAndResistance(1.0F, 1.0F)
@@ -74,12 +75,17 @@ public class Blocks {
 
     // Metal Blocks
     //-----------------------------------------------------------------------------------------------------
-    public static final RegistryObject<Block> AMALGAMBLOCK = BLOCKS.register("amalgamblock", () -> new Block(Block.Properties.create(Material.IRON)
+    public static final RegistryObject<Block> AMALGAM_BLOCK = BLOCKS.register("amalgam_block", () -> new Block(Block.Properties.create(Material.IRON)
             .harvestLevel(2)
             .sound(SoundType.METAL)
             .hardnessAndResistance(5.0F, 6.0F)
     ));
-    public static final RegistryObject<Block> LIONMETALBLOCK = BLOCKS.register("lionmetalblock", () -> new LionMetalBlock(Block.Properties.create(Material.IRON)
+    public static final RegistryObject<Block> SATED_LIONMETAL_BLOCK = BLOCKS.register("sated_lionmetal_block", () -> new SatedLionMetalBlock(Block.Properties.create(Material.IRON)
+            .harvestLevel(2)
+            .sound(SoundType.METAL)
+            .hardnessAndResistance(5.0F, 6.0F)
+    ));
+    public static final RegistryObject<Block> HUNGRY_LIONMETAL_BLOCK = BLOCKS.register("hungry_lionmetal_block", () -> new HungyLionMetalBlock(Block.Properties.create(Material.IRON)
             .harvestLevel(2)
             .sound(SoundType.METAL)
             .hardnessAndResistance(5.0F, 6.0F)
@@ -95,15 +101,15 @@ public class Blocks {
     //World Generated Blocks
     //-----------------------------------------------------------------------------------------------------
     public static final RegistryObject<Item> AKJAR_ITEM = ITEMS.register("akjar",
-            () -> new BlockItem(Objects.requireNonNull(CRUCIBLE.get()), new Item.Properties()
+            () -> new BlockItem(Objects.requireNonNull(AKJAR.get()), new Item.Properties()
                     .group(OccultGroup.instance))
     );
-    public static final RegistryObject<Item> CINNABARORE_ITEM = ITEMS.register("cinnabarore",
-            () -> new BlockItem(Objects.requireNonNull(CRUCIBLE.get()), new Item.Properties()
+    public static final RegistryObject<Item> CINNABAR_ORE_ITEM = ITEMS.register("cinnabar_ore",
+            () -> new BlockItem(Objects.requireNonNull(CINNABAR_ORE.get()), new Item.Properties()
                     .group(OccultGroup.instance))
     );
-    public static final RegistryObject<Item> SALTORE_ITEM = ITEMS.register("saltore",
-            () -> new BlockItem(Objects.requireNonNull(CRUCIBLE.get()), new Item.Properties()
+    public static final RegistryObject<Item> SALT_ORE_ITEM = ITEMS.register("salt_ore",
+            () -> new BlockItem(Objects.requireNonNull(SALT_ORE.get()), new Item.Properties()
                     .group(OccultGroup.instance))
     );
 
@@ -116,31 +122,35 @@ public class Blocks {
 
     //Crafted
     //-----------------------------------------------------------------------------------------------------
-    public static final RegistryObject<Item> SALTBLOCK_ITEM = ITEMS.register("saltblock",
-            () -> new BlockItem(Objects.requireNonNull(SALTBLOCK.get()), new Item.Properties()
+    public static final RegistryObject<Item> SALT_BLOCK_ITEM = ITEMS.register("salt_block",
+            () -> new BlockItem(Objects.requireNonNull(SALT_BLOCK.get()), new Item.Properties()
                     .group(OccultGroup.instance))
     );
-    public static final RegistryObject<Item> CHALKBLOCK_ITEM = ITEMS.register("chalkblock",
-            () -> new BlockItem(Objects.requireNonNull(CHALKBLOCK.get()), new Item.Properties()
+    public static final RegistryObject<Item> CHALK_BLOCK_ITEM = ITEMS.register("chalk_block",
+            () -> new BlockItem(Objects.requireNonNull(CHALK_BLOCK.get()), new Item.Properties()
                     .group(OccultGroup.instance))
     );
-    public static final RegistryObject<Item> SACREDSALTBLOCK_ITEM = ITEMS.register("sacredsaltblock",
-            () -> new BlockItem(Objects.requireNonNull(SACREDSALTBLOCK.get()), new Item.Properties()
+    public static final RegistryObject<Item> SACRED_SALT_BLOCK_ITEM = ITEMS.register("sacred_salt_block",
+            () -> new BlockItem(Objects.requireNonNull(SACRED_SALT_BLOCK.get()), new Item.Properties()
                     .group(OccultGroup.instance))
     );
-    public static final RegistryObject<Item> SULPHURBLOCK_ITEM = ITEMS.register("sulphurblock",
-            () -> new BlockItem(Objects.requireNonNull(SULPHURBLOCK.get()), new Item.Properties()
+    public static final RegistryObject<Item> SULPHUR_BLOCK_ITEM = ITEMS.register("sulphur_block",
+            () -> new BlockItem(Objects.requireNonNull(SULPHUR_BLOCK.get()), new Item.Properties()
                     .group(OccultGroup.instance))
     );
 
     //Metals
     //-----------------------------------------------------------------------------------------------------
-    public static final RegistryObject<Item> AMALGAMBLOCK_ITEM = ITEMS.register("amalgamblock",
-            () -> new BlockItem(Objects.requireNonNull(AMALGAMBLOCK.get()), new Item.Properties()
+    public static final RegistryObject<Item> AMALGAM_BLOCK_ITEM = ITEMS.register("amalgam_block",
+            () -> new BlockItem(Objects.requireNonNull(AMALGAM_BLOCK.get()), new Item.Properties()
                     .group(OccultGroup.instance))
     );
-    public static final RegistryObject<Item> LIONMETALBLOCK_ITEM = ITEMS.register("lionmetalblock",
-            () -> new BlockItem(Objects.requireNonNull(LIONMETALBLOCK.get()), new Item.Properties()
+    public static final RegistryObject<Item> SATED_LIONMETAL_BLOCK_ITEM = ITEMS.register("sated_lionmetal_block",
+            () -> new BlockItem(Objects.requireNonNull(SATED_LIONMETAL_BLOCK.get()), new Item.Properties()
+                    .group(OccultGroup.instance))
+    );
+    public static final RegistryObject<Item> HUNGRY_LIONMETAL_BLOCK_ITEM = ITEMS.register("hungry_lionmetal_block",
+            () -> new BlockItem(Objects.requireNonNull(HUNGRY_LIONMETAL_BLOCK.get()), new Item.Properties()
                     .group(OccultGroup.instance))
     );
 

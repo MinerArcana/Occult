@@ -22,12 +22,12 @@ public class OccultTagLib {
     public static class Blocks {
 
         //Heat Sources
-        public static final Tag<Block> LOWHEATSOURCE = tag("lowheatsource");
-        public static final Tag<Block> MEDIUMLOWHEATSOURCE = tag("mediumlowheatsource");
-        public static final Tag<Block> MEDIUMHEATSOURCE = tag("mediumheatsource");
-        public static final Tag<Block> MEDIUMHIGHHEATSOURCE = tag("mediumhighheatsource");
-        public static final Tag<Block> HIGHHEATSOURCE = tag("highheatsource");
-        public static final Tag<Block> EXTREMELYHIGHHEATSOURCE = tag("extremelyhighheatsource");
+        public static final Tag<Block> LOWHEATSOURCE = tag("heat/lowheatsource");
+        public static final Tag<Block> MEDIUMLOWHEATSOURCE = tag("heat/mediumlowheatsource");
+        public static final Tag<Block> MEDIUMHEATSOURCE = tag("heat/mediumheatsource");
+        public static final Tag<Block> MEDIUMHIGHHEATSOURCE = tag("heat/mediumhighheatsource");
+        public static final Tag<Block> HIGHHEATSOURCE = tag("heat/highheatsource");
+        public static final Tag<Block> EXTREMELYHIGHHEATSOURCE = tag("heat/extremelyhighheatsource");
 
         //LionMetalFood
         public static final Tag<Block> LIONMETALFOOD = tag("lionmetalfood");
