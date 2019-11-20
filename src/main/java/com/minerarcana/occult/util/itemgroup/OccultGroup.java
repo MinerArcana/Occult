@@ -3,7 +3,7 @@ package com.minerarcana.occult.util.itemgroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
-import static com.minerarcana.occult.util.lib.OccultNameLib.occult_icon;
+import static com.minerarcana.occult.content.Items.SATED_LIONMETAL_INGOT;
 
 public class OccultGroup extends ItemGroup
 {
@@ -18,7 +18,7 @@ public class OccultGroup extends ItemGroup
     @Override
     public ItemStack createIcon()
     {
-        return new ItemStack(occult_icon);
+        return new ItemStack(SATED_LIONMETAL_INGOT.get());
     }
 
 

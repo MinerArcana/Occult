@@ -4,6 +4,9 @@ import com.minerarcana.occult.api.capabilities.PressureChunkStorage;
 import com.minerarcana.occult.api.capabilities.handlers.SerializableCapabilityProvider;
 import com.minerarcana.occult.api.pressure.IPressure;
 import com.minerarcana.occult.api.pressure.PressureType;
+import com.minerarcana.occult.content.Blocks;
+import com.minerarcana.occult.content.Items;
+import com.minerarcana.occult.content.TileEntity;
 import com.minerarcana.occult.util.network.OccultNetwork;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.IntNBT;
@@ -15,10 +18,9 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
@@ -28,8 +30,8 @@ import org.apache.logging.log4j.Logger;
 import javax.annotation.Nullable;
 
 import static com.minerarcana.occult.api.capabilities.ChunkPressureCapability.*;
-import static com.minerarcana.occult.content.Blocks.CINNABARORE;
-import static com.minerarcana.occult.content.Blocks.SALTORE;
+import static com.minerarcana.occult.content.Blocks.CINNABAR_ORE;
+import static com.minerarcana.occult.content.Blocks.SALT_ORE;
 import static com.minerarcana.occult.util.OccultStaticHelperMethods.*;
 
 
@@ -46,6 +48,12 @@ public class Occult {
 
     public Occult() {
 
+        IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        TileEntity.register(modBus);
+        Blocks.register(modBus);
+        Items.register(modBus);
+
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 
         MinecraftForge.EVENT_BUS.register(this);
@@ -55,10 +63,10 @@ public class Occult {
 
         private void setup(final FMLCommonSetupEvent event) {
             //Overworld Features
-            registerOreOverworld(CINNABARORE.get(),1, 1, 0, 24);
+            registerOreOverworld(CINNABAR_ORE.get(),1, 1, 0, 24);
 
             //SpecificBiomeFeature
-            registerOreSpecificBiome(SALTORE.get(), Biome.Category.OCEAN,12, 20, 0, 80);
+            registerOreSpecificBiome(SALT_ORE.get(), Biome.Category.OCEAN,12, 20, 0, 80);
 
 
             CapabilityManager.INSTANCE.register(IPressure.class, new Capability.IStorage<IPressure>() {

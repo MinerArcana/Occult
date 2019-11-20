@@ -1,8 +1,35 @@
 {
-  "item.occult.deepgrass":"Deep Grass",
-  "itemGroup.occult":"Occult",
+  "block.occult.ajkar":"Deep Grass",
+  "block.occult.cinnabar_ore":"Cinnabar Ore",
+  "block.occult.salt_ore":"Salt Ore",
+  "block.occult.crucible":"Crucible",
+  "block.occult.salt_block":"Salt Block",
+  "block.occult.chalk_block":"Chalk Block",
+  "block.occult.sacred_salt_block":"Sacred Salt Block",
+  "block.occult.sulphur_block":"Sulphur Block",
+  "block.occult.amalgam_block":"Amalgam Block",
+  "block.occult.sated_lionmetal_block":"LionMetal Block",
+  "block.occult.hungry_lionmetal_block":"LionMetal Block",
 
-  "biome.occult.spookyforest":"Spooky Forest"
+  "item.occult.amalgam_nugget":"Amalgam Nugget",
+  "item.occult.amalgam_ingot":"Amalgam Ingot",
+  "item.occult.hungry_lionmetal_nugget":"LionMetal Nugget",
+  "item.occult.hungry_lionmetal_ingot":"LionMetal Ingot",
+  "item.occult.sated_lionmetal_nugget":"LionMetal Nugget",
+  "item.occult.sated_lionmetal_ingot":"LionMetal Ingot",
 
+  "item.occult.sacred_salt":"Sacred Salt",
+  "item.occult.salt":"Salt",
+  "item.occult.chalk":"Chalk",
+  "item.occult.sulphur":"Sulphur",
+  "item.occult.mercury":"Mercury",
+
+
+
+
+
+
+
+  "itemGroup.occult":"Occult"
 }
 

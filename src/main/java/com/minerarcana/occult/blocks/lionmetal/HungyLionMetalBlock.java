@@ -24,7 +24,7 @@ public class HungyLionMetalBlock extends Block {
     private int fireConsumed = 0;
 
     public HungyLionMetalBlock(Properties properties) {
-        super(properties.lightValue(0));
+        super(properties.lightValue(0).tickRandomly());
     }
 
     @Override

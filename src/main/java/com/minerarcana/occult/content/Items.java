@@ -31,13 +31,17 @@ public class Items {
             () -> new Item(Objects.requireNonNull(new Item.Properties()
                     .group(OccultGroup.instance)))
     );
-    public static final RegistryObject<Item> LIONMETAL_INGOT = ITEMS.register("lionmetal_ingot",
+    public static final RegistryObject<Item> SATED_LIONMETAL_INGOT = ITEMS.register("sated_lionmetal_ingot",
+            () -> new Item(Objects.requireNonNull(new Item.Properties()
+                    .group(OccultGroup.instance)))
+    );
+    public static final RegistryObject<Item> HUNGRY_LIONMETAL_INGOT = ITEMS.register("hungry_lionmetal_ingot",
             () -> new Item(Objects.requireNonNull(new Item.Properties()
                     .group(OccultGroup.instance)))
     );
     //Crafted Items
     //-----------------------------------------------------------------------------------------------------
-    public static final RegistryObject<Item> SACREDSALT = ITEMS.register("sacredsalt",
+    public static final RegistryObject<Item> SACRED_SALT = ITEMS.register("sacred_salt",
             () -> new Item(Objects.requireNonNull(new Item.Properties()
                     .group(OccultGroup.instance)))
     );
@@ -49,7 +53,7 @@ public class Items {
             () -> new Item(Objects.requireNonNull(new Item.Properties()
                     .group(OccultGroup.instance)))
     );
-    public static final RegistryObject<Item> SULPHUR = ITEMS.register("sulphut",
+    public static final RegistryObject<Item> SULPHUR = ITEMS.register("sulphur",
             () -> new Item(Objects.requireNonNull(new Item.Properties()
                     .group(OccultGroup.instance)))
     );

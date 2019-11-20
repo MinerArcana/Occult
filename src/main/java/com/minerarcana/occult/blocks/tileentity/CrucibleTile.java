@@ -39,9 +39,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 
-
-import static com.minerarcana.occult.util.lib.OccultNameLib.*;
-
+import static com.minerarcana.occult.content.TileEntity.CRUCIBLE_TYPE;
 
 public class CrucibleTile extends TileEntity implements ITickableTileEntity, IRecipeHolder, IRecipeHelperPopulator, ISidedInventory {
 
@@ -99,7 +97,7 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity, IRe
     private final IRecipeType<CrucibleRecipes> recipeType;
 
     public CrucibleTile() {
-        super(CRUCIBLETILE);
+        super(CRUCIBLE_TYPE.get());
         recipeType = OccultRecipeTypes.CRUCIBLETYPE;
     }
 

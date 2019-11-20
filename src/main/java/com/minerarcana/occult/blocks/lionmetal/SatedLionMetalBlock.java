@@ -23,7 +23,7 @@ public class SatedLionMetalBlock extends Block {
     private BlockPos firePos;
 
     public SatedLionMetalBlock(Properties properties) {
-        super(properties.lightValue(20));
+        super(properties.lightValue(20).tickRandomly());
     }
 
     @Override
@@ -38,7 +38,8 @@ public class SatedLionMetalBlock extends Block {
     @Override
     public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         tooltip.add(new TranslationTextComponent("Satiated", 2));
-        tooltip.add(new TranslationTextComponent("Satiated", 2));
+        tooltip.add(new TranslationTextComponent("Creates Fires on Flammable Blocks While In World", 2));
+        tooltip.add(new TranslationTextComponent("Add RedStone Signal to Disable", 2));
     }
 
     public void lionMetalFireManager(World world, BlockPos pos, Direction direction) {
@@ -56,6 +57,7 @@ public class SatedLionMetalBlock extends Block {
         }
     }
 
+    @Deprecated
     private BlockPos firePos(World world, BlockPos pos) {
         BlockPos up = pos.up();
         BlockPos down = pos.down();

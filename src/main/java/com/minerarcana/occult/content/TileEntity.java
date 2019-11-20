@@ -15,7 +15,7 @@ public class TileEntity {
     private static final DeferredRegister<TileEntityType<?>> TILE_TYPE =
             new DeferredRegister<>(ForgeRegistries.TILE_ENTITIES, MOD_ID);
 
-    public static final RegistryObject<TileEntityType<?>> SOCKET_TYPE = TILE_TYPE.register("crucible",
+    public static final RegistryObject<TileEntityType<?>> CRUCIBLE_TYPE = TILE_TYPE.register("crucible",
             () -> TileEntityType.Builder.create(CrucibleTile::new, CRUCIBLE.get()).build(null));
 
 
