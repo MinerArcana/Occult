@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "occult:blocks/bleachedplanks3",
-    "top": "occult:blocks/bleachedplanks3",
-    "side": "occult:blocks/bleachedplanks3"
-  }
-}

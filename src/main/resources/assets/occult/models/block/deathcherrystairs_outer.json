@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "occult:blocks/deathcherryplanks",
-    "top": "occult:blocks/deathcherryplanks",
-    "side": "occult:blocks/deathcherryplanks"
-  }
-}

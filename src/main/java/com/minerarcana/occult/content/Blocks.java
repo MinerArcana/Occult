@@ -26,11 +26,29 @@ public class Blocks {
 
     //World Generated Blocks
     //-----------------------------------------------------------------------------------------------------
+    //Akjar Variants
     public static final RegistryObject<Block> AKJAR = BLOCKS.register("akjar", () -> new Block(Block.Properties.create(ROCK)
             .harvestLevel(1)
             .sound(SoundType.STONE)
             .hardnessAndResistance(2.0F, 2.0F)
     ));
+    public static final RegistryObject<Block> AKJAR_BRICKS = BLOCKS.register("akjar_bricks", () -> new Block(Block.Properties.create(ROCK)
+            .harvestLevel(1)
+            .sound(SoundType.STONE)
+            .hardnessAndResistance(2.0F, 2.0F)
+    ));
+    public static final RegistryObject<Block> BEATING_AKJAR = BLOCKS.register("beating_akjar", () -> new Block(Block.Properties.create(ROCK)
+            .harvestLevel(1)
+            .sound(SoundType.STONE)
+            .hardnessAndResistance(2.0F, 2.0F)
+    ));
+    public static final RegistryObject<Block> BEATING_AKJAR_BRICKS = BLOCKS.register("beating_akjar_bricks", () -> new Block(Block.Properties.create(ROCK)
+            .harvestLevel(1)
+            .sound(SoundType.STONE)
+            .hardnessAndResistance(2.0F, 2.0F)
+    ));
+
+    //Ores
     public static final RegistryObject<Block> CINNABAR_ORE = BLOCKS.register("cinnabar_ore", () -> new Block(Block.Properties.create(ROCK)
             .harvestLevel(3)
             .sound(SoundType.STONE)
@@ -100,10 +118,25 @@ public class Blocks {
 
     //World Generated Blocks
     //-----------------------------------------------------------------------------------------------------
+    //Akjar Variants
     public static final RegistryObject<Item> AKJAR_ITEM = ITEMS.register("akjar",
             () -> new BlockItem(Objects.requireNonNull(AKJAR.get()), new Item.Properties()
                     .group(OccultGroup.instance))
     );
+    public static final RegistryObject<Item> AKJAR_BRICKS_ITEM = ITEMS.register("akjar_bricks",
+            () -> new BlockItem(Objects.requireNonNull(AKJAR_BRICKS.get()), new Item.Properties()
+                    .group(OccultGroup.instance))
+    );
+    public static final RegistryObject<Item> BEATING_AKJAR_ITEM = ITEMS.register("beating_akjar",
+            () -> new BlockItem(Objects.requireNonNull(BEATING_AKJAR.get()), new Item.Properties()
+                    .group(OccultGroup.instance))
+    );
+    public static final RegistryObject<Item> BEATING_AKJAR_BRICKS_ITEM = ITEMS.register("beating_akjar_bricks",
+            () -> new BlockItem(Objects.requireNonNull(BEATING_AKJAR_BRICKS.get()), new Item.Properties()
+                    .group(OccultGroup.instance))
+    );
+
+    //Ores
     public static final RegistryObject<Item> CINNABAR_ORE_ITEM = ITEMS.register("cinnabar_ore",
             () -> new BlockItem(Objects.requireNonNull(CINNABAR_ORE.get()), new Item.Properties()
                     .group(OccultGroup.instance))

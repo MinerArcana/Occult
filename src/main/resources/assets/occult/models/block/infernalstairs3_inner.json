@@ -1,8 +1,0 @@
-{
-  "parent": "block/inner_stairs",
-  "textures": {
-    "bottom": "occult:blocks/infernalplanks3",
-    "top": "occult:blocks/infernalplanks3",
-    "side": "occult:blocks/infernalplanks3"
-  }
-}
