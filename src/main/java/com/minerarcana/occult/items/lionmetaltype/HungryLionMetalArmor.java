@@ -30,13 +30,13 @@ public class HungryLionMetalArmor implements IArmorMaterial {
     public int getDamageReductionAmount(EquipmentSlotType slotIn) {
         int damageReduction = 0;
         if (slotIn.equals(EquipmentSlotType.HEAD)) {
-            damageReduction = 200;
+            damageReduction = 2;
         } else if (slotIn.equals(EquipmentSlotType.CHEST)) {
-            damageReduction = 200;
+            damageReduction = 2;
         } else if (slotIn.equals(EquipmentSlotType.LEGS)) {
-            damageReduction = 200;
+            damageReduction = 2;
         } else if (slotIn.equals(EquipmentSlotType.FEET)) {
-            damageReduction = 200;
+            damageReduction = 2;
         }
         return damageReduction;
     }

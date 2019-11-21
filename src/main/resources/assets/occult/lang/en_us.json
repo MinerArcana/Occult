@@ -1,8 +1,8 @@
 {
-  "block.occult.ajkar":"Akjar",
-  "block.occult.beating_ajkar":"Beating Akjar",
-  "block.occult.ajkar_bricks":"Akjar Bricks",
-  "block.occult.beating_ajkar_bricks":"Beating Akjar Bricks",
+  "block.occult.akjar":"Akjar",
+  "block.occult.beating_akjar":"Beating Akjar",
+  "block.occult.akjar_bricks":"Akjar Bricks",
+  "block.occult.beating_akjar_bricks":"Beating Akjar Bricks",
   "block.occult.cinnabar_ore":"Cinnabar Ore",
   "block.occult.salt_ore":"Salt Ore",
   "block.occult.crucible":"Crucible",
@@ -21,12 +21,22 @@
   "item.occult.sated_lionmetal_nugget":"Lionmetal Nugget",
   "item.occult.sated_lionmetal_ingot":"Lionmetal Ingot",
 
+  "item.occult.sated_lionmetal_helm":"Lionmetal Helm",
+  "item.occult.sated_lionmetal_chest":"Lionmetal Chest",
+  "item.occult.sated_lionmetal_legs":"Lionmetal Legs",
+  "item.occult.sated_lionmetal_feet":"Lionmetal Feet",
+
+  "item.occult.hungry_lionmetal_helm":"Lionmetal Helm",
+  "item.occult.hungry_lionmetal_chest":"Lionmetal Chest",
+  "item.occult.hungry_lionmetal_legs":"Lionmetal Legs",
+  "item.occult.hungry_lionmetal_feet":"Lionmetal Feet",
+
   "item.occult.sacred_salt":"Sacred Salt",
   "item.occult.salt":"Salt",
   "item.occult.chalk":"Chalk",
   "item.occult.sulphur":"Sulphur",
   "item.occult.mercury":"Mercury",
-
+  "item.occult.pearlash":"Pearlash",
 
 
 
