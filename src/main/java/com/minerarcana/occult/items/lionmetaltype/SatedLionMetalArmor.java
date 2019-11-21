@@ -58,7 +58,7 @@ public class SatedLionMetalArmor implements IArmorMaterial {
 
     @Override
     public String getName() {
-        return MOD_ID + ":" + this.getName();
+        return MOD_ID + ":sated_lionmetal_material";
     }
 
     @Override
