@@ -1,9 +1,7 @@
 package com.minerarcana.occult.content;
 
-import com.minerarcana.occult.blocks.SaltBlock;
-import com.minerarcana.occult.blocks.BurnableBlockItem;
-import com.minerarcana.occult.blocks.SulphurBlock;
-import com.minerarcana.occult.blocks.SulphurPile;
+import com.minerarcana.occult.blocks.*;
+import com.minerarcana.occult.items.BurnableBlockItem;
 import com.minerarcana.occult.blocks.lionmetal.HungyLionMetalBlock;
 import com.minerarcana.occult.blocks.lionmetal.SatedLionMetalBlock;
 import com.minerarcana.occult.util.itemgroup.OccultGroup;
@@ -113,6 +111,19 @@ public class Blocks {
             .hardnessAndResistance(5.0F, 6.0F)
     ));
     public static final RegistryObject<Block> HUNGRY_LIONMETAL_BLOCK = BLOCKS.register("hungry_lionmetal_block", () -> new HungyLionMetalBlock(Block.Properties.create(Material.IRON)
+            .harvestLevel(2)
+            .sound(SoundType.METAL)
+            .hardnessAndResistance(5.0F, 6.0F)
+    ));
+
+    // Bar Blocks
+    //-----------------------------------------------------------------------------------------------------
+    public static final RegistryObject<Block> HUNGRY_LIONMETAL_BARS = BLOCKS.register("hungry_lionmetal_bars", () -> new HungryLionMetalBars(Block.Properties.create(Material.IRON)
+            .harvestLevel(2)
+            .sound(SoundType.METAL)
+            .hardnessAndResistance(5.0F, 6.0F)
+    ));
+    public static final RegistryObject<Block> SATED_LIONMETAL_BARS = BLOCKS.register("sated_lionmetal_bars", () -> new SatedLionMetalBars(Block.Properties.create(Material.IRON)
             .harvestLevel(2)
             .sound(SoundType.METAL)
             .hardnessAndResistance(5.0F, 6.0F)

@@ -23,7 +23,11 @@ public class Items {
             () -> new Item(Objects.requireNonNull(new Item.Properties()
                     .group(OccultGroup.instance)))
     );
-    public static final RegistryObject<Item> LIONMETAL_NUGGET = ITEMS.register("lionmetal_nugget",
+    public static final RegistryObject<Item> HUNGRY_LIONMETAL_NUGGET = ITEMS.register("hungry_lionmetal_nugget",
+            () -> new Item(Objects.requireNonNull(new Item.Properties()
+                    .group(OccultGroup.instance)))
+    );
+    public static final RegistryObject<Item> SATED_LIONMETAL_NUGGET = ITEMS.register("sated_lionmetal_nugget",
             () -> new Item(Objects.requireNonNull(new Item.Properties()
                     .group(OccultGroup.instance)))
     );

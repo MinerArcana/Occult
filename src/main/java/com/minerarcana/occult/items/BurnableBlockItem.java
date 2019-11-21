@@ -1,4 +1,4 @@
-package com.minerarcana.occult.blocks;
+package com.minerarcana.occult.items;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
@@ -15,9 +15,6 @@ public class BurnableBlockItem extends BlockItem {
         int burnTime = 0;
         if(this.toString().equals("sulphur_block")) {
             burnTime = 900;
-        }
-        else if(this.toString().equals("sated_lionmetal_block")) {
-            burnTime = 10000;
         }
         return burnTime;
     }

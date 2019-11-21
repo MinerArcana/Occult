@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "occult:blocks/sacred_salt"
+        "layer0": "occult:items/sacred_salt"
     }
 }
