@@ -5,7 +5,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -16,7 +15,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
-import static com.minerarcana.occult.content.Blocks.SATED_LIONMETAL_BLOCK;
+import static com.minerarcana.occult.content.OccultBlocks.SATED_LIONMETAL_BLOCK;
 import static com.minerarcana.occult.util.lib.OccultTagLib.Blocks.LIONMETALFOOD;
 
 public class HungyLionMetalBlock extends Block {

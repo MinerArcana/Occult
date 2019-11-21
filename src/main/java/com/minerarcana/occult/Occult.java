@@ -4,9 +4,10 @@ import com.minerarcana.occult.api.capabilities.PressureChunkStorage;
 import com.minerarcana.occult.api.capabilities.handlers.SerializableCapabilityProvider;
 import com.minerarcana.occult.api.pressure.IPressure;
 import com.minerarcana.occult.api.pressure.PressureType;
-import com.minerarcana.occult.content.Blocks;
-import com.minerarcana.occult.content.Items;
-import com.minerarcana.occult.content.TileEntity;
+import com.minerarcana.occult.content.OccultBlocks;
+import com.minerarcana.occult.content.OccultFluids;
+import com.minerarcana.occult.content.OccultItems;
+import com.minerarcana.occult.content.OccultTileEntity;
 import com.minerarcana.occult.util.network.OccultNetwork;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.IntNBT;
@@ -30,8 +31,8 @@ import org.apache.logging.log4j.Logger;
 import javax.annotation.Nullable;
 
 import static com.minerarcana.occult.api.capabilities.ChunkPressureCapability.*;
-import static com.minerarcana.occult.content.Blocks.CINNABAR_ORE;
-import static com.minerarcana.occult.content.Blocks.SALT_ORE;
+import static com.minerarcana.occult.content.OccultBlocks.CINNABAR_ORE;
+import static com.minerarcana.occult.content.OccultBlocks.SALT_ORE;
 import static com.minerarcana.occult.util.OccultStaticHelperMethods.*;
 
 
@@ -50,10 +51,10 @@ public class Occult {
 
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        TileEntity.register(modBus);
-        Blocks.register(modBus);
-        Items.register(modBus);
-
+        OccultTileEntity.register(modBus);
+        OccultBlocks.register(modBus);
+        OccultItems.register(modBus);
+        OccultFluids.register(modBus);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 
         MinecraftForge.EVENT_BUS.register(this);

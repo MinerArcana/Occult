@@ -2,6 +2,7 @@ package com.minerarcana.occult.content;
 
 import com.minerarcana.occult.items.Sulphur;
 import com.minerarcana.occult.util.itemgroup.OccultGroup;
+import net.minecraft.item.BucketItem;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -12,8 +13,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.Objects;
 
 import static com.minerarcana.occult.Occult.MOD_ID;
+import static com.minerarcana.occult.content.OccultFluids.QUICKSILVER_FLUID;
 
-public class Items {
+public class OccultItems {
 
     private static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, MOD_ID);
 
@@ -65,6 +67,16 @@ public class Items {
     );
     public static final RegistryObject<Item> CHALK = ITEMS.register("chalk",
             () -> new Item(Objects.requireNonNull(new Item.Properties()
+                    .group(OccultGroup.instance)))
+    );
+    public static final RegistryObject<Item> PEALRASH = ITEMS.register("pearlash",
+            () -> new Item(Objects.requireNonNull(new Item.Properties()
+                    .group(OccultGroup.instance)))
+    );
+
+    //Buckets
+    public static final RegistryObject<Item> QUICKSILVER_BUCKET = ITEMS.register("quicksilver_bucket",
+            () -> new BucketItem(QUICKSILVER_FLUID, Objects.requireNonNull(new Item.Properties()
                     .group(OccultGroup.instance)))
     );
 

@@ -8,9 +8,9 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import static com.minerarcana.occult.Occult.MOD_ID;
-import static com.minerarcana.occult.content.Blocks.CRUCIBLE;
+import static com.minerarcana.occult.content.OccultBlocks.CRUCIBLE;
 
-public class TileEntity {
+public class OccultTileEntity {
 
     private static final DeferredRegister<TileEntityType<?>> TILE_TYPE =
             new DeferredRegister<>(ForgeRegistries.TILE_ENTITIES, MOD_ID);

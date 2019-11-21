@@ -21,7 +21,7 @@ import static com.minerarcana.occult.Occult.MOD_ID;
 import static net.minecraft.block.material.Material.*;
 
 
-public class Blocks {
+public class OccultBlocks {
 
     private static final DeferredRegister<Block> BLOCKS = new DeferredRegister<>(ForgeRegistries.BLOCKS, MOD_ID);
     private static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, MOD_ID);
