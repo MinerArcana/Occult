@@ -7,10 +7,9 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 
 import static com.minerarcana.occult.Occult.MOD_ID;
-import static com.minerarcana.occult.content.OccultItems.SATED_LIONMETAL_INGOT;
+import static com.minerarcana.occult.content.OccultItems.HUNGRY_LIONMETAL_INGOT;
 
-public class SatedLionMetalArmor implements IArmorMaterial {
-
+public class HungryLionMetalArmor implements IArmorMaterial {
 
     @Override
     public int getDurability(EquipmentSlotType slotIn) {
@@ -44,17 +43,17 @@ public class SatedLionMetalArmor implements IArmorMaterial {
 
     @Override
     public int getEnchantability() {
-        return 50;
+        return 10;
     }
 
     @Override
     public SoundEvent getSoundEvent() {
-        return SoundEvents.ITEM_ARMOR_EQUIP_GOLD;
+        return SoundEvents.ITEM_ARMOR_EQUIP_IRON;
     }
 
     @Override
     public Ingredient getRepairMaterial() {
-        return Ingredient.fromItems(SATED_LIONMETAL_INGOT.get());
+        return Ingredient.fromItems(HUNGRY_LIONMETAL_INGOT.get());
     }
 
     @Override
