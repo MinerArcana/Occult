@@ -14,6 +14,8 @@ public class OccultTagLib {
     public static class Items {
         public static final Tag<Item> CRUCIBLE = tag("crucible");
         public static final Tag<Item> AKJAR = tag("akjar");
+        public static final Tag<Item> HUNGRYTOOLS = tag("hungrytools");
+        public static final Tag<Item> SATEDTOOLS = tag("satedtools");
 
         private static Tag<Item> tag(String name) {
             return new ItemTags.Wrapper(new ResourceLocation(MOD_ID, name));
