@@ -31,6 +31,17 @@
   "item.occult.hungry_lionmetal_legs":"Lionmetal Legs",
   "item.occult.hungry_lionmetal_feet":"Lionmetal Feet",
 
+  "item.occult.hungry_lionmetal_sword":"Lionmetal Sword",
+  "item.occult.hungry_lionmetal_hatchet":"Lionmetal Hatchet",
+  "item.occult.hungry_lionmetal_shovel":"Lionmetal Shovel",
+  "item.occult.hungry_lionmetal_pickaxe":"Lionmetal Pickaxe",
+
+  "item.occult.sated_lionmetal_sword":"Lionmetal Sword",
+  "item.occult.sated_lionmetal_hatchet":"Lionmetal Hatchet",
+  "item.occult.sated_lionmetal_shovel":"Lionmetal Shovel",
+  "item.occult.sated_lionmetal_pickaxe":"Lionmetal Pickaxe",
+
+
   "item.occult.sacred_salt":"Sacred Salt",
   "item.occult.salt":"Salt",
   "item.occult.chalk":"Chalk",

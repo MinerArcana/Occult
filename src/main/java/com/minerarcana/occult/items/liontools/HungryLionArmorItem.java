@@ -1,11 +1,12 @@
-package com.minerarcana.occult.items.lionmetaltype;
+package com.minerarcana.occult.items.liontools;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
-import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -16,11 +17,13 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 import static com.minerarcana.occult.content.OccultItems.*;
+import static com.minerarcana.occult.items.liontools.OccultToolTypes.hungrylionarmortype;
+import static com.minerarcana.occult.util.lib.OccultTagLib.Blocks.LIONMETALFOOD;
 
-public class HungryLionMetalArmorItem extends ArmorItem {
+public class HungryLionArmorItem extends ArmorItem {
 
-    public HungryLionMetalArmorItem(EquipmentSlotType slot, Properties builder) {
-        super(new HungryLionMetalArmor(), slot, builder);
+    public HungryLionArmorItem(EquipmentSlotType slot, Properties builder) {
+        super(hungrylionarmortype, slot, builder);
     }
 
     @Override
@@ -35,7 +38,8 @@ public class HungryLionMetalArmorItem extends ArmorItem {
             for(int y = -distance; y < distance; ++y){
                 for(int z = -distance; z < distance; ++z){
                     BlockPos targetPos = pos.add(x,y,z);
-                    if(world.getBlockState(targetPos) == Blocks.FIRE.getDefaultState()){
+                    Block targetblock = world.getBlockState(targetPos).getBlock();
+                    if(targetblock.isIn(LIONMETALFOOD)){
                         world.setBlockState(targetPos, Blocks.AIR.getDefaultState());
                     }
                 }
@@ -55,7 +59,7 @@ public class HungryLionMetalArmorItem extends ArmorItem {
             return true;
         }
         else{ return false;}
-    }
+}
 
 
 

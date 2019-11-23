@@ -7,15 +7,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import static com.minerarcana.occult.api.DamageSources.SATED_FIRE;
+import static com.minerarcana.occult.content.OccultBlocks.SATED_LIONMETAL_BARS;
 
-public class SatedLionMetalBars extends PaneBlock {
+public class OccultBars extends PaneBlock {
 
-    public SatedLionMetalBars(Properties builder) {
-        super(builder.lightValue(12));
+    public OccultBars(Properties builder) {
+        super(builder);
     }
 
     @Override
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entity) {
-        entity.attackEntityFrom(SATED_FIRE, 3);
+        if(this.equals(SATED_LIONMETAL_BARS.get())) {
+            entity.attackEntityFrom(SATED_FIRE, 3);
+        }
     }
 }

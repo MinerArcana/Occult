@@ -108,7 +108,7 @@ public class OccultBlocks {
     public static final RegistryObject<Block> SATED_LIONMETAL_BLOCK = BLOCKS.register("sated_lionmetal_block", () -> new SatedLionMetalBlock(Block.Properties.create(Material.IRON)
             .harvestLevel(2)
             .sound(SoundType.METAL)
-            .hardnessAndResistance(5.0F, 6.0F)
+            .hardnessAndResistance(5.0F, 6.0F).lightValue(25)
     ));
     public static final RegistryObject<Block> HUNGRY_LIONMETAL_BLOCK = BLOCKS.register("hungry_lionmetal_block", () -> new HungyLionMetalBlock(Block.Properties.create(Material.IRON)
             .harvestLevel(2)
@@ -118,15 +118,15 @@ public class OccultBlocks {
 
     // Bar Blocks
     //-----------------------------------------------------------------------------------------------------
-    public static final RegistryObject<Block> HUNGRY_LIONMETAL_BARS = BLOCKS.register("hungry_lionmetal_bars", () -> new HungryLionMetalBars(Block.Properties.create(Material.IRON)
+    public static final RegistryObject<Block> HUNGRY_LIONMETAL_BARS = BLOCKS.register("hungry_lionmetal_bars", () -> new OccultBars(Block.Properties.create(Material.IRON)
             .harvestLevel(2)
             .sound(SoundType.METAL)
             .hardnessAndResistance(5.0F, 6.0F)
     ));
-    public static final RegistryObject<Block> SATED_LIONMETAL_BARS = BLOCKS.register("sated_lionmetal_bars", () -> new SatedLionMetalBars(Block.Properties.create(Material.IRON)
+    public static final RegistryObject<Block> SATED_LIONMETAL_BARS = BLOCKS.register("sated_lionmetal_bars", () -> new OccultBars(Block.Properties.create(Material.IRON)
             .harvestLevel(2)
             .sound(SoundType.METAL)
-            .hardnessAndResistance(5.0F, 6.0F)
+            .hardnessAndResistance(5.0F, 6.0F).lightValue(12)
     ));
 
 
