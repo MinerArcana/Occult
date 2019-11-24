@@ -7,6 +7,8 @@ import com.minerarcana.occult.api.pressure.PressureStorage;
 import com.minerarcana.occult.api.pressure.PressureType;
 import com.minerarcana.occult.util.network.UpdateChunkPressureValueMessage;
 import net.minecraft.nbt.IntNBT;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
@@ -15,17 +17,17 @@ import net.minecraftforge.fml.network.PacketDistributor;
 
 import java.util.Map;
 
-public class PressureChunkStorage extends PressureStorage implements INBTSerializable<IntNBT> {
+public class PressureTileStorage extends PressureStorage implements IChunkPressure, INBTSerializable<IntNBT> {
 
     public final Map<PressureType, Integer> pressures;
 
     private final World world;
-    private final ChunkPos chunkPos;
+    private final BlockPos pos;
 
-    public PressureChunkStorage(final int capacity, final PressureType type, final World world, final ChunkPos chunkPos) {
+    public PressureTileStorage( final World world, final int capacity, final PressureType type, final TileEntity tile, final BlockPos pos) {
         super(capacity, type);
         this.world = world;
-        this.chunkPos = chunkPos;
+        this.pos = pos;
         pressure = capacity;
         this.pressures = Maps.newHashMap();
     }
@@ -35,9 +37,8 @@ public class PressureChunkStorage extends PressureStorage implements INBTSeriali
         return world;
     }
 
-    @Override
-    public ChunkPos getChunkPos() {
-        return chunkPos;
+    public BlockPos getBlockPos() {
+        return pos;
     }
 
     @Override

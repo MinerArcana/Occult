@@ -3,6 +3,8 @@ package com.minerarcana.occult.items.liontools;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
@@ -27,16 +29,18 @@ public class OccultSword extends SwordItem {
     }
 
     @Override
-    public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
-        if(player.getHeldItem(player.getActiveHand()).getItem().isIn(HUNGRYTOOLS)){
-            BlockPos pos = player.getPosition();
-            for(int x = -3; x < 3; ++x){
-                for(int y = -3; y < 3; ++y){
-                    for(int z = -3; z < 3; ++z){
-                        BlockPos targetPos = pos.add(x,y,z);
-                        Block targetblock = world.getBlockState(targetPos).getBlock();
-                        if(targetblock.isIn(LIONMETALFOOD)){
-                            world.setBlockState(targetPos, Blocks.AIR.getDefaultState());
+    public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
+        if(entity instanceof LivingEntity){
+            if(((LivingEntity) entity).getHeldItemMainhand().getItem().isIn(HUNGRYTOOLS)){
+                BlockPos pos = entity.getPosition();
+                for(int x = -3; x < 3; ++x){
+                    for(int y = -3; y < 3; ++y){
+                        for(int z = -3; z < 3; ++z){
+                            BlockPos targetPos = pos.add(x,y,z);
+                            Block targetblock = world.getBlockState(targetPos).getBlock();
+                            if(targetblock.isIn(LIONMETALFOOD)){
+                                world.setBlockState(targetPos, Blocks.AIR.getDefaultState());
+                            }
                         }
                     }
                 }

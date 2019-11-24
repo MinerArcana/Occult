@@ -8,6 +8,7 @@ import com.minerarcana.occult.content.OccultBlocks;
 import com.minerarcana.occult.content.OccultFluids;
 import com.minerarcana.occult.content.OccultItems;
 import com.minerarcana.occult.content.OccultTileEntity;
+import com.minerarcana.occult.util.OccultEvents;
 import com.minerarcana.occult.util.network.OccultNetwork;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.IntNBT;
@@ -58,7 +59,7 @@ public class Occult {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 
         MinecraftForge.EVENT_BUS.register(this);
-
+        MinecraftForge.EVENT_BUS.register(OccultEvents.class);
 
     }
 

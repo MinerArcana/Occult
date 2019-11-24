@@ -16,8 +16,6 @@ import java.util.Map;
 
 public class ChunkPressureCapability{
 
-    public static final Map<ResourceLocation, PressureType> resources = Maps.newHashMap();
-
     @CapabilityInject(IPressure.class)
     public static final Capability<IPressure> CHUNKPRESSURECAPABILITY = null;
 
@@ -32,7 +30,5 @@ public class ChunkPressureCapability{
     public static LazyOptional<IPressure> getChunkPressure(final Chunk chunk) {
         return chunk.getCapability(CHUNKPRESSURECAPABILITY, DEFAULT_FACING);
     }
-
-
 
 }

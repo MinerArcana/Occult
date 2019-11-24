@@ -2,6 +2,8 @@ package com.minerarcana.occult.fluids;
 
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.IFluidState;
+import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.state.StateContainer;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 
