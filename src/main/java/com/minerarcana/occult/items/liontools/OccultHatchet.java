@@ -9,6 +9,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -23,6 +24,8 @@ import static com.minerarcana.occult.content.OccultItems.HUNGRY_LIONMETAL_HATCHE
 import static com.minerarcana.occult.content.OccultItems.SATED_LIONMETAL_HATCHET;
 import static com.minerarcana.occult.util.lib.OccultTagLib.Blocks.LIONMETALFOOD;
 import static com.minerarcana.occult.util.lib.OccultTagLib.Items.HUNGRYTOOLS;
+import static com.minerarcana.occult.util.lib.OccultTagLib.Items.SATEDTOOLS;
+import static net.minecraft.tags.ItemTags.LOGS;
 
 public class OccultHatchet extends AxeItem {
 
@@ -31,8 +34,16 @@ public class OccultHatchet extends AxeItem {
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack p_179218_1_, World p_179218_2_, BlockState state, BlockPos p_179218_4_, LivingEntity p_179218_5_) {
-        state.getDrops();
+    public boolean onBlockDestroyed(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity entity) {
+        if(stack.getItem() == this) {
+            if (stack.getItem().isIn(LOGS)) {
+                LootContext.Builder builder = new LootContext.Builder(world.getServer().getWorld(world.dimension.getType()));
+                for (int i = 0; i < state.getDrops(builder).size(); i++) {
+                    state.getDrops(builder).clear();
+                    state.getDrops(builder).set(i, Items.CHARCOAL.getDefaultInstance());
+                }
+            }
+        }
         return true;
     }
 
