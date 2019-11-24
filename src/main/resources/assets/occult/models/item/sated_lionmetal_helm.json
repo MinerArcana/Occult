@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "occult:items/sated_lionmetal_sword"
+    "layer0": "occult:items/sated_lionmetal_helm"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "item/diamond_axe"
+    "layer0": "occult:items/sated_lionmetal_shovel"
   }
 }
