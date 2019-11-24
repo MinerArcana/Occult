@@ -31,6 +31,12 @@ public class OccultHatchet extends AxeItem {
     }
 
     @Override
+    public boolean onBlockDestroyed(ItemStack p_179218_1_, World p_179218_2_, BlockState state, BlockPos p_179218_4_, LivingEntity p_179218_5_) {
+        state.getDrops();
+        return true;
+    }
+
+    @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
         if(entity instanceof LivingEntity){
             if(((LivingEntity) entity).getHeldItemMainhand().getItem().isIn(HUNGRYTOOLS)){

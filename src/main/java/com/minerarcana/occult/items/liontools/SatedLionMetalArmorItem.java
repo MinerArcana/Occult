@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 import static com.minerarcana.occult.content.OccultItems.*;
-import static com.minerarcana.occult.items.liontools.OccultToolTypes.satedlionarmortype;
+import static com.minerarcana.occult.items.liontools.OccultArmorTypes.satedlionarmortype;
 
 public class SatedLionMetalArmorItem extends ArmorItem {
 

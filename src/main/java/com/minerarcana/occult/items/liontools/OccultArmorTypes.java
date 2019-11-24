@@ -12,7 +12,7 @@ import static com.minerarcana.occult.Occult.MOD_ID;
 import static com.minerarcana.occult.content.OccultItems.HUNGRY_LIONMETAL_INGOT;
 import static com.minerarcana.occult.content.OccultItems.SATED_LIONMETAL_INGOT;
 
-public enum OccultToolTypes implements IArmorMaterial {
+public enum OccultArmorTypes implements IArmorMaterial {
 
     satedlionarmortype("sated_lion_armor", new int[] {2, 2, 2, 2}, 50, SATED_LIONMETAL_INGOT.get(), "entity.ender_dragon.growl", 0.0f),
     hungrylionarmortype("hungry_lion_armor", new int[] {2, 2, 2, 2}, 25, HUNGRY_LIONMETAL_INGOT.get(), "entity.ender_dragon.growl", 0.0f);
@@ -23,7 +23,7 @@ public enum OccultToolTypes implements IArmorMaterial {
     private int[] damageReductionAmounts;
     private float toughness;
 
-    private OccultToolTypes(String name, int[] damageReductionAmounts, int enchantability, Item repairItem, String equipSound, float toughness)
+    private OccultArmorTypes(String name, int[] damageReductionAmounts, int enchantability, Item repairItem, String equipSound, float toughness)
     {
         this.name = name;
         this.equipSound = equipSound;

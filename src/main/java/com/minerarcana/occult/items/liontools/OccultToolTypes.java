@@ -8,7 +8,7 @@ import net.minecraft.item.crafting.Ingredient;
 import static com.minerarcana.occult.content.OccultItems.HUNGRY_LIONMETAL_INGOT;
 import static com.minerarcana.occult.content.OccultItems.SATED_LIONMETAL_INGOT;
 
-public enum OccultArmorTypes implements IItemTier {
+public enum OccultToolTypes implements IItemTier {
 
     sated_lion_tools(10.0f, 9.0f, 800, 3, 25, SATED_LIONMETAL_INGOT.get()),
     hungry_lion_tools(10.0f, 9.0f, 800, 3, 25, HUNGRY_LIONMETAL_INGOT.get());
@@ -17,7 +17,7 @@ public enum OccultArmorTypes implements IItemTier {
     private int durability, harvestLevel, enchantability;
     private Item repairMaterial;
 
-    private OccultArmorTypes(float attackDamage, float efficiency, int durability, int harvestLevel, int enchantability, Item repairMaterial)
+    private OccultToolTypes(float attackDamage, float efficiency, int durability, int harvestLevel, int enchantability, Item repairMaterial)
     {
         this.attackDamage = attackDamage;
         this.efficiency = efficiency;

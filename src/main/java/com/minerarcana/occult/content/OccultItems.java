@@ -14,8 +14,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.Objects;
 
 import static com.minerarcana.occult.Occult.MOD_ID;
-import static com.minerarcana.occult.items.liontools.OccultArmorTypes.hungry_lion_tools;
-import static com.minerarcana.occult.items.liontools.OccultArmorTypes.sated_lion_tools;
+import static com.minerarcana.occult.items.liontools.OccultToolTypes.hungry_lion_tools;
+import static com.minerarcana.occult.items.liontools.OccultToolTypes.sated_lion_tools;
 
 public class OccultItems {
 

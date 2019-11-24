@@ -1,7 +1,6 @@
 package com.minerarcana.occult.items.liontools;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,7 +16,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 import static com.minerarcana.occult.content.OccultItems.*;
-import static com.minerarcana.occult.items.liontools.OccultToolTypes.hungrylionarmortype;
+import static com.minerarcana.occult.items.liontools.OccultArmorTypes.hungrylionarmortype;
 import static com.minerarcana.occult.util.lib.OccultTagLib.Blocks.LIONMETALFOOD;
 
 public class HungryLionArmorItem extends ArmorItem {
