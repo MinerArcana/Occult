@@ -17,33 +17,34 @@ public class PressureStorage implements IPressure {
     public Object2IntMap<PressureType> pressures;
     public int capacity;
 
-    public PressureStorage(int capacity)
-    {
+    public PressureStorage(int capacity) {
         this.capacity = capacity;
-
     }
 
     @Override
     public int add(PressureType pressureType, int amount) {
-        ensureExists(pressureType);
-        int pressure = pressures.get(pressureType);
-        if(pressure + amount >= capacity) {
+        int pressure = getPressureAmount(pressureType);
+        if (pressure + amount <= capacity) {
             int add = pressure + amount;
-            return pressures.put(pressureType, add);
+            pressures.put(pressureType, add);
+            return amount;
+        } else {
+            pressures.put(pressureType, capacity);
+            return capacity;
         }
-        else{return pressures.put(pressureType, capacity);}
     }
 
     @Override
     public int remove(PressureType pressureType, int amount) {
-        ensureExists(pressureType);
-        int pressure = pressures.get(pressureType);
-        if(pressure + amount >= capacity) {
+        int pressure = getPressureAmount(pressureType);
+        if (pressure + amount >= 0) {
             int remove = pressure - amount;
-            return pressures.put(pressureType, remove);
+            pressures.put(pressureType, remove);
+            return amount;
+        } else {
+            pressures.put(pressureType, 0);
+            return 0;
         }
-        else{return pressures.put(pressureType, capacity);}
-
     }
 
     @Override
@@ -53,11 +54,12 @@ public class PressureStorage implements IPressure {
 
     @Override
     public void fill(PressureType pressureType) {
-        pressures.put(pressureType, capacity);
+        pressures.replace(pressureType, capacity);
     }
 
     @Override
     public int getPressureAmount(PressureType pressureType) {
+        ensureExists(pressureType);
         return pressures.get(pressureType);
     }
 
