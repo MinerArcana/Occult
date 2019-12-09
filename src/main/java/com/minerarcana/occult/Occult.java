@@ -1,10 +1,13 @@
 package com.minerarcana.occult;
 
-import com.minerarcana.occult.api.capabilities.PressureChunkStorage;
+import com.minerarcana.occult.api.PressureType;
 import com.minerarcana.occult.api.capabilities.handlers.SerializableCapabilityProvider;
+import com.minerarcana.occult.api.pressure.ChunkPressureStorage;
 import com.minerarcana.occult.api.pressure.IPressure;
+import com.minerarcana.occult.api.pressure.PressureStorage;
 import com.minerarcana.occult.util.OccultConfigHandler;
 import com.minerarcana.occult.util.network.OccultNetwork;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.IntNBT;
 import net.minecraft.util.Direction;
@@ -30,7 +33,6 @@ import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
 
-import static com.minerarcana.occult.api.capabilities.ChunkPressureCapability.*;
 
 
 @Mod("occult")
@@ -41,7 +43,7 @@ public class Occult {
 
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
     public static final SimpleChannel network = OccultNetwork.getNetworkChannel();
-    private static PressureType PressureType;
+    private static PressureType pressureType;
 
 
     public Occult() {
@@ -55,6 +57,7 @@ public class Occult {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+        MinecraftForge.EVENT_BUS.addGenericListener(Chunk.class, Occult::attachChunkCapabilities);
 
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -63,20 +66,18 @@ public class Occult {
 
         private void setup(final FMLCommonSetupEvent event) {
 
-        CapabilityManager.INSTANCE.register(IPressure.class, new Capability.IStorage<IPressure>() {
-            @Nullable
-            @Override
-            public INBT writeNBT(Capability<IPressure> capability, IPressure instance, Direction side) {
-                return new IntNBT(instance.getPressure());
-            }
+            CapabilityManager.INSTANCE.register(IPressure.class, new Capability.IStorage<IPressure>() {
+                @Nullable
+                @Override
+                public INBT writeNBT(Capability<IPressure> capability, IPressure instance, Direction side) {
+                    return instance.serializeNBT();
+                }
 
-            @Override
-            public void readNBT(Capability<IPressure> capability, IPressure instance, Direction side, INBT nbt) {
-                if (!(instance instanceof PressureChunkStorage))
-                    throw new IllegalArgumentException("Can not deserialize to an instance that isn't the default implementation");
-                ((PressureChunkStorage) instance).setPressure(((IntNBT) nbt).getInt(), PressureType);
-            }
-        }, () -> null);
+                @Override
+                public void readNBT(Capability<IPressure> capability, IPressure instance, Direction side, INBT nbt) {
+                    instance.deserializeNBT((CompoundNBT) nbt);
+                }
+            }, PressureStorage::new);
     }
 
 
@@ -101,8 +102,6 @@ public class Occult {
 
     @SubscribeEvent
     public static void attachChunkCapabilities(final AttachCapabilitiesEvent<Chunk> event) {
-        final Chunk chunk = event.getObject();
-        final IPressure chunkPressure = new PressureChunkStorage(DEFAULT_CAPACITY, PressureType, chunk.getWorld(), chunk.getPos());
-        event.addCapability(new ResourceLocation(MOD_ID, "chunkpressure"), new SerializableCapabilityProvider<>(CHUNKPRESSURECAPABILITY, DEFAULT_FACING, chunkPressure));
+        event.addCapability(new ResourceLocation(MOD_ID, "chunkpressure"), new ChunkPressureStorage(1000));
     }
 }

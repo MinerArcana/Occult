@@ -15,6 +15,7 @@ import java.util.Map;
 public class PressureStorage implements IPressure {
 
     public Object2IntMap<PressureType> pressures;
+    public PressureType type;
     public int capacity;
 
     public PressureStorage(int capacity) {
@@ -29,7 +30,7 @@ public class PressureStorage implements IPressure {
             pressures.put(pressureType, add);
             return amount;
         } else {
-            pressures.put(pressureType, capacity);
+            fill(pressureType);
             return capacity;
         }
     }
@@ -42,7 +43,7 @@ public class PressureStorage implements IPressure {
             pressures.put(pressureType, remove);
             return amount;
         } else {
-            pressures.put(pressureType, 0);
+            empty(pressureType);
             return 0;
         }
     }
@@ -65,12 +66,18 @@ public class PressureStorage implements IPressure {
 
     @Override
     public CompoundNBT serializeNBT() {
-        return null;
+        CompoundNBT compound = new CompoundNBT();
+        for (PressureType pressureType : pressures.keySet()) {
+            compound.putInt(pressureType.toString(), getPressureAmount(pressureType));
+        }
+        return compound;
     }
 
     @Override
     public void deserializeNBT(CompoundNBT nbt) {
-
+        for(String pressureType : nbt.keySet()){
+            pressures.put(type.getTypeFromName(pressureType), nbt.getInt(pressureType));
+        }
     }
 
     private void ensureExists(PressureType pressureType) {

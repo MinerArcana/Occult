@@ -11,7 +11,7 @@ import net.minecraftforge.registries.DeferredRegister;
 
 public class PressureRegistryEvent {
 
-    private static final DeferredRegister<PressureType> PRESSURE = new DeferredRegister<>(PressureRegistry.pressureTypes, Occult.MOD_ID);
+    public static final DeferredRegister<PressureType> PRESSURE = new DeferredRegister<>(PressureRegistry.pressureTypes, Occult.MOD_ID);
 
     public static final RegistryObject<PressureType> INFERNAL = PRESSURE.register("infernal",
             InfernalPressure::new);
