@@ -1,23 +1,18 @@
-package com.minerarcana.occult;
+package com.minerarcana.occult.getteritem;
 
 import com.minerarcana.occult.api.PressureType;
-import com.minerarcana.occult.api.pressure.IPressure;
-import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import com.minerarcana.occult.api.pressure.PressureCap;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraftforge.common.util.LazyOptional;
-
-import static com.minerarcana.occult.Occult.LOGGER;
-import static com.minerarcana.occult.api.pressure.PressureCap.PRESSURE_STORAGE_CAPABILITY;
 
 public class ScryingCrystal extends Item {
 
@@ -25,59 +20,29 @@ public class ScryingCrystal extends Item {
         super(properties);
     }
 
+
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
-        PlayerEntity player = context.getPlayer();
-        World world = context.getWorld();
-        BlockPos pos = context.getPos();
-        Block block = world.getBlockState(pos).getBlock();
-        pressureCheck(world,pos,block,player);
-        return ActionResultType.SUCCESS;
-    }
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+        if (!world.isRemote) {
+            final Chunk chunk = world.getChunkAt(new BlockPos(player));
+            final ChunkPos chunkPos = chunk.getPos();
 
-    public void pressureCheck(World world, BlockPos pos, Block block, PlayerEntity player){
-        BlockState state = block.getDefaultState();
-        if(!world.isRemote) {
-            if (block.equals(Blocks.AIR)) {
-                final Chunk chunk = world.getChunkAt(new BlockPos(player));
-                LazyOptional<?> pressure = chunk.getCapability(PRESSURE_STORAGE_CAPABILITY);
-                if(pressure.isPresent()){
-                    if(pressure instanceof IPressure){
-                        Object2IntMap<PressureType> pressures = ((IPressure) pressure).getAllPressure();
-                        if(pressures != null){
-                            for(PressureType type : pressures.keySet()){
-                                int pressureAmount = pressures.get(type);
-                                LOGGER.info("you have" + pressureAmount + "of" + type + "Pressure" );
+            PressureCap.getChunkPressure(chunk).map(chunkPressure -> {
+                if(chunkPressure.)
+                        if (!chunkPressure.getAllPressure().isEmpty()) {
+                            for (PressureType type : chunkPressure.getAllPressure().keySet()) {
+
+                                int pressure = chunkPressure.getPressureFromType(type);
+                                player.sendMessage(new TranslationTextComponent("message.occult.pressure.get", chunkPos, pressure, type));
+                                return true;
                             }
                         }
+                        return false;
                     }
-                }
-                else{
-                    LOGGER.info("you have 0 Pressure available of any Type" );
-
-                }
-            } else if (block.hasTileEntity(state)) {
-                TileEntity tileEntity = block.createTileEntity(state, world);
-                LazyOptional<?> pressure = tileEntity.getCapability(PRESSURE_STORAGE_CAPABILITY);
-                if (pressure.isPresent()) {
-                    if(pressure instanceof IPressure){
-                        Object2IntMap<PressureType> pressures = ((IPressure) pressure).getAllPressure();
-                        if(pressures != null){
-                            for(PressureType type : pressures.keySet()){
-                                int pressureAmount = pressures.get(type);
-                                LOGGER.info("you have" + pressureAmount + "of" + type + "Pressure" );
-                            }
-                        }
-                    }
-                }
-                else{
-                    LOGGER.info("you have 0 Pressure available of any Type" );
-
-                }
-            }
+            ).orElseGet(() -> {
+                player.sendMessage(new TranslationTextComponent("message.occult.pressure.none", chunkPos));
+                return false;});
         }
-
+        return new ActionResult<>(ActionResultType.SUCCESS, player.getHeldItem(hand));
     }
-
-
 }
