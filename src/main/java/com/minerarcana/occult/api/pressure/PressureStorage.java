@@ -2,15 +2,7 @@ package com.minerarcana.occult.api.pressure;
 
 import com.minerarcana.occult.api.PressureType;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import net.minecraft.block.Block;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.world.World;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class PressureStorage implements IPressure {
 
@@ -18,13 +10,17 @@ public class PressureStorage implements IPressure {
     public PressureType type;
     public int capacity;
 
+    public PressureStorage() {
+        this.capacity = 1000;
+    }
+
     public PressureStorage(int capacity) {
         this.capacity = capacity;
     }
 
     @Override
     public int add(PressureType pressureType, int amount) {
-        int pressure = getPressureAmount(pressureType);
+        int pressure = getPressureFromType(pressureType);
         if (pressure + amount <= capacity) {
             int add = pressure + amount;
             pressures.put(pressureType, add);
@@ -37,7 +33,7 @@ public class PressureStorage implements IPressure {
 
     @Override
     public int remove(PressureType pressureType, int amount) {
-        int pressure = getPressureAmount(pressureType);
+        int pressure = getPressureFromType(pressureType);
         if (pressure + amount >= 0) {
             int remove = pressure - amount;
             pressures.put(pressureType, remove);
@@ -59,7 +55,12 @@ public class PressureStorage implements IPressure {
     }
 
     @Override
-    public int getPressureAmount(PressureType pressureType) {
+    public Object2IntMap<PressureType> getAllPressure() {
+        return pressures;
+    }
+
+    @Override
+    public int getPressureFromType(PressureType pressureType) {
         ensureExists(pressureType);
         return pressures.get(pressureType);
     }
@@ -67,16 +68,20 @@ public class PressureStorage implements IPressure {
     @Override
     public CompoundNBT serializeNBT() {
         CompoundNBT compound = new CompoundNBT();
-        for (PressureType pressureType : pressures.keySet()) {
-            compound.putInt(pressureType.toString(), getPressureAmount(pressureType));
+        if(!pressures.keySet().isEmpty()) {
+            for (PressureType pressureType : pressures.keySet()) {
+                compound.putInt(pressureType.toString(), getPressureFromType(pressureType));
+            }
         }
         return compound;
     }
 
     @Override
     public void deserializeNBT(CompoundNBT nbt) {
-        for(String pressureType : nbt.keySet()){
-            pressures.put(type.getTypeFromName(pressureType), nbt.getInt(pressureType));
+        if(!nbt.keySet().isEmpty()) {
+            for (String pressureType : nbt.keySet()) {
+                pressures.put(type.getTypeFromName(pressureType), nbt.getInt(pressureType));
+            }
         }
     }
 

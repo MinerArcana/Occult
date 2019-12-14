@@ -1,14 +1,14 @@
-package com.minerarcana.occult.util.itemgroup;
+package com.minerarcana.occult;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
-import static com.minerarcana.occult.util.lib.OccultNameLib.occult_icon;
+import static com.minerarcana.occult.PressureRegistryEvent.SCRYING_CRYSTAL;
 
 public class OccultGroup extends ItemGroup
 {
 
-    public static final OccultGroup instance = new OccultGroup(ItemGroup.GROUPS.length, "occult");
+    public static final OccultGroup OCCULT_GROUP = new OccultGroup(ItemGroup.GROUPS.length, "occult");
 
     private OccultGroup(int index, String label)
     {
@@ -18,7 +18,7 @@ public class OccultGroup extends ItemGroup
     @Override
     public ItemStack createIcon()
     {
-        return new ItemStack(occult_icon);
+        return new ItemStack(SCRYING_CRYSTAL.get());
     }
 
 

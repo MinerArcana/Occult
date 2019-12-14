@@ -3,8 +3,6 @@ package com.minerarcana.occult.api;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
-import java.util.jar.Manifest;
-
 import static com.minerarcana.occult.PressureRegistryEvent.PRESSURE;
 
 
