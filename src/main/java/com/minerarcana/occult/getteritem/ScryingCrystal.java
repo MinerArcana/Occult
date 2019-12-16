@@ -14,6 +14,9 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 
+import static com.minerarcana.occult.api.pressure.PressureCap.getAllPressureFromChunk;
+import static com.minerarcana.occult.api.pressure.PressureCap.getChunkPressureForType;
+
 public class ScryingCrystal extends Item {
 
     public ScryingCrystal(Properties properties) {
@@ -27,21 +30,10 @@ public class ScryingCrystal extends Item {
             final Chunk chunk = world.getChunkAt(new BlockPos(player));
             final ChunkPos chunkPos = chunk.getPos();
 
-            PressureCap.getChunkPressure(chunk).map(chunkPressure -> {
-                if(chunkPressure.)
-                        if (!chunkPressure.getAllPressure().isEmpty()) {
-                            for (PressureType type : chunkPressure.getAllPressure().keySet()) {
-
-                                int pressure = chunkPressure.getPressureFromType(type);
-                                player.sendMessage(new TranslationTextComponent("message.occult.pressure.get", chunkPos, pressure, type));
-                                return true;
-                            }
-                        }
-                        return false;
-                    }
-            ).orElseGet(() -> {
-                player.sendMessage(new TranslationTextComponent("message.occult.pressure.none", chunkPos));
-                return false;});
+            for (PressureType type : getAllPressureFromChunk(chunk).values()) {
+                int pressure = getChunkPressureForType(chunk, type);
+                player.sendMessage(new TranslationTextComponent("message.occult.pressure.get", chunkPos, pressure, type));
+            }
         }
         return new ActionResult<>(ActionResultType.SUCCESS, player.getHeldItem(hand));
     }

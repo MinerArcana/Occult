@@ -68,17 +68,17 @@ public class PressureStorage implements IPressure {
     @Override
     public CompoundNBT serializeNBT() {
         CompoundNBT compound = new CompoundNBT();
-        if(!pressures.keySet().isEmpty()) {
-            for (PressureType pressureType : pressures.keySet()) {
-                compound.putInt(pressureType.toString(), getPressureFromType(pressureType));
-            }
+        if (pressures.isEmpty()) return compound;
+        for (PressureType pressureType : pressures.keySet()) {
+            compound.putInt(pressureType.toString(), getPressureFromType(pressureType));
+
         }
         return compound;
     }
 
     @Override
     public void deserializeNBT(CompoundNBT nbt) {
-        if(!nbt.keySet().isEmpty()) {
+        if (!nbt.keySet().isEmpty()) {
             for (String pressureType : nbt.keySet()) {
                 pressures.put(type.getTypeFromName(pressureType), nbt.getInt(pressureType));
             }

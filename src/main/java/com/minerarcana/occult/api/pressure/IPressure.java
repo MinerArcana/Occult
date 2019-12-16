@@ -14,4 +14,5 @@ public interface IPressure extends INBTSerializable<CompoundNBT> {
     void fill(PressureType pressureType);
     Object2IntMap<PressureType> getAllPressure();
     int getPressureFromType(PressureType pressureType);
+
 }
