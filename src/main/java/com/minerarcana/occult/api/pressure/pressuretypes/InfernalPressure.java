@@ -1,6 +1,6 @@
-package com.minerarcana.occult.api.pressuretypes;
+package com.minerarcana.occult.api.pressure.pressuretypes;
 
-import com.minerarcana.occult.api.PressureType;
+import com.minerarcana.occult.api.pressure.PressureType;
 
 public class InfernalPressure extends PressureType {
 

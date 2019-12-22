@@ -44,59 +44,17 @@ import java.util.Map;
 import static com.minerarcana.occult.content.OccultTileEntity.CRUCIBLE_TYPE;
 
 public class CrucibleTile extends TileEntity implements ITickableTileEntity, IRecipeHolder, IRecipeHelperPopulator, ISidedInventory {
-
-    protected NonNullList<ItemStack> inventory = NonNullList.withSize(3, ItemStack.EMPTY);
     private boolean hasFuel;
     private boolean tooHot;
     private int maxTemp;
     private int minTemp;
     private int fuelTemp;
-    private int meltTime;
+    private int meltTime = 0;
     private int meltTimeTotal;
-
-    protected final IIntArray crucibleData = new IIntArray() {
-
-        public int get(int index) {
-            switch (index) {
-                case 0:
-                    return CrucibleTile.this.meltTime;
-                case 1:
-                    return CrucibleTile.this.meltTimeTotal;
-                case 2:
-                    return CrucibleTile.this.minTemp;
-                case 3:
-                    return CrucibleTile.this.maxTemp;
-                default:
-                    return 0;
-            }
-        }
-
-        public void set(int index, int value) {
-            switch (index) {
-                case 0:
-                    CrucibleTile.this.meltTime = value;
-                    break;
-                case 1:
-                    CrucibleTile.this.meltTimeTotal = value;
-                    break;
-                case 2:
-                    CrucibleTile.this.minTemp = value;
-                    break;
-                case 3:
-                    CrucibleTile.this.maxTemp = value;
-                    break;
-
-            }
-
-        }
-
-        public int size() {
-            return 4;
-        }
-    };
 
     private final Map<ResourceLocation, Integer> recipeAmounts = Maps.newHashMap();
     private final IRecipeType<CrucibleRecipes> recipeType;
+    private final CrucibleRecipes currentRecipe = null;
 
     public CrucibleTile() {
         super(CRUCIBLE_TYPE.get());
@@ -110,7 +68,6 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity, IRe
 
     private void setFuelTemp() {
         BlockPos pos1 = pos.down();
-        assert this.world != null;
         World world = this.world.getWorld();
         BlockState state = world.getBlockState(pos1);
         Block block = state.getBlock();
@@ -143,9 +100,7 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity, IRe
 
 
     private boolean hasFuel() {
-        hasFuel = getFuelTemp() >= 150;
-
-        return hasFuel;
+        return getFuelTemp() >= 150;
     }
 
     private void smeltRecipe(@Nullable IRecipe<?> iRecipe) {
@@ -267,7 +222,7 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity, IRe
     }
 
     public void read(CompoundNBT tag) {
-        super.read(tag);
+            super.read(tag);
         this.inventory = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(tag, this.inventory);
         this.hasFuel = tag.getBoolean("HasFuel");

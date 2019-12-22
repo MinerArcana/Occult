@@ -1,5 +1,4 @@
-package com.minerarcana.occult.api;
-
+package com.minerarcana.occult.api.pressure;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.IForgeRegistry;

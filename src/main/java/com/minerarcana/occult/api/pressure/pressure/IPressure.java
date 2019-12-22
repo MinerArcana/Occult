@@ -1,6 +1,6 @@
-package com.minerarcana.occult.api.pressure;
+package com.minerarcana.occult.api.pressure.pressure;
 
-import com.minerarcana.occult.api.PressureType;
+import com.minerarcana.occult.api.pressure.PressureType;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.common.util.INBTSerializable;

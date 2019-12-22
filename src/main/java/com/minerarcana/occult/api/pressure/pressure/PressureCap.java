@@ -1,11 +1,10 @@
-package com.minerarcana.occult.api.pressure;
+package com.minerarcana.occult.api.pressure.pressure;
 
-import com.minerarcana.occult.api.PressureType;
+import com.minerarcana.occult.api.pressure.PressureType;
 import io.netty.util.collection.IntObjectMap;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.capabilities.Capability;

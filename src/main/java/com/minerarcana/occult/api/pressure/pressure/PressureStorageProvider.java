@@ -1,4 +1,4 @@
-package com.minerarcana.occult.api.pressure;
+package com.minerarcana.occult.api.pressure.pressure;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;

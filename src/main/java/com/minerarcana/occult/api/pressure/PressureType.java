@@ -1,10 +1,9 @@
-package com.minerarcana.occult.api;
+package com.minerarcana.occult.api.pressure;
 
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
-import static com.minerarcana.occult.PressureRegistryEvent.PRESSURE;
-
+import static com.minerarcana.occult.content.OccultPressure.PRESSURE;
 
 public class PressureType extends ForgeRegistryEntry<PressureType> {
     private final int colour;
