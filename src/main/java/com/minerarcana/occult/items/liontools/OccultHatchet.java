@@ -6,11 +6,9 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -34,17 +32,11 @@ public class OccultHatchet extends AxeItem {
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity entity) {
-        if(stack.getItem() == this) {
-            if (stack.getItem().isIn(LOGS)) {
-                LootContext.Builder builder = new LootContext.Builder(world.getServer().getWorld(world.dimension.getType()));
-                for (int i = 0; i < state.getDrops(builder).size(); i++) {
-                    state.getDrops(builder).clear();
-                    state.getDrops(builder).set(i, Items.CHARCOAL.getDefaultInstance());
-                }
-            }
+    public ActionResultType onItemUse(ItemUseContext context) {
+        if(this.equals(SATED_LIONMETAL_HATCHET.get())){
+            BlockPos Pos = context.getPos();
         }
-        return true;
+        return ActionResultType.SUCCESS;
     }
 
     @Override

@@ -39,9 +39,7 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
         this.maxtemp = maxTemp;
         this.meltTime = meltTime;
         this.experience = experience;
-
     }
-
 
     @Override
     public boolean matches(IInventory inv, World worldIn) {
@@ -170,6 +168,7 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
 
         return new CrucibleRecipes(id, outputs, maxtemp, mintemp, melttime, experience, inputs);
     }
+
 
 
 }

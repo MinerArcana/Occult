@@ -19,6 +19,8 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeItemHelper;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.particles.IParticleData;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
@@ -197,6 +199,7 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity, IRe
         if (this.hasFuel()) {
             if (!this.world.isRemote) {
                 ItemStack itemstack = this.inventory.get(1);
+                world.addParticle((IParticleData) ParticleTypes.ITEM, pos.getX() + .5, pos.getY() + 1.05, .5, 0, 0, 0);
                 if (!itemstack.isEmpty() && !this.inventory.get(0).isEmpty()) {
                     IRecipe<?> irecipe = this.world.getRecipeManager().getRecipe(this.recipeType, this, this.world).orElse(null);
                     if (!this.hasFuel() && this.canSmelt(irecipe)) {
@@ -458,6 +461,7 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity, IRe
             }
         }
     }
+
 
 
 }

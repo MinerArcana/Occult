@@ -2,7 +2,6 @@ package com.minerarcana.occult.content;
 
 import com.minerarcana.occult.items.Sulphur;
 import com.minerarcana.occult.items.liontools.*;
-import com.minerarcana.occult.util.itemgroup.OccultGroup;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;

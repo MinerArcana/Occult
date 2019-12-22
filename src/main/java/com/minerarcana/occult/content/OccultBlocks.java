@@ -4,7 +4,6 @@ import com.minerarcana.occult.blocks.*;
 import com.minerarcana.occult.items.BurnableBlockItem;
 import com.minerarcana.occult.blocks.lionmetal.HungyLionMetalBlock;
 import com.minerarcana.occult.blocks.lionmetal.SatedLionMetalBlock;
-import com.minerarcana.occult.util.itemgroup.OccultGroup;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;

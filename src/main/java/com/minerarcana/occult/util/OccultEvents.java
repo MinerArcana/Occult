@@ -1,10 +1,14 @@
 package com.minerarcana.occult.util;
 
+import com.minerarcana.occult.api.pressure.pressure.PressureStorageProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.AttackDamageEffect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -36,6 +40,11 @@ public class OccultEvents {
                 }
             }
         }
+    }
+
+    @SubscribeEvent
+    public static void attachChunkCapabilities(final AttachCapabilitiesEvent<Chunk> event) {
+        event.addCapability(new ResourceLocation(MOD_ID, "pressure"), new PressureStorageProvider());
     }
 
 }

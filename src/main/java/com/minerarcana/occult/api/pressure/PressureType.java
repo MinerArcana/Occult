@@ -1,41 +1,30 @@
-package com.minerarcana.occult.api.pressure;
+package com.minerarcana.occult.api;
 
-import com.minerarcana.occult.Occult;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public class PressureType
-{
-    private final ResourceLocation registryName;
-    private final int capacity;
-    private final int pressure;
-    private final ITextComponent type;
+import static com.minerarcana.occult.PressureRegistryEvent.PRESSURE;
 
 
-    public PressureType(ResourceLocation registryName, int capacity, int pressure, ITextComponent type) {
-        this.registryName = registryName;
-        this.capacity = capacity;
-        this.pressure = pressure;
-        this.type = type;
+public class PressureType extends ForgeRegistryEntry<PressureType> {
+    private final int colour;
+
+    public PressureType(int colour) {
+        this.colour = colour;
     }
 
-    public ResourceLocation getRegistryName() {
-        return registryName;
+    public int getPressureColour() {
+        return colour;
     }
 
-    public int getMaxPressure() {
-        return capacity;
-    }
+    public PressureType getTypeFromName(String name) {
+        PressureType pressureType = null;
 
-    public int getPressure() {
-        return pressure;
+        for(RegistryObject<PressureType> type: PRESSURE.getEntries()) {
+            if (type.getId().toString().equals(name)) {
+                pressureType = type.get();
+            }
+        }
+        return pressureType;
     }
-
-    public ITextComponent getType() {
-        return type;
-    }
-
 }
-
-
-
