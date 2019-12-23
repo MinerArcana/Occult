@@ -2,42 +2,46 @@ package com.minerarcana.occult.api.recipes.machines;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
+import com.minerarcana.occult.api.pressure.PressureType;
 import com.minerarcana.occult.api.recipes.OccultRecipeTypes;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class CrucibleRecipes implements IRecipe<IInventory> {
     private final ResourceLocation id;
     private final List<ItemStack> outputs;
+    private final ItemStack alternateOut;
     private final ImmutableList<Ingredient> inputs;
+    private final PressureType pressureType;
     private final int maxtemp;
+    private final int pressureAmount;
     private final int mintemp;
     private final int meltTime;
     private final int experience;
 
 
-    public CrucibleRecipes(ResourceLocation id, List<ItemStack> outputs, int maxTemp, int minTemp, int meltTime, int experience, Ingredient... inputs) {
+    public CrucibleRecipes(ResourceLocation id, List<ItemStack> outputs, ItemStack alternateOut, int maxTemp, int minTemp, int meltTime, int experience, PressureType pressureType, int pressureAmount, Ingredient... inputs) {
         Preconditions.checkArgument(inputs.length <= 3);
         Preconditions.checkArgument(maxTemp <= 3000);
         Preconditions.  checkArgument(minTemp >= 150);
         this.id = id;
         this.inputs = ImmutableList.copyOf(inputs);
         this.outputs = outputs;
+        this.alternateOut = alternateOut;
         this.mintemp = minTemp;
         this.maxtemp = maxTemp;
         this.meltTime = meltTime;
+        this.pressureType = pressureType;
+        this.pressureAmount = pressureAmount;
         this.experience = experience;
     }
 
@@ -83,11 +87,6 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
         return this.outputs.get(0).copy();
     }
 
-
-    public ItemStack getAlternateOutput() {
-        return Items.COAL.getDefaultInstance();
-    }
-
     @Override
     public ResourceLocation getId() {
         return id;
@@ -115,6 +114,14 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
         return this.outputs;
     }
 
+    public ItemStack getAlternateOut(){
+        return alternateOut;
+    }
+
+    public PressureType getPressureType() {
+        return pressureType;
+    }
+
     public int getMaxtemp() {
         return this.maxtemp;
     }
@@ -127,49 +134,9 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
         return this.meltTime;
     }
 
-
-    public void write(PacketBuffer buf) {
-        buf.writeString("CrucibleRecipes");
-        buf.writeResourceLocation(id);
-        buf.writeVarInt(inputs.size());
-        for (Ingredient input : inputs) {
-            input.write(buf);
-        }
-        buf.writeVarInt(outputs.size());
-        for (ItemStack output : outputs) {
-            buf.writeItemStack(output, false);
-        }
-        buf.writeVarInt(maxtemp);
-        buf.writeVarInt(mintemp);
-        buf.writeVarInt(meltTime);
-        buf.writeVarInt(experience);
+    public int getPressureAmount() {
+        return this.pressureAmount;
     }
-
-    public static CrucibleRecipes read(PacketBuffer buf) {
-        ResourceLocation id = buf.readResourceLocation();
-        Ingredient[] inputs = new Ingredient[buf.readVarInt()];
-        for (int i = 0; i < inputs.length; i++) {
-            inputs[i] = Ingredient.read(buf);
-        }
-        List<ItemStack> outputs = null;
-        int resultCount = buf.readVarInt();
-        if (resultCount > 1) {
-            outputs = new ArrayList<>(resultCount);
-            for (int i = 0; i < resultCount; i++) {
-                outputs.add(buf.readItemStack());
-            }
-        } else {
-            outputs = Collections.singletonList(buf.readItemStack());
-        }
-        int maxtemp = buf.readVarInt();
-        int mintemp = buf.readVarInt();
-        int melttime = buf.readVarInt();
-        int experience = buf.readVarInt();
-
-        return new CrucibleRecipes(id, outputs, maxtemp, mintemp, melttime, experience, inputs);
-    }
-
-
 
 }
 
