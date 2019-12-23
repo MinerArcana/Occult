@@ -17,6 +17,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.Objects;
 
 import static com.minerarcana.occult.Occult.MOD_ID;
+import static com.minerarcana.occult.OccultGroup.OCCULT_GROUP;
 import static net.minecraft.block.material.Material.*;
 
 
@@ -63,7 +64,7 @@ public class OccultBlocks {
 
     //MachineBlocks
     //-----------------------------------------------------------------------------------------------------
-    public static final RegistryObject<Block> CRUCIBLE = BLOCKS.register("crucible", () -> new Block(Block.Properties.create(Material.IRON)
+    public static final RegistryObject<Block> CRUCIBLE = BLOCKS.register("crucible", () -> new CrucibleBlock(Block.Properties.create(Material.IRON)
             .harvestLevel(2)
             .sound(SoundType.METAL)
             .hardnessAndResistance(5.0F, 6.0F)
@@ -140,70 +141,70 @@ public class OccultBlocks {
     //Akjar Variants
     public static final RegistryObject<Item> AKJAR_ITEM = ITEMS.register("akjar",
             () -> new BlockItem(Objects.requireNonNull(AKJAR.get()), new Item.Properties()
-                    .group(OccultGroup.instance))
+                    .group(OCCULT_GROUP))
     );
     public static final RegistryObject<Item> AKJAR_BRICKS_ITEM = ITEMS.register("akjar_bricks",
             () -> new BlockItem(Objects.requireNonNull(AKJAR_BRICKS.get()), new Item.Properties()
-                    .group(OccultGroup.instance))
+                    .group(OCCULT_GROUP))
     );
     public static final RegistryObject<Item> BEATING_AKJAR_ITEM = ITEMS.register("beating_akjar",
             () -> new BlockItem(Objects.requireNonNull(BEATING_AKJAR.get()), new Item.Properties()
-                    .group(OccultGroup.instance))
+                    .group(OCCULT_GROUP))
     );
     public static final RegistryObject<Item> BEATING_AKJAR_BRICKS_ITEM = ITEMS.register("beating_akjar_bricks",
             () -> new BlockItem(Objects.requireNonNull(BEATING_AKJAR_BRICKS.get()), new Item.Properties()
-                    .group(OccultGroup.instance))
+                    .group(OCCULT_GROUP))
     );
 
     //Ores
     public static final RegistryObject<Item> CINNABAR_ORE_ITEM = ITEMS.register("cinnabar_ore",
             () -> new BlockItem(Objects.requireNonNull(CINNABAR_ORE.get()), new Item.Properties()
-                    .group(OccultGroup.instance))
+                    .group(OCCULT_GROUP))
     );
     public static final RegistryObject<Item> SALT_ORE_ITEM = ITEMS.register("salt_ore",
             () -> new BlockItem(Objects.requireNonNull(SALT_ORE.get()), new Item.Properties()
-                    .group(OccultGroup.instance))
+                    .group(OCCULT_GROUP))
     );
 
     //MachineBlocks
     //-----------------------------------------------------------------------------------------------------
     public static final RegistryObject<Item> CRUCIBLE_ITEM = ITEMS.register("crucible",
             () -> new BlockItem(Objects.requireNonNull(CRUCIBLE.get()), new Item.Properties()
-                    .group(OccultGroup.instance))
+                    .group(OCCULT_GROUP))
     );
 
     //Crafted
     //-----------------------------------------------------------------------------------------------------
     public static final RegistryObject<Item> SALT_BLOCK_ITEM = ITEMS.register("salt_block",
             () -> new BlockItem(Objects.requireNonNull(SALT_BLOCK.get()), new Item.Properties()
-                    .group(OccultGroup.instance))
+                    .group(OCCULT_GROUP))
     );
     public static final RegistryObject<Item> CHALK_BLOCK_ITEM = ITEMS.register("chalk_block",
             () -> new BlockItem(Objects.requireNonNull(CHALK_BLOCK.get()), new Item.Properties()
-                    .group(OccultGroup.instance))
+                    .group(OCCULT_GROUP))
     );
     public static final RegistryObject<Item> SACRED_SALT_BLOCK_ITEM = ITEMS.register("sacred_salt_block",
             () -> new BlockItem(Objects.requireNonNull(SACRED_SALT_BLOCK.get()), new Item.Properties()
-                    .group(OccultGroup.instance))
+                    .group(OCCULT_GROUP))
     );
     public static final RegistryObject<Item> SULPHUR_BLOCK_ITEM = ITEMS.register("sulphur_block",
             () -> new BurnableBlockItem(Objects.requireNonNull(SULPHUR_BLOCK.get()), new Item.Properties()
-                    .group(OccultGroup.instance))
+                    .group(OCCULT_GROUP))
     );
 
     //Metals
     //-----------------------------------------------------------------------------------------------------
     public static final RegistryObject<Item> AMALGAM_BLOCK_ITEM = ITEMS.register("amalgam_block",
             () -> new BlockItem(Objects.requireNonNull(AMALGAM_BLOCK.get()), new Item.Properties()
-                    .group(OccultGroup.instance))
+                    .group(OCCULT_GROUP))
     );
     public static final RegistryObject<Item> SATED_LIONMETAL_BLOCK_ITEM = ITEMS.register("sated_lionmetal_block",
             () -> new BurnableBlockItem(Objects.requireNonNull(SATED_LIONMETAL_BLOCK.get()), new Item.Properties()
-                    .group(OccultGroup.instance))
+                    .group(OCCULT_GROUP))
     );
     public static final RegistryObject<Item> HUNGRY_LIONMETAL_BLOCK_ITEM = ITEMS.register("hungry_lionmetal_block",
             () -> new BlockItem(Objects.requireNonNull(HUNGRY_LIONMETAL_BLOCK.get()), new Item.Properties()
-                    .group(OccultGroup.instance))
+                    .group(OCCULT_GROUP))
     );
 
     public static void register(IEventBus bus) {

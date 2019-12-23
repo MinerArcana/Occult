@@ -9,7 +9,8 @@ import net.minecraftforge.common.util.LazyOptional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import static com.minerarcana.occult.api.pressure.PressureCap.PRESSURE_STORAGE_CAPABILITY;
+import static com.minerarcana.occult.api.pressure.pressure.PressureCap.PRESSURE_STORAGE_CAPABILITY;
+
 
 public class PressureStorageProvider implements ICapabilitySerializable<CompoundNBT> {
     private final IPressure pressure;
