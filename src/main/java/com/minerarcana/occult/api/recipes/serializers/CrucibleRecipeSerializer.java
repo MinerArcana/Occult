@@ -5,6 +5,7 @@ import com.google.common.collect.Streams;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.minerarcana.occult.api.pressure.PressureType;
 import com.minerarcana.occult.api.recipes.machines.CrucibleRecipes;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -47,13 +48,17 @@ public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRe
         //output
         List<ItemStack> outputs = JSONUtils.isJsonArray(json, "outputs") ? Streams.stream(JSONUtils.getJsonArray(json, "outputs")).flatMap(element -> stacksFromJson(element).stream()).collect(Collectors.toList()) : stacksFromJson(json.get("outputs"));
 
+        ItemStack alternateOut = JSONUtils.getItem(json,"alternateOutput").getDefaultInstance();
+        PressureType type = null;
+        PressureType pressureType = type.getTypeFromName(JSONUtils.getString(json, "pressureType"));
         //int
         int meltTime = JSONUtils.getInt(json, "meltTime", 150);
         int minTemp = JSONUtils.getInt(json, "minimumTemp", 151);
         int maxTemp = JSONUtils.getInt(json, "maximumTemp", 500);
         int experience = JSONUtils.getInt(json, "experience", 0);
+        int pressureAmount = JSONUtils.getInt(json, "experience", 0);
 
-        return this.factory.create(id, outputs, meltTime, minTemp, maxTemp, experience, ingredient);
+        return this.factory.create(id, outputs, alternateOut,meltTime, minTemp, maxTemp, experience, pressureType,pressureAmount,ingredient);
 
 
 
@@ -84,13 +89,13 @@ public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRe
     @Nullable
     @Override
     public T read(ResourceLocation id, PacketBuffer buffer) {
-        Ingredient ingredient = Ingredient.read(buffer);
-
-        Item item = ForgeRegistries.ITEMS.getValue(buffer.readResourceLocation());
-        if (item == null)
-            throw new com.google.gson.JsonSyntaxException("Crucible recipe result is null! Recipe is: " + id.toString());
-
-
+        PressureType type = null;
+        PressureType pressureType = type.getTypeFromName(buffer.readString());
+        Ingredient[] inputs = new Ingredient[buffer.readVarInt()];
+        for (int i = 0; i < inputs.length; i++) {
+            inputs[i] = Ingredient.read(buffer);
+        }
+        ItemStack alternateOut = buffer.readItemStack();
         List<ItemStack> outputs = null;
         int resultCount = buffer.readVarInt();
         if (resultCount > 1) {
@@ -101,38 +106,37 @@ public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRe
         } else {
             outputs = Collections.singletonList(buffer.readItemStack());
         }
-
+        int pressureAmount = buffer.readVarInt();
         int meltTime = buffer.readVarInt();
         int minTemp = buffer.readVarInt();
         int maxTemp = buffer.readVarInt();
         int experience = buffer.readVarInt();
-        return this.factory.create(id, outputs, meltTime, minTemp, maxTemp, experience, ingredient);
+        return this.factory.create(id, outputs, alternateOut,maxTemp, minTemp, meltTime, experience, pressureType,pressureAmount,inputs);
     }
 
     @Override
-    public void write(PacketBuffer buffer, T recipe) {
-        buffer.writeResourceLocation(recipe.getId());
-        buffer.writeVarInt(recipe.getInputs().size());
+    public void write(PacketBuffer buf, T recipe) {
+        buf.writeString("CrucibleRecipes");
+        buf.writeResourceLocation(recipe.getId());
+        buf.writeVarInt(recipe.getInputs().size());
+        buf.writeString(recipe.getPressureType().toString());
         for (Ingredient input : recipe.getInputs()) {
-            input.write(buffer);
+            input.write(buf);
         }
-        buffer.writeVarInt(recipe.getOutputs().size());
-        for (ItemStack outputs : recipe.getOutputs()) {
-            buffer.writeItemStack(outputs);
+        buf.writeVarInt(recipe.getOutputs().size());
+        for (ItemStack output : recipe.getOutputs()) {
+            buf.writeItemStack(output, false);
         }
-        recipe.getIngredients().get(0).write(buffer);
-
-        buffer.writeResourceLocation(Objects.requireNonNull(recipe.getRecipeOutput().getItem().getRegistryName()));
-
-        buffer.writeVarInt(recipe.getMeltTime());
-        buffer.writeVarInt(recipe.getMaxtemp());
-        buffer.writeVarInt(recipe.getMintemp());
-        buffer.writeFloat(recipe.getExperience());
-
+        buf.writeItemStack(recipe.getAlternateOut());
+        buf.writeVarInt(recipe.getPressureAmount());
+        buf.writeVarInt(recipe.getMaxtemp());
+        buf.writeVarInt(recipe.getMintemp());
+        buf.writeVarInt(recipe.getMeltTime());
+        buf.writeFloat(recipe.getExperience());
     }
 
     public interface IFactory<T extends CrucibleRecipes> {
-        T create(ResourceLocation id, List<ItemStack> output, int meltTime, int maxTemp, int minTemp, int experience, Ingredient... inputs);
+        T create(ResourceLocation id, List<ItemStack> output, ItemStack alternateOut,int meltTime, int maxTemp, int minTemp, int experience, PressureType pressureType,int pressureAmount,  Ingredient... inputs);
     }
 
 

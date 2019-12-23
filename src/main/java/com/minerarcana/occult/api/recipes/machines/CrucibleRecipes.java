@@ -30,9 +30,6 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
 
 
     public CrucibleRecipes(ResourceLocation id, List<ItemStack> outputs, ItemStack alternateOut, int maxTemp, int minTemp, int meltTime, int experience, PressureType pressureType, int pressureAmount, Ingredient... inputs) {
-        Preconditions.checkArgument(inputs.length <= 3);
-        Preconditions.checkArgument(maxTemp <= 3000);
-        Preconditions.  checkArgument(minTemp >= 150);
         this.id = id;
         this.inputs = ImmutableList.copyOf(inputs);
         this.outputs = outputs;
@@ -43,6 +40,29 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
         this.pressureType = pressureType;
         this.pressureAmount = pressureAmount;
         this.experience = experience;
+    }
+
+    public boolean matches(List<ItemStack> inputList){
+        List<Ingredient> ingredientsMissing = new ArrayList<>(inputs);
+        for (ItemStack input : inputList) {
+            if (input.isEmpty())
+                break;
+
+            int stackIndex = -1;
+
+            for (int j = 0; j < ingredientsMissing.size(); j++) {
+                Ingredient ingr = ingredientsMissing.get(j);
+                if (ingr.test(input)) {
+                    stackIndex = j;
+                    break;
+                }
+            }
+            if (stackIndex != -1)
+                ingredientsMissing.remove(stackIndex);
+            else return false;
+        }
+
+        return ingredientsMissing.isEmpty();
     }
 
     @Override

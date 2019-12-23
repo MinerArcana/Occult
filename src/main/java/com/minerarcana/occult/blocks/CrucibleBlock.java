@@ -35,7 +35,7 @@ public class CrucibleBlock extends Block {
         TileEntity entity = world.getTileEntity(pos);
         if (!player.isSneaking()) {
             if (entity instanceof CrucibleTile) {
-                ((CrucibleTile) entity).extractInsertItemMethod(player, hand);
+                ((CrucibleTile) entity).extractInsertItem(player, hand);
             }
         }
         return true;

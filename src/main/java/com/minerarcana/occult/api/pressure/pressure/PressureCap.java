@@ -2,6 +2,8 @@ package com.minerarcana.occult.api.pressure.pressure;
 
 import com.minerarcana.occult.api.pressure.PressureType;
 import io.netty.util.collection.IntObjectMap;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.ChunkPos;
@@ -57,22 +59,20 @@ public class PressureCap {
     }
 
     public static int getChunkPressureForType(final Chunk chunk, final PressureType type) {
-        AtomicInteger pressure = new AtomicInteger();
-        getChunkPressure(chunk)
-                .ifPresent(chunkPressure -> {
-                    pressure.set(chunkPressure.getPressureFromType(type));
-                });
-        return pressure.get();
+                getChunkPressure(chunk)
+                .map(chunkPressure -> chunkPressure.getPressureFromType(type)).orElse(0);
+        return 0;
     }
 
-    public static IntObjectMap<PressureType> getAllPressureFromChunk(final Chunk chunk){
-        IntObjectMap<PressureType> pressure = null;
+    public static Object2IntMap<PressureType> getAllPressureFromChunk(final Chunk chunk){
+        Object2IntMap<PressureType> pressure = new Object2IntOpenHashMap<>();
         getChunkPressure(chunk)
-                .ifPresent(chunkPressure -> {
+                .map(chunkPressure -> {
                     for (PressureType type : chunkPressure.getAllPressure().keySet()) {
-                        pressure.put(chunkPressure.getPressureFromType(type),type);
+                        pressure.put(type,chunkPressure.getPressureFromType(type));
                     }
-                });
+                    return pressure;
+                }).orElse(pressure);
         return pressure;
     }
 
@@ -91,24 +91,24 @@ public class PressureCap {
     }
 
     public static int getTilePressureForType(final TileEntity entity, final PressureType type) {
-        AtomicInteger pressure = new AtomicInteger();
         getTileEntityPressure(entity)
-                .ifPresent(entityPressure -> {
-                    pressure.set(entityPressure.getPressureFromType(type));
-                });
-        return pressure.get();
+                .map(entityPressure -> {
+                    int pressure = entityPressure.getPressureFromType(type);
+                    return pressure;
+                }).orElse(0);
+        return 0;
     }
 
-    public static IntObjectMap<PressureType> getAllPressureFromTile(final TileEntity entity){
-        IntObjectMap<PressureType> pressure = null;
+    public static Object2IntMap<PressureType> getAllPressureFromTile(final TileEntity entity){
+        Object2IntMap<PressureType> pressure = new Object2IntOpenHashMap<>();
         getTileEntityPressure(entity)
-                .ifPresent(entityPressure -> {
+                .map(entityPressure -> {
                     for (PressureType type : entityPressure.getAllPressure().keySet()) {
-                        pressure.put(entityPressure.getPressureFromType(type),type);
+                        pressure.put(type, entityPressure.getPressureFromType(type));
                     }
-                });
+                    return pressure;
+                }).orElse(pressure);
         return pressure;
     }
-
 
 }
