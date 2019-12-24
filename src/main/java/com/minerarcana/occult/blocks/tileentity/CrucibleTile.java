@@ -1,5 +1,6 @@
 package com.minerarcana.occult.blocks.tileentity;
 
+import com.minerarcana.occult.Occult;
 import com.minerarcana.occult.api.pressure.PressureType;
 import com.minerarcana.occult.api.pressure.pressure.PressureCap;
 import com.minerarcana.occult.api.recipes.OccultRecipeTypes;
@@ -10,9 +11,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.AbstractCookingRecipe;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.nbt.CompoundNBT;
@@ -59,11 +58,10 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity, IIn
     public void tick() {
         setFuelTemp();
         if (hasFuel()) {
-            List<ItemStack> itemList = new ArrayList<ItemStack>();
-            for (int s = 0; s < getSizeInventory(); ++s) {
-                itemList.add(s, getStackInSlot(s));
-            }
+            List<ItemStack> itemList = getAllItems();
+            Occult.LOGGER.info(itemList.get(0).getItem());
             if (!itemList.isEmpty()) {
+                Occult.LOGGER.info("itemList is not Empty");
                 IRecipe<?> irecipe = this.world.getRecipeManager().getRecipe(this.recipeType, this, this.world).orElse(null);
                 if (canSmelt(irecipe, itemList) && hotEnough()) {
                     if(getMeltTime() == 0){
@@ -216,6 +214,16 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity, IIn
         };
     }
 
+    public List<ItemStack> getAllItems(){
+        List<ItemStack> itemList = new ArrayList<ItemStack>();
+        handler.ifPresent(inventory -> {
+            for(int x = 0; x < 2; ++x) {
+                itemList.set(x,inventory.getStackInSlot(1));
+            }
+        });
+        return itemList;
+    }
+
     public void extractInsertItem(PlayerEntity player, Hand hand) {
         handler.ifPresent(inventory -> {
             ItemStack held = player.getHeldItem(hand);
@@ -261,6 +269,11 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity, IIn
                 }
             });
         }
+        this.fuelTemp = tag.getInt("fuelTemp");
+        this.minTemp = tag.getInt("minTemp");
+        this.maxTemp = tag.getInt("maxTemp");
+        this.meltTime = tag.getInt("meltTime");
+        this.maxMeltTime = tag.getInt("maxMeltTime");
     }
 
     @Override
@@ -282,6 +295,12 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity, IIn
         if (!list.isEmpty()) {
             compound.put("Items", list);
         }
+        compound.putInt("meltTime", meltTime);
+        compound.putInt("maxMeltTotal", maxMeltTime);
+        compound.putInt("fuelTemp", fuelTemp);
+        compound.putInt("minTemp", minTemp);
+        compound.putInt("maxTemp", maxTemp);
+
         return compound;
     }
 
