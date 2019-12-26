@@ -43,8 +43,8 @@ public class ItemToFluidRecipe implements IRecipe<IInventory> {
         this.experience = experience;
     }
 
-    public boolean matches(List<ItemStack> inputList){
-        List<Ingredient> ingredientsMissing = new ArrayList<>(inputs);
+    public boolean matches(List<ItemStack> inputList) {
+        List<Ingredient> ingredientsMissing = new ArrayList<>(getItemsIn());
         for (ItemStack input : inputList) {
             if (input.isEmpty())
                 break;
@@ -106,15 +106,15 @@ public class ItemToFluidRecipe implements IRecipe<IInventory> {
         return this.experience;
     }
 
-    public List<Ingredient> getInputs() {
+    public List<Ingredient> getItemsIn() {
         return this.inputs;
     }
 
-    public FluidStack getOutputs() {
+    public FluidStack getFluidOut() {
         return this.fluidStackOut;
     }
 
-    public FluidStack getAlternateOut(){
+    public FluidStack getAlternateOut() {
         return alternateOut;
     }
 

@@ -3,6 +3,7 @@ package com.minerarcana.occult.api.recipes.machines;
 import com.minerarcana.occult.api.pressure.PressureType;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
@@ -21,16 +22,18 @@ public class FluidToItemRecipe implements IRecipe<IInventory> {
     private final FluidStack fluidStackIn;
     private final PressureType pressureType;
     private final List<ItemStack> outputs;
+    private final ItemStack alternateOut;
     private final int maxTempBeforeBrittle;
     private final int pressureAmount;
     private final int minHoldingTemp;
     private final int coolTime;
     private final int experience;
 
-    public FluidToItemRecipe(ResourceLocation id, FluidStack fluidStackIn, List<ItemStack> outputs, int maxTempBeforeBrittle, int minHoldingTemp, int coolTime, int experience, PressureType pressureType, int pressureAmount) {
+    public FluidToItemRecipe(ResourceLocation id, FluidStack fluidStackIn, List<ItemStack> outputs, ItemStack alternateOut, int maxTempBeforeBrittle, int minHoldingTemp, int coolTime, int experience, PressureType pressureType, int pressureAmount) {
         this.id = id;
         this.fluidStackIn = fluidStackIn;
         this.outputs = outputs;
+        this.alternateOut = alternateOut;
         this.minHoldingTemp = minHoldingTemp;
         this.maxTempBeforeBrittle = maxTempBeforeBrittle;
         this.coolTime = coolTime;
@@ -39,10 +42,11 @@ public class FluidToItemRecipe implements IRecipe<IInventory> {
         this.experience = experience;
     }
 
+    public boolean matches(FluidStack stack){
+        return getFluidStackIn().equals(stack);
+    }
 
-
-
-        @Override
+    @Override
     public boolean matches(IInventory inv, World worldIn) {
         return false;
     }
@@ -55,6 +59,18 @@ public class FluidToItemRecipe implements IRecipe<IInventory> {
     @Override
     public boolean canFit(int width, int height) {
         return false;
+    }
+
+    public List<ItemStack> getOutputs() {
+        return outputs;
+    }
+
+    public ItemStack getAlternateOutput() {
+        return Items.COAL.getDefaultInstance();
+    }
+
+    public FluidStack getFluidStackIn() {
+        return fluidStackIn;
     }
 
     @Override
@@ -95,6 +111,10 @@ public class FluidToItemRecipe implements IRecipe<IInventory> {
 
     public int getPressureAmount() {
         return this.pressureAmount;
+    }
+
+    public ItemStack getAlternateOut() {
+        return alternateOut;
     }
 
     public int getExperience() {

@@ -11,7 +11,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
@@ -22,6 +25,10 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -36,8 +43,10 @@ import static com.minerarcana.occult.content.OccultTileEntity.CRUCIBLE_TYPE;
 
 public class CrucibleTile extends TileEntity implements ITickableTileEntity {
 
+    protected FluidTank tank = new FluidTank(1000);
     //Inventory Cap Optional!
     private LazyOptional<IItemHandler> handler = LazyOptional.of(this::createHandler);
+    private LazyOptional<IFluidHandler> fluidHandler = LazyOptional.of(() -> tank);
 
     private FluidToItemRecipe currentFluidToItemRecipe;
     private ItemToFluidRecipe currentItemToFluidRecipe;
@@ -56,77 +65,217 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity {
     @Override
     public void tick() {
         setFuelTemp();
-        if (hasFuel()) {
+        if (hasFuel() && tank.isEmpty()) {
             List<ItemStack> itemList = getAllItems();
             if (!itemList.isEmpty()) {
                 currentItemToFluidRecipe = world.getRecipeManager()
                         .getRecipes()
                         .stream()
-                        .filter(recipe -> recipe.getType().equals(OccultRecipeTypes.CRUCIBLETYPE))
+                        .filter(recipe -> recipe.getType().equals(OccultRecipeTypes.CRUCIBLE_ITEM_TO_FLUID))
                         .map(recipe -> (ItemToFluidRecipe) recipe)
-                        .filter(this::matches)
+                        .filter(recipe -> itemtoFluidMatches(recipe, itemList))
                         .findFirst()
                         .orElse(null);
                 if (currentItemToFluidRecipe != null) {
-                    if (canSmelt(currentItemToFluidRecipe) && hotEnough()) {
+                    if (canMeltItems(currentItemToFluidRecipe) && hotEnough()) {
                         if (getMeltTime() == 0) {
                             getRecipeThings(currentItemToFluidRecipe);
+                            ++meltTime;
                         } else if (getMeltTime() == getMaxMeltTime()) {
                             this.meltTime = 0;
-                            this.smeltRecipe(currentItemToFluidRecipe);
-                        } else {
+                            this.smeltItemsToFluid(currentItemToFluidRecipe);
+                        }
+                        ++meltTime;
+                    }
+                }
+            }
+        } else if (this.meltTime > 0 && tank.isEmpty() && getAllItems().isEmpty()) {
+            this.meltTime = 0;
+        } else if (!this.hasFuel() && !tank.isEmpty()) {
+            List<ItemStack> itemList = getAllItems();
+            if (!itemList.isEmpty()) {
+                currentItemNFluidToFluidRecipe = world.getRecipeManager()
+                        .getRecipes()
+                        .stream()
+                        .filter(recipe -> recipe.getType().equals(OccultRecipeTypes.CRUCIBLE_ITEM_FLUID_TO_ITEM))
+                        .map(recipe -> (ItemNFluidToItemRecipe) recipe)
+                        .filter(recipe -> itemNFluidtoItemMatches(recipe, itemList, tank.getFluid()))
+                        .findFirst()
+                        .orElse(null);
+                if (currentItemNFluidToFluidRecipe != null) {
+                    if(currentFluidToItemRecipe.getCoolTime() > 0){
+                        if (getMeltTime() == 0) {
+                            getRecipeThings(currentFluidToItemRecipe);
+                            ++meltTime;
+                        }else if(getMeltTime() == getMaxMeltTime()){
+                            this.meltTime = 0;
+                            this.smeltItemsNFluidsToItems(currentItemNFluidToFluidRecipe);
+                        }
+                        ++meltTime;
+                    }
+                }
+            } else {
+                currentFluidToItemRecipe = world.getRecipeManager()
+                        .getRecipes()
+                        .stream()
+                        .filter(recipe -> recipe.getType().equals(OccultRecipeTypes.CRUCIBLE_FLUID_TO_ITEM))
+                        .map(recipe -> (FluidToItemRecipe) recipe)
+                        .filter(recipe -> fluidtoItemMatches(recipe, tank.getFluid()))
+                        .findFirst()
+                        .orElse(null);
+                if (currentFluidToItemRecipe != null) {
+                    if(canCoolFluids(currentFluidToItemRecipe)){
+                        if(itemList.isEmpty()){
+                            if (getMeltTime() == 0) {
+                                getRecipeThings(currentFluidToItemRecipe);
+                                ++meltTime;
+                            }else if(getMeltTime() == getMaxMeltTime()){
+                                this.meltTime = 0;
+                                if(tooHot()){
+                                    ItemStack altOut = currentItemNFluidToFluidRecipe.getAlternateOut();
+                                    if(altOut == null){
+                                        insertSlotContents(0,Items.COAL.getDefaultInstance());
+                                    }else{
+                                        insertSlotContents(0,altOut);
+                                    }
+                                }else {
+                                    this.smeltFluidsToItems(currentFluidToItemRecipe);
+                                }
+                            }
                             ++meltTime;
                         }
                     }
                 }
             }
-        } else if (!this.hasFuel() && this.meltTime > 0) {
-            this.meltTime = MathHelper.clamp(getMeltTime() - 2, 0, getMaxMeltTime());
+        } else if (this.hasFuel() && !tank.isEmpty()) {
+            List<ItemStack> itemList = getAllItems();
+            if (!itemList.isEmpty()) {
+                currentItemNFluidToFluidRecipe = world.getRecipeManager()
+                        .getRecipes()
+                        .stream()
+                        .filter(recipe -> recipe.getType().equals(OccultRecipeTypes.CRUCIBLE_ITEM_FLUID_TO_ITEM))
+                        .map(recipe -> (ItemNFluidToItemRecipe) recipe)
+                        .filter(recipe -> itemNFluidtoItemMatches(recipe, itemList, tank.getFluid()))
+                        .findFirst()
+                        .orElse(null);
+                if (currentItemNFluidToFluidRecipe != null) {
+                    getRecipeThings(currentItemNFluidToFluidRecipe);
+                    if(tooHot()){
+                        ItemStack altOut = currentItemNFluidToFluidRecipe.getAlternateOut();
+                        if(altOut == null){
+                            insertSlotContents(0,Items.COAL.getDefaultInstance());
+                        }else{
+                            insertSlotContents(0,altOut);
+                        }
+                    }
+                    else if(getMaxMeltTime() <= 0 && hotEnough()){
+                        this.meltTime = 0;
+                        this.smeltItemsNFluidsToItems(currentItemNFluidToFluidRecipe);
+                    }
+                }
+            }
         }
     }
 
-    private boolean matches(ItemToFluidRecipe crucibleRecipes) {
-        return crucibleRecipes.matches(getAllItems());
+    private boolean itemtoFluidMatches(ItemToFluidRecipe crucibleRecipes, List<ItemStack> list) {
+        return crucibleRecipes.matches(list);
     }
 
-    private void smeltRecipe(ItemToFluidRecipe recipe) {
-        ItemStack alternateOut = recipe.getAlternateOut();
+    private boolean fluidtoItemMatches(FluidToItemRecipe crucibleRecipes, FluidStack stack) {
+        return crucibleRecipes.matches(stack);
+    }
+
+    private boolean itemNFluidtoItemMatches(ItemNFluidToItemRecipe crucibleRecipes, List<ItemStack> list, FluidStack stack) {
+        return crucibleRecipes.matches(list, stack);
+    }
+
+    private void smeltItemsToFluid(ItemToFluidRecipe recipe) {
         PressureType type = recipe.getPressureType();
         int pressureIn = recipe.getPressureAmount();
-        if(tooHot()){
+        if (tooHot()) {
+            FluidStack alternateOut = recipe.getAlternateOut();
             clearInv();
-            if(alternateOut == null){
-                alternateOut = Blocks.COAL_ORE.asItem().getDefaultInstance();
+            if (alternateOut == null) {
+                tank.fill(new FluidStack(Fluids.WATER.getStillFluid(), 1000), IFluidHandler.FluidAction.EXECUTE);
             }
-            insertSlotContents(0, alternateOut);
-            if(pressureIn !=0) {
+            tank.fill(alternateOut, IFluidHandler.FluidAction.EXECUTE);
+            if (pressureIn != 0) {
                 PressureCap.addChunkPressure(world.getChunkAt(pos), type, pressureIn);
             }
-        }
-        else if(hotEnough()){
-            clearInv();
-            int size = recipe.getOutputs().size();
-            for(int x = 0; x < size; ++x){
-                insertSlotContents(x,recipe.getOutputs().get(x));
+        } else {
+            FluidStack fluidOut = recipe.getFluidOut();
+            if (fluidOut.getAmount() == 1000) {
+                tank.fill(fluidOut, IFluidHandler.FluidAction.EXECUTE);
+                if (pressureIn != 0) {
+                    PressureCap.addChunkPressure(world.getChunkAt(pos), type, pressureIn);
+                }
             }
-            if(pressureIn !=0) {
+        }
+    }
+
+    private void smeltFluidsToItems(FluidToItemRecipe recipe) {
+        PressureType type = recipe.getPressureType();
+        int pressureIn = recipe.getPressureAmount();
+        List<ItemStack> output = recipe.getOutputs();
+        tank.drain(1000, IFluidHandler.FluidAction.EXECUTE);
+        int size = output.size();
+        if (size <= 3) {
+            for (int x = 0; x < (size - 1); ++x) {
+                insertSlotContents(x, output.get(x));
+            }
+            if (pressureIn != 0) {
                 PressureCap.addChunkPressure(world.getChunkAt(pos), type, pressureIn);
             }
         }
     }
 
-
-    private void getRecipeThings(ItemToFluidRecipe recipe){
-            maxTemp = recipe.getMaxtemp();
-            minTemp = recipe.getMintemp();
-            maxMeltTime = recipe.getMeltTime();
+    private void smeltItemsNFluidsToItems(ItemNFluidToItemRecipe recipe) {
+        PressureType type = recipe.getPressureType();
+        int pressureIn = recipe.getPressureAmount();
+        List<ItemStack> output = recipe.getOutputs();
+        tank.drain(1000, IFluidHandler.FluidAction.EXECUTE);
+        clearInv();
+        int size = output.size();
+        if (size <= 3) {
+            for (int x = 0; x < (size - 1); ++x) {
+                insertSlotContents(x, output.get(x));
+            }
+            if (pressureIn != 0) {
+                PressureCap.addChunkPressure(world.getChunkAt(pos), type, pressureIn);
+            }
+        }
     }
 
-    private boolean canSmelt(ItemToFluidRecipe recipe) {
-                ItemStack outStack = recipe.getRecipeOutput();
-                if (outStack.isEmpty())
-                    return false;
-        return false;
+    private void getRecipeThings(@Nullable IRecipe<?> recipe) {
+        if (recipe instanceof ItemToFluidRecipe) {
+            maxTemp = ((ItemToFluidRecipe) recipe).getMaxtemp();
+            minTemp = ((ItemToFluidRecipe) recipe).getMintemp();
+            maxMeltTime = ((ItemToFluidRecipe) recipe).getMeltTime();
+        } else if (recipe instanceof FluidToItemRecipe) {
+            maxTemp = ((FluidToItemRecipe) recipe).getMaxTempBeforeBrittle();
+            minTemp = ((FluidToItemRecipe) recipe).getMinHoldingTemp();
+            maxMeltTime = ((FluidToItemRecipe) recipe).getCoolTime();
+        } else if (recipe instanceof ItemNFluidToItemRecipe) {
+            maxTemp = ((ItemNFluidToItemRecipe) recipe).getMaxTempBeforeBrittle();
+            minTemp = ((ItemNFluidToItemRecipe) recipe).getMinHoldingTemp();
+            maxMeltTime = ((ItemNFluidToItemRecipe) recipe).getCoolTime();
+        }
+    }
+
+    private boolean canMeltItems(ItemToFluidRecipe recipe) {
+        if (recipe.getFluidOut().isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean canCoolFluids(FluidToItemRecipe recipe) {
+        if (recipe.getOutputs().isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public int getMeltTime() {
@@ -190,6 +339,9 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity {
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return handler.cast();
         }
+        if (cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+            return fluidHandler.cast();
+        }
         return super.getCapability(cap, side);
     }
 
@@ -207,11 +359,11 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity {
         };
     }
 
-    public List<ItemStack> getAllItems(){
+    public List<ItemStack> getAllItems() {
         List<ItemStack> itemList = new ArrayList<ItemStack>();
-        for(int x = 0; x < 2; ++x) {
+        for (int x = 0; x < 2; ++x) {
             ItemStack stack = getStackInSlot(x);
-            if(stack != null) {
+            if (stack != null) {
                 itemList.add(x, stack);
             }
         }
@@ -306,7 +458,7 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity {
         return minTemp;
     }
 
-    public int getSlots(){
+    public int getSlots() {
         handler.map(inventory -> {
             int slots = inventory.getSlots();
             return slots;
@@ -338,9 +490,10 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity {
 
     public void clearInv() {
         handler.ifPresent(inventory -> {
-            for(int x = 0; x < 2; ++x){
-                inventory.extractItem(x,1,false);
+            for (int x = 0; x < 2; ++x) {
+                inventory.extractItem(x, 1, false);
             }
         });
     }
+
 }
