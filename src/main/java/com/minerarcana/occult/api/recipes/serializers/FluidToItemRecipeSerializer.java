@@ -2,21 +2,16 @@ package com.minerarcana.occult.api.recipes.serializers;
 
 
 import com.google.common.collect.Streams;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.minerarcana.occult.api.pressure.PressureType;
-import com.minerarcana.occult.api.recipes.machines.CrucibleRecipes;
-import net.minecraft.item.Item;
+import com.minerarcana.occult.api.recipes.machines.ItemToFluidRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.ShapedRecipe;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
@@ -24,16 +19,15 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 
-public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<T> {
+public class FluidToItemRecipeSerializer<T extends ItemToFluidRecipe> extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<T> {
 
     private final IFactory<T> factory;
 
 
-    public CrucibleRecipeSerializer(IFactory<T> factory) {
+    public FluidToItemRecipeSerializer(IFactory<T> factory) {
         this.factory = factory;
 
     }
@@ -46,7 +40,7 @@ public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRe
         Ingredient ingredient = Ingredient.deserialize(ingredientJson);
 
         //output
-        List<ItemStack> outputs = JSONUtils.isJsonArray(json, "outputs") ? Streams.stream(JSONUtils.getJsonArray(json, "outputs")).flatMap(element -> stacksFromJson(element).stream()).collect(Collectors.toList()) : stacksFromJson(json.get("outputs"));
+        List<ItemStack> outputs = JSONUtils.isJsonArray(json, "output") ? Streams.stream(JSONUtils.getJsonArray(json, "output")).flatMap(element -> stacksFromJson(element).stream()).collect(Collectors.toList()) : stacksFromJson(json.get("output"));
 
         ItemStack alternateOut = JSONUtils.getItem(json,"alternateOutput").getDefaultInstance();
         PressureType type = null;
@@ -56,9 +50,9 @@ public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRe
         int minTemp = JSONUtils.getInt(json, "minimumTemp", 151);
         int maxTemp = JSONUtils.getInt(json, "maximumTemp", 500);
         int experience = JSONUtils.getInt(json, "experience", 0);
-        int pressureAmount = JSONUtils.getInt(json, "experience", 0);
+        int pressureAmount = JSONUtils.getInt(json, "pressureAmount", 0);
 
-        return this.factory.create(id, outputs, alternateOut,meltTime, minTemp, maxTemp, experience, pressureType,pressureAmount,ingredient);
+        return this.factory.create(id, outputs, alternateOut,meltTime, minTemp, maxTemp, experience, pressureType, pressureAmount,ingredient);
 
 
 
@@ -135,8 +129,8 @@ public class CrucibleRecipeSerializer<T extends CrucibleRecipes> extends ForgeRe
         buf.writeFloat(recipe.getExperience());
     }
 
-    public interface IFactory<T extends CrucibleRecipes> {
-        T create(ResourceLocation id, List<ItemStack> output, ItemStack alternateOut,int meltTime, int maxTemp, int minTemp, int experience, PressureType pressureType,int pressureAmount,  Ingredient... inputs);
+    public interface IFactory<T extends ItemToFluidRecipe> {
+        T create(ResourceLocation id, List<ItemStack> output, ItemStack alternateOut, int meltTime, int maxTemp, int minTemp, int experience, PressureType pressureType, int pressureAmount, Ingredient... inputs);
     }
 
 

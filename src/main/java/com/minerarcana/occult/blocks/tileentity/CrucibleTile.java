@@ -1,19 +1,17 @@
 package com.minerarcana.occult.blocks.tileentity;
 
-import com.minerarcana.occult.Occult;
 import com.minerarcana.occult.api.pressure.PressureType;
 import com.minerarcana.occult.api.pressure.pressure.PressureCap;
 import com.minerarcana.occult.api.recipes.OccultRecipeTypes;
-import com.minerarcana.occult.api.recipes.machines.CrucibleRecipes;
+import com.minerarcana.occult.api.recipes.machines.FluidToItemRecipe;
+import com.minerarcana.occult.api.recipes.machines.ItemNFluidToItemRecipe;
+import com.minerarcana.occult.api.recipes.machines.ItemToFluidRecipe;
 import com.minerarcana.occult.util.lib.OccultTagLib;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
@@ -36,12 +34,14 @@ import java.util.List;
 
 import static com.minerarcana.occult.content.OccultTileEntity.CRUCIBLE_TYPE;
 
-public class CrucibleTile extends TileEntity implements ITickableTileEntity, IInventory {
+public class CrucibleTile extends TileEntity implements ITickableTileEntity {
 
     //Inventory Cap Optional!
     private LazyOptional<IItemHandler> handler = LazyOptional.of(this::createHandler);
 
-    private final IRecipeType<CrucibleRecipes> recipeType;
+    private FluidToItemRecipe currentFluidToItemRecipe;
+    private ItemToFluidRecipe currentItemToFluidRecipe;
+    private ItemNFluidToItemRecipe currentItemNFluidToFluidRecipe;
 
     private int maxTemp;
     private int minTemp;
@@ -51,7 +51,6 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity, IIn
 
     public CrucibleTile() {
         super(CRUCIBLE_TYPE.get());
-        recipeType = OccultRecipeTypes.CRUCIBLETYPE;
     }
 
     @Override
@@ -59,19 +58,25 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity, IIn
         setFuelTemp();
         if (hasFuel()) {
             List<ItemStack> itemList = getAllItems();
-            Occult.LOGGER.info(itemList.get(0).getItem());
             if (!itemList.isEmpty()) {
-                Occult.LOGGER.info("itemList is not Empty");
-                IRecipe<?> irecipe = this.world.getRecipeManager().getRecipe(this.recipeType, this, this.world).orElse(null);
-                if (canSmelt(irecipe, itemList) && hotEnough()) {
-                    if(getMeltTime() == 0){
-                        getRecipeThings(irecipe);
-                    }
-                    else if (getMeltTime() == getMaxMeltTime()) {
-                        this.meltTime = 0;
-                        this.smeltRecipe(irecipe);
-                    }else {
-                        ++meltTime;
+                currentItemToFluidRecipe = world.getRecipeManager()
+                        .getRecipes()
+                        .stream()
+                        .filter(recipe -> recipe.getType().equals(OccultRecipeTypes.CRUCIBLETYPE))
+                        .map(recipe -> (ItemToFluidRecipe) recipe)
+                        .filter(this::matches)
+                        .findFirst()
+                        .orElse(null);
+                if (currentItemToFluidRecipe != null) {
+                    if (canSmelt(currentItemToFluidRecipe) && hotEnough()) {
+                        if (getMeltTime() == 0) {
+                            getRecipeThings(currentItemToFluidRecipe);
+                        } else if (getMeltTime() == getMaxMeltTime()) {
+                            this.meltTime = 0;
+                            this.smeltRecipe(currentItemToFluidRecipe);
+                        } else {
+                            ++meltTime;
+                        }
                     }
                 }
             }
@@ -80,28 +85,29 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity, IIn
         }
     }
 
-    private void smeltRecipe(@Nullable IRecipe<?> iRecipe) {
-        if (!(iRecipe instanceof CrucibleRecipes))
-            return;
-        CrucibleRecipes recipe = (CrucibleRecipes) iRecipe;
+    private boolean matches(ItemToFluidRecipe crucibleRecipes) {
+        return crucibleRecipes.matches(getAllItems());
+    }
+
+    private void smeltRecipe(ItemToFluidRecipe recipe) {
         ItemStack alternateOut = recipe.getAlternateOut();
         PressureType type = recipe.getPressureType();
         int pressureIn = recipe.getPressureAmount();
         if(tooHot()){
-            clear();
+            clearInv();
             if(alternateOut == null){
                 alternateOut = Blocks.COAL_ORE.asItem().getDefaultInstance();
             }
-            setInventorySlotContents(0, alternateOut);
+            insertSlotContents(0, alternateOut);
             if(pressureIn !=0) {
                 PressureCap.addChunkPressure(world.getChunkAt(pos), type, pressureIn);
             }
         }
         else if(hotEnough()){
-            clear();
+            clearInv();
             int size = recipe.getOutputs().size();
             for(int x = 0; x < size; ++x){
-                setInventorySlotContents(x,recipe.getOutputs().get(x));
+                insertSlotContents(x,recipe.getOutputs().get(x));
             }
             if(pressureIn !=0) {
                 PressureCap.addChunkPressure(world.getChunkAt(pos), type, pressureIn);
@@ -110,29 +116,16 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity, IIn
     }
 
 
-    private void getRecipeThings(@Nullable IRecipe<?> iRecipe){
-        if (iRecipe instanceof CrucibleRecipes){
-            CrucibleRecipes recipe = (CrucibleRecipes) iRecipe;
+    private void getRecipeThings(ItemToFluidRecipe recipe){
             maxTemp = recipe.getMaxtemp();
             minTemp = recipe.getMintemp();
             maxMeltTime = recipe.getMeltTime();
-        }
     }
 
-    private boolean canSmelt(@Nullable IRecipe<?> iRecipe, List<ItemStack> list) {
-        if (!(iRecipe instanceof CrucibleRecipes))
-            return false;
-        if (!list.isEmpty()) {
-            CrucibleRecipes recipe = (CrucibleRecipes) iRecipe;
-            if(recipe.matches(list)) {
+    private boolean canSmelt(ItemToFluidRecipe recipe) {
                 ItemStack outStack = recipe.getRecipeOutput();
                 if (outStack.isEmpty())
                     return false;
-                else {
-                    return list.isEmpty();
-                }
-            }
-        }
         return false;
     }
 
@@ -216,11 +209,12 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity, IIn
 
     public List<ItemStack> getAllItems(){
         List<ItemStack> itemList = new ArrayList<ItemStack>();
-        handler.ifPresent(inventory -> {
-            for(int x = 0; x < 2; ++x) {
-                itemList.set(x,inventory.getStackInSlot(1));
+        for(int x = 0; x < 2; ++x) {
+            ItemStack stack = getStackInSlot(x);
+            if(stack != null) {
+                itemList.add(x, stack);
             }
-        });
+        }
         return itemList;
     }
 
@@ -312,8 +306,7 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity, IIn
         return minTemp;
     }
 
-    @Override
-    public int getSizeInventory() {
+    public int getSlots(){
         handler.map(inventory -> {
             int slots = inventory.getSlots();
             return slots;
@@ -321,47 +314,29 @@ public class CrucibleTile extends TileEntity implements ITickableTileEntity, IIn
         return 0;
     }
 
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
 
-    @Override
-    public ItemStack getStackInSlot(int i) {
+    public ItemStack getStackInSlot(int slot) {
         handler.map(inventory -> {
-            return inventory.getStackInSlot(i);
+            return inventory.getStackInSlot(slot);
         }).orElse(ItemStack.EMPTY);
         return ItemStack.EMPTY;
     }
 
-    @Override
-    public ItemStack decrStackSize(int i, int i1) {
-        return null;
-    }
-
-    @Override
-    public ItemStack removeStackFromSlot(int i) {
+    public ItemStack extractStackFromSlot(int slot) {
         handler.map(inventory -> {
-            ItemStack stack = inventory.extractItem(i, 1, false);
-            return stack;
+            return inventory.extractItem(slot, 1, false);
         }).orElse(ItemStack.EMPTY);
         return ItemStack.EMPTY;
     }
 
-    @Override
-    public void setInventorySlotContents(int i, ItemStack itemStack) {
+    public void insertSlotContents(int slot, ItemStack itemStack) {
         handler.ifPresent(inventory -> {
-            inventory.insertItem(i, itemStack.copy(), false);
+            inventory.insertItem(slot, itemStack.copy(), false);
         });
     }
 
-    @Override
-    public boolean isUsableByPlayer(PlayerEntity playerEntity) {
-        return true;
-    }
 
-    @Override
-    public void clear() {
+    public void clearInv() {
         handler.ifPresent(inventory -> {
             for(int x = 0; x < 2; ++x){
                 inventory.extractItem(x,1,false);

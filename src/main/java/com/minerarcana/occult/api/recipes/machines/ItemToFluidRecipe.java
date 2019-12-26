@@ -12,14 +12,15 @@ import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CrucibleRecipes implements IRecipe<IInventory> {
+public class ItemToFluidRecipe implements IRecipe<IInventory> {
     private final ResourceLocation id;
-    private final List<ItemStack> outputs;
-    private final ItemStack alternateOut;
+    private final FluidStack fluidStackOut;
+    private final FluidStack alternateOut;
     private final ImmutableList<Ingredient> inputs;
     private final PressureType pressureType;
     private final int maxtemp;
@@ -29,10 +30,10 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
     private final int experience;
 
 
-    public CrucibleRecipes(ResourceLocation id, List<ItemStack> outputs, ItemStack alternateOut, int maxTemp, int minTemp, int meltTime, int experience, PressureType pressureType, int pressureAmount, Ingredient... inputs) {
+    public ItemToFluidRecipe(ResourceLocation id, FluidStack fluidStackOut, FluidStack alternateOut, int maxTemp, int minTemp, int meltTime, int experience, PressureType pressureType, int pressureAmount, Ingredient... inputs) {
         this.id = id;
         this.inputs = ImmutableList.copyOf(inputs);
-        this.outputs = outputs;
+        this.fluidStackOut = fluidStackOut;
         this.alternateOut = alternateOut;
         this.mintemp = minTemp;
         this.maxtemp = maxTemp;
@@ -67,34 +68,13 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
 
     @Override
     public boolean matches(IInventory inv, World worldIn) {
-        List<Ingredient> ingredientsMissing = new ArrayList<>(inputs);
-
-        for (int i = 0; i < inv.getSizeInventory(); i++) {
-            ItemStack input = inv.getStackInSlot(i);
-            if (input.isEmpty())
-                break;
-
-            int stackIndex = -1;
-
-            for (int j = 0; j < ingredientsMissing.size(); j++) {
-                Ingredient ingr = ingredientsMissing.get(j);
-                if (ingr.test(input)) {
-                    stackIndex = j;
-                    break;
-                }
-            }
-            if (stackIndex != -1)
-                ingredientsMissing.remove(stackIndex);
-            else return false;
-        }
-
-        return ingredientsMissing.isEmpty();
+        return false;
     }
 
 
     @Override
     public ItemStack getCraftingResult(IInventory inv) {
-        return this.outputs.get(0).copy();
+        return null;
     }
 
     @Override
@@ -104,7 +84,7 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
 
     @Override
     public ItemStack getRecipeOutput() {
-        return this.outputs.get(0).copy();
+        return null;
     }
 
     @Override
@@ -114,12 +94,12 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return OccultRecipeTypes.CRUCIBLESERIALIZER;
+        return OccultRecipeTypes.CRUCIBLE_ITEM_TO_FLUID_SERIALIZER;
     }
 
     @Override
     public IRecipeType<?> getType() {
-        return OccultRecipeTypes.CRUCIBLETYPE;
+        return OccultRecipeTypes.CRUCIBLE_ITEM_TO_FLUID;
     }
 
     public float getExperience() {
@@ -130,11 +110,11 @@ public class CrucibleRecipes implements IRecipe<IInventory> {
         return this.inputs;
     }
 
-    public List<ItemStack> getOutputs() {
-        return this.outputs;
+    public FluidStack getOutputs() {
+        return this.fluidStackOut;
     }
 
-    public ItemStack getAlternateOut(){
+    public FluidStack getAlternateOut(){
         return alternateOut;
     }
 

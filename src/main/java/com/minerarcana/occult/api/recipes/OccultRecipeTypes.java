@@ -1,7 +1,9 @@
 package com.minerarcana.occult.api.recipes;
 
-import com.minerarcana.occult.api.recipes.machines.CrucibleRecipes;
-import com.minerarcana.occult.api.recipes.serializers.CrucibleRecipeSerializer;
+import com.minerarcana.occult.api.recipes.machines.FluidToItemRecipe;
+import com.minerarcana.occult.api.recipes.machines.ItemNFluidToItemRecipe;
+import com.minerarcana.occult.api.recipes.machines.ItemToFluidRecipe;
+import com.minerarcana.occult.api.recipes.serializers.ItemToFluidRecipeSerializer;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
@@ -10,31 +12,39 @@ import net.minecraft.util.registry.Registry;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
 
 import static com.minerarcana.occult.Occult.MOD_ID;
-import static net.minecraft.world.biome.Biome.LOGGER;
 
 
 @ObjectHolder(MOD_ID)
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class OccultRecipeTypes {
+    private static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZER = new DeferredRegister<>(ForgeRegistries.RECIPE_SERIALIZERS, MOD_ID);
 
-    public static IRecipeType<CrucibleRecipes> CRUCIBLETYPE;
-    public static CrucibleRecipeSerializer<CrucibleRecipes> CRUCIBLESERIALIZER;
+
+    public static IRecipeType<ItemToFluidRecipe> CRUCIBLE_ITEM_TO_FLUID;
+    public static ItemToFluidRecipeSerializer<ItemToFluidRecipe> CRUCIBLE_ITEM_TO_FLUID_SERIALIZER;
+
+    public static IRecipeType<FluidToItemRecipe> CRUCIBLE_FLUID_TO_ITEM;
+    public static ItemToFluidRecipeSerializer<FluidToItemRecipe> CRUCIBLE_FLUID_TO_ITEM_SERIALIZER;
+
+    public static IRecipeType<ItemNFluidToItemRecipe> CRUCIBLE_ITEM_FLUID_TO_ITEM;
+    public static ItemToFluidRecipeSerializer<ItemNFluidToItemRecipe> CRUCIBLE_ITEM_FLUID_TO_ITEM_SERIALIZER;
 
     @SubscribeEvent
     public static void registerAll(RegistryEvent.Register<IRecipeSerializer<?>> event) {
         if (!event.getName().equals(ForgeRegistries.RECIPE_SERIALIZERS.getRegistryName())) return;
 
-        CRUCIBLETYPE = register("crucibletype");
+        CRUCIBLE_ITEM_TO_FLUID = register("item_to_fluid");
+        CRUCIBLE_FLUID_TO_ITEM = register("fluid_to_item");
+        CRUCIBLE_ITEM_FLUID_TO_ITEM = register("item_fluid_to_item");
 
-        LOGGER.info("Recipe types registered");
-
-        CRUCIBLESERIALIZER = register("crucibletype", new CrucibleRecipeSerializer<CrucibleRecipes>(CrucibleRecipes::new));
-
-        LOGGER.info("Recipe serializers registered");
+        CRUCIBLE_ITEM_TO_FLUID_SERIALIZER = register("item_to_fluid", new ItemToFluidRecipeSerializer<ItemToFluidRecipe>(ItemToFluidRecipe::new));
+        CRUCIBLE_FLUID_TO_ITEM_SERIALIZER = register("fluid_to_item", new ItemToFluidRecipeSerializer<FluidToItemRecipe>(FluidToItemRecipe::new));
+        CRUCIBLE_ITEM_FLUID_TO_ITEM_SERIALIZER = register("item_fluid_to_item", new ItemToFluidRecipeSerializer<ItemNFluidToItemRecipe>(ItemNFluidToItemRecipe::new));
     }
 
     private static <S extends IRecipeSerializer<R>, R extends IRecipe<?>> S register(String name, S serializer) {

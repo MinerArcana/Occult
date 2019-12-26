@@ -1,0 +1,18 @@
+{
+  "type": "occult:crucible",
+  "ingredients": [
+    {
+      "item": "occult:akjar"
+    }
+  ],
+  "result": [{
+    "item": "occult:sulphur"
+  },
+    {
+      "item": "occult:sulphur"
+    },
+    {
+      "item": "occult:sulphur"
+    }
+  ]
+}
