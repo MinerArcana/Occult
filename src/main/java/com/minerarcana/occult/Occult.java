@@ -1,7 +1,11 @@
 package com.minerarcana.occult;
 
+import com.hrznstudio.titanium.network.CompoundSerializableDataHandler;
+import com.hrznstudio.titanium.recipe.serializer.JSONSerializableDataHandler;
+import com.minerarcana.occult.api.pressure.PressureType;
 import com.minerarcana.occult.api.pressure.pressure.IPressure;
 import com.minerarcana.occult.api.pressure.pressure.PressureStorage;
+import com.minerarcana.occult.api.recipes.JSONSerializableHandlers;
 import com.minerarcana.occult.content.*;
 import com.minerarcana.occult.util.OccultEvents;
 import net.minecraft.nbt.CompoundNBT;
@@ -70,6 +74,9 @@ public class Occult {
                     instance.deserializeNBT((CompoundNBT) nbt);
                 }
             }, PressureStorage::new);
+
+            JSONSerializableDataHandler.map(PressureType.class, JSONSerializableHandlers::writePressureType, JSONSerializableHandlers::readPressureType);
+            CompoundSerializableDataHandler.map(PressureType.class, JSONSerializableHandlers::pressureFromString, JSONSerializableHandlers::writePressure);
     }
 
 }

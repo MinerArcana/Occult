@@ -1,36 +1,42 @@
-package com.minerarcana.occult.api.recipes.machines;
+package com.minerarcana.occult.api.recipes;
 
+import com.hrznstudio.titanium.recipe.serializer.GenericSerializer;
+import com.hrznstudio.titanium.recipe.serializer.SerializableRecipe;
 import com.minerarcana.occult.api.pressure.PressureType;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import static com.minerarcana.occult.api.recipes.OccultRecipeTypes.CRUCIBLE_FLUID_TO_ITEM;
-import static com.minerarcana.occult.api.recipes.OccultRecipeTypes.CRUCIBLE_FLUID_TO_ITEM_SERIALIZER;
+import static com.minerarcana.occult.Occult.MOD_ID;
 
-public class FluidToItemRecipe implements IRecipe<IInventory> {
-    private final ResourceLocation id;
-    private final FluidStack fluidStackIn;
-    private final PressureType pressureType;
-    private final List<ItemStack> outputs;
-    private final ItemStack alternateOut;
-    private final int maxTempBeforeBrittle;
-    private final int pressureAmount;
-    private final int minHoldingTemp;
-    private final int coolTime;
-    private final int experience;
+public class FluidToItemRecipe extends SerializableRecipe {
+
+    public static GenericSerializer<FluidToItemRecipe> SERIALIZER = new GenericSerializer<>(new ResourceLocation(MOD_ID, "fluidtoitem"), FluidToItemRecipe.class);
+    public static List<FluidToItemRecipe> RECIPES = new ArrayList<>();
+
+    private FluidStack fluidStackIn;
+    private PressureType pressureType;
+    private List<ItemStack> outputs;
+    private ItemStack alternateOut;
+    private int maxTempBeforeBrittle;
+    private int pressureAmount;
+    private int minHoldingTemp;
+    private int coolTime;
+    private int experience;
+
+    public FluidToItemRecipe(ResourceLocation resourceLocation) {
+        super(resourceLocation);
+    }
 
     public FluidToItemRecipe(ResourceLocation id, FluidStack fluidStackIn, List<ItemStack> outputs, ItemStack alternateOut, int maxTempBeforeBrittle, int minHoldingTemp, int coolTime, int experience, PressureType pressureType, int pressureAmount) {
-        this.id = id;
+        super(id);
         this.fluidStackIn = fluidStackIn;
         this.outputs = outputs;
         this.alternateOut = alternateOut;
@@ -40,10 +46,7 @@ public class FluidToItemRecipe implements IRecipe<IInventory> {
         this.pressureType = pressureType;
         this.pressureAmount = pressureAmount;
         this.experience = experience;
-    }
-
-    public boolean matches(FluidStack stack){
-        return getFluidStackIn().equals(stack);
+        RECIPES.add(this);
     }
 
     @Override
@@ -61,6 +64,21 @@ public class FluidToItemRecipe implements IRecipe<IInventory> {
         return false;
     }
 
+    @Override
+    public ItemStack getRecipeOutput() {
+        return ItemStack.EMPTY;
+    }
+
+    @Override
+    public GenericSerializer<? extends SerializableRecipe> getSerializer() {
+        return SERIALIZER;
+    }
+
+    @Override
+    public IRecipeType<?> getType() {
+        return SERIALIZER.getRecipeType();
+    }
+
     public List<ItemStack> getOutputs() {
         return outputs;
     }
@@ -71,26 +89,6 @@ public class FluidToItemRecipe implements IRecipe<IInventory> {
 
     public FluidStack getFluidStackIn() {
         return fluidStackIn;
-    }
-
-    @Override
-    public ItemStack getRecipeOutput() {
-        return null;
-    }
-
-    @Override
-    public ResourceLocation getId() {
-        return id;
-    }
-
-    @Override
-    public IRecipeSerializer<?> getSerializer() {
-        return CRUCIBLE_FLUID_TO_ITEM_SERIALIZER;
-    }
-
-    @Override
-    public IRecipeType<?> getType() {
-        return CRUCIBLE_FLUID_TO_ITEM;
     }
 
     public PressureType getPressureType() {

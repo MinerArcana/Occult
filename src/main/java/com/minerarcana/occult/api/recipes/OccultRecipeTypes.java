@@ -1,9 +1,7 @@
 package com.minerarcana.occult.api.recipes;
 
-import com.minerarcana.occult.api.recipes.machines.FluidToItemRecipe;
 import com.minerarcana.occult.api.recipes.machines.ItemNFluidToItemRecipe;
 import com.minerarcana.occult.api.recipes.machines.ItemToFluidRecipe;
-import com.minerarcana.occult.api.recipes.serializers.ItemToFluidRecipeSerializer;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
@@ -26,13 +24,10 @@ public class OccultRecipeTypes {
 
 
     public static IRecipeType<ItemToFluidRecipe> CRUCIBLE_ITEM_TO_FLUID;
-    public static ItemToFluidRecipeSerializer<ItemToFluidRecipe> CRUCIBLE_ITEM_TO_FLUID_SERIALIZER;
 
     public static IRecipeType<FluidToItemRecipe> CRUCIBLE_FLUID_TO_ITEM;
-    public static ItemToFluidRecipeSerializer<FluidToItemRecipe> CRUCIBLE_FLUID_TO_ITEM_SERIALIZER;
 
     public static IRecipeType<ItemNFluidToItemRecipe> CRUCIBLE_ITEM_FLUID_TO_ITEM;
-    public static ItemToFluidRecipeSerializer<ItemNFluidToItemRecipe> CRUCIBLE_ITEM_FLUID_TO_ITEM_SERIALIZER;
 
     @SubscribeEvent
     public static void registerAll(RegistryEvent.Register<IRecipeSerializer<?>> event) {
@@ -41,10 +36,6 @@ public class OccultRecipeTypes {
         CRUCIBLE_ITEM_TO_FLUID = register("item_to_fluid");
         CRUCIBLE_FLUID_TO_ITEM = register("fluid_to_item");
         CRUCIBLE_ITEM_FLUID_TO_ITEM = register("item_fluid_to_item");
-
-        CRUCIBLE_ITEM_TO_FLUID_SERIALIZER = register("item_to_fluid", new ItemToFluidRecipeSerializer<ItemToFluidRecipe>(ItemToFluidRecipe::new));
-        CRUCIBLE_FLUID_TO_ITEM_SERIALIZER = register("fluid_to_item", new ItemToFluidRecipeSerializer<FluidToItemRecipe>(FluidToItemRecipe::new));
-        CRUCIBLE_ITEM_FLUID_TO_ITEM_SERIALIZER = register("item_fluid_to_item", new ItemToFluidRecipeSerializer<ItemNFluidToItemRecipe>(ItemNFluidToItemRecipe::new));
     }
 
     private static <S extends IRecipeSerializer<R>, R extends IRecipe<?>> S register(String name, S serializer) {
