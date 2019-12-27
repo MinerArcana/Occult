@@ -1,7 +1,5 @@
 package com.minerarcana.occult.api.recipes;
 
-import com.minerarcana.occult.api.recipes.machines.ItemNFluidToItemRecipe;
-import com.minerarcana.occult.api.recipes.machines.ItemToFluidRecipe;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;

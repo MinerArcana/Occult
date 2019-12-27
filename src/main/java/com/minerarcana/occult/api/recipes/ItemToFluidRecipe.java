@@ -1,13 +1,11 @@
-package com.minerarcana.occult.api.recipes.machines;
+package com.minerarcana.occult.api.recipes;
 
-import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
+import com.hrznstudio.titanium.recipe.serializer.GenericSerializer;
+import com.hrznstudio.titanium.recipe.serializer.SerializableRecipe;
 import com.minerarcana.occult.api.pressure.PressureType;
-import com.minerarcana.occult.api.recipes.OccultRecipeTypes;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
@@ -17,21 +15,29 @@ import net.minecraftforge.fluids.FluidStack;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemToFluidRecipe implements IRecipe<IInventory> {
-    private final ResourceLocation id;
-    private final FluidStack fluidStackOut;
-    private final FluidStack alternateOut;
-    private final ImmutableList<Ingredient> inputs;
-    private final PressureType pressureType;
-    private final int maxtemp;
-    private final int pressureAmount;
-    private final int mintemp;
-    private final int meltTime;
-    private final int experience;
+import static com.minerarcana.occult.Occult.MOD_ID;
 
+public class ItemToFluidRecipe extends SerializableRecipe {
+
+    public static GenericSerializer<ItemToFluidRecipe> SERIALIZER = new GenericSerializer<>(new ResourceLocation(MOD_ID, "itemtofluid"), ItemToFluidRecipe.class);
+    public static List<ItemToFluidRecipe> RECIPES = new ArrayList<>();
+
+    private FluidStack fluidStackOut;
+    private FluidStack alternateOut;
+    private ImmutableList<Ingredient> inputs;
+    private PressureType pressureType;
+    private int maxtemp;
+    private int pressureAmount;
+    private int mintemp;
+    private int meltTime;
+    private int experience;
+
+    public ItemToFluidRecipe(ResourceLocation resourceLocation) {
+        super(resourceLocation);
+    }
 
     public ItemToFluidRecipe(ResourceLocation id, FluidStack fluidStackOut, FluidStack alternateOut, int maxTemp, int minTemp, int meltTime, int experience, PressureType pressureType, int pressureAmount, Ingredient... inputs) {
-        this.id = id;
+        super(id);
         this.inputs = ImmutableList.copyOf(inputs);
         this.fluidStackOut = fluidStackOut;
         this.alternateOut = alternateOut;
@@ -41,6 +47,7 @@ public class ItemToFluidRecipe implements IRecipe<IInventory> {
         this.pressureType = pressureType;
         this.pressureAmount = pressureAmount;
         this.experience = experience;
+        RECIPES.add(this);
     }
 
     public boolean matches(List<ItemStack> inputList) {
@@ -71,7 +78,6 @@ public class ItemToFluidRecipe implements IRecipe<IInventory> {
         return false;
     }
 
-
     @Override
     public ItemStack getCraftingResult(IInventory inv) {
         return null;
@@ -79,27 +85,22 @@ public class ItemToFluidRecipe implements IRecipe<IInventory> {
 
     @Override
     public boolean canFit(int width, int height) {
-        return true;
+        return false;
     }
 
     @Override
     public ItemStack getRecipeOutput() {
-        return null;
+        return ItemStack.EMPTY;
     }
 
     @Override
-    public ResourceLocation getId() {
-        return id;
-    }
-
-    @Override
-    public IRecipeSerializer<?> getSerializer() {
-        return OccultRecipeTypes.CRUCIBLE_ITEM_TO_FLUID_SERIALIZER;
+    public GenericSerializer<? extends SerializableRecipe> getSerializer() {
+        return SERIALIZER;
     }
 
     @Override
     public IRecipeType<?> getType() {
-        return OccultRecipeTypes.CRUCIBLE_ITEM_TO_FLUID;
+        return SERIALIZER.getRecipeType();
     }
 
     public float getExperience() {
@@ -137,6 +138,4 @@ public class ItemToFluidRecipe implements IRecipe<IInventory> {
     public int getPressureAmount() {
         return this.pressureAmount;
     }
-
 }
-

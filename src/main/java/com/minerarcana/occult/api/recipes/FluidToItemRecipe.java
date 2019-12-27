@@ -49,6 +49,10 @@ public class FluidToItemRecipe extends SerializableRecipe {
         RECIPES.add(this);
     }
 
+    public boolean matches(FluidStack stack) {
+        return getFluidStackIn().equals(stack);
+    }
+
     @Override
     public boolean matches(IInventory inv, World worldIn) {
         return false;
@@ -81,10 +85,6 @@ public class FluidToItemRecipe extends SerializableRecipe {
 
     public List<ItemStack> getOutputs() {
         return outputs;
-    }
-
-    public ItemStack getAlternateOutput() {
-        return Items.COAL.getDefaultInstance();
     }
 
     public FluidStack getFluidStackIn() {
