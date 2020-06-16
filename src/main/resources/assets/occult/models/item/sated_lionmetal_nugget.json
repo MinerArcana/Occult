@@ -1,6 +1,0 @@
-{
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "occult:items/sated_lionmetal_nugget"
-    }
-}
