@@ -1,30 +1,27 @@
 package minerarcana.occult.content;
 
+import minerarcana.occult.api.PressureType;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 
 import static minerarcana.occult.Occult.OG;
 import static minerarcana.occult.content.OccultRegistryHandler.*;
 
-public class OccultItems {
+public class OccultPressure {
 
-    public static RegistryObject<Item> LIONMETAL_INGOT;
+    public static RegistryObject<PressureType> SPIRITUAL;
+    public static RegistryObject<PressureType> INFERNAL;
+    public static RegistryObject<PressureType> NATURAL;
 
-    public static void init(){
-        LIONMETAL_INGOT = addItem("lionmetal_ingot");
-        addItem("pressureChecker");
-        addItem("pressureAdd");
-        addItem("pressureRemove");
+    public static void init() {
+        SPIRITUAL = addPressure("spiritual", 12408320);
+        INFERNAL = addPressure("inferal", 16384);
+        NATURAL = addPressure("natural", 14543359);
     }
 
-    public static RegistryObject<Item> addItem(String name){
-        ITEMLIST_INT++;
-        return ITEMLIST[ITEMLIST_INT - 1] = ITEMS.register(name, ()-> new Item(new Item.Properties().group(OG)));
-    }
-
-    public static RegistryObject<Item> addItem(String name, Item item){
-        ITEMLIST_INT++;
-        return ITEMLIST[ITEMLIST_INT - 1] = ITEMS.register(name, ()-> item);
+    public static RegistryObject<PressureType> addPressure(String name, int color) {
+        PRESSURE_INT++;
+        return PRESSURELIST[PRESSURE_INT - 1] = PRESSURE.register(name, () -> new PressureType(color));
     }
 
 }

@@ -13,7 +13,6 @@ import javax.annotation.Nullable;
 public class CapabilitySetup {
 
     public static void init(){
-
         //Pressure Cap
         CapabilityManager.INSTANCE.register(IPressure.class, new Capability.IStorage<IPressure>() {
             @Nullable

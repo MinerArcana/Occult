@@ -1,4 +1,4 @@
-package minerarcana.occult.util;
+package minerarcana.occult.content;
 
 import minerarcana.occult.api.PressureType;
 import net.minecraft.util.ResourceLocation;
@@ -12,7 +12,7 @@ public class OccultRegistries {
         init();
     }
 
-    public static IForgeRegistry<PressureType> pressureTypes = RegistryManager.ACTIVE.getRegistry(PressureType.class);
+    public static IForgeRegistry<PressureType> PRESSURE = RegistryManager.ACTIVE.getRegistry(PressureType.class);
 
     private static void init() {
         new RegistryBuilder<PressureType>()
