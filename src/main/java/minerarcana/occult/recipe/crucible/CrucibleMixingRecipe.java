@@ -8,7 +8,7 @@ import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-import static minerarcana.occult.recipe.OccultRecipe.CRUCIBLE_MIXING;
+import static minerarcana.occult.recipe.OccultRecipeTypes.CRUCIBLE_MIXING;
 
 public class CrucibleMixingRecipe extends AbstractCrucibleRecipe {
 

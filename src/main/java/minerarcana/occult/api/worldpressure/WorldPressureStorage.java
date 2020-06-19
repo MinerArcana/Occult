@@ -2,6 +2,7 @@ package minerarcana.occult.api.worldpressure;
 
 import com.google.common.collect.Maps;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import minerarcana.occult.api.PressureType;
 import minerarcana.occult.content.OccultRegistries;
 import minerarcana.occult.util.NBTHelper;
@@ -152,7 +153,11 @@ public class WorldPressureStorage implements IWorldPressure {
 
     private void ensureExists(ChunkPos chunk) {
         if (!worldPressureMap.containsKey(chunk)) {
-            emptyChunk(chunk);
+            Object2IntMap<PressureType> pressureMap = new Object2IntOpenHashMap<>();
+            for (PressureType type : OccultRegistries.PRESSURE.getValues()) {
+                pressureMap.put(type, 0);
+            }
+            worldPressureMap.put(chunk,pressureMap);
         }
     }
 

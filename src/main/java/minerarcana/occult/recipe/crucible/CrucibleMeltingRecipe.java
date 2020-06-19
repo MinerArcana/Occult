@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 
-import static minerarcana.occult.recipe.OccultRecipe.CRUCIBLE_MELTING;
+import static minerarcana.occult.recipe.OccultRecipeTypes.CRUCIBLE_MELTING;
 
 public class CrucibleMeltingRecipe extends AbstractCrucibleRecipe {
 

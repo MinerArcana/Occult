@@ -10,6 +10,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import static minerarcana.occult.api.chunkpressure.ChunkPressureCap.PRESSURE_STORAGE_CAPABILITY;
+import static minerarcana.occult.api.worldpressure.WorldPressureCap.WORLD_PRESSURE_CAPABILITY;
 
 public class WorldPressureStorageProvider implements ICapabilitySerializable<CompoundNBT> {
     private final IWorldPressure pressure;
@@ -27,7 +28,7 @@ public class WorldPressureStorageProvider implements ICapabilitySerializable<Com
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        return cap == PRESSURE_STORAGE_CAPABILITY ? pressureStorage.cast() : LazyOptional.empty();
+        return cap == WORLD_PRESSURE_CAPABILITY ? pressureStorage.cast() : LazyOptional.empty();
     }
 
     @Override

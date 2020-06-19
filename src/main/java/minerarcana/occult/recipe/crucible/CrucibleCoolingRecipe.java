@@ -8,7 +8,7 @@ import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-import static minerarcana.occult.recipe.OccultRecipe.*;
+import static minerarcana.occult.recipe.OccultRecipeTypes.*;
 
 public class CrucibleCoolingRecipe extends AbstractCrucibleRecipe {
 
