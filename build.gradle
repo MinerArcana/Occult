@@ -74,8 +74,16 @@ minecraft {
     }
 }
 
+repositories {
+    maven {
+        url 'https://cdn.hrzn.studio/maven/'
+    }
+}
+
+
 dependencies {
     minecraft 'net.minecraftforge:forge:1.15.2-31.2.20'
+    compile fg.deobf('com.hrznstudio:titanium:1.15.2-2.4.2')
 
 }
 

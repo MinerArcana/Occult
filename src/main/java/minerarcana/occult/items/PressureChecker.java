@@ -1,4 +1,4 @@
-package minerarcana.occult.item;
+package minerarcana.occult.items;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import minerarcana.occult.Occult;
@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 
 import java.util.Objects;
 
-import static minerarcana.occult.api.PressureCap.getAllPressureFromChunk;
+import static minerarcana.occult.api.chunkpressure.ChunkPressureCap.getAllPressureFromChunk;
 
 public class PressureChecker extends Item {
 

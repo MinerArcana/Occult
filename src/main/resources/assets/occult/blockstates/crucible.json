@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "occult:block/crucible",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "occult:block/crucible",
+      "y": 270
+    },
+    "facing=west": {
+      "model": "occult:block/crucible"
+    },
+    "facing=east": {
+      "model": "occult:block/crucible",
+      "y": 180
+    }
+  }
+}

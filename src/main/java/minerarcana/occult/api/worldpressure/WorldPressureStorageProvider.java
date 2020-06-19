@@ -1,4 +1,4 @@
-package minerarcana.occult.api;
+package minerarcana.occult.api.worldpressure;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
@@ -9,17 +9,17 @@ import net.minecraftforge.common.util.LazyOptional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import static minerarcana.occult.api.PressureCap.PRESSURE_STORAGE_CAPABILITY;
+import static minerarcana.occult.api.chunkpressure.ChunkPressureCap.PRESSURE_STORAGE_CAPABILITY;
 
-public class PressureStorageProvider implements ICapabilitySerializable<CompoundNBT> {
-    private final IPressure pressure;
-    private final LazyOptional<IPressure> pressureStorage;
+public class WorldPressureStorageProvider implements ICapabilitySerializable<CompoundNBT> {
+    private final IWorldPressure pressure;
+    private final LazyOptional<IWorldPressure> pressureStorage;
 
-    public PressureStorageProvider() {
-        this(new PressureStorage());
+    public WorldPressureStorageProvider() {
+        this(new WorldPressureStorage());
     }
 
-    public PressureStorageProvider(IPressure pressure) {
+    public WorldPressureStorageProvider(IWorldPressure pressure) {
         this.pressure = pressure;
         this.pressureStorage = LazyOptional.of(() -> pressure);
     }

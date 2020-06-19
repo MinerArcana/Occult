@@ -1,7 +1,8 @@
-package minerarcana.occult.api;
+package minerarcana.occult.api.chunkpressure;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
+import minerarcana.occult.api.PressureType;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.ChunkPos;
@@ -11,33 +12,33 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.util.LazyOptional;
 
-public class PressureCap {
+public class ChunkPressureCap {
 
-    @CapabilityInject(IPressure.class)
-    public static Capability<IPressure> PRESSURE_STORAGE_CAPABILITY;
+    @CapabilityInject(IChunkPressure.class)
+    public static Capability<IChunkPressure> PRESSURE_STORAGE_CAPABILITY;
 
     public static final Direction DEFAULT_FACING = null;
 
-    public static LazyOptional<IPressure> getChunkPressure(final World world, final ChunkPos chunkPos) {
+    public static LazyOptional<IChunkPressure> getChunkPressure(final World world, final ChunkPos chunkPos) {
         return getChunkPressure(world.getChunk(chunkPos.x, chunkPos.z));
     }
 
     /**
-     * Get the {@link IPressure} for the chunk.
+     * Get the {@link IChunkPressure} for the chunk.
      *
      * @param chunk The chunk
-     * @return A lazy optional containing the IPressure, if any
+     * @return A lazy optional containing the IChunkPressure, if any
      */
-    public static LazyOptional<IPressure> getChunkPressure(final Chunk chunk) {
+    public static LazyOptional<IChunkPressure> getChunkPressure(final Chunk chunk) {
         return chunk.getCapability(PRESSURE_STORAGE_CAPABILITY, DEFAULT_FACING);
     }
     /**
-     * Get the {@link IPressure} for the chunk.
+     * Get the {@link IChunkPressure} for the chunk.
      *
      * @param tileEntity The chunk
-     * @return A lazy optional containing the IPressure, if any
+     * @return A lazy optional containing the IChunkPressure, if any
      */
-    public static LazyOptional<IPressure> getTileEntityPressure(final TileEntity tileEntity) {
+    public static LazyOptional<IChunkPressure> getTileEntityPressure(final TileEntity tileEntity) {
         return tileEntity.getCapability(PRESSURE_STORAGE_CAPABILITY, DEFAULT_FACING);
     }
 
@@ -63,12 +64,7 @@ public class PressureCap {
     public static Object2IntMap<PressureType> getAllPressureFromChunk(final Chunk chunk){
         Object2IntMap<PressureType> pressure = new Object2IntOpenHashMap<>();
         return getChunkPressure(chunk)
-                .map(chunkPressure -> {
-                    for (PressureType type : chunkPressure.getAllPressure().keySet()) {
-                        pressure.put(type,chunkPressure.getPressureFromType(type));
-                    }
-                    return pressure;
-                }).orElse(pressure);
+                .map(IChunkPressure::getAllPressure).orElse(pressure);
     }
 
     public static void addTilePressure(final TileEntity entity, final PressureType type, final int amount) {

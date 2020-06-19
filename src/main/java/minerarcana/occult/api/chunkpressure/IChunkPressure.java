@@ -1,12 +1,12 @@
-package minerarcana.occult.api;
+package minerarcana.occult.api.chunkpressure;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraftforge.common.util.INBTSerializable;
+import minerarcana.occult.api.PressureType;
 
-public interface IPressure extends INBTSerializable<CompoundNBT> {
+public interface IChunkPressure {
 
     int add(PressureType pressureType, int amount);
+    int set(PressureType pressureType, int amount);
     int remove(PressureType pressureType, int amount);
     void empty(PressureType pressureType);
     void fill(PressureType pressureType);

@@ -1,8 +1,8 @@
 package minerarcana.occult.content;
 
-import minerarcana.occult.item.PressureChecker;
-import minerarcana.occult.item.PressureMinus;
-import minerarcana.occult.item.PressurePlus;
+import minerarcana.occult.items.PressureChecker;
+import minerarcana.occult.items.PressureMinus;
+import minerarcana.occult.items.PressurePlus;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 
