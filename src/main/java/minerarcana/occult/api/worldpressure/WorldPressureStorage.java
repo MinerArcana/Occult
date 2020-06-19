@@ -145,8 +145,8 @@ public class WorldPressureStorage implements IWorldPressure {
 
     private Object2IntMap<PressureType> pressureMapParsing(CompoundNBT nbt) {
         ChunkPos chunkPos = new ChunkPos(nbt.getLong("chunkPos"));
-        for (PressureType type : OccultRegistries.PRESSURE) {
-            setSinglePressureInChunk(chunkPos, type, nbt.getInt(type.getRegistryName().getPath()));
+        for (PressureType type : OccultRegistries.PRESSURE.getValues()) {
+            setSinglePressureInChunk(chunkPos, type, nbt.getInt(type.getRegistryName().getPath() + "Pressure"));
         }
         return getAllPressureInChunk(chunkPos);
     }
