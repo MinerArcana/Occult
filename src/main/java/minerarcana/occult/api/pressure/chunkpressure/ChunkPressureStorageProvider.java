@@ -1,4 +1,4 @@
-package minerarcana.occult.api.chunkpressure;
+package minerarcana.occult.api.pressure.chunkpressure;
 
 import net.minecraft.util.Direction;
 import net.minecraft.world.chunk.Chunk;
@@ -9,7 +9,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import static minerarcana.occult.api.chunkpressure.ChunkPressureCap.PRESSURE_STORAGE_CAPABILITY;
+import static minerarcana.occult.api.pressure.chunkpressure.ChunkPressureCap.PRESSURE_STORAGE_CAPABILITY;
 
 public class ChunkPressureStorageProvider implements ICapabilityProvider {
 

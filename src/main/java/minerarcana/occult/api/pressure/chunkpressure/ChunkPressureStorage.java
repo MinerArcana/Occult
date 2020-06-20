@@ -1,14 +1,13 @@
-package minerarcana.occult.api.chunkpressure;
+package minerarcana.occult.api.pressure.chunkpressure;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
-import minerarcana.occult.api.PressureType;
-import net.minecraft.world.World;
+import minerarcana.occult.api.pressure.PressureType;
 import net.minecraft.world.chunk.Chunk;
 
 import javax.annotation.Nonnull;
 
-import static minerarcana.occult.api.worldpressure.WorldPressureCap.getWorldPressure;
+import static minerarcana.occult.api.pressure.worldpressure.WorldPressureCap.getWorldPressure;
 
 public class ChunkPressureStorage implements IChunkPressure {
 

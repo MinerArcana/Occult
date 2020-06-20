@@ -1,7 +1,7 @@
-package minerarcana.occult.api.chunkpressure;
+package minerarcana.occult.api.pressure.chunkpressure;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import minerarcana.occult.api.PressureType;
+import minerarcana.occult.api.pressure.PressureType;
 
 import javax.annotation.Nonnull;
 
