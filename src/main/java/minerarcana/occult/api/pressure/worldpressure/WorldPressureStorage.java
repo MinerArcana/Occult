@@ -1,9 +1,9 @@
-package minerarcana.occult.api.worldpressure;
+package minerarcana.occult.api.pressure.worldpressure;
 
 import com.google.common.collect.Maps;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
-import minerarcana.occult.api.PressureType;
+import minerarcana.occult.api.pressure.PressureType;
 import minerarcana.occult.content.OccultRegistries;
 import minerarcana.occult.util.NBTHelper;
 import net.minecraft.nbt.CompoundNBT;

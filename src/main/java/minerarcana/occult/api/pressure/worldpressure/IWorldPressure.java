@@ -1,7 +1,7 @@
-package minerarcana.occult.api.worldpressure;
+package minerarcana.occult.api.pressure.worldpressure;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import minerarcana.occult.api.PressureType;
+import minerarcana.occult.api.pressure.PressureType;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraftforge.common.util.INBTSerializable;

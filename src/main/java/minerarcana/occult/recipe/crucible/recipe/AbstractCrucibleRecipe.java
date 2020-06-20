@@ -1,7 +1,7 @@
-package minerarcana.occult.recipe.crucible;
+package minerarcana.occult.recipe.crucible.recipe;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import minerarcana.occult.api.PressureType;
+import minerarcana.occult.api.pressure.PressureType;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
@@ -18,7 +18,7 @@ public abstract class AbstractCrucibleRecipe implements IRecipe<IInventory> {
     protected final Object2IntMap<PressureType> pressureCreated;
 
 
-    protected AbstractCrucibleRecipe(IRecipeType<?> type, ResourceLocation id, int maxTemp, int minTemp ,int cookTime, Object2IntMap<PressureType> pressureCreated, float experience) {
+    public AbstractCrucibleRecipe(IRecipeType<?> type, ResourceLocation id, int maxTemp, int minTemp ,int cookTime, Object2IntMap<PressureType> pressureCreated, float experience) {
         this.type = type;
         this.id = id;
         this.experience = experience;
@@ -34,6 +34,14 @@ public abstract class AbstractCrucibleRecipe implements IRecipe<IInventory> {
 
     public float getExperience() {
         return experience;
+    }
+
+    public int getMaxTemp() {
+        return maxTemp;
+    }
+
+    public int getMinTemp() {
+        return minTemp;
     }
 
     @Override

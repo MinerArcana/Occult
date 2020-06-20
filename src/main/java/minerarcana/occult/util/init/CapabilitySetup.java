@@ -1,8 +1,8 @@
 package minerarcana.occult.util.init;
 
-import minerarcana.occult.api.chunkpressure.IChunkPressure;
-import minerarcana.occult.api.worldpressure.IWorldPressure;
-import minerarcana.occult.api.worldpressure.WorldPressureStorage;
+import minerarcana.occult.api.pressure.chunkpressure.IChunkPressure;
+import minerarcana.occult.api.pressure.worldpressure.IWorldPressure;
+import minerarcana.occult.api.pressure.worldpressure.WorldPressureStorage;
 import minerarcana.occult.util.EmptyNBTStorage;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;

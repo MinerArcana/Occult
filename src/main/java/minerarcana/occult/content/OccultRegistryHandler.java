@@ -1,10 +1,11 @@
 package minerarcana.occult.content;
 
 import com.hrznstudio.titanium.registry.BlockRegistryObjectGroup;
-import minerarcana.occult.api.PressureType;
+import minerarcana.occult.api.pressure.PressureType;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -19,6 +20,7 @@ public class OccultRegistryHandler {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
     public static final DeferredRegister<PressureType> PRESSURE = DeferredRegister.create(OccultRegistries.PRESSURE, MOD_ID);
     public static final DeferredRegister<TileEntityType<?>> TILE_ENTITIES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, MOD_ID);
+    public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZER = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, MOD_ID);
 
     public static int ITEMLIST_INT = 0;
     public static int BLOCK_INT = 0;
@@ -35,6 +37,7 @@ public class OccultRegistryHandler {
         BLOCKS.register(eventBus);
         ITEMS.register(eventBus);
         TILE_ENTITIES.register(eventBus);
+        RECIPE_SERIALIZER.register(eventBus);
         PRESSURE.register(eventBus);
     }
 
@@ -42,7 +45,7 @@ public class OccultRegistryHandler {
         OccultBlocks.init();
         OccultItems.init();
         OccultPressure.init();
-
+        OccultRecipeSerializers.init();
         //Must be last
         register(eventBus);
     }

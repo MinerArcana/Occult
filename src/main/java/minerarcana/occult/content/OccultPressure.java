@@ -1,10 +1,8 @@
 package minerarcana.occult.content;
 
-import minerarcana.occult.api.PressureType;
-import net.minecraft.item.Item;
+import minerarcana.occult.api.pressure.PressureType;
 import net.minecraftforge.fml.RegistryObject;
 
-import static minerarcana.occult.Occult.OG;
 import static minerarcana.occult.content.OccultRegistryHandler.*;
 
 public class OccultPressure {

@@ -1,7 +1,7 @@
 package minerarcana.occult.util;
 
-import minerarcana.occult.api.chunkpressure.ChunkPressureStorageProvider;
-import minerarcana.occult.api.worldpressure.WorldPressureStorageProvider;
+import minerarcana.occult.api.pressure.chunkpressure.ChunkPressureStorageProvider;
+import minerarcana.occult.api.pressure.worldpressure.WorldPressureStorageProvider;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;

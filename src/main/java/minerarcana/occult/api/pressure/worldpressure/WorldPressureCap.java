@@ -1,4 +1,4 @@
-package minerarcana.occult.api.worldpressure;
+package minerarcana.occult.api.pressure.worldpressure;
 
 import net.minecraft.util.Direction;
 import net.minecraft.world.World;

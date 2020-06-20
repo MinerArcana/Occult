@@ -1,19 +1,34 @@
-package minerarcana.occult.recipe.crucible;
+package minerarcana.occult.recipe.crucible.recipe;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import minerarcana.occult.api.PressureType;
+import minerarcana.occult.api.pressure.PressureType;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
 
+import static minerarcana.occult.content.OccultRecipeSerializers.CRUCIBLE_COOLING_SERIALIZER;
 import static minerarcana.occult.recipe.OccultRecipeTypes.*;
 
 public class CrucibleCoolingRecipe extends AbstractCrucibleRecipe {
 
-    protected CrucibleCoolingRecipe(ResourceLocation id, int maxTemp, int minTemp, int cookTime, Object2IntMap<PressureType> pressureCreated, float experience) {
+    private final FluidStack fluidIn;
+    private final ItemStack itemOut;
+
+    public CrucibleCoolingRecipe(ResourceLocation id, FluidStack fluidIn, ItemStack itemOut, int maxTemp, int minTemp, int cookTime, Object2IntMap<PressureType> pressureCreated, float experience) {
         super(CRUCIBLE_COOLING, id, maxTemp, minTemp, cookTime, pressureCreated, experience);
+        this.fluidIn = fluidIn;
+        this.itemOut = itemOut;
+    }
+
+    public FluidStack getFluidIn() {
+        return fluidIn;
+    }
+
+    public ItemStack getItemOut() {
+        return itemOut;
     }
 
     @Override
@@ -38,6 +53,6 @@ public class CrucibleCoolingRecipe extends AbstractCrucibleRecipe {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return null;
+        return CRUCIBLE_COOLING_SERIALIZER.get();
     }
 }

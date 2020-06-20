@@ -1,4 +1,4 @@
-package minerarcana.occult.api.worldpressure;
+package minerarcana.occult.api.pressure.worldpressure;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
@@ -9,8 +9,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import static minerarcana.occult.api.chunkpressure.ChunkPressureCap.PRESSURE_STORAGE_CAPABILITY;
-import static minerarcana.occult.api.worldpressure.WorldPressureCap.WORLD_PRESSURE_CAPABILITY;
+import static minerarcana.occult.api.pressure.worldpressure.WorldPressureCap.WORLD_PRESSURE_CAPABILITY;
 
 public class WorldPressureStorageProvider implements ICapabilitySerializable<CompoundNBT> {
     private final IWorldPressure pressure;

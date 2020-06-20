@@ -1,7 +1,7 @@
-package minerarcana.occult.recipe.crucible;
+package minerarcana.occult.recipe.crucible.recipe;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import minerarcana.occult.api.PressureType;
+import minerarcana.occult.api.pressure.PressureType;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -10,6 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 
+import static minerarcana.occult.content.OccultRecipeSerializers.CRUCIBLE_MELTING_SERIALIZER;
 import static minerarcana.occult.recipe.OccultRecipeTypes.CRUCIBLE_MELTING;
 
 public class CrucibleMeltingRecipe extends AbstractCrucibleRecipe {
@@ -17,10 +18,18 @@ public class CrucibleMeltingRecipe extends AbstractCrucibleRecipe {
     private final NonNullList<ItemStack> itemsIn;
     private final FluidStack fluidOut;
 
-    protected CrucibleMeltingRecipe(ResourceLocation id, int maxTemp, int minTemp, int cookTime, Object2IntMap<PressureType> pressureCreated, NonNullList<ItemStack> itemsIn, FluidStack fluidOut, float experience) {
+    public CrucibleMeltingRecipe(ResourceLocation id, NonNullList<ItemStack> itemsIn, FluidStack fluidOut, int maxTemp, int minTemp, int cookTime, Object2IntMap<PressureType> pressureCreated, float experience) {
         super(CRUCIBLE_MELTING, id, maxTemp, minTemp, cookTime, pressureCreated, experience);
         this.itemsIn = itemsIn;
         this.fluidOut = fluidOut;
+    }
+
+    public NonNullList<ItemStack> getItemsIn() {
+        return itemsIn;
+    }
+
+    public FluidStack getFluidOut() {
+        return fluidOut;
     }
 
     @Override
@@ -45,6 +54,6 @@ public class CrucibleMeltingRecipe extends AbstractCrucibleRecipe {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return null;
+        return CRUCIBLE_MELTING_SERIALIZER.get();
     }
 }

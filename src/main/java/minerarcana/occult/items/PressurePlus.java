@@ -8,7 +8,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-import static minerarcana.occult.api.chunkpressure.ChunkPressureCap.addChunkPressure;
+import static minerarcana.occult.api.pressure.chunkpressure.ChunkPressureCap.addChunkPressure;
 import static minerarcana.occult.content.OccultPressure.*;
 
 public class PressurePlus extends Item {
