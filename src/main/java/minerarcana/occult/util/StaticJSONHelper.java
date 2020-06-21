@@ -80,8 +80,8 @@ public class StaticJSONHelper {
     }
 
     private static PressureType deserializePressure(JsonObject json) {
-        if (json.has("type")) {
-            ResourceLocation resourcelocation = new ResourceLocation(JSONUtils.getString(json, "type"));
+        if (json.has("pressureType")) {
+            ResourceLocation resourcelocation = new ResourceLocation(JSONUtils.getString(json, "pressureType"));
             return OccultRegistries.PRESSURE.getValue(resourcelocation);
         }
         return SPIRITUAL.get();

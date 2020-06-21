@@ -9,6 +9,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
+import java.util.List;
 
 import static minerarcana.occult.content.OccultRecipeSerializers.CRUCIBLE_MELTING_SERIALIZER;
 import static minerarcana.occult.recipe.OccultRecipeTypes.CRUCIBLE_MELTING;
@@ -55,5 +56,22 @@ public class CrucibleMeltingRecipe extends AbstractCrucibleRecipe {
     @Override
     public IRecipeSerializer<?> getSerializer() {
         return CRUCIBLE_MELTING_SERIALIZER.get();
+    }
+
+    @Override
+    public boolean matches(List<ItemStack> items, FluidStack fluid) {
+        if(!items.isEmpty()){
+            int requiredItems = getItemsIn().size();
+            for(ItemStack stack : getItemsIn()){
+                for (ItemStack item : items) {
+                    if (stack.equals(item)) {
+                        --requiredItems;
+                        break;
+                    }
+                }
+            }
+            return requiredItems == 0;
+        }
+        return false;
     }
 }

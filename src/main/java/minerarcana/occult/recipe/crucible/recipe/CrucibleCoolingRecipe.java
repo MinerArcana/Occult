@@ -9,6 +9,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 
+import java.util.List;
+
 import static minerarcana.occult.content.OccultRecipeSerializers.CRUCIBLE_COOLING_SERIALIZER;
 import static minerarcana.occult.recipe.OccultRecipeTypes.*;
 
@@ -54,5 +56,10 @@ public class CrucibleCoolingRecipe extends AbstractCrucibleRecipe {
     @Override
     public IRecipeSerializer<?> getSerializer() {
         return CRUCIBLE_COOLING_SERIALIZER.get();
+    }
+
+    @Override
+    public boolean matches(List<ItemStack> items, FluidStack fluid) {
+        return false;
     }
 }

@@ -18,11 +18,11 @@ import static minerarcana.occult.content.OccultRegistryHandler.*;
 
 public class OccultBlocks {
 
-    public static BlockRegistryObjectGroup<?,?,?> CRUCIBLE;
+    public static BlockRegistryObjectGroup<CrucibleMainBlock,BlockItem,CrucibleTile> CRUCIBLE;
     public static RegistryObject<Block> CRUCIBLETOP;
 
     public static void init(){
-        CRUCIBLE = addTileEntity("crucible", CrucibleMainBlock::new, CrucibleTile::new);
+        CRUCIBLE = new BlockRegistryObjectGroup<>("crucible",CrucibleMainBlock::new, tileItemCreator(1),CrucibleTile::new).register(BLOCKS,ITEMS,TILE_ENTITIES);
         CRUCIBLETOP = BLOCKS.register("crucible_top", CrucibleTopBlock::new);
     }
 

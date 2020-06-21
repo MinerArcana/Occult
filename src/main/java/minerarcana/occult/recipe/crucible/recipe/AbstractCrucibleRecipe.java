@@ -3,9 +3,13 @@ package minerarcana.occult.recipe.crucible.recipe;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import minerarcana.occult.api.pressure.PressureType;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidStack;
+
+import java.util.List;
 
 public abstract class AbstractCrucibleRecipe implements IRecipe<IInventory> {
 
@@ -43,6 +47,8 @@ public abstract class AbstractCrucibleRecipe implements IRecipe<IInventory> {
     public int getMinTemp() {
         return minTemp;
     }
+
+    public abstract boolean matches(List<ItemStack> items, FluidStack fluid);
 
     @Override
     public ResourceLocation getId() {

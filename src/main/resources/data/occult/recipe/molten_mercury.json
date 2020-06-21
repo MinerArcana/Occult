@@ -1,0 +1,21 @@
+{
+  "type": "occult:crucible_melting",
+  "itemInputs": [
+    {
+      "item": "minecraft:redstone",
+      "count": 4
+    }
+  ],
+  "meltTime": 200,
+  "maxTemp": 1000,
+  "minTemp": 250,
+  "fluidOut":"occult:mercury",
+  "amountOut": 50,
+  "pressureReleased": [
+    {
+      "pressureType": "occult:natural",
+      "amount": 20
+    }
+  ],
+  "experience": 2
+}

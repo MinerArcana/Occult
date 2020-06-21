@@ -3,6 +3,7 @@ package minerarcana.occult;
 import minerarcana.occult.content.OccultRegistryHandler;
 import minerarcana.occult.util.BlockRenderHandler;
 import minerarcana.occult.util.OccultGroup;
+import minerarcana.occult.util.TileEntityRender;
 import minerarcana.occult.util.init.CapabilitySetup;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.common.MinecraftForge;
@@ -38,6 +39,7 @@ public class Occult
     }
     private void clientSetupEvent(final FMLClientSetupEvent event) {
         BlockRenderHandler.setRenderLayers();
+        TileEntityRender.init();
     }
 
 }

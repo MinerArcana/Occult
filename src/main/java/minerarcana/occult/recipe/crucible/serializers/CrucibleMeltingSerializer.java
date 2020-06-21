@@ -25,11 +25,11 @@ public class CrucibleMeltingSerializer  extends ForgeRegistryEntry<IRecipeSerial
     public CrucibleMeltingRecipe read(ResourceLocation recipeId, JsonObject json) {
         Object2IntMap<PressureType> pressureMap = readPressureList(JSONUtils.getJsonArray(json, "pressureReleased"));
         NonNullList<ItemStack> itemsIn = readItemList(JSONUtils.getJsonArray(json, "itemInputs"));
-        FluidStack fluidOut = deserializeFluid(json,"");
+        FluidStack fluidOut = deserializeFluid(json,"Out");
         int experience = JSONUtils.getInt(json,"experience",0);
         int maxTemp = JSONUtils.getInt(json,"maxTemp",1500);
         int minTemp = JSONUtils.getInt(json,"minTemp",250);
-        int cookTime = JSONUtils.getInt(json,"cookTime",100);
+        int cookTime = JSONUtils.getInt(json,"meltTime",100);
         return new CrucibleMeltingRecipe(recipeId,itemsIn,fluidOut,maxTemp,minTemp,cookTime,pressureMap,experience);
     }
 
