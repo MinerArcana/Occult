@@ -9,7 +9,7 @@
   "meltTime": 200,
   "maxTemp": 1000,
   "minTemp": 250,
-  "fluidOut":"occult:mercury",
+  "fluidOut":"occult:molten_quicksilver",
   "amountOut": 50,
   "pressureReleased": [
     {

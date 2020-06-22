@@ -1,0 +1,18 @@
+{
+  "type": "occult:crucible_cooling",
+  "fluidIn": "occult:molten_quicksilver",
+  "amountIn": 144,
+  "coolTime": 200,
+  "maxTemp": -200,
+  "minTemp": 70,
+  "pressureReleased": [
+    {
+      "pressureType": "occult:natural",
+      "amount": 20
+    }
+  ],
+  "result": {
+    "item": "occult:quicksilver"
+  },
+  "experience": 2
+}
