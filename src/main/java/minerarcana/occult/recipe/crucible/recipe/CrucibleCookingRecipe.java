@@ -61,6 +61,22 @@ public class CrucibleCookingRecipe extends AbstractCrucibleRecipe {
 
     @Override
     public boolean matches(List<ItemStack> items, FluidStack fluid) {
+        if(fluid.isEmpty()) {
+            if (!items.isEmpty()) {
+                int requiredItems = getItemsIn().size();
+                for (ItemStack stack : getItemsIn()) {
+                    for (ItemStack item : items) {
+                        if (stack.getItem().equals(item.getItem())) {
+                            if (item.getCount() >= stack.getCount()) {
+                                --requiredItems;
+                                break;
+                            }
+                        }
+                    }
+                }
+                return requiredItems == 0;
+            }
+        }
         return false;
     }
 }

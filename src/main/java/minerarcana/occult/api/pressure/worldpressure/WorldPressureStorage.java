@@ -29,7 +29,6 @@ public class WorldPressureStorage implements IWorldPressure {
 
     @Override
     public int addToChunk(ChunkPos chunk, PressureType pressureType, int amount) {
-        ensureExists(chunk);
         Object2IntMap<PressureType> pressureMap = getAllPressureInChunk(chunk);
         int amountAdded;
         int cp = pressureMap.get(pressureType);
@@ -47,7 +46,6 @@ public class WorldPressureStorage implements IWorldPressure {
 
     @Override
     public int removeFromChunk(ChunkPos chunk, PressureType pressureType, int amount) {
-        ensureExists(chunk);
         Object2IntMap<PressureType> pressureMap = getAllPressureInChunk(chunk);
         int amountRemoved;
         int cp = pressureMap.get(pressureType);

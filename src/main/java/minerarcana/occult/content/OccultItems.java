@@ -18,6 +18,7 @@ public class OccultItems {
         addItem("pressure_checker", new PressureChecker());
         addItem("pressure_add", new PressurePlus());
         addItem("pressure_remove", new PressureMinus());
+        addItem("quicksilver");
     }
 
     public static RegistryObject<Item> addItem(String name){

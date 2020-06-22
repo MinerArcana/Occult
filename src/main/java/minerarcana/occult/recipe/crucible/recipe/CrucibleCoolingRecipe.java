@@ -60,6 +60,11 @@ public class CrucibleCoolingRecipe extends AbstractCrucibleRecipe {
 
     @Override
     public boolean matches(List<ItemStack> items, FluidStack fluid) {
+        if(!fluid.isEmpty()){
+            if(fluidIn.isFluidEqual(fluidIn)){
+                return fluid.getAmount() >= fluidIn.getAmount();
+            }
+        }
         return false;
     }
 }
