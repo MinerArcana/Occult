@@ -1,4 +1,4 @@
-package minerarcana.occult.blocks;
+package minerarcana.occult.blocks.base;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
