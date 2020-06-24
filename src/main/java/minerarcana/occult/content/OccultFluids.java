@@ -38,7 +38,7 @@ public class OccultFluids {
         AMALGAM_PROPERTIES = new ForgeFlowingFluid.Properties(AMALGAM,
                 AMALGAM::getFlowing, FluidAttributes.builder(new ResourceLocation(MOD_ID, "blocks/amalgam_still"),
                 new ResourceLocation(MOD_ID, "blocks/amalgam_flow"))
-                .color(fromHex("d0d7db")))
+                .color(fromHex("eda31a")))
                 .block(AMALGAM::getBlock)
                 .bucket(AMALGAM::getBucket);
     }
