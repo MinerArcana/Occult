@@ -14,6 +14,9 @@ public class OccultFluids {
     public static FluidRegistryObjectGroup<ForgeFlowingFluid.Source, ForgeFlowingFluid.Flowing> QUICKSILVER;
     public static ForgeFlowingFluid.Properties QUICKSILVER_PROPERTIES;
 
+    public static FluidRegistryObjectGroup<ForgeFlowingFluid.Source, ForgeFlowingFluid.Flowing> AMALGAM;
+    public static ForgeFlowingFluid.Properties AMALGAM_PROPERTIES;
+
     public static void init(){
         QUICKSILVER = new FluidRegistryObjectGroup<>("molten_quicksilver", () ->
                 new ForgeFlowingFluid.Source(QUICKSILVER_PROPERTIES), () ->
@@ -26,6 +29,18 @@ public class OccultFluids {
                 .color(fromHex("d0d7db")))
                 .block(QUICKSILVER::getBlock)
                 .bucket(QUICKSILVER::getBucket);
+
+        AMALGAM = new FluidRegistryObjectGroup<>("molten_amalgam", () ->
+                new ForgeFlowingFluid.Source(AMALGAM_PROPERTIES), () ->
+                new ForgeFlowingFluid.Flowing(AMALGAM_PROPERTIES)
+        ).register(FLUIDS, BLOCKS, ITEMS);
+
+        AMALGAM_PROPERTIES = new ForgeFlowingFluid.Properties(AMALGAM,
+                AMALGAM::getFlowing, FluidAttributes.builder(new ResourceLocation(MOD_ID, "blocks/amalgam_still"),
+                new ResourceLocation(MOD_ID, "blocks/amalgam_flow"))
+                .color(fromHex("d0d7db")))
+                .block(AMALGAM::getBlock)
+                .bucket(AMALGAM::getBucket);
     }
 
     public static int fromHex(String text) {
