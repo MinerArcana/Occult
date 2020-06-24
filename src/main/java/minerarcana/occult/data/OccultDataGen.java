@@ -21,6 +21,7 @@ public class OccultDataGen {
 
         if (event.includeClient()) {
             dataGenerator.addProvider(new OccultUSLangProvider(dataGenerator));
+            dataGenerator.addProvider(new OccultBlockModelProvider(dataGenerator,existingFileHelper));
             dataGenerator.addProvider(new OccultBlockStateProvider(dataGenerator,existingFileHelper));
             dataGenerator.addProvider(new OccultItemModelProvider(dataGenerator, existingFileHelper));
         }

@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "occult:blocks/sated_lionmetal_block"
+  }
+}
