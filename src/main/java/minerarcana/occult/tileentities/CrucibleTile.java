@@ -1,10 +1,7 @@
 package minerarcana.occult.tileentities;
 
 import minerarcana.occult.api.pressure.PressureType;
-import minerarcana.occult.recipe.crucible.recipe.AbstractCrucibleRecipe;
-import minerarcana.occult.recipe.crucible.recipe.CrucibleCookingRecipe;
-import minerarcana.occult.recipe.crucible.recipe.CrucibleCoolingRecipe;
-import minerarcana.occult.recipe.crucible.recipe.CrucibleMeltingRecipe;
+import minerarcana.occult.recipe.crucible.recipe.*;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -24,9 +21,7 @@ import java.util.Objects;
 
 import static minerarcana.occult.api.pressure.chunkpressure.ChunkPressureCap.addChunkPressure;
 import static minerarcana.occult.content.OccultBlocks.CRUCIBLE;
-import static minerarcana.occult.content.OccultRecipeSerializers.CRUCIBLE_COOKING;
-import static minerarcana.occult.recipe.OccultRecipeTypes.CRUCIBLE_COOLING;
-import static minerarcana.occult.recipe.OccultRecipeTypes.CRUCIBLE_MELTING;
+import static minerarcana.occult.recipe.OccultRecipeTypes.*;
 import static minerarcana.occult.util.TagHelper.*;
 
 public class CrucibleTile extends InventoryTile {
@@ -52,7 +47,15 @@ public class CrucibleTile extends InventoryTile {
                     if (getTempFromBelow() > getMeltingRecipe().getMinTemp() && getTempFromBelow() < getMeltingRecipe().getMaxTemp()) {
                         meltMyItems();
                     }
-                } else if (getMachineType() == 4 ){
+                } else if (getMachineType() == 2 ){
+                    if (getTempFromBelow() > getMixingRecipe().getMinTemp() && getTempFromBelow() < getMixingRecipe().getMaxTemp()) {
+                        mixMyItemsNFluid();
+                    }
+                }else if (getMachineType() == 3 ){
+                    if (getTempFromBelow() > getDippingRecipe().getMinTemp() && getTempFromBelow() < getDippingRecipe().getMaxTemp()) {
+                        dipMyItemsInFluid();
+                    }
+                }else if (getMachineType() == 4 ){
                     if (getTempFromBelow() > getCookingRecipe().getMinTemp() && getTempFromBelow() < getCookingRecipe().getMaxTemp()) {
                         cookMyItems();
                     }
@@ -148,7 +151,11 @@ public class CrucibleTile extends InventoryTile {
     private int getMachineType() {
         if (getCurrentRecipe().getType() == CRUCIBLE_MELTING) {
             return 1;
-        } else if (getCurrentRecipe().getType() == CRUCIBLE_COOKING){
+        }  else if (getCurrentRecipe().getType() == CRUCIBLE_MIXING){
+            return 2;
+        } else if (getCurrentRecipe().getType() == CRUCIBLE_DIPPING){
+            return 3;
+        }else if (getCurrentRecipe().getType() == CRUCIBLE_COOKING){
             return 4;
         } else if (getCurrentRecipe().getType() == CRUCIBLE_COOLING) {
             return 5;
@@ -180,6 +187,14 @@ public class CrucibleTile extends InventoryTile {
         return (CrucibleCookingRecipe) getCurrentRecipe();
     }
 
+    private CrucibleMixingRecipe getMixingRecipe() {
+        return (CrucibleMixingRecipe) getCurrentRecipe();
+    }
+
+    private CrucibleDippingRecipe getDippingRecipe() {
+        return (CrucibleDippingRecipe) getCurrentRecipe();
+    }
+
     private void meltMyItems() {
         if (getCurrentRecipe() != null && getProgress() >= getMeltingRecipe().getCookTime()) {
             int itemsToRemove = resolveRecipeItemRemoval(getMeltingRecipe().getItemsIn(), getMeltingRecipe().getItemsIn().size());
@@ -198,6 +213,32 @@ public class CrucibleTile extends InventoryTile {
             int itemsToRemove = resolveRecipeItemRemoval(getCookingRecipe().getItemsIn(), getCookingRecipe().getItemsIn().size());
             if (itemsToRemove == 0) {
                 insertItem(3,getCookingRecipe().getItemOut().copy());
+                addPressureFromRecipe();
+                resetProgress();
+            }
+        }else {
+            addProgress();
+        }
+    }
+
+    private void dipMyItemsInFluid(){
+        if (getCurrentRecipe() != null && getProgress() >= getDippingRecipe().getCookTime()) {
+            int itemsToRemove = resolveRecipeItemRemoval(getDippingRecipe().getItemsIn(), getDippingRecipe().getItemsIn().size());
+            if (itemsToRemove == 0 && wasFluidRemoved(getDippingRecipe().getFluidIn())) {
+                insertItem(3,getDippingRecipe().getItemOut().copy());
+                addPressureFromRecipe();
+                resetProgress();
+            }
+        }else {
+            addProgress();
+        }
+    }
+
+    private void mixMyItemsNFluid(){
+        if (getCurrentRecipe() != null && getProgress() >= getMixingRecipe().getCookTime()) {
+            int itemsToRemove = resolveRecipeItemRemoval(getMixingRecipe().getItemsIn(), getMixingRecipe().getItemsIn().size());
+            if (itemsToRemove == 0 && wasFluidRemoved(getMixingRecipe().getFluidIn())) {
+                setFluidStack(getMixingRecipe().getFluidOut());
                 addPressureFromRecipe();
                 resetProgress();
             }

@@ -9,6 +9,7 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -37,7 +38,7 @@ public class InventoryTile extends TileEntity implements ITickableTileEntity {
     public void tick() {
         if(world != null) {
             if (requiresUpdate) {
-                updateCrucible();
+                updateTile();
                 requiresUpdate = false;
             }
         }
@@ -65,20 +66,20 @@ public class InventoryTile extends TileEntity implements ITickableTileEntity {
     }
 
     public ItemStack getItemInSlot(int slot) {
-        return handler.map(inventory -> inventory.getStackInSlot(slot)).orElse(null);
+        return handler.map(inventory -> inventory.getStackInSlot(slot)).orElse(ItemStack.EMPTY);
     }
 
     public ItemStack insertItem(int slot, ItemStack stack) {
         ItemStack itemIn = stack.copy();
         stack.shrink(itemIn.getCount());
         requiresUpdate = true;
-        return handler.map(inventory -> inventory.insertItem(slot, itemIn, false)).orElse(null);
+        return handler.map(inventory -> inventory.insertItem(slot, itemIn, false)).orElse(ItemStack.EMPTY);
     }
 
     public ItemStack extractItem(int slot) {
         int count = getItemInSlot(slot).getCount();
         requiresUpdate = true;
-        return handler.map(inventory -> inventory.extractItem(slot, count, false)).orElse(null);
+        return handler.map(inventory -> inventory.extractItem(slot, count, false)).orElse(ItemStack.EMPTY);
     }
 
     public int getSize() {
@@ -124,7 +125,7 @@ public class InventoryTile extends TileEntity implements ITickableTileEntity {
         return compound;
     }
 
-    public void updateCrucible() {
+    public void updateTile() {
         requestModelDataUpdate();
         this.markDirty();
         if (this.getWorld() != null) {
