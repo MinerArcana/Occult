@@ -9,4 +9,8 @@ public class BrimstoneBlock extends Block {
         super(Properties.create(Material.ANVIL));
     }
 
+    //TODO::Future Release with Entities, Make them spawn on this block.
+    //TODO:: Future Release with Biomes, Spawn this in Infernal Biomes
+    //TODO:: Future Release with Chunk Changing Biomes, Make this Spawn in Biomes During Change
+
 }

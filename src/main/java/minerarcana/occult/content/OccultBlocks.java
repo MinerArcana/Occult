@@ -3,6 +3,7 @@ package minerarcana.occult.content;
 import com.hrznstudio.titanium.registry.BlockRegistryObjectGroup;
 import minerarcana.occult.Occult;
 import minerarcana.occult.blocks.BrimstoneBlock;
+import minerarcana.occult.blocks.SulfurBlock;
 import minerarcana.occult.blocks.crucible.CrucibleMainBlock;
 import minerarcana.occult.blocks.crucible.CrucibleTopBlock;
 import minerarcana.occult.blocks.metals.LionMetalBlock;
@@ -31,6 +32,8 @@ public class OccultBlocks {
         addCubedBlock("sated_lionmetal_block", new LionMetalBlock());
         addCubedBlock("hungry_lionmetal_block", new LionMetalBlock());
         addCubedBlock("amalgam_block", Block.Properties.create(Material.ANVIL));
+        addCubedBlock("sulfur_block", new SulfurBlock());
+
     }
 
     public static BlockRegistryObjectGroup<?, ?, ?> addCubedBlock(String name, Block.Properties properties) {

@@ -19,6 +19,7 @@ public class OccultItems {
         //addItem("pressure_add", new PressurePlus());
         //addItem("pressure_remove", new PressureMinus());
         addItem("quicksilver");
+        addItem("sulfur");
         addItem("sated_lionmetal_nugget");
         addItem("hungry_lionmetal_ingot");
         addItem("hungry_lionmetal_nugget");

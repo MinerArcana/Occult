@@ -1,0 +1,23 @@
+{
+  "type": "occult:crucible_cooking",
+  "itemInputs": [
+    {
+      "item": "occult:akjar",
+      "count": 1
+    }
+  ],
+  "meltTime": 200,
+  "maxTemp": 2500,
+  "minTemp": 1000,
+  "result": {
+    "item": "occult:sulfur",
+    "count": 4
+  },
+  "pressureReleased": [
+    {
+      "pressureType": "occult:infernal",
+      "amount": 2
+    }
+  ],
+  "experience": 0
+}
