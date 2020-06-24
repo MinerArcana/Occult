@@ -1,4 +1,4 @@
-package minerarcana.occult.blocks;
+package minerarcana.occult.blocks.crucible;
 
 import minerarcana.occult.tileentities.CrucibleTile;
 import net.minecraft.block.Block;

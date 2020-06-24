@@ -31,7 +31,7 @@ public class OccultRegistryHandler {
     public static int TILE_INT = 0;
 
     public static final RegistryObject<Item>[] ITEMLIST = new RegistryObject[200];
-    public static final BlockRegistryObjectGroup<Block, BlockItem, ?>[] BLOCKLIST = new BlockRegistryObjectGroup[100];
+    public static final BlockRegistryObjectGroup<Block, BlockItem, ?>[] CUBEDBLOCKS = new BlockRegistryObjectGroup[100];
     public static final RegistryObject<PressureType>[] PRESSURELIST = new RegistryObject[100];
     public static final BlockRegistryObjectGroup<Block, BlockItem, TileEntity>[] TILES = new BlockRegistryObjectGroup[100];
 

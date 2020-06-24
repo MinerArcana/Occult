@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraftforge.fluids.FluidStack;
 
-import static minerarcana.occult.blocks.RotatableBlock.FACING;
+import static minerarcana.occult.blocks.base.RotatableBlock.FACING;
 
 public class CrucibleTileRenderer extends TileEntityRenderer<CrucibleTile> {
 
