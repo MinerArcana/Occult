@@ -10,5 +10,6 @@
   "item.occult.hungry_lionmetal_nugget": "Hungry Lionmetal Nugget",
   "item.occult.quicksilver": "Quicksilver",
   "item.occult.sated_lionmetal_ingot": "Sated Lionmetal Ingot",
-  "item.occult.sated_lionmetal_nugget": "Sated Lionmetal Nugget"
+  "item.occult.sated_lionmetal_nugget": "Sated Lionmetal Nugget",
+  "itemGroup.occult": "Occult"
 }

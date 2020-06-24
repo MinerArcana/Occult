@@ -23,18 +23,19 @@ public class OccultUSLangProvider extends LanguageProvider {
     protected void addTranslations() {
 
         //Add Translation for Cubed Blocks
-        for(BlockRegistryObjectGroup block: CUBEDBLOCKS){
-            if(block != null){
+        for (BlockRegistryObjectGroup block : CUBEDBLOCKS) {
+            if (block != null) {
                 this.addItem(block::getItem, WordUtils.capitalizeFully(StringUtils.capitalise(block.getName().replace("_", " ").replace("1", "").replace("2", "").replace("3", ""))));
             }
         }
         //Add Translation for Items
-        for(RegistryObject<Item> item: ITEMLIST){
-            if(item != null){
+        for (RegistryObject<Item> item : ITEMLIST) {
+            if (item != null) {
                 this.addItem(item, WordUtils.capitalizeFully(item.getId().getPath().replace("_", " ")));
             }
         }
 
+        this.add("itemGroup.occult", "Occult");
         this.addItem(CRUCIBLE::getItem, WordUtils.capitalizeFully(CRUCIBLE.getName()));
 
 
