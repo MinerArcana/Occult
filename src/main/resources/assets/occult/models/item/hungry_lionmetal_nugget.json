@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "texture": "occult:items/hungry_lionmeta_nugget"
+    "layer0": "occult:items/hungry_lionmetal_nugget"
   }
 }

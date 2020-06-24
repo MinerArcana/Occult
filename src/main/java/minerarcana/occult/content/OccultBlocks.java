@@ -27,7 +27,7 @@ public class OccultBlocks {
     public static void init(){
         CRUCIBLE = new BlockRegistryObjectGroup<>("crucible",CrucibleMainBlock::new, tileItemCreator(1),CrucibleTile::new).register(BLOCKS,ITEMS,TILE_ENTITIES);
         CRUCIBLETOP = BLOCKS.register("crucible_top", CrucibleTopBlock::new);
-        addCubedBlock("ajkar", new BrimstoneBlock());
+        addCubedBlock("akjar", new BrimstoneBlock());
         addCubedBlock("sated_lionmetal_block", new LionMetalBlock());
         addCubedBlock("hungry_lionmetal_block", new LionMetalBlock());
         addCubedBlock("amalgam_block", Block.Properties.create(Material.ANVIL));
