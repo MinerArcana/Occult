@@ -13,7 +13,7 @@ public class OccultPressure {
 
     public static void init() {
         SPIRITUAL = addPressure("spiritual", 12408320);
-        INFERNAL = addPressure("inferal", 16384);
+        INFERNAL = addPressure("infernal", 16384);
         NATURAL = addPressure("natural", 14543359);
     }
 

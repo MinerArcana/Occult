@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "texture": "occult:items/sated_lionmetal_nugget"
+    "texture": "occult:items/sulphur"
   }
 }

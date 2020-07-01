@@ -15,6 +15,7 @@ public class TagHelper {
     public static final Tag<Block> HIGH_HEAT = tag("heat/high_heat");
     public static final Tag<Block> EXTREME_HEAT = tag("heat/extreme_heat");
     public static final Tag<Block> INFERNAL_HEAT = tag("heat/internal_heat");
+    public static final Tag<Block> LIONMETALFOOD = tag("lionmetalfood");
 
     private static Tag<Block> tag(String name) {
         return new BlockTags.Wrapper(new ResourceLocation(MOD_ID, name));

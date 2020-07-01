@@ -1,0 +1,7 @@
+{
+  "parent": "occult:block/pile",
+  "textures": {
+    "0": "occult:items/sulphur",
+    "particle": "occult:items/sulphur"
+  }
+}

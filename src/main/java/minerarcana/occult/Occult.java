@@ -35,7 +35,6 @@ public class Occult
     }
 
     private void commonSetupEvent(final FMLCommonSetupEvent event) {
-
         CapabilitySetup.init();
     }
     private void clientSetupEvent(final FMLClientSetupEvent event) {

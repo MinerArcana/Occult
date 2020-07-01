@@ -3,13 +3,15 @@
   "block.occult.amalgam_block": "Amalgam Block",
   "block.occult.crucible": "Crucible",
   "block.occult.hungry_lionmetal_block": "Hungry Lionmetal Block",
-  "block.occult.sated_lionmetal_block": "Sated Lionmetal Block",
+  "block.occult.satiated_lionmetal_block": "Satiated Lionmetal Block",
+  "block.occult.sulphur_block": "Sulphur Block",
   "item.occult.amalgam_ingot": "Amalgam Ingot",
   "item.occult.amalgam_nugget": "Amalgam Nugget",
   "item.occult.hungry_lionmetal_ingot": "Hungry Lionmetal Ingot",
   "item.occult.hungry_lionmetal_nugget": "Hungry Lionmetal Nugget",
   "item.occult.quicksilver": "Quicksilver",
-  "item.occult.sated_lionmetal_ingot": "Sated Lionmetal Ingot",
-  "item.occult.sated_lionmetal_nugget": "Sated Lionmetal Nugget",
+  "item.occult.satiated_lionmetal_ingot": "Satiated Lionmetal Ingot",
+  "item.occult.satiated_lionmetal_nugget": "Satiated Lionmetal Nugget",
+  "item.occult.sulphur": "Sulphur",
   "itemGroup.occult": "Occult"
 }

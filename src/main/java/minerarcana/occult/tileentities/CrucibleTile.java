@@ -5,11 +5,14 @@ import minerarcana.occult.recipe.crucible.recipe.*;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.item.crafting.ShapelessRecipe;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.common.util.RecipeMatcher;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
@@ -44,19 +47,19 @@ public class CrucibleTile extends InventoryTile {
             matchRecipe();
             if (getCurrentRecipe() != null) {
                 if (getMachineType() == 1 && !isFluidFull()) {
-                    if (getTempFromBelow() > getMeltingRecipe().getMinTemp() && getTempFromBelow() < getMeltingRecipe().getMaxTemp()) {
+                    if (getTempFromBelow() >= getMeltingRecipe().getMinTemp() && getTempFromBelow() <= getMeltingRecipe().getMaxTemp()) {
                         meltMyItems();
                     }
                 } else if (getMachineType() == 2 ){
-                    if (getTempFromBelow() > getMixingRecipe().getMinTemp() && getTempFromBelow() < getMixingRecipe().getMaxTemp()) {
+                    if (getTempFromBelow() >= getMixingRecipe().getMinTemp() && getTempFromBelow() <= getMixingRecipe().getMaxTemp()) {
                         mixMyItemsNFluid();
                     }
                 }else if (getMachineType() == 3 ){
-                    if (getTempFromBelow() > getDippingRecipe().getMinTemp() && getTempFromBelow() < getDippingRecipe().getMaxTemp()) {
+                    if (getTempFromBelow() >= getDippingRecipe().getMinTemp() && getTempFromBelow() <= getDippingRecipe().getMaxTemp()) {
                         dipMyItemsInFluid();
                     }
                 }else if (getMachineType() == 4 ){
-                    if (getTempFromBelow() > getCookingRecipe().getMinTemp() && getTempFromBelow() < getCookingRecipe().getMaxTemp()) {
+                    if (getTempFromBelow() >= getCookingRecipe().getMinTemp() && getTempFromBelow() <= getCookingRecipe().getMaxTemp()) {
                         cookMyItems();
                     }
                 }
@@ -68,7 +71,7 @@ public class CrucibleTile extends InventoryTile {
             if (getCurrentRecipe() != null) {
                 if (getMachineType() == 5) {
                     if (getItemInSlot(3).isEmpty() || getItemInSlot(3).getItem().equals(getCoolingRecipe().getItemOut().getItem()) && getItemInSlot(3).getCount() + getCoolingRecipe().getItemOut().getCount() <=64) {
-                        if (getTempFromBelow() < getCoolingRecipe().getMinTemp() && getTempFromBelow() > getCoolingRecipe().getMaxTemp())
+                        if (getTempFromBelow() <= getCoolingRecipe().getMinTemp() && getTempFromBelow() >= getCoolingRecipe().getMaxTemp())
                             coolMyItems();
                     }
                 }
@@ -209,7 +212,7 @@ public class CrucibleTile extends InventoryTile {
     }
 
     private void cookMyItems(){
-        if (getCurrentRecipe() != null && getProgress() >= getMeltingRecipe().getCookTime()) {
+        if (getCurrentRecipe() != null && getProgress() >= getCookingRecipe().getCookTime()) {
             int itemsToRemove = resolveRecipeItemRemoval(getCookingRecipe().getItemsIn(), getCookingRecipe().getItemsIn().size());
             if (itemsToRemove == 0) {
                 insertItem(3,getCookingRecipe().getItemOut().copy());

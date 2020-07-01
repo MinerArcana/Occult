@@ -14,13 +14,12 @@ public class OccultItems {
     public static RegistryObject<Item> LIONMETAL_INGOT;
 
     public static void init(){
-        LIONMETAL_INGOT = addItem("sated_lionmetal_ingot");
+        LIONMETAL_INGOT = addItem("satiated_lionmetal_ingot");
         //addItem("pressure_checker", new PressureChecker());
         //addItem("pressure_add", new PressurePlus());
         //addItem("pressure_remove", new PressureMinus());
         addItem("quicksilver");
-        addItem("sulfur");
-        addItem("sated_lionmetal_nugget");
+        addItem("satiated_lionmetal_nugget");
         addItem("hungry_lionmetal_ingot");
         addItem("hungry_lionmetal_nugget");
         addItem("amalgam_nugget");

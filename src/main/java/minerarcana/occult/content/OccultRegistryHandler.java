@@ -27,6 +27,7 @@ public class OccultRegistryHandler {
 
     public static int ITEMLIST_INT = 0;
     public static int BLOCK_INT = 0;
+    public static int PILE_INT = 0;
     public static int PRESSURE_INT = 0;
     public static int TILE_INT = 0;
 
@@ -34,6 +35,8 @@ public class OccultRegistryHandler {
     public static final BlockRegistryObjectGroup<Block, BlockItem, ?>[] CUBEDBLOCKS = new BlockRegistryObjectGroup[100];
     public static final RegistryObject<PressureType>[] PRESSURELIST = new RegistryObject[100];
     public static final BlockRegistryObjectGroup<Block, BlockItem, TileEntity>[] TILES = new BlockRegistryObjectGroup[100];
+
+    public static final BlockRegistryObjectGroup<Block, BlockItem, ?>[] PILE_BLOCKS = new BlockRegistryObjectGroup[100];
 
 
     public static void register(IEventBus eventBus) {

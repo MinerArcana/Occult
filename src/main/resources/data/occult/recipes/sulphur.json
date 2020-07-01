@@ -10,7 +10,7 @@
   "maxTemp": 2500,
   "minTemp": 1000,
   "result": {
-    "item": "occult:sulfur",
+    "item": "occult:sulphur",
     "count": 4
   },
   "pressureReleased": [

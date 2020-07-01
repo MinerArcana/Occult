@@ -29,6 +29,13 @@ public class FluidRegistryObjectGroup<F extends FlowingFluid, FF extends Fluid> 
     private RegistryObject<FlowingFluidBlock> block;
     private RegistryObject<BucketItem> bucket;
 
+    public FluidRegistryObjectGroup(String name, Supplier<F> fluidCreator, Supplier<FF> flowingFluidCreator, Supplier<FlowingFluidBlock> block) {
+        this.name = name;
+        this.fluidCreator = fluidCreator;
+        this.flowingFluidCreator = flowingFluidCreator;
+        this.blockCreator = block;
+    }
+
     public FluidRegistryObjectGroup(String name, Supplier<F> fluidCreator, Supplier<FF> flowingFluidCreator) {
         this.name = name;
         this.fluidCreator = fluidCreator;

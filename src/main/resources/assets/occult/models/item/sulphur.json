@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "texture": "occult:items/sated_lionmetal_ingot"
+    "layer0": "occult:items/sulphur"
   }
 }

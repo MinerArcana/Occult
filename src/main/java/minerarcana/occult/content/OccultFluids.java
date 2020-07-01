@@ -1,6 +1,7 @@
 package minerarcana.occult.content;
 
 import minerarcana.occult.api.pressure.FluidRegistryObjectGroup;
+import minerarcana.occult.blocks.fluid.QuicksilverFlowingFluidBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
@@ -20,12 +21,13 @@ public class OccultFluids {
     public static void init(){
         QUICKSILVER = new FluidRegistryObjectGroup<>("molten_quicksilver", () ->
                 new ForgeFlowingFluid.Source(QUICKSILVER_PROPERTIES), () ->
-                new ForgeFlowingFluid.Flowing(QUICKSILVER_PROPERTIES)
+                new ForgeFlowingFluid.Flowing(QUICKSILVER_PROPERTIES),
+                () -> new QuicksilverFlowingFluidBlock(QUICKSILVER)
         ).register(FLUIDS, BLOCKS, ITEMS);
 
         QUICKSILVER_PROPERTIES = new ForgeFlowingFluid.Properties(QUICKSILVER,
                 QUICKSILVER::getFlowing, FluidAttributes.builder(new ResourceLocation(MOD_ID, "blocks/mercury_still"),
-                new ResourceLocation(MOD_ID, "blocks/mercury_flow"))
+                new ResourceLocation(MOD_ID, "blocks/mercury_flow")).luminosity(900).density(2).viscosity(2).temperature(700)
                 .color(fromHex("d0d7db")))
                 .block(QUICKSILVER::getBlock)
                 .bucket(QUICKSILVER::getBucket);
@@ -36,8 +38,8 @@ public class OccultFluids {
         ).register(FLUIDS, BLOCKS, ITEMS);
 
         AMALGAM_PROPERTIES = new ForgeFlowingFluid.Properties(AMALGAM,
-                AMALGAM::getFlowing, FluidAttributes.builder(new ResourceLocation(MOD_ID, "blocks/amalgam_still"),
-                new ResourceLocation(MOD_ID, "blocks/amalgam_flow"))
+                AMALGAM::getFlowing, FluidAttributes.builder(new ResourceLocation(MOD_ID, "blocks/amalgam_flow"),
+                new ResourceLocation(MOD_ID, "blocks/amalgam_still"))
                 .color(fromHex("eda31a")))
                 .block(AMALGAM::getBlock)
                 .bucket(AMALGAM::getBucket);
