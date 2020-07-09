@@ -3,7 +3,7 @@
 f1d376014ee77d09e81c04927d140c4c6a832d72 assets/occult/blockstates/hungry_lionmetal_block.json
 6e6b6a397659440551dc6dfa25c55c2d17f1c4b1 assets/occult/blockstates/satiated_lionmetal_block.json
 d464acf541c090861bb6483af3083f3369e45b63 assets/occult/blockstates/sulphur_block.json
-4ab17ba47b715fb9ca6525a14ffdd09e0362e337 assets/occult/lang/en_us.json
+63ca7bf912066101eb50f9b0adf20285addfac85 assets/occult/lang/en_us.json
 220a518e0101402e3fda618b9f06a67562b29d60 assets/occult/models/block/akjar.json
 c29e0dd52c06df7e7cf97e5dbdfc150820236864 assets/occult/models/block/amalgam_block.json
 2abb4b94973d7d0557ce79b1c2d8647bac740785 assets/occult/models/block/hungry_lionmetal_block.json
@@ -22,5 +22,4 @@ f5480eb3ab9036431e295ee9ae229c699160588d assets/occult/models/item/molten_quicks
 e5e93f750e01b2bf0f4e95c7298ff2adf58b961a assets/occult/models/item/satiated_lionmetal_block.json
 231b8cb4811fd7ef8e9645311a20ee173f33c820 assets/occult/models/item/satiated_lionmetal_ingot.json
 7f1820d8b79fe1de7d9897bab0e67783da1f06e0 assets/occult/models/item/satiated_lionmetal_nugget.json
-3e3d2513a9a0485ce8e62e35a4e50c4c307eaab6 assets/occult/models/item/sulphur.json
 43d49020ac47a935635025862e1d4fba90d4f844 assets/occult/models/item/sulphur_block.json

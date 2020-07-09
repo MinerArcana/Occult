@@ -1,0 +1,7 @@
+{
+  "parent": "block/redstone_dust_dot",
+  "textures": {
+    "particle": "occult:blocks/dust/sulphur_dot",
+    "line": "occult:blocks/dust/sulphur_dot"
+  }
+}
