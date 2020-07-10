@@ -1,16 +1,11 @@
-package minerarcana.occult.items.equipment.lionmetal;
+package minerarcana.occult.items.equipment.lionmetal.hungry;
 
 import minerarcana.occult.items.equipment.OccultArmorItem;
-import minerarcana.occult.models.LionmetalFeetModel;
-import minerarcana.occult.models.LionmetalHeadModel;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -18,13 +13,12 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static minerarcana.occult.Occult.MOD_ID;
-import static minerarcana.occult.content.OccultArmorMaterials.HUNGRY_LIONMETAL;
-import static minerarcana.occult.content.OccultItems.*;
+import static minerarcana.occult.items.equipment.OccultArmorMaterials.HUNGRY_LIONMETAL;
+import static minerarcana.occult.util.StaticHandler.hungryLionmetalEaterHelper;
 import static minerarcana.occult.util.TagHelper.LIONMETALFOOD;
 
 public class HungryLionMetalArmor extends OccultArmorItem {
@@ -40,19 +34,7 @@ public class HungryLionMetalArmor extends OccultArmorItem {
             distance = 10;
         }
         if (!isArmorFull(player) && world.rand.nextInt(24) == 0 || isArmorFull(player) && slot == EquipmentSlotType.CHEST && world.getGameTime() % 20 == 0) {
-            BlockPos pos = player.getPosition();
-            for (int x = -distance; x < distance; ++x) {
-                for (int y = -distance; y < distance; ++y) {
-                    for (int z = -distance; z < distance; ++z) {
-                        BlockPos targetPos = pos.add(x, y, z);
-                        Block targetblock = world.getBlockState(targetPos).getBlock();
-                        if (targetblock.isIn(LIONMETALFOOD)) {
-                            world.setBlockState(targetPos, Blocks.AIR.getDefaultState());
-                            return;
-                        }
-                    }
-                }
-            }
+            hungryLionmetalEaterHelper(world,player,distance);
         }
 
     }

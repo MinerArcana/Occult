@@ -1,4 +1,4 @@
 package minerarcana.occult.items.equipment.lionmetal.hungry;
 
-public interface IHungryMetal {
+public interface IHungryMetal{
 }

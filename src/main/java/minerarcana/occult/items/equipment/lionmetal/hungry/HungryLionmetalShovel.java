@@ -1,15 +1,14 @@
 package minerarcana.occult.items.equipment.lionmetal.hungry;
 
-import net.minecraft.item.AxeItem;
 import net.minecraft.item.IItemTier;
-import net.minecraft.item.Item;
+import net.minecraft.item.ShovelItem;
 
 import static minerarcana.occult.Occult.OG;
 
-public class HungryLionmetalAxe extends AxeItem implements IHungryMetal{
+public class HungryLionmetalShovel extends ShovelItem implements IHungryMetal{
 
-    public HungryLionmetalAxe(IItemTier tier, float attackDamageIn, float attackSpeedIn) {
-        super(tier, attackDamageIn, attackSpeedIn, new Item.Properties().group(OG));
+    public HungryLionmetalShovel(IItemTier tier, float attackDamageIn, float attackSpeedIn) {
+        super(tier, attackDamageIn, attackSpeedIn, new Properties().group(OG));
     }
 
 
