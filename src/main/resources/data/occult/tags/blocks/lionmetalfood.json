@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "minecraft:fire",
-    "minecraft:lava"
+    "minecraft:fire"
   ]
 }

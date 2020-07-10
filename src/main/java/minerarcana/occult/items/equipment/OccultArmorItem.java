@@ -7,7 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import static minerarcana.occult.Occult.OG;
-import static minerarcana.occult.content.OccultArmorMaterials.AMALGAM_DIPPED;
+import static minerarcana.occult.items.equipment.OccultArmorMaterials.AMALGAM_DIPPED;
 
 public class OccultArmorItem extends ArmorItem {
 

@@ -1,13 +1,13 @@
 package minerarcana.occult.content;
 
 import com.hrznstudio.titanium.registry.BlockRegistryObjectGroup;
-import minerarcana.occult.Occult;
 import minerarcana.occult.blocks.BrimstoneBlock;
 import minerarcana.occult.blocks.SulfurBlock;
 import minerarcana.occult.blocks.base.PileBlock;
 import minerarcana.occult.blocks.crucible.CrucibleMainBlock;
 import minerarcana.occult.blocks.crucible.CrucibleTopBlock;
 import minerarcana.occult.blocks.metals.HungryLionMetalBlock;
+import minerarcana.occult.tileentities.HungryLionmetalTile;
 import minerarcana.occult.blocks.metals.SatiatedLionMetalBlock;
 import minerarcana.occult.items.PileItem;
 import minerarcana.occult.tileentities.CrucibleTile;
@@ -27,6 +27,7 @@ import static minerarcana.occult.content.OccultRegistryHandler.*;
 public class OccultBlocks {
 
     public static BlockRegistryObjectGroup<CrucibleMainBlock, BlockItem, CrucibleTile> CRUCIBLE;
+    public static BlockRegistryObjectGroup<HungryLionMetalBlock, BlockItem, HungryLionmetalTile> HUNGRY_LIONMETA_BLOCK;
     public static RegistryObject<Block> CRUCIBLETOP;
     public static BlockRegistryObjectGroup<PileBlock, PileItem, ?> SULPHUR;
     public static BlockRegistryObjectGroup<PileBlock, PileItem, ?> SACRED_SALT;
@@ -38,7 +39,7 @@ public class OccultBlocks {
         CRUCIBLETOP = BLOCKS.register("crucible_top", CrucibleTopBlock::new);
         addCubedBlock("akjar", new BrimstoneBlock());
         SATIATED_LIONMETAL_BLOCK = addCubedBlock("satiated_lionmetal_block", new SatiatedLionMetalBlock());
-        addCubedBlock("hungry_lionmetal_block", new HungryLionMetalBlock());
+        HUNGRY_LIONMETA_BLOCK = new BlockRegistryObjectGroup<>("hungry_lionmetal_block", HungryLionMetalBlock::new, blockItemCreator(),HungryLionmetalTile::new).register(BLOCKS, ITEMS, TILE_ENTITIES);
         addCubedBlock("amalgam_block", Block.Properties.create(Material.ANVIL));
         addCubedBlock("sulphur_block", new SulfurBlock());
         SULPHUR = new BlockRegistryObjectGroup<>("sulphur", PileBlock::new, block -> new PileItem(block, new Item.Properties().group(OG))).register(BLOCKS, ITEMS);

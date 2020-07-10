@@ -1,0 +1,70 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/block",
+	"ambientocclusion": false,
+	"textures": {
+		"1": "occult:armor/satiated_lionmetal_head"
+	},
+	"elements": [
+		{
+			"name": "helm",
+			"from": [4, 0, 4],
+			"to": [12, 9, 12],
+			"rotation": {"angle": 0, "axis": "z", "origin": [8, 1, 8]},
+			"faces": {
+				"north": {"uv": [10, 2, 12, 4.25], "texture": "#1"},
+				"east": {"uv": [8, 2, 10, 4.25], "texture": "#1"},
+				"south": {"uv": [14, 2, 16, 4.25], "texture": "#1"},
+				"west": {"uv": [12, 2, 14, 4.25], "texture": "#1"},
+				"up": {"uv": [12, 2, 10, 0], "texture": "#1"},
+				"down": {"uv": [14, 0, 12, 2], "texture": "#1"}
+			}
+		},
+		{
+			"name": "wings",
+			"from": [0, 4, 7],
+			"to": [16, 8, 7],
+			"rotation": {"angle": 0, "axis": "z", "origin": [16, 8, 7]},
+			"faces": {
+				"north": {"uv": [8, 4.75, 12, 5.75], "texture": "#1"},
+				"east": {"uv": [8, 4.75, 8, 5.75], "texture": "#1"},
+				"south": {"uv": [8, 4.75, 12, 5.75], "texture": "#1"},
+				"west": {"uv": [12, 4.75, 12, 5.75], "texture": "#1"},
+				"up": {"uv": [12, 4.75, 8, 4.75], "texture": "#1"},
+				"down": {"uv": [16, 4.75, 12, 4.75], "texture": "#1"}
+			}
+		},
+		{
+			"name": "shadow",
+			"from": [5, 1, 5],
+			"to": [11.9, 8.9, 11.9],
+			"rotation": {"angle": 0, "axis": "z", "origin": [9, 2, 8]},
+			"faces": {
+				"north": {"uv": [10.75, 9.5, 12.5, 11.5], "texture": "#1"},
+				"east": {"uv": [9, 9.5, 10.75, 11.5], "texture": "#1"},
+				"south": {"uv": [14.25, 9.5, 16, 11.5], "texture": "#1"},
+				"west": {"uv": [12.5, 9.5, 14.25, 11.5], "texture": "#1"},
+				"up": {"uv": [12.5, 9.5, 10.75, 7.75], "texture": "#1"},
+				"down": {"uv": [14.25, 7.75, 12.5, 9.5], "texture": "#1"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "helm",
+			"origin": [14, 9, 12],
+			"children": [0,
+				{
+					"name": "wings",
+					"origin": [8, 8, 8],
+					"children": [1]
+				},
+				{
+					"name": "shadow",
+					"origin": [8, 8, 8],
+					"children": [2]
+				}
+			]
+		}
+	]
+}

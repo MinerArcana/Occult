@@ -1,5 +1,6 @@
-package minerarcana.occult.content;
+package minerarcana.occult.items.equipment;
 
+import minerarcana.occult.content.OccultItems;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.Items;

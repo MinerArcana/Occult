@@ -1,55 +1,28 @@
 package minerarcana.occult.blocks.metals;
 
+import minerarcana.occult.tileentities.HungryLionmetalTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockReader;
 
-import java.util.Random;
-
-import static minerarcana.occult.content.OccultBlocks.SATIATED_LIONMETAL_BLOCK;
-import static minerarcana.occult.util.TagHelper.LIONMETALFOOD;
+import javax.annotation.Nullable;
 
 public class HungryLionMetalBlock extends Block {
 
-    private int fireConsumed = 0;
-
     public HungryLionMetalBlock() {
-        super(Properties.create(Material.ANVIL).tickRandomly());
+        super(Properties.create(Material.ANVIL));
     }
 
     @Override
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
-        lionMetalFireManager(world, pos);
+    public boolean hasTileEntity(BlockState state) {
+        return true;
     }
 
-    private boolean isHungry() {
-        return fireConsumed < 20;
+    @Nullable
+    @Override
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+        return new HungryLionmetalTile();
     }
-
-    public void lionMetalFireManager(World world, BlockPos pos) {
-        if (!this.isHungry()) {
-            world.setBlockState(pos, SATIATED_LIONMETAL_BLOCK.get().getDefaultState());
-        } else {
-            if(world.isBlockPowered(pos)) {
-                for (int x = -3; x < 3; ++x) {
-                    for (int y = -3; y < 3; ++y) {
-                        for (int z = -3; z < 3; ++z) {
-                            BlockPos targetPos = pos.add(x, y, z);
-                            BlockState targetBlock = world.getBlockState(targetPos);
-                            if (targetBlock.isIn(LIONMETALFOOD)) {
-                                world.setBlockState(targetPos, Blocks.AIR.getDefaultState());
-                                fireConsumed++;
-                                return;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
 }

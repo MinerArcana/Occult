@@ -1,0 +1,47 @@
+{   "__comment": "ModelPlayer - Either Mojang or a mod author, created using Tabula 8.0.0",
+    "parent": "minecraft:block/block",
+    "ambientocclusion": false,
+    "textures": {
+        "particle": "occult:blocks/lionmetalpants"
+    },
+    "elements": [
+        {   "__comment": "leftleg",
+            "from": [ -1, 0, -2 ],
+            "to": [ 3, 12, 2 ],
+            "rotation": {
+                "origin": [ 1, 12, 0 ],
+                "axis": "z",
+                "angle": 0.0,
+                "rescale": false
+            },
+            "shade": true,
+            "faces": {
+                "down":  { "uv": [ 3.0, 0.0, 2.0, 1.0 ], "texture": "#particle" },
+                "up":  { "uv": [ 2.0, 1.0, 1.0, 0.0 ], "texture": "#particle" },
+                "north":  { "uv": [ 1.0, 1.0, 2.0, 4.0 ], "texture": "#particle" },
+                "south":  { "uv": [ 3.0, 1.0, 4.0, 4.0 ], "texture": "#particle" },
+                "west":  { "uv": [ 2.0, 1.0, 3.0, 4.0 ], "texture": "#particle" },
+                "east":  { "uv": [ 0.0, 1.0, 1.0, 4.0 ], "texture": "#particle" }
+            }
+        },
+        {   "__comment": "roghtleg",
+            "from": [ -3, 0, -2 ],
+            "to": [ 1, 12, 2 ],
+            "rotation": {
+                "origin": [ -1, 12, 0 ],
+                "axis": "z",
+                "angle": 0.0,
+                "rescale": false
+            },
+            "shade": true,
+            "faces": {
+                "down":  { "uv": [ 7.0, 0.0, 6.0, 1.0 ], "texture": "#particle" },
+                "up":  { "uv": [ 6.0, 1.0, 5.0, 0.0 ], "texture": "#particle" },
+                "north":  { "uv": [ 5.0, 1.0, 6.0, 4.0 ], "texture": "#particle" },
+                "south":  { "uv": [ 7.0, 1.0, 8.0, 4.0 ], "texture": "#particle" },
+                "west":  { "uv": [ 6.0, 1.0, 7.0, 4.0 ], "texture": "#particle" },
+                "east":  { "uv": [ 4.0, 1.0, 5.0, 4.0 ], "texture": "#particle" }
+            }
+        }
+    ]
+}
