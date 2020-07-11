@@ -1,16 +1,21 @@
 package minerarcana.occult.blocks.metals;
 
 import minerarcana.occult.tileentities.HungryLionMetalBarTile;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PaneBlock;
+import net.minecraft.block.material.Material;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 
+import javax.annotation.Nullable;
+
 public class HungryLionmetalBars extends PaneBlock {
 
-    protected HungryLionmetalBars(Properties builder) {
-        super(builder);
+    protected HungryLionmetalBars() {
+        super(Block.Properties.create(Material.IRON));
     }
 
     @Override
@@ -26,5 +31,14 @@ public class HungryLionmetalBars extends PaneBlock {
         return 0;
     }
 
+    @Override
+    public boolean hasTileEntity(BlockState state) {
+        return true;
+    }
 
+    @Nullable
+    @Override
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+        return new HungryLionMetalBarTile();
+    }
 }
