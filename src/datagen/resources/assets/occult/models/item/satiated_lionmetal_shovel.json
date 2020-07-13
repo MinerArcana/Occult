@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "texture": "occult:items/satiated_lionmetal_shovel"
+  }
+}

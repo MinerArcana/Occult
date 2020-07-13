@@ -45,6 +45,7 @@ public class OccultItems {
     public static void init(){
         SATIATED_LIONMETAL_INGOT = addItem("satiated_lionmetal_ingot");
         addItem("quicksilver");
+        addItem("pearlash");
         addItem("satiated_lionmetal_nugget");
         HUNGRY_LIONMETAL_INGOT = addItem("hungry_lionmetal_ingot");
         addItem("hungry_lionmetal_nugget");

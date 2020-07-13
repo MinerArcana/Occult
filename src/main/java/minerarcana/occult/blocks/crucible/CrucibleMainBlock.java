@@ -4,15 +4,21 @@ import minerarcana.occult.blocks.base.RotatableBlock;
 import minerarcana.occult.tileentities.CrucibleTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.DirectionProperty;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
@@ -20,9 +26,9 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 import static minerarcana.occult.content.OccultBlocks.CRUCIBLETOP;
+import static net.minecraft.block.AbstractFurnaceBlock.LIT;
 
 public class CrucibleMainBlock extends RotatableBlock {
-
 
     public CrucibleMainBlock() {
         super(Block.Properties.create(Material.ANVIL).notSolid());
@@ -71,4 +77,10 @@ public class CrucibleMainBlock extends RotatableBlock {
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return new CrucibleTile();
     }
+
+    @Override
+    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+        return Block.makeCuboidShape(0,0,0,16,32,16);
+    }
+
 }

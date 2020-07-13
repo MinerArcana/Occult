@@ -2,6 +2,7 @@ package minerarcana.occult.tileentities;
 
 import minerarcana.occult.api.pressure.PressureType;
 import minerarcana.occult.recipe.crucible.recipe.*;
+import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -44,7 +45,7 @@ public class CrucibleTile extends InventoryTile {
     public void tick() {
         super.tick();
         if (isHot()) {
-            matchRecipe();
+             matchRecipe();
             if (getCurrentRecipe() != null) {
                 if (getMachineType() == 1 && !isFluidFull()) {
                     if (getTempFromBelow() >= getMeltingRecipe().getMinTemp() && getTempFromBelow() <= getMeltingRecipe().getMaxTemp()) {

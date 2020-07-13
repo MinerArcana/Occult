@@ -2,7 +2,9 @@ package minerarcana.occult.items.equipment.lionmetal;
 
 import minerarcana.occult.items.equipment.OccultArmorItem;
 import minerarcana.occult.models.LionmetalFeetModel;
+import minerarcana.occult.models.LionmetalLegsModel;
 import minerarcana.occult.models.LionmetalHeadModel;
+import minerarcana.occult.models.LionmetalTorsoModel;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -39,7 +41,7 @@ public abstract class LionmetalArmor extends OccultArmorItem {
 
             return (A) model;
         } else if (armorSlot == EquipmentSlotType.LEGS) {
-            LionmetalFeetModel model = new LionmetalFeetModel();
+            LionmetalLegsModel model = new LionmetalLegsModel();
             model.isChild = _default.isChild;
             model.isSneak = _default.isSneak;
             model.isSitting = _default.isSitting;
@@ -48,7 +50,7 @@ public abstract class LionmetalArmor extends OccultArmorItem {
 
             return (A) model;
         } else if (armorSlot == EquipmentSlotType.CHEST) {
-            LionmetalFeetModel model = new LionmetalFeetModel();
+            LionmetalTorsoModel model = new LionmetalTorsoModel();
             model.isChild = _default.isChild;
             model.isSneak = _default.isSneak;
             model.isSitting = _default.isSitting;

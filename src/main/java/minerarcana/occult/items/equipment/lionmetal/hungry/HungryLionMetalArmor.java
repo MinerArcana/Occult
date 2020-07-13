@@ -1,6 +1,7 @@
 package minerarcana.occult.items.equipment.lionmetal.hungry;
 
 import minerarcana.occult.items.equipment.OccultArmorItem;
+import minerarcana.occult.items.equipment.lionmetal.LionmetalArmor;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
@@ -19,9 +20,8 @@ import java.util.stream.Collectors;
 import static minerarcana.occult.Occult.MOD_ID;
 import static minerarcana.occult.items.equipment.OccultArmorMaterials.HUNGRY_LIONMETAL;
 import static minerarcana.occult.util.StaticHandler.hungryLionmetalEaterHelper;
-import static minerarcana.occult.util.TagHelper.LIONMETALFOOD;
 
-public class HungryLionMetalArmor extends OccultArmorItem {
+public class HungryLionMetalArmor extends LionmetalArmor {
 
     public HungryLionMetalArmor(EquipmentSlotType slot) {
         super(HUNGRY_LIONMETAL, slot);
